@@ -117,8 +117,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Mark_Store_AsDeleted.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Mark_Inventory_AsDeleted.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Mark_Order_AsDeleted.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Creditor.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Debtor.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\OrderGradeSize.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\BatchGradeSize.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\FactoryExpense.sql" />
@@ -136,8 +134,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\StockProduct.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\UserBranch.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\StoreStock.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\SupplyStock.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\StoreMaizeStock.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\StoreGradeSize.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\DeliveryStock.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\UpdateStoreStockWithSoldOut.sql" />
@@ -145,8 +141,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Buvera.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\BuveraGradeSize.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\StoreBuveraGradeSize.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Utility.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Mark_Utility_AsDeleted.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\InventoryCategory.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Mark_Requistion_AsDeleted.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\UpdateRequistionWithCompletedStatus.sql" />
@@ -177,11 +171,8 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\UtilityAccount.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\UtilityCategory.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\UpdateMaizeBrandBatchQuantity.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\TempAccountTransactionActivity.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\Deposit.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\BatchProjection.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\MaizeOffloading.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\MillingCharge.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\RequistionCategory.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\UpdateSupplyOnRequistionApproval.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\InventoryPurchase.sql" />

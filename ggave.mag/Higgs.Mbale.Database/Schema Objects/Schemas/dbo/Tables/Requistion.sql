@@ -28,10 +28,7 @@
 	[RepairerName]  [nvarchar](255) NULL,
 	[RepairDate]	[datetime] NOT NULL DEFAULT GETDATE(),	
 	[UtilityCategoryId]   BIGINT NULL,
-	[BankId]		     BIGINT NULL,
-	[FinancialAccountId] BIGINT NULL,
-
-    [OutSourcerId] NVARCHAR(128) NULL, 
+	
     CONSTRAINT [PK_dbo.Requistion] PRIMARY KEY CLUSTERED 
 (
 	[RequistionId] ASC
@@ -39,7 +36,6 @@
 CONSTRAINT [FK_Requistion_StatusId] FOREIGN KEY([StatusId]) REFERENCES [dbo].[Status](StatusId),
 CONSTRAINT [FK_Requistion_BranchId] FOREIGN KEY([BranchId]) REFERENCES [dbo].[Branch](BranchId),
 CONSTRAINT [FK_Requistion_ApprovedById] FOREIGN KEY ([ApprovedById]) REFERENCES [dbo].[AspNetUsers](Id),
-CONSTRAINT [FK_Requistion_OutSourcerId] FOREIGN KEY ([OutSourcerId]) REFERENCES [dbo].[AspNetUsers](Id),
 
 CONSTRAINT [FK_Requistion_CreatedBy] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[AspNetUsers](Id),
 CONSTRAINT [FK_Requistion_UpdatedBy] FOREIGN KEY ([UpdatedBy]) REFERENCES [dbo].[AspNetUsers](Id),
@@ -47,8 +43,6 @@ CONSTRAINT [FK_Requistion_DeletedBy] FOREIGN KEY ([DeletedBy]) REFERENCES [dbo].
 CONSTRAINT [FK_Requistion_CasualWorker] FOREIGN KEY ([CasualWorkerId]) REFERENCES [dbo].[CasualWorker](CasualWorkerId),
 CONSTRAINT [FK_Requistion_Activity] FOREIGN KEY ([ActivityId]) REFERENCES [dbo].[Activity](ActivityId),
 CONSTRAINT [FK_Requistion_Batch] FOREIGN KEY ([BatchId]) REFERENCES [dbo].[Batch](BatchId),
-CONSTRAINT [FK_Requistion_Bank] FOREIGN KEY ([BankId]) REFERENCES [dbo].[Bank](BankId),
-CONSTRAINT [FK_Requistion_FinancialAccount] FOREIGN KEY ([FinancialAccountId]) REFERENCES [dbo].[FinancialAccount](FinancialAccountId),
 CONSTRAINT [FK_Requistion_UtilityCategory] FOREIGN KEY ([UtilityCategoryId]) REFERENCES [dbo].[UtilityCategory](UtilityCategoryId),
 CONSTRAINT [FK_Requistion_Supply] FOREIGN KEY ([SupplyId]) REFERENCES [dbo].[Supply](SupplyId),
 CONSTRAINT [FK_Requistion_RequistionCategory] FOREIGN KEY ([RequistionCategoryId]) REFERENCES [dbo].[RequistionCategory](RequistionCategoryId),
