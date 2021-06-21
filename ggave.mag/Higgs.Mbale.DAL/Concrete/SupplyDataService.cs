@@ -8,7 +8,6 @@ using Higgs.Mbale.DAL.Concrete;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.EF.UnitOfWork;
 using Higgs.Mbale.DTO;
-using log4net;
 using System.Configuration;
 
 namespace Higgs.Mbale.DAL.Concrete
@@ -16,8 +15,7 @@ namespace Higgs.Mbale.DAL.Concrete
   public  class SupplyDataService : DataServiceBase,ISupplyDataService
     {
       private string supplyStatusId = ConfigurationManager.AppSettings["SupplyStatusId"];
-        ILog logger = log4net.LogManager.GetLogger(typeof(SupplyDataService));
-
+       
        public SupplyDataService(IUnitOfWork<MbaleEntities> unitOfWork)
             : base(unitOfWork)
         {

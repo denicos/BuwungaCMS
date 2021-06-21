@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 
 namespace Higgs.Mbale.BAL.Concrete
@@ -15,12 +14,10 @@ namespace Higgs.Mbale.BAL.Concrete
 
       private long receiptId = Convert.ToInt64(ConfigurationManager.AppSettings["Receipt"]);
      
-        ILog logger = log4net.LogManager.GetLogger(typeof(AccountTransactionActivityService));
         private IAccountTransactionActivityDataService _dataService;
         private IUserService _userService;
         private ITransactionSubTypeService _transactionSubTypeService;
-        private ICreditorDataService _creditorDataService;
-        private IDebtorDataService _debtorDataService;
+      
         private ITransactionDataService _transactionDataService;
       private IDocumentService _documentService;
       
@@ -28,8 +25,7 @@ namespace Higgs.Mbale.BAL.Concrete
 
 
         public AccountTransactionActivityService(IAccountTransactionActivityDataService dataService, IUserService userService,
-            ITransactionSubTypeService transactionSubTypeService,IDebtorDataService debtorDataService,ICreditorDataService creditorDataService,
-            ITransactionDataService transactionDataService,IDocumentService documentService
+            ITransactionSubTypeService transactionSubTypeService,ITransactionDataService transactionDataService,IDocumentService documentService
            
             )
             
@@ -37,8 +33,7 @@ namespace Higgs.Mbale.BAL.Concrete
             this._dataService = dataService;
             this._userService = userService;
             this._transactionSubTypeService = transactionSubTypeService;
-            this._creditorDataService = creditorDataService;
-            this._debtorDataService = debtorDataService;
+          
             this._transactionDataService = transactionDataService;
             this._documentService = documentService;
            

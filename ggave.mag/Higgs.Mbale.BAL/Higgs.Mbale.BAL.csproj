@@ -69,8 +69,6 @@
     <Compile Include="Concrete\ActivityService.cs" />
     <Compile Include="Concrete\AssetCategoryService.cs" />
     <Compile Include="Concrete\AssetService.cs" />
-    <Compile Include="Concrete\BankService.cs" />
-    <Compile Include="Concrete\BankTransactionService.cs" />
     <Compile Include="Concrete\BatchOutPutService.cs" />
     <Compile Include="Concrete\BatchProjectionService.cs" />
     <Compile Include="Concrete\BatchService.cs" />
@@ -89,17 +87,10 @@
     <Compile Include="Concrete\DepositService.cs" />
     <Compile Include="Concrete\DocumentService.cs" />
     <Compile Include="Concrete\FactoryExpenseService.cs" />
-    <Compile Include="Concrete\FinancialAccountService.cs" />
-    <Compile Include="Concrete\FinancialAccountTransactionService.cs" />
     <Compile Include="Concrete\FlourTransferService.cs" />
     <Compile Include="Concrete\GradeService.cs" />
     <Compile Include="Concrete\InventoryPurchaseService.cs" />
     <Compile Include="Concrete\InventoryService.cs" />
-    <Compile Include="Concrete\MaizeOffloadingService.cs" />
-    <Compile Include="Concrete\MillingChargeService.cs" />
-    <Compile Include="Concrete\OutSourcerOutPutService.cs" />
-    <Compile Include="Concrete\RiceInputService.cs" />
-    <Compile Include="Concrete\RiceTransferService.cs" />
     <Compile Include="Concrete\UtilityAccountService.cs" />
     <Compile Include="Concrete\LabourCostService.cs" />
     <Compile Include="Concrete\MachineRepairService.cs" />
@@ -112,7 +103,6 @@
     <Compile Include="Concrete\SupplyService.cs" />
     <Compile Include="Concrete\TransactionService.cs" />
     <Compile Include="Concrete\TransactionSubTypeService.cs" />
-    <Compile Include="Concrete\UtilityService.cs" />
     <Compile Include="Concrete\WeightLossService.cs" />
     <Compile Include="Concrete\WeightNoteNumberService.cs" />
     <Compile Include="Concrete\WeightNoteRangeService.cs" />
@@ -136,8 +126,6 @@
     <Compile Include="Interface\IDepositService.cs" />
     <Compile Include="Interface\IDocumentService.cs" />
     <Compile Include="Interface\IFactoryExpenseService.cs" />
-    <Compile Include="Interface\IFinancialAccountService.cs" />
-    <Compile Include="Interface\IFinancialAccountTransactionService.cs" />
     <Compile Include="Interface\IFlourTransferService.cs" />
     <Compile Include="Interface\IGradeService.cs" />
     <Compile Include="Interface\IInventoryPurchaseService.cs" />
@@ -145,14 +133,9 @@
     <Compile Include="Interface\ILabourCostService.cs" />
     <Compile Include="Interface\IMachineRepairService.cs" />
     <Compile Include="Interface\IMaizeBrandStoreService.cs" />
-    <Compile Include="Interface\IMaizeOffloadingService.cs" />
-    <Compile Include="Interface\IMillingChargeService.cs" />
     <Compile Include="Interface\IOtherExpenseService.cs" />
-    <Compile Include="Interface\IOutSourcerOutPutService.cs" />
     <Compile Include="Interface\IReportService.cs" />
     <Compile Include="Interface\IRequistionService.cs" />
-    <Compile Include="Interface\IRiceInputService.cs" />
-    <Compile Include="Interface\IRiceTransferService.cs" />
     <Compile Include="Interface\IStatusService.cs" />
     <Compile Include="Concrete\OrderService.cs" />
     <Compile Include="Concrete\ProductService.cs" />
@@ -173,7 +156,6 @@
     <Compile Include="Interface\ITransactionSubTypeService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Interface\IUtilityAccountService.cs" />
-    <Compile Include="Interface\IUtilityService.cs" />
     <Compile Include="Interface\IWeightLossService.cs" />
     <Compile Include="Interface\IWeightNoteNumberService.cs" />
     <Compile Include="Interface\IWeightNoteRangeService.cs" />

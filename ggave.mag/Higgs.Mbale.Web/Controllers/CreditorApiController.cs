@@ -30,20 +30,7 @@ namespace Higgs.Mbale.Web.Controllers
 
           
 
-            [HttpGet]
-            [ActionName("GetAllCreditors")]
-            public IEnumerable<Creditor> GetAllCreditors()
-            {
-                return _creditorService.GetAllDistinctCreditorRecords();
-            }
-
-
-            [HttpGet]
-            [ActionName("GetAllBranchCreditors")]
-            public IEnumerable<Creditor> GetAllBranchCreditors(long branchId)
-            {
-                return _creditorService.GetAllCreditorsForAParticularBranch(branchId);
-            }
+                    
 
         [HttpGet]
         [ActionName("GetCreditorView")]

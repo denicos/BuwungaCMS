@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 using Higgs.Mbale.Models.ViewModel;
 using Higgs.Mbale.Models.WebViewModel;
@@ -17,8 +16,8 @@ namespace Higgs.Mbale.BAL.Concrete
         private long supplyStatusIdComplete = Convert.ToInt64(ConfigurationManager.AppSettings["StatusIdComplete"]);
         private string supplyStatusIdInProgress = ConfigurationManager.AppSettings["SupplyStatusIdInProgress"];
       private long flourId = Convert.ToInt64(ConfigurationManager.AppSettings["FlourId"]);
-     //// private double totalQuantity = 0;
-         ILog logger = log4net.LogManager.GetLogger(typeof(BatchService));
+     
+        
         private IBatchDataService _dataService;
         private IUserService _userService;
         private ISupplyDataService _supplyDataService;
@@ -28,7 +27,7 @@ namespace Higgs.Mbale.BAL.Concrete
         private IMachineRepairService _machineRepairService;
         private IBatchOutPutService _batchOutPutService;
         private ISupplyService _supplyService;
-        private IUtilityService _utilityService;
+      
         private IActivityService _activityService;
         private IStockService _stockService;
         private IBranchService _branchService;
@@ -38,7 +37,7 @@ namespace Higgs.Mbale.BAL.Concrete
         public BatchService(IBatchDataService dataService,IUserService userService,ISupplyDataService supplyDataService,
             IFactoryExpenseService factoryExpenseService,ILabourCostService labourCostService,
             IMachineRepairService machineRepairService,IOtherExpenseService otherExpenseService,
-            IBatchOutPutService batchOutPutService,ISupplyService supplyService,IUtilityService utilityService,
+            IBatchOutPutService batchOutPutService,ISupplyService supplyService,
             IActivityService activityService,IStockService stockService,IBranchService branchService)
         {
             this._dataService = dataService;
@@ -50,7 +49,7 @@ namespace Higgs.Mbale.BAL.Concrete
             this._otherExpenseService = otherExpenseService;
             this._batchOutPutService = batchOutPutService;
             this._supplyService = supplyService;
-            this._utilityService = utilityService;
+         
             this._activityService = activityService;
             this._stockService = stockService;
             this._branchService = branchService;
@@ -128,11 +127,7 @@ namespace Higgs.Mbale.BAL.Concrete
             var results = this._dataService.GetBatchFlourTransfers(batchId);
             return MapEFToModel(results);
         }
-        private IEnumerable<Utility> GetAllUtilitiesForABatch(long batchId)
-        {
-            var results = _utilityService.GetAllUtilitiesForAParticularBatch(batchId);
-            return results;
-        }
+      
 
         private IEnumerable<OtherExpense> GetAllOtherExpensesForABatch(long batchId)
         {
@@ -534,25 +529,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     batch.OtherExpenses = otherExpenseList;
                 }
 
-                var utilities = GetAllUtilitiesForABatch(data.BatchId);
-                double utilityCost = 0;
-                List<Utility> utilityList = new List<Utility>();
-                if (utilities.Any())
-                {
-                    foreach (var utility in utilities)
-                    {
-                        var utilityObject = new Utility()
-                        {
-                            Amount = utility.Amount,
-                            Description = utility.Description,
-
-                        };
-                        utilityList.Add(utility);
-                        utilityCost = utilityCost + utility.Amount;
-                    }
-                    batch.TotalUtilityCost = utilityCost;
-                    batch.Utilities = utilityList;
-                }
+              
 
                 var batchDeliveries = GetAllDeliveriesForABatch(data.BatchId);
                 double totalFlourkgsDelivered = 0,totalFlourDeliveryAmount = 0,totalBrandDelivered=0,totalBrandDeliveryAmount = 0, 

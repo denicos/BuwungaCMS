@@ -5,7 +5,6 @@ using Higgs.Mbale.EF.Models;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.EF.UnitOfWork;
 using Higgs.Mbale.DTO;
-using log4net;
 using EntityFramework.Extensions;
 
 namespace Higgs.Mbale.DAL.Concrete
@@ -13,8 +12,7 @@ namespace Higgs.Mbale.DAL.Concrete
  public   class WeightLossDataService : DataServiceBase, IWeightLossDataService
     {
         
-            ILog logger = log4net.LogManager.GetLogger(typeof(WeightLossDataService));
-
+           
             public WeightLossDataService(IUnitOfWork<MbaleEntities> unitOfWork)
                  : base(unitOfWork)
             {

@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 using Higgs.Mbale.Models.ViewModel;
 
@@ -13,7 +12,7 @@ namespace Higgs.Mbale.BAL.Concrete
 {
  public   class FlourTransferService : IFlourTransferService
     {
-      ILog logger = log4net.LogManager.GetLogger(typeof(FlourTransferService));
+      
       private long flourId = Convert.ToInt64(ConfigurationManager.AppSettings["FlourId"]);
       private double balance = 0;
         private IFlourTransferDataService _dataService;

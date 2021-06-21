@@ -8,13 +8,13 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
  public   class TransactionSubTypeService : ITransactionSubTypeService
     {
-         ILog logger = log4net.LogManager.GetLogger(typeof(TransactionSubTypeService));
+        
         private ITransactionSubTypeDataService _dataService;
         private IUserService _userService;
         

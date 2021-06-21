@@ -8,13 +8,13 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
  public   class CasualActivityService : ICasualActivityService
     {
-      ILog logger = log4net.LogManager.GetLogger(typeof(CasualActivityService));
+     
         private ICasualActivityDataService _dataService;
         private IUserService _userService;
         private IActivityService _activityService;

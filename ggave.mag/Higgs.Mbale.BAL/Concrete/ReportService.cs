@@ -6,7 +6,6 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using System.Configuration;
-using log4net;
 using Higgs.Mbale.Models.ViewModel;
 using Higgs.Mbale.Models.ViewModel.consolidated;
 
@@ -18,12 +17,12 @@ namespace Higgs.Mbale.BAL.Concrete
         private long discountTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["Discount"]);
         private long recoveryTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["Recovery"]);
 
-        ILog logger = log4net.LogManager.GetLogger(typeof(ReportService));
+       
         private IReportDataService _dataService;
         private IUserService _userService;
         private ITransactionService _transactionService;
         private ISupplyService _supplyService;
-        private IRiceInputService _riceInputService;
+      
         private IAccountTransactionActivityService _accountTransactionActivityService;
         private IBatchService _batchService;
         private IDeliveryService _deliveryService;
@@ -35,7 +34,7 @@ namespace Higgs.Mbale.BAL.Concrete
         private IBatchOutPutService _batchOutPutService;
         private IFlourTransferService _flourTransferService;
         private IMachineRepairService _machineRepairService;
-        private IUtilityService _utilityService;
+       
         private ICreditorService _creditorService;
         private ICashTransferService _cashTransferService;
         private ICashSaleService _cashSaleService;
@@ -46,20 +45,17 @@ namespace Higgs.Mbale.BAL.Concrete
         private IBuveraService _buveraService;
         private IBranchService _branchService;
         private IWeightLossService _weightLossService;
-        private IOutSourcerOutPutService _outSourcerOutPutService;
-
-
+       
 
         public ReportService(IReportDataService dataService, IUserService userService, ITransactionService transactionService,
             ISupplyService supplyService, IAccountTransactionActivityService accountTransactionActivityService,
             IBatchService batchService, IDeliveryService deliveryService, ICashService cashService, IOrderService orderService,
             ILabourCostService labourCostService, IOtherExpenseService otherExpenseService, IFactoryExpenseService factoryExpenseService,
             IBatchOutPutService batchOutPutService, IFlourTransferService flourTransferService, IMachineRepairService machineRepairService,
-            IUtilityService utilityService, ICreditorService creditorService, ICashTransferService cashTransferService,
+            ICreditorService creditorService, ICashTransferService cashTransferService,
             ICashSaleService cashSaleService, IBuveraTransferService buveraTransferService, IUtilityAccountService utilityAccountService,
-            IWeightLossService weightLossService,IOutSourcerOutPutService outSourcerOutPutService,
-            IDebtorService debtorService, IStoreService storeService, IBuveraService buveraService, IBranchService branchService,
-            IRiceInputService riceInputService
+            IWeightLossService weightLossService,
+            IDebtorService debtorService, IStoreService storeService, IBuveraService buveraService, IBranchService branchService
             )
         {
             this._dataService = dataService;
@@ -77,7 +73,7 @@ namespace Higgs.Mbale.BAL.Concrete
             this._batchOutPutService = batchOutPutService;
             this._flourTransferService = flourTransferService;
             this._machineRepairService = machineRepairService;
-            this._utilityService = utilityService;
+            
             this._creditorService = creditorService;
             this._cashTransferService = cashTransferService;
             this._cashSaleService = cashSaleService;
@@ -88,8 +84,7 @@ namespace Higgs.Mbale.BAL.Concrete
             this._buveraService = buveraService;
             this._weightLossService = weightLossService;
             this._branchService = branchService;
-            this._outSourcerOutPutService = outSourcerOutPutService;
-            this._riceInputService = riceInputService;
+           
         }
 
         #region transactions
@@ -823,31 +818,7 @@ namespace Higgs.Mbale.BAL.Concrete
             return gradeSizeTotalsViewModel;
         }
         #endregion
-        #region rice inputs
-        public RiceInputReportViewModel GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
-        {
-            var results = this._dataService.GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(lowerSpecifiedDate, upperSpecifiedDate, branchId);
-            var riceInputList = _riceInputService.MapEFToModel(results.ToList());
-
-            var riceInputReport = CalculateDifferentRiceInputSums(riceInputList.ToList());
-            return riceInputReport;
-        }
-
-        public RiceInputReportViewModel CalculateDifferentRiceInputSums(List<RiceInput> riceInputList)
-        {
-            var totalAmount = Convert.ToDecimal(riceInputList.Sum(d => d.TotalAmount));
-            var totalQuantity = riceInputList.Sum(d => d.TotalQuantity);
-
-            var riceInputReport = new RiceInputReportViewModel()
-            {
-                RiceInputs = riceInputList,
-                TotalAmount = totalAmount,
-                TotalQuantity = totalQuantity
-            };
-            return riceInputReport;
-        }
-
-        #endregion
+       
         #region Cash
 
         public IEnumerable<Cash> GenerateCashCurrentMonthReport()
@@ -1654,39 +1625,7 @@ namespace Higgs.Mbale.BAL.Concrete
         #endregion
         #endregion
 
-        #region  Utility
-        public IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
-        {
-            var results = this._dataService.GetAllUtilitiesBetweenTheSpecifiedDates(lowerSpecifiedDate, upperSpecifiedDate, branchId);
-            var utilityList = _utilityService.MapEFToModel(results.ToList());
-            return utilityList;
-        }
-
-        public IEnumerable<Utility> GenerateUtilityCurrentMonthReport()
-        {
-            var results = this._dataService.GenerateUtilityCurrentMonthReport();
-            var utilityList = _utilityService.MapEFToModel(results.ToList());
-            return utilityList;
-        }
-
-        public IEnumerable<Utility> GenerateUtilityTodaysReport()
-        {
-            var results = this._dataService.GenerateUtilityTodaysReport();
-            var utilityList = _utilityService.MapEFToModel(results.ToList());
-            return utilityList;
-        }
-
-        public IEnumerable<Utility> GenerateUtilityCurrentWeekReport()
-        {
-
-            var results = this._dataService.GenerateUtilityCurrentWeekReport();
-            var utilityList = _utilityService.MapEFToModel(results.ToList());
-            return utilityList;
-        }
-
-        #endregion
-
-
+        
         #region  FlourTransfer
         #region web
         public FlourTransferReportViewModel GetAllFlourTransfersBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId, string status)
@@ -3505,352 +3444,7 @@ namespace Higgs.Mbale.BAL.Concrete
         }
         #endregion
 
-        #region out sourcers
-             
-
-        public OutSourcerOutPutReportViewModel GetAllOutPutsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId)
-        {
-            var results = this._dataService.GetAllOutPutsBetweenTheSpecifiedDates(lowerSpecifiedDate, upperSpecifiedDate,storeId);
-            var outPutList = _outSourcerOutPutService.MapEFToModel(results.ToList());
-
-            var outPutReport = CalculateDifferentOutSourcerOutPutSums(outPutList.ToList());
-            return outPutReport;
-        }
-        public GradeSizeTotalsViewModel GetAllOutPutTotalsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId)
-        {
-            var results = this._dataService.GetAllOutPutsBetweenTheSpecifiedDates(lowerSpecifiedDate, upperSpecifiedDate, storeId);
-            var outPutList = _outSourcerOutPutService.MapEFToModel(results.ToList());
-
-            var outPuts = GetTotalGradeSizeOutPutQuantities(outPutList.ToList());
-            return outPuts;
-        }
-
-        public GradeSizeTotalsViewModel GetAllDeliveryTotalsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId,string customerId,long productId)
-        {
-            var results = this._dataService.GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(lowerSpecifiedDate, upperSpecifiedDate, storeId,customerId,productId);
-            var deliveryList = _deliveryService.MapEFToModel(results.ToList());
-
-            var deliveries = GetTotalGradeSizeDeliveryQuantities(deliveryList.ToList());
-            return deliveries;
-        }
-
-
-        public OutSourcerOutPutReportViewModel CalculateDifferentOutSourcerOutPutSums(List<OutSourcerOutPut> outPutList)
-        {
-            var totalAmount = Convert.ToDecimal(outPutList.Sum(d => d.TotalAmount));
-            var totalQuantity = outPutList.Sum(d => d.TotalQuantity);
-
-            var outPutReport = new OutSourcerOutPutReportViewModel()
-            {
-                OutSourcerOutPuts = outPutList,
-                TotalAmount = totalAmount,
-                TotalQuantity = totalQuantity
-            };
-            return outPutReport;
-        }
-
-        public GradeSizeTotalsViewModel GetTotalGradeSizeOutPutQuantities(List<OutSourcerOutPut> outPutList)
-        {
-            //quantity
-            int totalSuperTenQuantity = 0, totalSuperTwoFiveQuantity = 0, totalSuperFiveZeroQuantity = 0, totalSuperHundredQuantity = 0, totalSuperFiveQuantity = 0, totalSuperOneQuantity = 0;
-            int totalNumberOneTenQuantity = 0, totalNumberOneTwoFiveQuantity = 0, totalNumberOneFiveZeroQuantity = 0, totalNumberOneHundredQuantity = 0, totalNumberOneFiveQuantity = 0, totalNumberOneOneQuantity = 0;
-            int totalNumberOneHalfTenQuantity = 0, totalNumberOneHalfTwoFiveQuantity = 0, totalNumberOneHalfFiveZeroQuantity = 0, totalNumberOneHalfHundredQuantity = 0, totalNumberOneHalfFiveQuantity = 0, totalNumberOneHalfOneQuantity = 0;
-            int totalKabaleTenQuantity = 0, totalKabaleTwoFiveQuantity = 0, totalKabaleFiveZeroQuantity = 0, totalKabaleHundredQuantity = 0, totalKabaleFiveQuantity = 0, totalKabaleOneQuantity = 0;
-
-            //amount
-            double totalSuperTenAmount = 0, totalSuperTwoFiveAmount = 0, totalSuperFiveZeroAmount = 0, totalSuperHundredAmount = 0, totalSuperFiveAmount = 0, totalSuperOneAmount = 0;
-            double totalNumberOneTenAmount = 0, totalNumberOneTwoFiveAmount = 0, totalNumberOneFiveZeroAmount = 0, totalNumberOneHundredAmount = 0, totalNumberOneFiveAmount = 0, totalNumberOneOneAmount = 0;
-            double totalNumberOneHalfTenAmount = 0, totalNumberOneHalfTwoFiveAmount = 0, totalNumberOneHalfFiveZeroAmount = 0, totalNumberOneHalfHundredAmount = 0, totalNumberOneHalfFiveAmount = 0, totalNumberOneHalfOneAmount = 0;
-            double totalKabaleTenAmount = 0, totalKabaleTwoFiveAmount = 0, totalKabaleFiveZeroAmount = 0, totalKabaleHundredAmount = 0, totalKabaleFiveAmount = 0, totalKabaleOneAmount = 0;
-
-            List<long> gradesAddedToTransferReport = new List<long>();
-
-            GradeSizeTotalsViewModel gradeSizeTotalsViewModel = new GradeSizeTotalsViewModel();
-            List<Grade> grades = new List<Grade>();
-            if (outPutList.Count() == 0)
-            {
-                return gradeSizeTotalsViewModel;
-            }
-            else
-            {
-                int i = 0;
-                for (i = 0; i <= outPutList.Count();)
-                {
-
-
-                    var item = outPutList.ElementAt(i);
-                    var name = item.OutSourcerOutPutId;
-
-                    grades = item.Grades != null ? item.Grades : grades;
-                    if (grades.Any())
-                    {
-                        //  foreach (var grade in grades)
-                        for (int j = 0; j < grades.Count(); j++)
-                        {
-                            var grade = grades.ElementAt(j);
-                            if (gradesAddedToTransferReport.Contains(grade.GradeId))
-                            {
-                                gradesAddedToTransferReport.Add(grade.GradeId);
-                            }
-
-                            switch (grade.Value)
-                            {
-                                case "Super":
-                                    foreach (var denom in grade.Denominations)
-                                    //  for (int j = 0; j < grade.Denominations.Count(); j++)
-
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalSuperTenQuantity = totalSuperTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperTenAmount = totalSuperTenAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 25:
-                                                totalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperTwoFiveAmount = totalSuperTwoFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 50:
-                                                totalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperFiveZeroAmount = totalSuperFiveZeroAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 100:
-                                                totalSuperHundredQuantity = totalSuperHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperHundredAmount = totalSuperHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 5:
-                                                totalSuperFiveQuantity = totalSuperFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperFiveAmount = totalSuperFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 1:
-                                                totalSuperOneQuantity = totalSuperOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                break;
-                                            default:
-
-                                                continue;
-                                        }
-                                    }
-                                    break;
-                                case "Number 1":
-                                    foreach (var denom in grade.Denominations)
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalNumberOneTenQuantity = totalNumberOneTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneTenAmount = totalNumberOneTenAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 25:
-                                                totalNumberOneTwoFiveQuantity = totalNumberOneTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneTwoFiveAmount = totalNumberOneTwoFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 50:
-                                                totalNumberOneFiveZeroQuantity = totalNumberOneFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 100:
-                                                totalNumberOneHundredQuantity = totalNumberOneHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHundredAmount = totalNumberOneHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 5:
-                                                totalNumberOneFiveQuantity = totalNumberOneFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneFiveAmount = totalNumberOneFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 1:
-                                                totalNumberOneOneQuantity = totalNumberOneOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneOneAmount = totalNumberOneOneAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            default:
-
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case "Number  1.5":
-
-                                    foreach (var denom in grade.Denominations)
-                                    //  for (int j = 0; j < grade.Denominations.Count(); j++)
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalNumberOneHalfTenQuantity = totalNumberOneHalfTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfTenAmount = totalNumberOneHalfTenAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 25:
-                                                totalNumberOneHalfTwoFiveQuantity = totalNumberOneHalfTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfTwoFiveAmount = totalNumberOneHalfTwoFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 50:
-                                                totalNumberOneHalfFiveZeroQuantity = totalNumberOneHalfFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfFiveZeroAmount = totalNumberOneHalfFiveZeroAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 100:
-                                                totalNumberOneHalfHundredQuantity = totalNumberOneHalfHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfHundredAmount = totalNumberOneHalfHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 5:
-                                                totalNumberOneHalfFiveQuantity = totalNumberOneHalfFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 1:
-                                                totalNumberOneHalfOneQuantity = totalNumberOneHalfOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfOneAmount = totalNumberOneHalfOneAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            default:
-
-                                                continue;
-                                        }
-                                    }
-                                    break;
-
-                                case "NO. 1 Kabale":
-
-                                    foreach (var denom in grade.Denominations)
-
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalKabaleTenQuantity = totalKabaleTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleTenAmount = totalKabaleTenAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 25:
-                                                totalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 50:
-                                                totalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 100:
-                                                totalKabaleHundredQuantity = totalKabaleHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleHundredAmount = totalKabaleHundredAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 5:
-                                                totalKabaleFiveQuantity = totalKabaleFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleFiveAmount = totalKabaleFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 1:
-                                                totalKabaleOneQuantity = totalKabaleOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleOneAmount = totalKabaleOneAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            default:
-
-                                                continue;
-                                        }
-                                    }
-                                    break;
-
-                                default:
-                                    break;
-                            }
-                            //grades.RemoveAt(0);
-                        }
-
-                        item.Grades.Clear();
-                        outPutList.RemoveAll(r => r.OutSourcerOutPutId== item.OutSourcerOutPutId);
-
-                    }
-
-                    else
-                    {
-
-                        outPutList.RemoveAll(r => r.OutSourcerOutPutId == item.OutSourcerOutPutId);
-
-                    }
-
-                    i = 0;
-                    if (outPutList.Count() == 0)
-                    {
-                        break;
-                    }
-                }
-            }
-            gradeSizeTotalsViewModel = new GradeSizeTotalsViewModel()
-            {
-                //Grades = gradesAddedToTransferReport.ToList();
-                TotalKabaleFiveQuantity = totalKabaleFiveQuantity,
-                TotalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity,
-                TotalKabaleHundredQuantity = totalKabaleHundredQuantity,
-                TotalKabaleOneQuantity = totalKabaleOneQuantity,
-                TotalKabaleTenQuantity = totalKabaleTenQuantity,
-                TotalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity,
-                TotalNumberOneFiveQuantity = totalNumberOneFiveQuantity,
-                TotalNumberOneFiveZeroQuantity = totalNumberOneFiveZeroQuantity,
-                TotalNumberOneTenQuantity = totalNumberOneTenQuantity,
-                TotalNumberOneOneQuantity = totalNumberOneOneQuantity,
-                TotalNumberOneTwoFiveQuantity = totalNumberOneTwoFiveQuantity,
-                TotalNumberOneHundredQuantity = totalNumberOneHundredQuantity,
-                TotalNumberOneHalfFiveQuantity = totalNumberOneHalfFiveQuantity,
-                TotalNumberOneHalfFiveZeroQuantity = totalNumberOneHalfFiveZeroQuantity,
-                TotalNumberOneHalfHundredQuantity = totalNumberOneHalfHundredQuantity,
-                TotalNumberOneHalfOneQuantity = totalNumberOneHalfOneQuantity,
-                TotalNumberOneHalfTenQuantity = totalNumberOneHalfTenQuantity,
-                TotalNumberOneHalfTwoFiveQuantity = totalNumberOneHalfTwoFiveQuantity,
-                TotalSuperFiveQuantity = totalSuperFiveQuantity,
-                TotalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity,
-                TotalSuperHundredQuantity = totalSuperHundredQuantity,
-                TotalSuperOneQuantity = totalSuperOneQuantity,
-                TotalSuperTenQuantity = totalSuperTenQuantity,
-                TotalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity,
-
-                TotalKabaleFiveAmount = totalKabaleFiveAmount,
-                TotalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount,
-                TotalKabaleHundredAmount = totalKabaleHundredAmount,
-                TotalKabaleOneAmount = totalKabaleOneAmount,
-                TotalKabaleTenAmount = totalKabaleTenAmount,
-                TotalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount,
-                TotalNumberOneFiveAmount = totalNumberOneFiveAmount,
-                TotalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount,
-                TotalNumberOneTenAmount = totalNumberOneTenAmount,
-                TotalNumberOneOneAmount = totalNumberOneOneAmount,
-                TotalNumberOneTwoFiveAmount = totalNumberOneTwoFiveAmount,
-                TotalNumberOneHundredAmount = totalNumberOneHundredAmount,
-                TotalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount,
-                TotalNumberOneHalfFiveZeroAmount = totalNumberOneHalfFiveZeroAmount,
-                TotalNumberOneHalfHundredAmount = totalNumberOneHalfHundredAmount,
-                TotalNumberOneHalfOneAmount = totalNumberOneHalfOneAmount,
-                TotalNumberOneHalfTenAmount = totalNumberOneHalfTenAmount,
-                TotalNumberOneHalfTwoFiveAmount = totalNumberOneHalfTwoFiveAmount,
-                TotalSuperFiveAmount = totalSuperFiveAmount,
-                TotalSuperFiveZeroAmount = totalSuperFiveZeroAmount,
-                TotalSuperHundredAmount = totalSuperHundredAmount,
-                TotalSuperOneAmount = totalSuperOneAmount,
-                TotalSuperTenAmount = totalSuperTenAmount,
-                TotalSuperTwoFiveAmount = totalSuperTwoFiveAmount,
-
-            };
-            return gradeSizeTotalsViewModel;
-        }
-
-        public DeliveryReportViewModel GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId, string customerId, long productId)
-        {
-            var results = this._dataService.GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(lowerSpecifiedDate, upperSpecifiedDate, storeId, customerId, productId);
-            var deliveryList = _deliveryService.MapEFToModel(results.ToList());
-
-            var deliveryReport = CalculateDifferentDeliverySums(deliveryList.ToList());
-            return deliveryReport;
-        }
-
-        #endregion
-
+       
     }
 }
 

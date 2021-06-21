@@ -8,7 +8,7 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Models.WebViewModel;
-using log4net;
+
 using System.Configuration;
 
 
@@ -26,7 +26,6 @@ public   class CashSaleService : ICashSaleService
 
         List<CashSaleBatch> batchCashSaleList = new List<CashSaleBatch>();
 
-        ILog logger = log4net.LogManager.GetLogger(typeof(CashSaleService));
         private ICashSaleDataService _dataService;
         private IUserService _userService;
         private ITransactionDataService _transactionDataService;

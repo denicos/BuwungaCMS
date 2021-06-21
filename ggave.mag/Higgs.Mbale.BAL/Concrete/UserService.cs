@@ -6,13 +6,13 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Models.WebViewModel;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
    public class UserService : IUserService
     {
-        ILog logger = log4net.LogManager.GetLogger(typeof(UserService));
+        
         private IUserDataService _dataService;
        // private IProductService _productService;
 

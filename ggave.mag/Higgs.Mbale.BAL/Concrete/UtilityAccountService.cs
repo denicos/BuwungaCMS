@@ -5,13 +5,13 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
  public   class UtilityAccountService : IUtilityAccountService
     {
-     ILog logger = log4net.LogManager.GetLogger(typeof(UtilityAccountService));
+     
         private IUtilityAccountDataService _dataService;
         private IUserService _userService;
         private ITransactionSubTypeService _transactionSubTypeService;

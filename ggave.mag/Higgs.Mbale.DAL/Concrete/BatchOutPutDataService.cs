@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Higgs.Mbale.DAL.Interface;
-using log4net;
 using Higgs.Mbale.EF.Models;
 using Higgs.Mbale.EF.UnitOfWork;
 using Higgs.Mbale.DTO;
@@ -15,8 +14,7 @@ namespace Higgs.Mbale.DAL.Concrete
  public   class BatchOutPutDataService : DataServiceBase,IBatchOutPutDataService
     {
      
-         ILog logger = log4net.LogManager.GetLogger(typeof(BatchOutPutDataService));
-
+        
        public BatchOutPutDataService(IUnitOfWork<MbaleEntities> unitOfWork)
             : base(unitOfWork)
         {

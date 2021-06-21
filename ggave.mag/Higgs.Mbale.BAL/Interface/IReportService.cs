@@ -115,10 +115,7 @@ namespace Higgs.Mbale.BAL.Interface
 
         #endregion
         #endregion
-        #region rice inputs
-        RiceInputReportViewModel GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
-        #endregion
-
+       
         #region cash
 
         IEnumerable<Cash> GenerateCashCurrentMonthReport();
@@ -308,17 +305,7 @@ namespace Higgs.Mbale.BAL.Interface
 
           #endregion
 
-           #region  Utility
-           IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
-           IEnumerable<Utility> GenerateUtilityCurrentMonthReport();
-          
-           IEnumerable<Utility> GenerateUtilityTodaysReport();
-         
-           IEnumerable<Utility> GenerateUtilityCurrentWeekReport();
-          
-
-          #endregion
-              
+            
 
            #region  FlourTransfer
            #region web
@@ -475,17 +462,6 @@ namespace Higgs.Mbale.BAL.Interface
         DailyReport GetAllActivitiesForAParticularBranchForASpecificPeriod(DateTime fromDate, DateTime toDate, long branchId);
         #endregion
 
-        #region outsourcer
-        OutSourcerOutPutReportViewModel GetAllOutPutsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId);
-
-        GradeSizeTotalsViewModel GetAllOutPutTotalsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId);
-
-        OutSourcerOutPutReportViewModel CalculateDifferentOutSourcerOutPutSums(List<OutSourcerOutPut> outPutList);
-
-        GradeSizeTotalsViewModel GetTotalGradeSizeOutPutQuantities(List<OutSourcerOutPut> outPutList);
-
-      DeliveryReportViewModel GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId, string customerId, long productId);
-        GradeSizeTotalsViewModel GetAllDeliveryTotalsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId, string customerId, long productId);
-        #endregion
+       
     }
 }

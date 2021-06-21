@@ -8,31 +8,28 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
  public   class DebtorService : IDebtorService
     {
-         ILog logger = log4net.LogManager.GetLogger(typeof(DebtorService));
-        private IDebtorDataService _dataService;
+         
+        
         private IUserService _userService;
-        private ITransactionDataService _transactionDataService;
-        private ITransactionSubTypeService _transactionSubTypeService;
+      
         private IAccountTransactionActivityService _accountTransactionActivityService;
         private IUtilityAccountService _utilityAccountService;
         private IBranchService _branchService;
 
         
 
-        public DebtorService(IDebtorDataService dataService,IUserService userService,ITransactionDataService transactionDataService,ITransactionSubTypeService transactionSubTypeService,
-            IAccountTransactionActivityService accountTransactionActivityService,
+        public DebtorService(IUserService userService, IAccountTransactionActivityService accountTransactionActivityService,
             IUtilityAccountService utilityAccountService,IBranchService branchService)
         {
-            this._dataService = dataService;
+            
             this._userService = userService;
-            this._transactionDataService = transactionDataService;
-            this._transactionSubTypeService = transactionSubTypeService;
+         
             this._accountTransactionActivityService = accountTransactionActivityService;
             this._branchService = branchService;
             this._utilityAccountService = utilityAccountService;
@@ -44,60 +41,8 @@ namespace Higgs.Mbale.BAL.Concrete
         /// </summary>
         /// <param name="DebtorId"></param>
         /// <returns></returns>
-        public Debtor GetDebtor(long debtorId)
-        {
-            var result = this._dataService.GetDebtor(debtorId);
-            return MapEFToModel(result);
-        }
-
-        public IEnumerable<Debtor> GetAllDebtorsForAParticularBranch(long branchId)
-        {
-            var results = this._dataService.GetAllDebtorsForAParticularBranch(branchId);
-            return MapEFToModel(results);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Debtor> GetAllDebtors()
-        {
-            var results = this._dataService.GetAllDebtors();
-            return MapEFToModel(results);
-        }
-
-       public  IEnumerable<Debtor> GetAllDebtorRecordsForParticularAccount(string userId, long casualWorkerId)
-        {
-            var results = this._dataService.GetAllDebtorRecordsForParticularAccount(userId,casualWorkerId);
-            return MapEFToModel(results);
-        }
-
-       public IEnumerable<Debtor> GetAllDistinctDebtorRecords()
-       {
-           var debtors = GetAllDebtors();
-           List<Debtor> mixedListDebtors = new List<Debtor>();
-           List<Debtor> distinctDebtors = new List<Debtor>();
-           var distinctAspnetDebtors = debtors.GroupBy(g => g.AspNetUserId).Select(o => o.First()).ToList();
-           var distinctCasualDebtors = debtors.GroupBy(g => g.CasualWorkerId).Select(o => o.First()).ToList();
-
-
-           mixedListDebtors.AddRange(distinctAspnetDebtors);
-           mixedListDebtors.AddRange(distinctCasualDebtors);
-           distinctDebtors = distinctDebtors.Distinct().ToList();
-
-           foreach (var debtor in distinctDebtors)
-           {
-               double debtorBalance = 0;
-               var debtorRecords = GetAllDebtorRecordsForParticularAccount(debtor.AspNetUserId, Convert.ToInt64(debtor.CasualWorkerId));
-               foreach (var debtorRecord in debtorRecords)
-               {
-                   debtorBalance = debtorRecord.Amount + debtorBalance;
-               }
-               debtor.DebtBalance = debtorBalance;
-           }
-
-           return distinctDebtors;
-
-       }
+       
+      
 
        public IEnumerable<DebtorView> GetDebtorView()
        {
@@ -281,39 +226,7 @@ namespace Higgs.Mbale.BAL.Concrete
             return advancePaymentList;
         }
 
-        public long SaveDebtor(Debtor debtor, string userId)
-        {
-            var debtorDTO = new DTO.DebtorDTO()
-            {
-                AspNetUserId = debtor.AspNetUserId,
-                Action = debtor.Action,
-                Amount = debtor.Amount,
-                CasualWorkerId = debtor.CasualWorkerId,
-                BranchId = debtor.BranchId,
-                SectorId = debtor.SectorId,
-                DebtorId = debtor.DebtorId,
-                Deleted = debtor.Deleted,
-                CreatedBy = debtor.CreatedBy,
-                CreatedOn = debtor.CreatedOn
-
-            };
-
-           var debtorId = this._dataService.SaveDebtor(debtorDTO, userId);
-
-           return debtorId;
-                      
-        }
-
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="DebtorId"></param>
-        /// <param name="userId"></param>
-        public void MarkAsDeleted(long debtorId, string userId)
-        {
-            _dataService.MarkAsDeleted(debtorId, userId);
-        }
+       
 
       
         #region Mapping Methods

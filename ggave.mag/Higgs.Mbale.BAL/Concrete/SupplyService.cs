@@ -8,7 +8,6 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
 using System.Configuration;
 
 namespace Higgs.Mbale.BAL.Concrete
@@ -23,7 +22,6 @@ namespace Higgs.Mbale.BAL.Concrete
       private string yellowRate = ConfigurationManager.AppSettings["YellowRate"];
       private string sectorId = ConfigurationManager.AppSettings["SectorId"];
 
-         ILog logger = log4net.LogManager.GetLogger(typeof(SupplyService));
         private ISupplyDataService _dataService;
         private IUserService _userService;
         private IAccountTransactionActivityService _accountTransactionActivityService;
@@ -178,56 +176,7 @@ namespace Higgs.Mbale.BAL.Concrete
         }
 
       
-        private void UpdateCreditorRecords(string aspNetUserId,double amount,string userId)
-        {
-            long? branchId = null;
-            double creditBalance=0,creditTotal=0;
-            long casualWorkerId=0 ;
-            var creditorRecords = _creditorService.GetAllCreditorRecordsForParticularAccount(aspNetUserId,casualWorkerId);
-            if (creditorRecords.Any())
-            {
-                foreach (var creditorRecord in creditorRecords)
-                {
-                    branchId = Convert.ToInt64(creditorRecord.BranchId);
-                    creditTotal = creditorRecord.Amount + creditTotal;
-                    var creditor = new Creditor()
-                    {
-                        CreditorId = creditorRecord.CreditorId,
-                        AspNetUserId = creditorRecord.AspNetUserId,
-                        Action = true,
-                        Amount = creditorRecord.Amount,
-                        BranchId = creditorRecord.BranchId,
-                        SectorId = creditorRecord.SectorId,
-                        Deleted = creditorRecord.Deleted,
-                        CreatedBy = creditorRecord.CreatedBy,
-                        CreatedOn = creditorRecord.CreatedOn,
-                        TimeStamp = creditorRecord.TimeStamp,
-
-
-                    };
-                    var creditorId = _creditorService.SaveCreditor(creditor, userId);
-                }
-                creditBalance =  creditTotal -amount ;
-                if (creditBalance > 0)
-                {
-                    var creditor = new Creditor()
-                    {
-                        AspNetUserId = aspNetUserId,
-                        Action = false,
-                        Amount = creditBalance,
-                        BranchId = branchId,
-                        SectorId = Convert.ToInt64(sectorId),
-                        Deleted = false,
-                        CreatedBy = userId,
-                       
-
-                    };
-                    var creditorId = _creditorService.SaveCreditor(creditor, userId);
-                }
-
-            }
-           
-        }     
+          
         public IEnumerable<Supply> GetAllSuppliesToBeUsed()
         {
             var results = this._dataService.GetAllSuppliesToBeUsed();

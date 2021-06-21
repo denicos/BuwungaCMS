@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 
 namespace Higgs.Mbale.BAL.Concrete
@@ -16,7 +15,7 @@ namespace Higgs.Mbale.BAL.Concrete
      private long flourId = Convert.ToInt64(ConfigurationManager.AppSettings["FlourId"]);
      private long brandId = Convert.ToInt64(ConfigurationManager.AppSettings["BrandId"]);
         private long buveraCategoryId = Convert.ToInt64(ConfigurationManager.AppSettings["UsedBuveraCategoryId"]);
-        ILog logger = log4net.LogManager.GetLogger(typeof(BatchOutPutService));
+        
         private IBatchOutPutDataService _dataService;
         private IUserService _userService;
       private ISupplyDataService _supplyDataService;

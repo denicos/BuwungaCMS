@@ -8,17 +8,15 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
   public  class CreditorService : ICreditorService
     {
-         ILog logger = log4net.LogManager.GetLogger(typeof(CreditorService));
-        private ICreditorDataService _dataService;
+      
         private IUserService _userService;
-        private ITransactionDataService _transactionDataService;
-        private ITransactionSubTypeService _transactionSubTypeService;
+       
         private IAccountTransactionActivityService _accountTransactionActivityService;
         private IUtilityAccountService _utilityAccountService;
         private IBranchService _branchService;
@@ -26,80 +24,20 @@ namespace Higgs.Mbale.BAL.Concrete
 
         
 
-        public CreditorService(ICreditorDataService dataService,IUserService userService,ITransactionDataService transactionDataService,
-            ITransactionSubTypeService transactionSubTypeService,
+        public CreditorService(IUserService userService,             
             IAccountTransactionActivityService accountTransactionActivityService,
             IUtilityAccountService utilityAccountService,IBranchService branchService)
         {
-            this._dataService = dataService;
+            
             this._userService = userService;
-            this._transactionDataService = transactionDataService;
-            this._transactionSubTypeService = transactionSubTypeService;
             this._accountTransactionActivityService = accountTransactionActivityService;
             this._utilityAccountService = utilityAccountService;
             this._branchService = branchService;
             
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="CreditorId"></param>
-        /// <returns></returns>
-        public Creditor GetCreditor(long creditorId)
-        {
-            var result = this._dataService.GetCreditor(creditorId);
-            return MapEFToModel(result);
-        }
+        
 
-        public IEnumerable<Creditor> GetAllCreditorsForAParticularBranch(long branchId)
-        {
-            var results = this._dataService.GetAllCreditorsForAParticularBranch(branchId);
-            return MapEFToModel(results);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Creditor> GetAllCreditors()
-        {
-            var results = this._dataService.GetAllCreditors();
-            return MapEFToModel(results);
-        }
-
-        public IEnumerable<Creditor> GetAllDistinctCreditorRecords()
-        {
-            var creditors = GetAllCreditors();
-            List<Creditor> distinctCreditors = new List<Creditor>();
-            List<Creditor> xdistinctCreditors = new List<Creditor>();
-                var distinctAspnetCreditors = creditors.GroupBy(g => g.AspNetUserId).Select(o => o.First()).ToList();
-                var distinctCasualCreditors = creditors.GroupBy(g => g.CasualWorkerId).Select(o => o.First()).ToList();
-
-
-                distinctCreditors.AddRange(distinctAspnetCreditors);
-                distinctCreditors.AddRange(distinctCasualCreditors);
-                xdistinctCreditors = distinctCreditors.Distinct().ToList();
-
-                foreach (var creditor in xdistinctCreditors)
-                {
-                    double creditorBalance = 0;
-                    var creditorRecords = GetAllCreditorRecordsForParticularAccount(creditor.AspNetUserId,Convert.ToInt64(creditor.CasualWorkerId));
-                    foreach (var creditorRecord in creditorRecords)
-                    {
-                        creditorBalance = creditorRecord.Amount + creditorBalance;
-                    }
-                    creditor.CreditBalance = creditorBalance;
-                }
-
-                return xdistinctCreditors;
-            
-        }
-
-      public  IEnumerable<Creditor> GetAllCreditorRecordsForParticularAccount(string aspNetUserId,long casualWorkerId)
-        {
-            var results = this._dataService.GetAllCreditorRecordsForParticularAccount(aspNetUserId,casualWorkerId);
-            return MapEFToModel(results);
-        }
 
       public IEnumerable<CreditorView> GetCreditorView()
       {
@@ -260,40 +198,7 @@ namespace Higgs.Mbale.BAL.Concrete
             return creditorList;
         }
 
-        public long SaveCreditor(Creditor creditor, string userId)
-        {
-            var creditorDTO = new DTO.CreditorDTO()
-            {
-                AspNetUserId = creditor.AspNetUserId,
-                Action = creditor.Action,
-                Amount = creditor.Amount,
-                CasualWorkerId = creditor.CasualWorkerId,
-                BranchId = creditor.BranchId,
-                SectorId = creditor.SectorId,
-                CreditorId = creditor.CreditorId,
-                Deleted = creditor.Deleted,
-                CreatedBy = creditor.CreatedBy,
-                CreatedOn = creditor.CreatedOn
-
-            };
-
-           var creditorId = this._dataService.SaveCreditor(creditorDTO, userId);
-         
-           return creditorId;
-                      
-        }
-
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="CreditorId"></param>
-        /// <param name="userId"></param>
-        public void MarkAsDeleted(long CreditorId, string userId)
-        {
-            _dataService.MarkAsDeleted(CreditorId, userId);
-        }
-
+     
       
         #region Mapping Methods
 

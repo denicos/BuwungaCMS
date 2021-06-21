@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 
 
@@ -15,7 +14,7 @@ namespace Higgs.Mbale.BAL.Concrete
 {
     public class DeliveryService: IDeliveryService
     {
-        private long riceTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["RiceSaleTransactionSubTypeId"]);
+       
         private long orderStatusIdComplete = Convert.ToInt64(ConfigurationManager.AppSettings["StatusIdComplete"]);
         private long orderStatusIdInProgress = Convert.ToInt64(ConfigurationManager.AppSettings["StatusIdInProgress"]);
         private long flourTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["FlourSaleTransactionSubTypeId"]);
@@ -25,7 +24,7 @@ namespace Higgs.Mbale.BAL.Concrete
         private double orderBalance = 0,batchBrandBalance=0,soldOutAmount =0;
         private long documentId = 0;
         List<BatchDeliveryDetails> batchDeliveryList = new List<BatchDeliveryDetails>();
-        ILog logger = log4net.LogManager.GetLogger(typeof(DeliveryService));
+       
         private IDeliveryDataService _dataService;
         private IUserService _userService;
         private ITransactionDataService _transactionDataService;
@@ -1597,11 +1596,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             transactionSubTypeId = branTransactionSubTypeId;
                             notes = "Brand Sale of " + totalQuantity + "kgs at " + delivery.Price + " Per Kilogram";
                         }
-                        else if (delivery.ProductId == 10003)
-                        {
-                            transactionSubTypeId = riceTransactionSubTypeId;
-                            notes = "Rice Sale of " + delivery.Quantity.ToString() + " kgs";
-                        }
+                       
                         var paymentMode = _accountTransactionActivityService.GetPaymentMode(delivery.PaymentModeId);
                         var paymentModeName = paymentMode.Name;
                         if (paymentModeName == "Credit" || paymentModeName == "AdvancePayment")

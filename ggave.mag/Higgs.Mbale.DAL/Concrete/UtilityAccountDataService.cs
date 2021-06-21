@@ -6,14 +6,12 @@ using Higgs.Mbale.DAL.Concrete;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.EF.UnitOfWork;
 using Higgs.Mbale.DTO;
-using log4net;
 
 namespace Higgs.Mbale.DAL.Concrete
 {
   public  class UtilityAccountDataService : DataServiceBase,IUtilityAccountDataService
     {
-        ILog logger = log4net.LogManager.GetLogger(typeof(UtilityAccountDataService));
-
+        
        public UtilityAccountDataService(IUnitOfWork<MbaleEntities> unitOfWork)
             : base(unitOfWork)
         {

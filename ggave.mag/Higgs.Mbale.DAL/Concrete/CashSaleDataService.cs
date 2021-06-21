@@ -8,7 +8,6 @@ using Higgs.Mbale.DAL.Concrete;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.EF.UnitOfWork;
 using Higgs.Mbale.DTO;
-using log4net;
 using EntityFramework.Extensions;
 
 namespace Higgs.Mbale.DAL.Concrete
@@ -16,8 +15,7 @@ namespace Higgs.Mbale.DAL.Concrete
  public   class CashSaleDataService : DataServiceBase, ICashSaleDataService
     {
     
-         ILog logger = log4net.LogManager.GetLogger(typeof(CashSaleDataService));
-
+        
          public CashSaleDataService(IUnitOfWork<MbaleEntities> unitOfWork)
              : base(unitOfWork)
          {

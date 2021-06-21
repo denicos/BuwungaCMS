@@ -5,7 +5,6 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Web;
 using System.Configuration;
 using System.IO;
@@ -22,7 +21,7 @@ namespace Higgs.Mbale.BAL.Concrete
      private long debitId = Convert.ToInt64(ConfigurationManager.AppSettings["DebitId"]);
         private long bankTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["BankTransactionSubTypeId"]);
         private long sectorId = Convert.ToInt64(ConfigurationManager.AppSettings["SectorId"]);
-       ILog logger = log4net.LogManager.GetLogger(typeof(RequistionService));
+      
         private IRequistionDataService _dataService;
         private IUserService _userService;
         private IDocumentService _documentService;
@@ -33,14 +32,14 @@ namespace Higgs.Mbale.BAL.Concrete
         private ISupplyService _supplyService;
         private ILabourCostService _labourCostService;
         private IUtilityAccountService _utilityAccountService;
-        private IBankTransactionService _bankTransactionService;
-        private IFinancialAccountTransactionService _financialAccountTransactionService;
+       
+        
         
 
         public RequistionService(IRequistionDataService dataService,IUserService userService,IDocumentService documentService,
             ICashService cashService,IFactoryExpenseService factoryExpenseService,IMachineRepairService machineRepairService,
             IAccountTransactionActivityService accountTransactionActivityService,ISupplyService supplyService,
-            ILabourCostService labourCostService,IUtilityAccountService utilityAccountService,IBankTransactionService bankTransactionService,IFinancialAccountTransactionService financialAccountTransactionService)
+            ILabourCostService labourCostService,IUtilityAccountService utilityAccountService )
         {
             this._dataService = dataService;
             this._userService = userService;
@@ -52,9 +51,7 @@ namespace Higgs.Mbale.BAL.Concrete
             this._supplyService = supplyService;
             this._labourCostService = labourCostService;
             this._utilityAccountService = utilityAccountService;
-            this._bankTransactionService = bankTransactionService;
-            this._financialAccountTransactionService = financialAccountTransactionService;
-        }
+            }
 
         /// <summary>
         /// 
@@ -143,7 +140,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 ApprovedById = requistion.ApprovedById,
                 BranchId = requistion.BranchId,
                 Description = requistion.Description,
-                FinancialAccountId = requistion.FinancialAccountId,
+                
                 Deleted = requistion.Deleted,
                 CreatedBy = requistion.CreatedBy,
                 CreatedOn = requistion.CreatedOn,
@@ -157,8 +154,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 RepairDate = requistion.RepairDate,
                 RepairerName = requistion.RepairerName,
                 UtilityCategoryId = requistion.UtilityCategoryId,
-                BankId = requistion.BankId,
-                OutSourcerId = requistion.OutSourcerId,
+               
 
             };
 
@@ -1384,68 +1380,7 @@ namespace Higgs.Mbale.BAL.Concrete
 
                     }
 
-                    //financail account
-                   else if (requistion.RequistionCategoryId == 34)
-                   ////else if (requistion.RequistionCategoryId == 30013)
-                    {
-                        long checkedCashId = 0;
-                        if (requistion.FinancialAccountId != null)
-                        {
-                            checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                            if (checkedCashId > 0)
-                            {
-
-                                var financialAccountTransaction = new FinancialAccountTransaction()
-                                {
-
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "-",
-                                    BranchId = requistion.BranchId,
-                                    CreatedOn = DateTime.Now,
-
-                                    FinancialAccountId = Convert.ToInt64(requistion.FinancialAccountId),
-
-                                };
-
-                               
-                                var accountTransactionActivityId = _financialAccountTransactionService.SaveFinancialAccountTransaction(financialAccountTransaction, userId);
-                                if(accountTransactionActivityId < 0)
-                                {
-                                    requistionId = -55;
-                                        return requistionId;
-                                }
-                                var cashFinancial = new Cash()
-                                {
-
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "-",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = debitId,
-                                    SectorId = sectorId,
-                                    RequistionCategoryId = requistion.RequistionCategoryId,
-                                    CreatedBy = requistion.ApprovedById,
-
-                                };
-
-                                cashId = _cashService.SaveCash(cashFinancial, userId);
-                            }
-                            else
-                            {
-                                return requistionId = checkedCashId;
-                            }
-                        }
-                        else
-                        {
-                            requistionId = -44;
-
-                            return requistionId;
-
-                        }
-
-
-                    }
+                 
 
                     //marketing
                     else if (requistion.RequistionCategoryId == 19)
@@ -1629,60 +1564,7 @@ namespace Higgs.Mbale.BAL.Concrete
 
 
                     }
-                    // bank deposits
-                    else if (requistion.RequistionCategoryId == 10007)
-                    {
-                        long checkedCashId = 0;
-                        if (requistion.BankId != null)
-                        {
-                            checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                            if (checkedCashId > 0)
-                            {
-                                var bankTransaction = new BankTransaction()
-                                {
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "+",
-                                    SectorId = sectorId,
-                                    BranchId = requistion.BranchId,
-                                    CreatedOn = DateTime.Now,
-                                    BankId = Convert.ToInt64(requistion.BankId),
-                                    TransactionSubTypeId = bankTransactionSubTypeId,
-
-                                };
-
-                                var bankTransactionId = _bankTransactionService.SaveBankTransaction(bankTransaction, userId);
-                                var cashBank = new Cash()
-                                {
-
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "-",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = debitId,
-                                    SectorId = sectorId,
-                                    RequistionCategoryId = requistion.RequistionCategoryId,
-                                    CreatedBy = requistion.ApprovedById,
-
-                                };
-
-                                cashId = _cashService.SaveCash(cashBank, userId);
-                            }
-                            else
-                            {
-                                return requistionId = checkedCashId;
-                            }
-                        }
-                        else
-                        {
-                            requistionId = -44;
-
-                            return requistionId = checkedCashId;
-
-                        }
-
-
-                    }
+                    
                     //stationery
                     else if (requistion.RequistionCategoryId == 23)
                     {
@@ -2557,35 +2439,7 @@ namespace Higgs.Mbale.BAL.Concrete
             return MapEFToModel(results);
         }
 
-        public void SendEmail(RequistionDTO requistion,string userId)
-        {
-            DateTime createdOn = DateTime.Now;
-            StringBuilder sb = new StringBuilder();
-            string strNewPath = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["RequistionEmail"]);
-            using (StreamReader sr = new StreamReader(strNewPath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    sb.Append(sr.ReadLine());
-                }
-            }
-
-
-
-            string body = sb.ToString().Replace("#REQUISTIONNUMBER#", requistion.RequistionNumber);
-            body = body.Replace("#DESCRIPTION#", requistion.Description);
-            body = body.Replace("#CREATEDBY#", userId);
-            body = body.Replace("#CREATEDON#", Convert.ToString(createdOn));
-
-            Helpers.Email email = new Helpers.Email();
-            email.MailBodyHtml = body;
-            email.MailToAddress = ConfigurationManager.AppSettings["administrator-email"];
-            email.MailFromAddress = ConfigurationManager.AppSettings["EmailAddressFrom"];
-            email.Subject = ConfigurationManager.AppSettings["requistion_email_subject"];
-            email.SendMail();
-            logger.Debug("Email sent");
-
-        }
+       
         /// <summary>
         /// 
         /// </summary>

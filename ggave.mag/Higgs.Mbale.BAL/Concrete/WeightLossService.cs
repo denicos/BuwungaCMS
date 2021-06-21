@@ -5,7 +5,6 @@ using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
-using log4net;
 using System.Configuration;
 
 
@@ -14,7 +13,7 @@ namespace Higgs.Mbale.BAL.Concrete
   public  class WeightLossService : IWeightLossService
     {
        
-        ILog logger = log4net.LogManager.GetLogger(typeof(WeightLossService));
+       
         private IWeightLossDataService _dataService;
         private IUserService _userService;
       

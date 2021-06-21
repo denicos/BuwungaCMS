@@ -28,21 +28,7 @@ namespace Higgs.Mbale.Web.Controllers
                 userId = Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(RequestContext.Principal.Identity);
             }
 
-            
-
-            [HttpGet]
-            [ActionName("GetAllDebtors")]
-            public IEnumerable<Debtor> GetAllDebtors()
-            {
-                return _debtorService.GetAllDistinctDebtorRecords();
-            }
-
-            [HttpGet]
-            [ActionName("GetAllBranchDebtors")]
-            public IEnumerable<Debtor> GetAllBranchDebtors(long branchId)
-            {
-                return _debtorService.GetAllDebtorsForAParticularBranch(branchId);
-            }
+           
 
             [HttpGet]
             [ActionName("GetDebtorView")]

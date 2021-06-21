@@ -6,14 +6,14 @@ using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Helpers;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
     public class OrderService: IOrderService
     {
         
-        ILog logger = log4net.LogManager.GetLogger(typeof(OrderService));
+       
         private IOrderDataService _dataService;
         private IUserService _userService;
         private IGradeService _gradeService;

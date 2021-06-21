@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
+
 
 
 namespace Higgs.Mbale.BAL.Concrete
 {
   public  class AssetCategoryService : IAssetCategoryService
     {
-        ILog logger = log4net.LogManager.GetLogger(typeof(AssetCategoryService));
+        
         private IAssetCategoryDataService _dataService;
         private IUserService _userService;
 

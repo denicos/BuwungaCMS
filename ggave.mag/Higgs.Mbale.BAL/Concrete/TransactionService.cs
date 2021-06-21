@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using log4net;
+
 using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
@@ -14,7 +12,7 @@ namespace Higgs.Mbale.BAL.Concrete
 {
  public   class TransactionService : ITransactionService
     {
-        ILog logger = log4net.LogManager.GetLogger(typeof(TransactionService));
+        
         private ITransactionDataService _dataService;
         private IUserService _userService;
         private ITransactionSubTypeService _transactionSubTypeService;

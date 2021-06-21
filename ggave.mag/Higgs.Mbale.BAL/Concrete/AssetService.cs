@@ -2,13 +2,13 @@
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
+
 
 namespace Higgs.Mbale.BAL.Concrete
 {
   public  class AssetService : IAssetService
     {
-        ILog logger = log4net.LogManager.GetLogger(typeof(AssetService));
+        
         private IAssetDataService _dataService;
         private IUserService _userService;
 

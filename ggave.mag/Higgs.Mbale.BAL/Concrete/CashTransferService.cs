@@ -4,14 +4,13 @@ using Higgs.Mbale.DTO;
 using Higgs.Mbale.BAL.Interface;
 using Higgs.Mbale.DAL.Interface;
 using Higgs.Mbale.Models;
-using log4net;
 using System.Configuration;
 
 namespace Higgs.Mbale.BAL.Concrete
 {
     public class CashTransferService : ICashTransferService
     {
-         ILog logger = log4net.LogManager.GetLogger(typeof(CashTransferService));
+         
          private long transactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["CashTransferId"]);
      
         private ICashTransferDataService _dataService;

@@ -29,7 +29,7 @@ namespace Higgs.Mbale.Web.Controllers
         private IBatchOutPutService _batchOutPutService;
         private IFlourTransferService _flourTransferService;
         private IMachineRepairService _machineRepairService;
-        private IUtilityService _utilityService;
+        
         private IRequistionService _requistionService;
         private IDocumentService _documentService;
         private ICreditorService _creditorService;
@@ -45,8 +45,7 @@ namespace Higgs.Mbale.Web.Controllers
             IBatchService batchService,IDeliveryService deliveryService,ICashService cashService,IOrderService orderService,
             ILabourCostService labourCostService, IOtherExpenseService otherExpenseService, IFactoryExpenseService factoryExpenseService,
             IBatchOutPutService batchOutPutService, IFlourTransferService flourTransferService, IMachineRepairService machineRepairService,
-            ICashSaleService cashSaleService,
-            IUtilityService utilityService,IRequistionService requistionService,IDocumentService documentService,ICreditorService creditorService)
+            ICashSaleService cashSaleService,IRequistionService requistionService,IDocumentService documentService,ICreditorService creditorService)
         {
             this._transactionService = transactionService;
             this._reportService = reportService;
@@ -62,7 +61,7 @@ namespace Higgs.Mbale.Web.Controllers
             this._batchOutPutService = batchOutPutService;
             this._flourTransferService = flourTransferService;
             this._machineRepairService = machineRepairService;
-            this._utilityService = utilityService;
+           
             this._requistionService = requistionService;
             this._documentService = documentService;
             this._creditorService = creditorService;
@@ -782,63 +781,7 @@ namespace Higgs.Mbale.Web.Controllers
             return new FileContentResult(excelFileContentInBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         }
 
-        public ActionResult Utility(int id)
-        {
-            int reportType = id;
-            string nameOfReport = string.Empty;
-            List<string> headers = new List<string>();
-            headers.Add("Description ");
-            headers.Add("Amount");
-            headers.Add("Department");
-            headers.Add("BranchName");
-            headers.Add("CreatedOn");
-
-
-            IEnumerable<Utility> utilityList;
-            switch (reportType)
-            {
-
-                case 1://all todays Utilities
-                    nameOfReport = "TodaysUtilities";
-                    utilityList = _reportService.GenerateUtilityTodaysReport();
-                    break;
-                case 2://all this months Utilities
-                    nameOfReport = "CurrentMonthsUtilities";
-                    utilityList = _reportService.GenerateUtilityCurrentMonthReport();
-                    break;
-
-                case 3://Utilties for this week
-                    nameOfReport = "CurrentWeeksUtilities";
-                    utilityList = _reportService.GenerateUtilityCurrentWeekReport();
-                    break;
-
-                default://Todo:: need to decide which one is the default report data
-                    utilityList = _utilityService.GetAllUtilities();
-                    break;
-            }
-            List<List<string>> cellValues = new List<List<string>>();
-            foreach (var w in utilityList)
-            {
-
-                var sxr = new List<string>();
-                sxr.Add(w.Description.ToString());
-                sxr.Add(w.Amount.ToString());
-                sxr.Add(w.SectorName.ToString());
-                sxr.Add(w.BranchName.ToString());
-                sxr.Add(w.CreatedOn.ToString());
-
-
-                cellValues.Add(sxr);
-            }
-            var data = new ExcelData();
-            data.Headers = headers;
-            data.DataRows = cellValues;
-
-            var file = new ExcelWriter();
-            var excelFileContentInBytes = file.GenerateExcelFile(data);
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + nameOfReport + "_Report_" + DateTime.Now.ToString("yyyy-MM-dd-mm-ss") + ".xlsx");
-            return new FileContentResult(excelFileContentInBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        }
+                       
 
         public ActionResult BatchOutPut(int id)
         {

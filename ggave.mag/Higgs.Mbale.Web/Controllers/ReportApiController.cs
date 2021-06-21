@@ -429,35 +429,7 @@ namespace Higgs.Mbale.Web.Controllers
             }
             #endregion
 
-            #region Utility
-            [HttpPost]
-            [ActionName("GetAllUtilityBetweenTheSpecifiedDates")]
-            public IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(ReportSearch searchDates)
-            {
-                return _reportService.GetAllUtilitiesBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityCurrentMonthReport")]
-            public IEnumerable<Utility> GenerateUtilityCurrentMonthReport()
-            {
-                return _reportService.GenerateUtilityCurrentMonthReport();
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityTodaysReport")]
-            public IEnumerable<Utility> GenerateUtilityTodaysReport()
-            {
-                return _reportService.GenerateUtilityTodaysReport();
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityCurrentWeekReport")]
-            public IEnumerable<Utility> GenerateUtilityCurrentWeekReport()
-            {
-                return _reportService.GenerateUtilityCurrentWeekReport();
-            }
-            #endregion
+           
 
             #region FlourTransfer
             [HttpPost]
@@ -774,43 +746,7 @@ namespace Higgs.Mbale.Web.Controllers
 
         #endregion
 
-        #region outsourcers
-        [HttpPost]
-        [ActionName("GetAllOutSourcerOutPutsBetweenTheSpecifiedDates")]
-        public OutSourcerOutPutReportViewModel GetAllOutSourcerOutPutsBetweenTheSpecifiedDates(ReportSearch searchDates)
-        {
-            return _reportService.GetAllOutPutsBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
-        }
-        [HttpPost]
-        [ActionName("GetAllOutPutTotalsBetweenTheSpecifiedDates")]
-        public GradeSizeTotalsViewModel GetAllOutPutTotalsBetweenTheSpecifiedDates(ReportSearch searchDates)
-        {
-            return _reportService.GetAllOutPutTotalsBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
-        }
-
-        [HttpPost]
-        [ActionName("GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct")]
-        public DeliveryReportViewModel GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(ReportSearch searchDates)
-        {
-            return _reportService.GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId,searchDates.CustomerId,searchDates.ProductId);
-        }
-        [HttpPost]
-        [ActionName("GetAllDeliveryTotalsBetweenTheSpecifiedDates")]
-        public GradeSizeTotalsViewModel GetAllDeliveryTotalsBetweenTheSpecifiedDates(ReportSearch searchDates)
-        {
-            return _reportService.GetAllDeliveryTotalsBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId,searchDates.CustomerId,searchDates.ProductId);
-        }
-
-        #endregion
-
-        #region rice inputs
-        [HttpPost]
-        [ActionName("GetAllRiceInputsBetweenTheSpecifiedDatesForBranch")]
-        public RiceInputReportViewModel GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(ReportSearch searchDates)
-        {
-            return _reportService.GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
-        }
-        #endregion
+      
 
     }
 }

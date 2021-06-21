@@ -42,7 +42,7 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IOtherExpenseService)).To(typeof(OtherExpenseService));
          Bind(typeof(IBatchOutPutService)).To(typeof(BatchOutPutService));
          Bind(typeof(IBuveraService)).To(typeof(BuveraService));
-         Bind(typeof(IUtilityService)).To(typeof(UtilityService));
+        
          Bind(typeof(ICashService)).To(typeof(CashService));
          Bind(typeof(IDocumentService)).To(typeof(DocumentService));
          Bind(typeof(IFlourTransferService)).To(typeof(FlourTransferService));
@@ -51,22 +51,16 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(ICashSaleService)).To(typeof(CashSaleService));
          Bind(typeof(IMaizeBrandStoreService)).To(typeof(MaizeBrandStoreService));
          Bind(typeof(IUtilityAccountService)).To(typeof(UtilityAccountService));
-         Bind(typeof(IBankService)).To(typeof(BankService));
-         Bind(typeof(IBankTransactionService)).To(typeof(BankTransactionService));
-         Bind(typeof(IMaizeOffloadingService)).To(typeof(MaizeOffloadingService));
-         Bind(typeof(IMillingChargeService)).To(typeof(MillingChargeService));
+        
          Bind(typeof(IBatchProjectionService)).To(typeof(BatchProjectionService));
          Bind(typeof(IDepositService)).To(typeof(DepositService));
         Bind(typeof(IAssetCategoryService)).To(typeof(AssetCategoryService));
         Bind(typeof(IAssetService)).To(typeof(AssetService));
             Bind(typeof(IWeightLossService)).To(typeof(WeightLossService));
-            Bind(typeof(IFinancialAccountTransactionService)).To(typeof(FinancialAccountTransactionService));
-            Bind(typeof(IFinancialAccountService)).To(typeof(FinancialAccountService));
-            Bind(typeof(IWeightNoteRangeService)).To(typeof(WeightNoteRangeService));
+                      Bind(typeof(IWeightNoteRangeService)).To(typeof(WeightNoteRangeService));
             Bind(typeof(IWeightNoteNumberService)).To(typeof(WeightNoteNumberService));
-            Bind(typeof(IOutSourcerOutPutService)).To(typeof(OutSourcerOutPutService));
-            Bind(typeof(IDashBoardNotificationService)).To(typeof(DashBoardNotificationService));
-            Bind(typeof(IRiceInputService)).To(typeof(RiceInputService));
+               Bind(typeof(IDashBoardNotificationService)).To(typeof(DashBoardNotificationService));
+           
             //DAL
             Bind(typeof(IUserDataService)).To(typeof(UserDataService));
          Bind(typeof(IBranchDataService)).To(typeof(BranchDataService));
@@ -88,8 +82,7 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IAccountTransactionActivityDataService)).To(typeof(AccountTransactionActivityDataService));
          Bind(typeof(IActivityDataService)).To(typeof(ActivityDataService));
          Bind(typeof(IReportDataService)).To(typeof(ReportDataService));
-         Bind(typeof(ICreditorDataService)).To(typeof(CreditorDataService));
-         Bind(typeof(IDebtorDataService)).To(typeof(DebtorDataService));
+         
          Bind(typeof(IFactoryExpenseDataService)).To(typeof(FactoryExpenseDataService));
          Bind(typeof(ILabourCostDataService)).To(typeof(LabourCostDataService));
          Bind(typeof(IStockDataService)).To(typeof(StockDataService));
@@ -97,7 +90,7 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IOtherExpenseDataService)).To(typeof(OtherExpenseDataService));
          Bind(typeof(IBatchOutPutDataService)).To(typeof(BatchOutPutDataService));
          Bind(typeof(IBuveraDataService)).To(typeof(BuveraDataService));
-         Bind(typeof(IUtilityDataService)).To(typeof(UtilityDataService));
+       
          Bind(typeof(ICashDataService)).To(typeof(CashDataService));
          Bind(typeof(IDocumentDataService)).To(typeof(DocumentDataService));
          Bind(typeof(IFlourTransferDataService)).To(typeof(FlourTransferDataService));
@@ -106,11 +99,9 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(ICashSaleDataService)).To(typeof(CashSaleDataService));
          Bind(typeof(IMaizeBrandStoreDataService)).To(typeof(MaizeBrandStoreDataService));
          Bind(typeof(IUtilityAccountDataService)).To(typeof(UtilityAccountDataService));
-         Bind(typeof(IBankDataService)).To(typeof(BankDataService));
-         Bind(typeof(IBankTransactionDataService)).To(typeof(BankTransactionDataService));
-         Bind(typeof(IMaizeOffloadingDataService)).To(typeof(MaizeOffloadingDataService));
+         
          Bind(typeof(IBatchProjectionDataService)).To(typeof(BatchProjectionDataService));
-         Bind(typeof(IMillingChargeDataService)).To(typeof(MillingChargeDataService));
+        
          Bind(typeof(IDepositDataService)).To(typeof(DepositDataService));
         Bind(typeof(IAssetCategoryDataService)).To(typeof(AssetCategoryDataService));
         Bind(typeof(IAssetDataService)).To(typeof(AssetDataService));
@@ -119,9 +110,9 @@ namespace Higgs.Mbale.DependencyResolver
             Bind(typeof(IWeightLossDataService)).To(typeof(WeightLossDataService));
             Bind(typeof(IWeightNoteRangeDataService)).To(typeof(WeightNoteRangeDataService));
             Bind(typeof(IWeightNoteNumberDataService)).To(typeof(WeightNoteNumberDataService));
-            Bind(typeof(IOutSourcerOutPutDataService)).To(typeof(OutSourcerOutPutDataService));
+           
             Bind(typeof(IDashBoardDataService)).To(typeof(DashBoardNotificationDataService));
-            Bind(typeof(IRiceInputDataService)).To(typeof(RiceInputDataService)); 
+          
         } 
         
           
