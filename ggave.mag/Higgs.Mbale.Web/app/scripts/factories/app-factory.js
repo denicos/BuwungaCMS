@@ -40,18 +40,7 @@ angular
 }]);
 
 
-angular
-    .module('homer')
-    .factory('FileExtentions', ['$http', function($http) {
 
-
-        return {
-            GetAllExtentionTypes: function (callback) {
-                $http.get('/webapi/MediaApi/GetAllExtentionTypes').success(callback);
-            }
-        };
-
-}]);
 
 angular
     .module('homer')

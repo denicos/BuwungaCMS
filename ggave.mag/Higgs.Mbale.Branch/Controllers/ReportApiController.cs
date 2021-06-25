@@ -395,35 +395,7 @@ namespace Higgs.Mbale.Branch.Controllers
             }
             #endregion
 
-            #region Utility
-            [HttpPost]
-            [ActionName("GetAllUtilityBetweenTheSpecifiedDates")]
-            public IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(ReportSearch searchDates)
-            {
-                return _reportService.GetAllUtilitiesBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityCurrentMonthReport")]
-            public IEnumerable<Utility> GenerateUtilityCurrentMonthReport()
-            {
-                return _reportService.GenerateUtilityCurrentMonthReport();
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityTodaysReport")]
-            public IEnumerable<Utility> GenerateUtilityTodaysReport()
-            {
-                return _reportService.GenerateUtilityTodaysReport();
-            }
-
-            [HttpGet]
-            [ActionName("GenerateUtilityCurrentWeekReport")]
-            public IEnumerable<Utility> GenerateUtilityCurrentWeekReport()
-            {
-                return _reportService.GenerateUtilityCurrentWeekReport();
-            }
-            #endregion
+          
 
             #region FlourTransfer
             [HttpPost]

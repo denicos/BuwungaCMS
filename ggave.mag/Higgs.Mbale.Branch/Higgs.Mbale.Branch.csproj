@@ -2679,7 +2679,6 @@
     <Compile Include="Controllers\TransactionSubTypeApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UtilityAccountApiController.cs" />
-    <Compile Include="Controllers\UtilityApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

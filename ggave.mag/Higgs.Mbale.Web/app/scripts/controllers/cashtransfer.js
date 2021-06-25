@@ -227,7 +227,7 @@ angular
 
 angular
     .module('homer').controller('UnApprovedCashTransferController', ['$scope', '$http',
-        function ($scope, $http,  ) {
+        function ($scope, $http ) {
             $scope.loadingSpinner = true;
            
 

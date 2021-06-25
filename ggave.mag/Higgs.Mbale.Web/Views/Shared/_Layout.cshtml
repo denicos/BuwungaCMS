@@ -41,18 +41,19 @@
          @RenderSection("scripts", required: false)
 
         -->
-    @Scripts.Render("~/bundles/bower_components")
 
-   
-   
+    @Scripts.Render("~/bundles/bower_components")
+    <script src="~/bower_components/angular-route/angular-route.min.js"></script>
+
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
     @*<script src="~/app/scripts/homer.js"></script>*@
     @*<script src="~/app/scripts/app.js"></script>
-    <script src="~/app/scripts/config.js"></script>
-    <script src="~/app/scripts/directives/directives.js"></script>
-   *@
+        <script src="~/app/scripts/config.js"></script>
+        <script src="~/app/scripts/directives/directives.js"></script>
+    *@
 
 
     @Scripts.Render("~/bundles/app_scripts")

@@ -615,7 +615,7 @@ angular
                         Grades: b.Grades,
                         DeliveryBatches: b.DeliveryBatches,
                         CreatedOn: b.CreatedOn != null ? moment(b.CreatedOn).format('YYYY-MM-DD HH:mm:ss') : null,
-                        DeliveryDate: b.DeliveryDate != null ? moment(b.DeliveryDate,).format('YYYY-MM-DD HH:mm:ss') : null,
+                        DeliveryDate: b.DeliveryDate != null ? moment(b.DeliveryDate).format('YYYY-MM-DD HH:mm:ss') : null,
 
 
                     };
