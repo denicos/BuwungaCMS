@@ -177,9 +177,7 @@ angular
                   { name: 'Flour Stock', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/store/storeStanding/{{row.entity.StoreId}}">Flour Stock</a> </div>' },
 
                 { name: 'Brand', cellTemplate: '<div  class="ui-grid-cell-contents"> <a href="#/brand/brandStanding/{{row.entity.BranchId}}">Brand </a> </div>' },
-                { name: 'Rice', cellTemplate: '<div ng-if="row.entity.StoreId == 10029" class="ui-grid-cell-contents"> <a href="#/store/storeRiceStanding/{{row.entity.StoreId}}">Rice </a> </div>' },
-
-
+               
                   { name: 'Buvera Stock', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/store/storeBuveraStanding/{{row.entity.StoreId}}">Buvera</a> </div>' },
 
                    { name: 'Inventory', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/inventories/{{row.entity.StoreId}}">Other Inventories</a> </div>' },
@@ -339,51 +337,3 @@ angular
     }
     ]);
 
-angular
-    .module('homer')
-    .controller('StoreRiceStandingController', ['$scope', '$http', '$filter', '$location', '$log', '$timeout', '$modal', '$state', 'uiGridConstants', '$interval',
-        function ($scope, $http, $filter, $location, $log, $timeout, $modal, $state, uiGridConstants, $interval) {
-
-            $scope.tab = {};
-            if ($scope.defaultTab == 'dashboard') {
-                $scope.tab.dashboard = true;
-            }
-
-            var storeId = $scope.storeId;
-
-
-            var promisestore = $http.get('/webapi/StoreApi/GetStore?storeId=' + storeId, {});
-            promisestore.then(
-                function (payload) {
-                    var b = payload.data;
-
-                    $scope.store = {
-                        StoreId: b.StoreId,
-                        Name: b.Name,
-                        OutSourcerId: b.OutSourcerId,
-
-                    };
-
-                });
-
-
-
-
-            var promise = $http.get('/webapi/StockApi/GetStoreFlourStock?storeId=' + storeId, {});
-            promise.then(
-                function (payload) {
-                    var b = payload.data;
-                    $scope.retrievedStoreId = $scope.storeId;
-
-
-                    $scope.storeGradeSize = {
-
-                        StoreSizeGrades: b.StoreSizeGrades,
-
-                    };
-
-
-                });
-
-        }
-    ]);

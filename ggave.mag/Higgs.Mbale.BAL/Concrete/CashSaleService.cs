@@ -513,7 +513,7 @@ public   class CashSaleService : ICashSaleService
                             this.SaveCashSaleBatch(batchCashSale);
                         }
                         #region generate documents
-                        if (cashSale.PaymentModeId == 2 )
+                        if (cashSale.PaymentModeId == 10005)
                         {
                             //generate cash receipt
                             // throw new NotImplementedException();
@@ -775,7 +775,7 @@ public   class CashSaleService : ICashSaleService
 
                                 }
                                 #region generate documents
-                                if (cashSale.PaymentModeId == 2)
+                                if (cashSale.PaymentModeId == 10005)
                                 {
                                     //generate receipt
                                     //throw new NotImplementedException();

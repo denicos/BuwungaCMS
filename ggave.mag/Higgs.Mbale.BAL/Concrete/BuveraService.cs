@@ -100,6 +100,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 TotalCost = buvera.TotalCost,
                 TotalQuantity = buvera.TotalQuantity,
                 BranchId = buvera.BranchId,
+                ProductId = buvera.ProductId,
                 FromSupplier = buvera.FromSupplier,
                 InvoiceNumber = buvera.InvoiceNumber,
                 BuveraCategoryId = buvera.BuveraCategoryId,

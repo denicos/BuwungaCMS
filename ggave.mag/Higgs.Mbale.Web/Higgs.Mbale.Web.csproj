@@ -527,17 +527,7 @@
     <Content Include="app\views\report\millingbalance.html" />
     <Content Include="app\views\report\orders.html" />
     <Content Include="app\views\report\otherExpenses.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerBuveraTotals.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerbuveratransferTotals.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerflourtotals.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerindex.html" />
-    <Content Include="app\views\report\outsourcers\outsourceroutputs.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerstoredelivery.html" />
-    <Content Include="app\views\report\outsourcers\outsourcerstoredeliveryTotals.html" />
-    <Content Include="app\views\report\outsourcers\outSourcerTotalIndex.html" />
-    <Content Include="app\views\report\outsourcers\outsourcertransactions.html" />
     <Content Include="app\views\report\recovery.html" />
-    <Content Include="app\views\report\rice\riceinputs.html" />
     <Content Include="app\views\report\supplierindex.html" />
     <Content Include="app\views\report\supplies-dashboard.html" />
     <Content Include="app\views\report\supplies.html" />

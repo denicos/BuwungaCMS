@@ -108,9 +108,9 @@ angular
 
         $scope.selectedGrades = [];
         $scope.batches = [];
-        var transactionSubTypeId = 2;
+        var transactionSubTypeId = 50015;
         var departmentId = 10002;
-        var paymentModeId = 2;
+        var paymentModeId = 10005;
         var branchId = $scope.branchId;
         var cashSaleId = $scope.cashSaleId;
         var action = $scope.action;

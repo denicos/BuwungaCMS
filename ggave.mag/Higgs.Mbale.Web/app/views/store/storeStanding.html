@@ -79,7 +79,7 @@
 
                                 </tab>
 
-                                <tab ng-show="store.OutSourcerId == null">
+                                <tab >
                                     <tab-heading >
 
                                         <a ui-sref="flour-store-transfer({ action: 'create', flourTransferId: 0,storeId:retrievedStoreId})"><i class="fa fa-minus-circle" style="color:red"></i> Issue Out Flour</a>
@@ -87,14 +87,7 @@
                                     </tab-heading>
                                     
                                 </tab>
-                                <tab ng-show="store.OutSourcerId != null">
-                                   
-                                    <tab-heading >
-
-                                        <a ui-sref="outsoucer-output({ action: 'create', outSourcerOutPutId: 0,storeId:retrievedStoreId})"><i class="fa fa-plus-circle" style="color:dodgerblue"></i> Insert Flour</a>
-
-                                    </tab-heading>
-                                </tab>
+                               
                                 <tab>
                                     <tab-heading>
                                         <a ui-sref="flourlist-store-transfer({storeId:retrievedStoreId})"><i class="fa fa-minus-circle"></i>Flour Transfer List</a>

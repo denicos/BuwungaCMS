@@ -972,7 +972,7 @@ namespace Higgs.Mbale.BAL.Concrete
 
                     }
                     #region generate documents
-                    if (deliveryDTO.PaymentModeId == 2 || deliveryDTO.PaymentModeId == 1 || deliveryDTO.PaymentModeId == 10004)
+                    if (deliveryDTO.PaymentModeId == 10005 || deliveryDTO.PaymentModeId == 10007)
                     {
                         //generate receipt
                         // throw new NotImplementedException();
@@ -1141,7 +1141,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                         }
 
                                         #region generate documents
-                                        if (deliveryDTO.PaymentModeId == 2 || deliveryDTO.PaymentModeId == 1 || deliveryDTO.PaymentModeId == 10004)
+                                        if (deliveryDTO.PaymentModeId == 10005 || deliveryDTO.PaymentModeId == 1 || deliveryDTO.PaymentModeId == 10007)
                                         {
                                             //generate receipt
                                             //throw new NotImplementedException();

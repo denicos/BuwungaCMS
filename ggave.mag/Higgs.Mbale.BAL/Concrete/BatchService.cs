@@ -989,17 +989,14 @@ namespace Higgs.Mbale.BAL.Concrete
         public GradeSizeTotalsViewModel GetTotalGradeSizeBatchOutPutQuantities(List<BatchOutPut> batchOutPutList)
         {
             //quantity
-            int totalSuperTenQuantity = 0, totalSuperTwoFiveQuantity = 0, totalSuperFiveZeroQuantity = 0, totalSuperHundredQuantity = 0, totalSuperFiveQuantity = 0, totalSuperOneQuantity = 0;
-            int totalNumberOneTenQuantity = 0, totalNumberOneTwoFiveQuantity = 0, totalNumberOneFiveZeroQuantity = 0, totalNumberOneHundredQuantity = 0, totalNumberOneFiveQuantity = 0, totalNumberOneOneQuantity = 0;
-            int totalNumberOneHalfTenQuantity = 0, totalNumberOneHalfTwoFiveQuantity = 0, totalNumberOneHalfFiveZeroQuantity = 0, totalNumberOneHalfHundredQuantity = 0, totalNumberOneHalfFiveQuantity = 0, totalNumberOneHalfOneQuantity = 0;
-            int totalKabaleTenQuantity = 0, totalKabaleTwoFiveQuantity = 0, totalKabaleFiveZeroQuantity = 0, totalKabaleHundredQuantity = 0, totalKabaleFiveQuantity = 0, totalKabaleOneQuantity = 0;
-
+             int totalNumberOneTenQuantity = 0, totalNumberOneTwoFiveQuantity = 0, totalNumberOneFiveZeroQuantity = 0;
+            int totalNumberOneHalfTenQuantity = 0, totalNumberOneHalfTwoFiveQuantity = 0, totalNumberOneHalfFiveZeroQuantity = 0;
+            
             //amount
-            double totalSuperTenAmount = 0, totalSuperTwoFiveAmount = 0, totalSuperFiveZeroAmount = 0, totalSuperHundredAmount = 0, totalSuperFiveAmount = 0, totalSuperOneAmount = 0;
-            double totalNumberOneTenAmount = 0, totalNumberOneTwoFiveAmount = 0, totalNumberOneFiveZeroAmount = 0, totalNumberOneHundredAmount = 0, totalNumberOneFiveAmount = 0, totalNumberOneOneAmount = 0;
-            double totalNumberOneHalfTenAmount = 0, totalNumberOneHalfTwoFiveAmount = 0, totalNumberOneHalfFiveZeroAmount = 0, totalNumberOneHalfHundredAmount = 0, totalNumberOneHalfFiveAmount = 0, totalNumberOneHalfOneAmount = 0;
-            double totalKabaleTenAmount = 0, totalKabaleTwoFiveAmount = 0, totalKabaleFiveZeroAmount = 0, totalKabaleHundredAmount = 0, totalKabaleFiveAmount = 0, totalKabaleOneAmount = 0;
-
+           
+            double totalNumberOneTenAmount = 0, totalNumberOneTwoFiveAmount = 0, totalNumberOneFiveZeroAmount = 0;
+            double totalNumberOneHalfTenAmount = 0, totalNumberOneHalfTwoFiveAmount = 0, totalNumberOneHalfFiveZeroAmount = 0;
+            
             List<long> gradesAddedToTransferReport = new List<long>();
 
             GradeSizeTotalsViewModel gradeSizeTotalsViewModel = new GradeSizeTotalsViewModel();
@@ -1032,47 +1029,47 @@ namespace Higgs.Mbale.BAL.Concrete
 
                             switch (grade.Value)
                             {
-                                case "Super":
-                                    foreach (var denom in grade.Denominations)
-                                    //  for (int j = 0; j < grade.Denominations.Count(); j++)
+                                //case "Super":
+                                //    foreach (var denom in grade.Denominations)
+                                //    //  for (int j = 0; j < grade.Denominations.Count(); j++)
 
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalSuperTenQuantity = totalSuperTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperTenAmount = totalSuperTenAmount + Convert.ToDouble(denom.Amount);
+                                //    {
+                                //        switch (denom.Value)
+                                //        {
+                                //            case 10:
+                                //                totalSuperTenQuantity = totalSuperTenQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalSuperTenAmount = totalSuperTenAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 25:
-                                                totalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperTwoFiveAmount = totalSuperTwoFiveAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 25:
+                                //                totalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalSuperTwoFiveAmount = totalSuperTwoFiveAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 50:
-                                                totalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperFiveZeroAmount = totalSuperFiveZeroAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 50:
+                                //                totalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalSuperFiveZeroAmount = totalSuperFiveZeroAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 100:
-                                                totalSuperHundredQuantity = totalSuperHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperHundredAmount = totalSuperHundredAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 100:
+                                //                totalSuperHundredQuantity = totalSuperHundredQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalSuperHundredAmount = totalSuperHundredAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 5:
-                                                totalSuperFiveQuantity = totalSuperFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalSuperFiveAmount = totalSuperFiveAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 5:
+                                //                totalSuperFiveQuantity = totalSuperFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalSuperFiveAmount = totalSuperFiveAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 1:
-                                                totalSuperOneQuantity = totalSuperOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                break;
-                                            default:
+                                //                break;
+                                //            case 1:
+                                //                totalSuperOneQuantity = totalSuperOneQuantity + Convert.ToInt32(denom.Quantity);
+                                //                break;
+                                //            default:
 
-                                                continue;
-                                        }
-                                    }
-                                    break;
+                                //                continue;
+                                //        }
+                                //    }
+                                //    break;
                                 case "Number 1":
                                     foreach (var denom in grade.Denominations)
                                     {
@@ -1093,26 +1090,14 @@ namespace Higgs.Mbale.BAL.Concrete
                                                 totalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount + Convert.ToDouble(denom.Amount);
 
                                                 break;
-                                            case 100:
-                                                totalNumberOneHundredQuantity = totalNumberOneHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHundredAmount = totalNumberOneHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 5:
-                                                totalNumberOneFiveQuantity = totalNumberOneFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneFiveAmount = totalNumberOneFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 1:
-                                                totalNumberOneOneQuantity = totalNumberOneOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneOneAmount = totalNumberOneOneAmount + Convert.ToDouble(denom.Amount);
-                                                break;
+                                           
                                             default:
 
                                                 break;
                                         }
                                     }
                                     break;
-                                case "Number  1.5":
+                                case "Number 1.5":
 
                                     foreach (var denom in grade.Denominations)
                                     //  for (int j = 0; j < grade.Denominations.Count(); j++)
@@ -1134,21 +1119,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                                 totalNumberOneHalfFiveZeroAmount = totalNumberOneHalfFiveZeroAmount + Convert.ToDouble(denom.Amount);
 
                                                 break;
-                                            case 100:
-                                                totalNumberOneHalfHundredQuantity = totalNumberOneHalfHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfHundredAmount = totalNumberOneHalfHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 5:
-                                                totalNumberOneHalfFiveQuantity = totalNumberOneHalfFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
-                                            case 1:
-                                                totalNumberOneHalfOneQuantity = totalNumberOneHalfOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalNumberOneHalfOneAmount = totalNumberOneHalfOneAmount + Convert.ToDouble(denom.Amount);
-
-                                                break;
+                                           
                                             default:
 
                                                 continue;
@@ -1156,44 +1127,44 @@ namespace Higgs.Mbale.BAL.Concrete
                                     }
                                     break;
 
-                                case "NO. 1 Kabale":
+                                //case "NO. 1 Kabale":
 
-                                    foreach (var denom in grade.Denominations)
+                                //    foreach (var denom in grade.Denominations)
 
-                                    {
-                                        switch (denom.Value)
-                                        {
-                                            case 10:
-                                                totalKabaleTenQuantity = totalKabaleTenQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleTenAmount = totalKabaleTenAmount + Convert.ToDouble(denom.Amount);
+                                //    {
+                                //        switch (denom.Value)
+                                //        {
+                                //            case 10:
+                                //                totalKabaleTenQuantity = totalKabaleTenQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleTenAmount = totalKabaleTenAmount + Convert.ToDouble(denom.Amount);
 
-                                                break;
-                                            case 25:
-                                                totalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 50:
-                                                totalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 100:
-                                                totalKabaleHundredQuantity = totalKabaleHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleHundredAmount = totalKabaleHundredAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 5:
-                                                totalKabaleFiveQuantity = totalKabaleFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleFiveAmount = totalKabaleFiveAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            case 1:
-                                                totalKabaleOneQuantity = totalKabaleOneQuantity + Convert.ToInt32(denom.Quantity);
-                                                totalKabaleOneAmount = totalKabaleOneAmount + Convert.ToDouble(denom.Amount);
-                                                break;
-                                            default:
+                                //                break;
+                                //            case 25:
+                                //                totalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 50:
+                                //                totalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 100:
+                                //                totalKabaleHundredQuantity = totalKabaleHundredQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleHundredAmount = totalKabaleHundredAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 5:
+                                //                totalKabaleFiveQuantity = totalKabaleFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleFiveAmount = totalKabaleFiveAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            case 1:
+                                //                totalKabaleOneQuantity = totalKabaleOneQuantity + Convert.ToInt32(denom.Quantity);
+                                //                totalKabaleOneAmount = totalKabaleOneAmount + Convert.ToDouble(denom.Amount);
+                                //                break;
+                                //            default:
 
-                                                continue;
-                                        }
-                                    }
-                                    break;
+                                //                continue;
+                                //        }
+                                //    }
+                                //    break;
 
                                 default:
                                     break;
@@ -1223,55 +1194,31 @@ namespace Higgs.Mbale.BAL.Concrete
             gradeSizeTotalsViewModel = new GradeSizeTotalsViewModel()
             {
                 //Grades = gradesAddedToTransferReport.ToList();
-                TotalKabaleFiveQuantity = totalKabaleFiveQuantity,
-                TotalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity,
-                TotalKabaleHundredQuantity = totalKabaleHundredQuantity,
-                TotalKabaleOneQuantity = totalKabaleOneQuantity,
-                TotalKabaleTenQuantity = totalKabaleTenQuantity,
-                TotalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity,
-                TotalNumberOneFiveQuantity = totalNumberOneFiveQuantity,
+                
+               
                 TotalNumberOneFiveZeroQuantity = totalNumberOneFiveZeroQuantity,
                 TotalNumberOneTenQuantity = totalNumberOneTenQuantity,
-                TotalNumberOneOneQuantity = totalNumberOneOneQuantity,
+                
                 TotalNumberOneTwoFiveQuantity = totalNumberOneTwoFiveQuantity,
-                TotalNumberOneHundredQuantity = totalNumberOneHundredQuantity,
-                TotalNumberOneHalfFiveQuantity = totalNumberOneHalfFiveQuantity,
+               
                 TotalNumberOneHalfFiveZeroQuantity = totalNumberOneHalfFiveZeroQuantity,
-                TotalNumberOneHalfHundredQuantity = totalNumberOneHalfHundredQuantity,
-                TotalNumberOneHalfOneQuantity = totalNumberOneHalfOneQuantity,
+                
                 TotalNumberOneHalfTenQuantity = totalNumberOneHalfTenQuantity,
                 TotalNumberOneHalfTwoFiveQuantity = totalNumberOneHalfTwoFiveQuantity,
-                TotalSuperFiveQuantity = totalSuperFiveQuantity,
-                TotalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity,
-                TotalSuperHundredQuantity = totalSuperHundredQuantity,
-                TotalSuperOneQuantity = totalSuperOneQuantity,
-                TotalSuperTenQuantity = totalSuperTenQuantity,
-                TotalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity,
+               
 
-                TotalKabaleFiveAmount = totalKabaleFiveAmount,
-                TotalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount,
-                TotalKabaleHundredAmount = totalKabaleHundredAmount,
-                TotalKabaleOneAmount = totalKabaleOneAmount,
-                TotalKabaleTenAmount = totalKabaleTenAmount,
-                TotalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount,
-                TotalNumberOneFiveAmount = totalNumberOneFiveAmount,
+            
+               
                 TotalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount,
                 TotalNumberOneTenAmount = totalNumberOneTenAmount,
-                TotalNumberOneOneAmount = totalNumberOneOneAmount,
+              
                 TotalNumberOneTwoFiveAmount = totalNumberOneTwoFiveAmount,
-                TotalNumberOneHundredAmount = totalNumberOneHundredAmount,
-                TotalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount,
+              
                 TotalNumberOneHalfFiveZeroAmount = totalNumberOneHalfFiveZeroAmount,
-                TotalNumberOneHalfHundredAmount = totalNumberOneHalfHundredAmount,
-                TotalNumberOneHalfOneAmount = totalNumberOneHalfOneAmount,
+               
                 TotalNumberOneHalfTenAmount = totalNumberOneHalfTenAmount,
                 TotalNumberOneHalfTwoFiveAmount = totalNumberOneHalfTwoFiveAmount,
-                TotalSuperFiveAmount = totalSuperFiveAmount,
-                TotalSuperFiveZeroAmount = totalSuperFiveZeroAmount,
-                TotalSuperHundredAmount = totalSuperHundredAmount,
-                TotalSuperOneAmount = totalSuperOneAmount,
-                TotalSuperTenAmount = totalSuperTenAmount,
-                TotalSuperTwoFiveAmount = totalSuperTwoFiveAmount,
+               
 
             };
             return gradeSizeTotalsViewModel;

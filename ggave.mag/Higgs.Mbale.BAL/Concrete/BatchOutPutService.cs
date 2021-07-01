@@ -256,7 +256,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             ToReceiver = Convert.ToString(batchOutPut.BatchId),
                             StoreId = batchOutPut.StoreId,
                             BuveraCategoryId = buveraCategoryId,
-
+                            ProductId = flourId,
                         };
 
                         var buveraId = this._buveraService.SaveBuveraOnBatchUsage(buvera, userId);
@@ -399,16 +399,7 @@ namespace Higgs.Mbale.BAL.Concrete
             _dataService.SaveBatchGradeSize(batchGradeSizeDTO);
         }
 
-        //public IEnumerable<BatchOutPut> GetCombinedBatchOutPuts()
-        //{
-        //    List<BatchOutPut> newBatchOutPutList = new List<BatchOutPut>();
-        //    var batchOutPuts = GetAllBatchOutPuts();
-        //    foreach (var batchOutPut in batchOutPuts)
-        //    {
-                
-        //    }
-
-        //}
+      
         /// <summary>
         /// 
         /// </summary>
