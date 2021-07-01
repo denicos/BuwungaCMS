@@ -2600,9 +2600,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="documents\inovice.html" />
-    <Content Include="documents\mbale_logo.gif" />
+    <Content Include="documents\maglogo.jpg" />
     <Content Include="documents\receipt.html" />
     <Content Include="email-templates\ForgotPassword.html" />
+    <Content Include="email-templates\maglogo.jpg" />
+    <Content Include="email-templates\receipt.html" />
     <Content Include="favicon.png" />
     <Content Include="fonts\fonts\pe-icon-7-stroke\css\helper.css" />
     <Content Include="fonts\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
@@ -3316,8 +3318,7 @@
     <Content Include="styles\kendo\kendo.default.min.css" />
     <Content Include="styles\ng-table.min.css" />
     <Content Include="styles\style.css" />
-    <Content Include="Views\Excel\mbale_logo.gif" />
-    <Content Include="Views\Excel\mbale_logo.jpg" />
+    <Content Include="Views\Excel\maglogo.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

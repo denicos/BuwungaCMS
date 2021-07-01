@@ -2624,8 +2624,7 @@
     <Content Include="styles\kendo\kendo.default.min.css" />
     <Content Include="styles\ng-table.min.css" />
     <Content Include="styles\style.css" />
-    <Content Include="Views\Excel\mbale_logo.gif" />
-    <Content Include="Views\Excel\mbale_logo.jpg" />
+    <Content Include="Views\Excel\maglogo.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
