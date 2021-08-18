@@ -26,7 +26,7 @@ namespace Higgs.Mbale.DTO
         public System.DateTime TimeStamp { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public string AmountInWords { get; set; }
-        public string OutSourcerId { get; set; }
+        
         public Nullable<long> CasualWorkerId { get; set; }
         public Nullable<long> BatchId { get; set; }
         public Nullable<long> SupplyId { get; set; }
@@ -36,9 +36,9 @@ namespace Higgs.Mbale.DTO
         public Nullable<double> Quantity { get; set; }
         public string RepairerName { get; set; }
         public System.DateTime RepairDate { get; set; }
-        public Nullable<long> BankId { get; set; }
+      
         public Nullable<long> UtilityCategoryId { get; set; }
-        public Nullable<long> FinancialAccountId { get; set; }
+        
 
 
 

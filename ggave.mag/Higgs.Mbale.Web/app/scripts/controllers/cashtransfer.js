@@ -296,7 +296,7 @@ angular
         var action = $scope.action;
         var branchId = $scope.branchId;
         var transfer = "YES";
-        var sectorId = 10003;
+        var sectorId = 1;
       
         $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
             $scope.sectors = data;

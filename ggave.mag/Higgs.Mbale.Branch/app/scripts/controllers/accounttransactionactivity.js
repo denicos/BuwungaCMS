@@ -426,8 +426,8 @@ angular
         var action = $scope.action;
         $scope.accountName = "";
         var selectedAction = "+";
-        var transactionSubType = 10008;
-        var department = 10003;
+        var transactionSubType = 50022;
+        var department = 1;
 
 
         $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
@@ -592,7 +592,7 @@ angular
             $scope.loadingSpinner = true;
 
             var accountId = $scope.accountId;
-            var transactionSubTypeId = 10008;
+            var transactionSubTypeId = 50022;
             $scope.accountName = "";
             $scope.loadingSpinner = true;
 

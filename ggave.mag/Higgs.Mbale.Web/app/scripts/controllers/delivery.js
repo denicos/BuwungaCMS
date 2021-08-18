@@ -16,7 +16,8 @@
         $scope.batchGrades = [];
         $scope.selectedNoBatchGrades = [];
         $scope.batches = [];
-        var transactionSubTypeId = 50015;
+        //var transactionSubTypeId = 50015;
+        var transactionSubTypeId = 2;
         var deliveryId = $scope.deliveryId;
         var orderId = $scope.orderId;
         var customerId = $scope.customerId;
