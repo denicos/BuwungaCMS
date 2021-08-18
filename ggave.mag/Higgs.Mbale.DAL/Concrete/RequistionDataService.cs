@@ -109,12 +109,11 @@ public    class RequistionDataService : DataServiceBase,IRequistionDataService
                     RequistionCategoryId = requistionDTO.RequistionCategoryId,
                     Quantity = requistionDTO.Quantity,
                     RepairDate = requistionDTO.RepairDate.Year >= DateTime.Now.Year ? requistionDTO.RepairDate : DateTime.Now,
-                    BankId = requistionDTO.BankId,
+                   
                     UtilityCategoryId = requistionDTO.UtilityCategoryId,
-                    FinancialAccountId = requistionDTO.FinancialAccountId,
+                   
                     RepairerName = requistionDTO.RepairerName,
-                    OutSourcerId = requistionDTO.OutSourcerId,
-
+                   
 
                 };
 
@@ -156,10 +155,7 @@ public    class RequistionDataService : DataServiceBase,IRequistionDataService
                     result.RepairerName = requistionDTO.RepairerName;
                     result.RepairDate =Convert.ToDateTime(requistionDTO.RepairDate);
                     result.UtilityCategoryId = requistionDTO.UtilityCategoryId;
-                    result.BankId = requistionDTO.BankId;
-                    result.OutSourcerId = requistionDTO.OutSourcerId;
-                    result.FinancialAccountId = requistionDTO.FinancialAccountId;
-
+                   
                     this.UnitOfWork.Get<Requistion>().Update(result);
                     this.UnitOfWork.SaveChanges();
                 }

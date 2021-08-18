@@ -13,7 +13,7 @@ namespace Higgs.Mbale.Models
         public long BranchId { get; set; }
         public double Amount { get; set; }
         public string ApprovedById { get; set; }
-        public string OutSourcerId { get; set; }
+      
         public string Description { get; set; }
         public string Response { get; set; }
         public bool Approved { get; set; }
@@ -42,23 +42,18 @@ namespace Higgs.Mbale.Models
         public Nullable<double> Quantity { get; set; }
         public string RepairerName { get; set; }
         public System.DateTime RepairDate { get; set; }
-        public Nullable<long> BankId { get; set; }
+        
         public Nullable<long> UtilityCategoryId { get; set; }
-        public Nullable<long> FinancialAccountId { get; set; }
+      
 
-        public string OutSourcerName { get; set; }
-
-
-
-
-
+        
         public string BatchName { get; set; }
         public string WeightNoteNumber { get; set; }
         public string ActivityName { get; set; }
         public string CasualWorkerName { get; set; }
         public string RequistionCategoryName { get; set; }
-        public string BankName { get; set; }
+        
         public string UtilityCategoryName { get; set; }
-        public string FinancialAccountName { get; set; }
+        
     }
 }
