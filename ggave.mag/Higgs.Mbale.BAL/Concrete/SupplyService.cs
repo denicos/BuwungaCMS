@@ -539,64 +539,7 @@ namespace Higgs.Mbale.BAL.Concrete
             _dataService.MarkAsDeleted(SupplyId, userId);
         }
 
-        private double GetStockMaizeBalanceForLastSupplyTransaction(long storeId)
-        {
-            double balance = 0;
-
-            var result = this._dataService.GetLatestMaizeStockForAParticularStore(storeId);
-            if (result.StoreMaizeStockId > 0)
-            {
-                balance = result.StockBalance;
-            }
-
-            return balance;
-
-        }
-
-        public IEnumerable<StoreMaizeStock> GetMaizeStocksForAParticularStore(long storeId)
-        {
-            var results = this._dataService.GetMaizeStocksForAParticularStore(storeId);
-            return MapEFToModel(results);
-        }
-
-        public void SaveStoreMaizeStock(StoreMaizeStock storeMaizeStock, bool inOrOut)
-        {
-
-            double startStock = 0;
-            double OldMaizeStockBalance = 0;
-            double NewMaizeStockBalance = 0;
-
-
-            OldMaizeStockBalance = GetStockMaizeBalanceForLastSupplyTransaction(storeMaizeStock.StoreId);
-            startStock = OldMaizeStockBalance;
-
-
-            if (inOrOut == true)
-            {
-                NewMaizeStockBalance = OldMaizeStockBalance + storeMaizeStock.Quantity;
-            }
-            else
-            {
-                NewMaizeStockBalance = OldMaizeStockBalance - storeMaizeStock.Quantity;
-            }
-
-            var storeMaizeStockDTO = new DTO.StoreMaizeStockDTO()
-            {
-                StoreMaizeStockId = storeMaizeStock.StoreMaizeStockId,
-                StoreId = storeMaizeStock.StoreId,
-                StartStock = startStock,
-                SupplyId = storeMaizeStock.SupplyId,
-                StockBalance = NewMaizeStockBalance,
-                BranchId = storeMaizeStock.BranchId,
-                Quantity = storeMaizeStock.Quantity,
-                SectorId = storeMaizeStock.SectorId,
-                TimeStamp = storeMaizeStock.TimeStamp,
-                InOrOut = inOrOut,
-
-            };
-
-            this._dataService.SaveStoreMaizeStock(storeMaizeStockDTO);
-        }
+      
             
         #region Mapping Methods
 
@@ -664,50 +607,8 @@ namespace Higgs.Mbale.BAL.Concrete
             return null;
         }
       
-        public IEnumerable<StoreMaizeStock> MapEFToModel(IEnumerable<EF.Models.StoreMaizeStock> data)
-        {
-            var list = new List<StoreMaizeStock>();
-            foreach (var result in data)
-            {
-                list.Add(MapEFToModel(result));
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Maps StoreMaizeStock EF object to StoreMaizeStock Model Object and
-        /// returns the StoreMaizeStock model object.
-        /// </summary>
-        /// <param name="result">EF StoreMaizeStock object to be mapped.</param>
-        /// <returns>StoreMaizeStock Model Object.</returns>
-        public StoreMaizeStock MapEFToModel(EF.Models.StoreMaizeStock data)
-        {
-            if (data != null)
-            {
-
-
-                var storeMaizeStock = new StoreMaizeStock()
-                {
-                    Quantity = data.Quantity,
-                    StockBalance = data.StockBalance,
-                    StartStock = data.StartStock,
-                    SupplyId = data.SupplyId,
-                    //SupplyNumber = data.Supply != null ? Convert.ToString(data.Supply.SupplyNumber) :"",
-                    BranchId = data.BranchId,
-                    StoreId = data.StoreId,
-                    StoreName = data.Store != null ? data.Store.Name : "",
-                    TimeStamp = data.TimeStamp,
-                    BranchName = data.Branch != null ? data.Branch.Name : "",
-                    SectorId = data.SectorId,
-                    SectorName = data.Sector != null ? data.Sector.Name : "",
-                    StoreMaizeStockId = data.StoreMaizeStockId,
-                    MaizeInOrOut = (data.InOrOut == true) ? "Maize In" : "Maize Out",
-                };
-                return storeMaizeStock;
-            }
-            return null;
-        }
-
+      
+       
 
        #endregion
     }

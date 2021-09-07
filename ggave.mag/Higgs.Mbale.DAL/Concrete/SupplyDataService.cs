@@ -231,49 +231,8 @@ namespace Higgs.Mbale.DAL.Concrete
             }
             return resultId;
         }
-        public void SaveStoreMaizeStock(StoreMaizeStockDTO storeMaizeStockDTO)
-    {
-
-        var storeMaizeStock = new StoreMaizeStock()
-        {
-            StoreMaizeStockId = storeMaizeStockDTO.StoreMaizeStockId,
-            StockBalance = storeMaizeStockDTO.StockBalance,
-            SupplyId = storeMaizeStockDTO.SupplyId,
-            StoreId = storeMaizeStockDTO.StoreId,
-            BranchId = storeMaizeStockDTO.BranchId,
-            StartStock = storeMaizeStockDTO.StartStock,
-            SectorId = storeMaizeStockDTO.SectorId,
-            Quantity = storeMaizeStockDTO.Quantity,
-            InOrOut = storeMaizeStockDTO.InOrOut,
-            TimeStamp = DateTime.Now
-        };
-        this.UnitOfWork.Get<StoreMaizeStock>().AddNew(storeMaizeStock);
-        this.UnitOfWork.SaveChanges();
-    }
-
-    public StoreMaizeStock GetLatestMaizeStockForAParticularStore(long storeId)
-    {
-        StoreMaizeStock storeMaizeStock = new StoreMaizeStock();
-
-        var storeMaizeStocks = this.UnitOfWork.Get<StoreMaizeStock>().AsQueryable().Where(e => e.StoreId == storeId);
-        if (storeMaizeStocks.Any())
-        {
-            storeMaizeStock = storeMaizeStocks.AsQueryable().OrderByDescending(e => e.TimeStamp).First();
-            return storeMaizeStock;
-        }
-        else
-        {
-            return storeMaizeStock;
-        }
-            
-   }
-
-    public IEnumerable<StoreMaizeStock> GetMaizeStocksForAParticularStore(long storeId)
-    {
-        return this.UnitOfWork.Get<StoreMaizeStock>().AsQueryable().Where(e => e.StoreId == storeId);
-
-    }
-
+       
+   
      public int CheckIfWeightNoteExists(string weightNoteNumber)
         {
             int exists = 0;

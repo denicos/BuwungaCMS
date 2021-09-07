@@ -302,8 +302,6 @@
     <Content Include="app\scripts\controllers\dashboard.js" />
     <Content Include="app\scripts\controllers\delivery.js" />
     <Content Include="app\scripts\controllers\factoryexpense.js" />
-    <Content Include="app\scripts\controllers\financialaccount.js" />
-    <Content Include="app\scripts\controllers\financialaccounttransaction.js" />
     <Content Include="app\scripts\controllers\flourtransfer.js" />
     <Content Include="app\scripts\controllers\inventory.js" />
     <Content Include="app\scripts\controllers\labourcost.js" />
@@ -317,7 +315,6 @@
     <Content Include="app\scripts\controllers\product.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\controllers\requistion.js" />
-    <Content Include="app\scripts\controllers\riceinput.js" />
     <Content Include="app\scripts\controllers\search.js" />
     <Content Include="app\scripts\controllers\sector.js" />
     <Content Include="app\scripts\controllers\stock.js" />

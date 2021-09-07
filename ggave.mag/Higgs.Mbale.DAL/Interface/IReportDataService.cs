@@ -111,10 +111,7 @@ namespace Higgs.Mbale.DAL.Interface
         #endregion
 
         #endregion
-        #region rice inputs
-        IEnumerable<RiceInput> GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
-        #endregion
-
+       
 
         #region Orders
         #region web
@@ -255,18 +252,7 @@ namespace Higgs.Mbale.DAL.Interface
 
              #endregion
 
-             #region  Utility
-             IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
-           
-             IEnumerable<Utility> GenerateUtilityCurrentMonthReport();
             
-
-             IEnumerable<Utility> GenerateUtilityTodaysReport();
-           
-             IEnumerable<Utility> GenerateUtilityCurrentWeekReport();
-            
-            #endregion
-
 
             #region  FlourTransfer
              #region web
@@ -453,10 +439,6 @@ namespace Higgs.Mbale.DAL.Interface
         #endregion
         #endregion
 
-        #region outsourcer
-        IEnumerable<OutSourcerOutPut> GetAllOutPutsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId);
-
-        IEnumerable<Delivery> GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId, string customerId, long productId);
-        #endregion
+       
     }
 }

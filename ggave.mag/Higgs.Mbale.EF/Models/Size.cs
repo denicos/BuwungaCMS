@@ -31,9 +31,6 @@ namespace Higgs.Mbale.EF.Models
             this.DocumentGradeSizes = new HashSet<DocumentGradeSize>();
             this.BatchDeliveryGradeSizes = new HashSet<BatchDeliveryGradeSize>();
             this.CashSaleBatchGradeSizes = new HashSet<CashSaleBatchGradeSize>();
-            this.OutSourcerOutPutGradeSizes = new HashSet<OutSourcerOutPutGradeSize>();
-            this.RiceTransferGradeSizes = new HashSet<RiceTransferGradeSize>();
-            this.RiceInputGradeSizes = new HashSet<RiceInputGradeSize>();
         }
     
         public long SizeId { get; set; }
@@ -65,8 +62,5 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<DocumentGradeSize> DocumentGradeSizes { get; set; }
         public virtual ICollection<BatchDeliveryGradeSize> BatchDeliveryGradeSizes { get; set; }
         public virtual ICollection<CashSaleBatchGradeSize> CashSaleBatchGradeSizes { get; set; }
-        public virtual ICollection<OutSourcerOutPutGradeSize> OutSourcerOutPutGradeSizes { get; set; }
-        public virtual ICollection<RiceTransferGradeSize> RiceTransferGradeSizes { get; set; }
-        public virtual ICollection<RiceInputGradeSize> RiceInputGradeSizes { get; set; }
     }
 }

@@ -41,25 +41,19 @@ namespace Higgs.Mbale.EF.Models
         public Nullable<double> Quantity { get; set; }
         public string RepairerName { get; set; }
         public System.DateTime RepairDate { get; set; }
-        public Nullable<long> BankId { get; set; }
         public Nullable<long> UtilityCategoryId { get; set; }
-        public Nullable<long> FinancialAccountId { get; set; }
-        public string OutSourcerId { get; set; }
     
         public virtual Activity Activity { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual AspNetUser AspNetUser2 { get; set; }
         public virtual AspNetUser AspNetUser3 { get; set; }
-        public virtual Bank Bank { get; set; }
         public virtual Batch Batch { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual CasualWorker CasualWorker { get; set; }
-        public virtual FinancialAccount FinancialAccount { get; set; }
         public virtual RequistionCategory RequistionCategory { get; set; }
         public virtual Status Status { get; set; }
         public virtual Supply Supply { get; set; }
         public virtual UtilityCategory UtilityCategory { get; set; }
-        public virtual AspNetUser AspNetUser31 { get; set; }
     }
 }

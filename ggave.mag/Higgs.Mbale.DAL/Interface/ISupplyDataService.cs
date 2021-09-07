@@ -18,13 +18,10 @@ namespace Higgs.Mbale.DAL.Interface
         IEnumerable<Supply> GetAllPaidSuppliesForAParticularSupplier(string supplierId);
         long UpdateBatchSupplyWithCompletedStatus(long supplyId, long statusId, string userId);
         long UpdateSupplyWithInProgressStatus(long supplyId, long statusId, string userId);
-        void SaveStoreMaizeStock(StoreMaizeStockDTO storeMaizeStockDTO);
-
+      
         IEnumerable<Supply> GetAllUnApprovedSuppliesForABranch(long branchId);
 
-        StoreMaizeStock GetLatestMaizeStockForAParticularStore(long storeId);
-
-        IEnumerable<StoreMaizeStock> GetMaizeStocksForAParticularStore(long storeId);
+       
         IEnumerable<Supply> GetAllSuppliesToBeUsedForAParticularBranch(long branchId);
         IEnumerable<Supply> GetAllUnPaidSupplies();
         

@@ -21,9 +21,7 @@ namespace Higgs.Mbale.BAL.Interface
         IEnumerable<Supply> GetAllPaidSuppliesForAParticularSupplier(string supplierId);
         long MakeSupplyPayment(MultipleSupplies model, AccountTransactionActivity accountActivity, string userId);
        
-       IEnumerable<StoreMaizeStock> GetMaizeStocksForAParticularStore(long storeId);
-
-       void SaveStoreMaizeStock(StoreMaizeStock storeMaizeStock, bool inOrOut);
+       
        IEnumerable<Supply> GetAllSuppliesToBeUsedForAParticularBranch(long branchId);
 
         IEnumerable<Supply> GetAllUnApprovedSupplies();

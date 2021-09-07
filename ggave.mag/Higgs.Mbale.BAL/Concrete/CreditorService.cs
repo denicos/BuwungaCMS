@@ -92,30 +92,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 }
             }
         }
-            if (outsourcers != null)
-            {
-                if (outsourcers.Any())
-                {
-                    foreach (var outsourcer in outsourcers)
-                    {
-                        var balance = _accountTransactionActivityService.GetBalanceForLastAccountAccountTransactionActivityForSupplier(outsourcer.Id);
-
-                        if (balance > 0)
-                        {
-                            var creditorView = new CreditorView()
-                            {
-                                Id = outsourcer.Id,
-                                Amount = balance,
-                                CreditorName = outsourcer.FirstName + ' ' + outsourcer.LastName,
-                               // CreditorNumber = supplier.UniqueNumber,
-
-                            };
-                            creditorList.Add(creditorView);
-                        }
-
-                    }
-                }
-            }
+            
             return creditorList;
       }
 
@@ -172,97 +149,75 @@ namespace Higgs.Mbale.BAL.Concrete
                     }
                 }
             }
-            if (outsourcers != null)
-            {
-                if (outsourcers.Any())
-                {
-                    foreach (var outsourcer in outsourcers)
-                    {
-                        var balance = _accountTransactionActivityService.GetBalanceForLastAccountAccountTransactionActivityForSupplierForAParticularDate(outsourcer.Id, dateTime);
-
-                        if (balance > 0)
-                        {
-                            var creditorView = new CreditorView()
-                            {
-                                Id = outsourcer.Id,
-                                Amount = balance,
-                                CreditorName = outsourcer.FirstName + ' ' + outsourcer.LastName,
-                                
-                            };
-                            creditorList.Add(creditorView);
-                        }
-
-                    }
-                }
-            }
+            
             return creditorList;
         }
 
      
       
-        #region Mapping Methods
+       // #region Mapping Methods
 
-        private IEnumerable<Creditor> MapEFToModel(IEnumerable<EF.Models.Creditor> data)
-        {
-            var list = new List<Creditor>();
-            foreach (var result in data)
-            {
-                list.Add(MapEFToModel(result));
-            }
-            return list;
-        }
+       // private IEnumerable<Creditor> MapEFToModel(IEnumerable<EF.Models.Creditor> data)
+       // {
+       //     var list = new List<Creditor>();
+       //     foreach (var result in data)
+       //     {
+       //         list.Add(MapEFToModel(result));
+       //     }
+       //     return list;
+       // }
 
-        /// <summary>
-        /// Maps Creditor EF object to Creditor Model Object and
-        /// returns the Creditor model object.
-        /// </summary>
-        /// <param name="result">EF Creditor object to be mapped.</param>
-        /// <returns>Creditor Model Object.</returns>
-        public Creditor MapEFToModel(EF.Models.Creditor data)
-        {
-            var accountName = string.Empty;
-            var accountUniqueNumber = string.Empty;
+       // /// <summary>
+       // /// Maps Creditor EF object to Creditor Model Object and
+       // /// returns the Creditor model object.
+       // /// </summary>
+       // /// <param name="result">EF Creditor object to be mapped.</param>
+       // /// <returns>Creditor Model Object.</returns>
+       // public Creditor MapEFToModel(EF.Models.Creditor data)
+       // {
+       //     var accountName = string.Empty;
+       //     var accountUniqueNumber = string.Empty;
 
-            if (data != null)
-            {
+       //     if (data != null)
+       //     {
 
-                if (data.CasualWorkerId != null)
-                {
-                    accountName = (data.CasualWorker.FirstName + " " + data.CasualWorker.LastName);
-                }
-                else if (data.AspNetUserId != null)
-                {
-                    accountName = _userService.GetUserFullName(data.AspNetUser);
-                    accountUniqueNumber = data.AspNetUser.UniqueNumber;
-                }
-                var creditor = new Creditor()
-                {
+       //         if (data.CasualWorkerId != null)
+       //         {
+       //             accountName = (data.CasualWorker.FirstName + " " + data.CasualWorker.LastName);
+       //         }
+       //         else if (data.AspNetUserId != null)
+       //         {
+       //             accountName = _userService.GetUserFullName(data.AspNetUser);
+       //             accountUniqueNumber = data.AspNetUser.UniqueNumber;
+       //         }
+       //         var creditor = new Creditor()
+       //         {
 
-                    BranchName = data.Branch != null ? data.Branch.Name : "",
-                    SectorName = data.Sector != null ? data.Sector.Name : "",
-                    AccountName = accountName,
-                    AccountUniqueNumber = accountUniqueNumber,
-                    BranchId = data.BranchId,
-                    AspNetUserId = data.AspNetUserId,
-                    CasualWorkerId = data.CasualWorkerId,
-                    Action = data.Action,
-                    SectorId = data.SectorId,
-                    Amount = data.Amount,
-                    CreditorId = data.CreditorId,
-                    CreatedOn = data.CreatedOn,
-                    TimeStamp = data.TimeStamp,
-                    Deleted = data.Deleted,
-                    CreatedBy = _userService.GetUserFullName(data.AspNetUser),
-                    UpdatedBy = _userService.GetUserFullName(data.AspNetUser1),
+       //             BranchName = data.Branch != null ? data.Branch.Name : "",
+       //             SectorName = data.Sector != null ? data.Sector.Name : "",
+       //             AccountName = accountName,
+       //             AccountUniqueNumber = accountUniqueNumber,
+       //             BranchId = data.BranchId,
+       //             AspNetUserId = data.AspNetUserId,
+       //             CasualWorkerId = data.CasualWorkerId,
+       //             Action = data.Action,
+       //             SectorId = data.SectorId,
+       //             Amount = data.Amount,
+       //             CreditorId = data.CreditorId,
+       //             CreatedOn = data.CreatedOn,
+       //             TimeStamp = data.TimeStamp,
+       //             Deleted = data.Deleted,
+       //             CreatedBy = _userService.GetUserFullName(data.AspNetUser),
+       //             UpdatedBy = _userService.GetUserFullName(data.AspNetUser1),
 
-                };
-                return creditor;
-            }
-            return null;
-        }
+       //         };
+       //         return creditor;
+       //     }
+       //     return null;
+       // }
 
 
 
-       #endregion
+       //#endregion
     }
 }

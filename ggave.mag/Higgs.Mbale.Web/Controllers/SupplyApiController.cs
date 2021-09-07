@@ -106,12 +106,7 @@ namespace Higgs.Mbale.Web.Controllers
             }
          
           
-         [HttpGet]
-         [ActionName("GetAllMaizeStocksForAparticularStore")]
-            public IEnumerable<StoreMaizeStock> GetAllMaizeStocksForAparticularStore(long storeId)
-            {
-                return _SupplyService.GetMaizeStocksForAParticularStore(storeId);
-            }
+        
         
 
             [HttpGet]

@@ -26,13 +26,11 @@ namespace Higgs.Mbale.EF.Models
             this.LabourCosts = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.OtherExpenses = new HashSet<OtherExpense>();
-            this.Utilities = new HashSet<Utility>();
             this.DeliveryBatches = new HashSet<DeliveryBatch>();
             this.FlourTransferBatches = new HashSet<FlourTransferBatch>();
             this.CashSaleBatches = new HashSet<CashSaleBatch>();
             this.MaizeBrandStores = new HashSet<MaizeBrandStore>();
             this.BatchProjections = new HashSet<BatchProjection>();
-            this.MillingCharges = new HashSet<MillingCharge>();
             this.BatchDeliveryGradeSizes = new HashSet<BatchDeliveryGradeSize>();
             this.CashSaleBatchGradeSizes = new HashSet<CashSaleBatchGradeSize>();
             this.Requistions = new HashSet<Requistion>();
@@ -65,13 +63,11 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses { get; set; }
-        public virtual ICollection<Utility> Utilities { get; set; }
         public virtual ICollection<DeliveryBatch> DeliveryBatches { get; set; }
         public virtual ICollection<FlourTransferBatch> FlourTransferBatches { get; set; }
         public virtual ICollection<CashSaleBatch> CashSaleBatches { get; set; }
         public virtual ICollection<MaizeBrandStore> MaizeBrandStores { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections { get; set; }
-        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
         public virtual ICollection<BatchDeliveryGradeSize> BatchDeliveryGradeSizes { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual ICollection<CashSaleBatchGradeSize> CashSaleBatchGradeSizes { get; set; }

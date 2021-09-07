@@ -35,18 +35,6 @@ namespace Higgs.Mbale.EF.Models
             this.CasualActivities = new HashSet<CasualActivity>();
             this.CasualActivities1 = new HashSet<CasualActivity>();
             this.CasualActivities2 = new HashSet<CasualActivity>();
-            this.Creditors = new HashSet<Creditor>();
-            this.Creditors1 = new HashSet<Creditor>();
-            this.Creditors2 = new HashSet<Creditor>();
-            this.Creditors3 = new HashSet<Creditor>();
-            this.UserBranchManagers = new HashSet<UserBranchManager>();
-            this.Debtors = new HashSet<Debtor>();
-            this.Debtors1 = new HashSet<Debtor>();
-            this.Debtors2 = new HashSet<Debtor>();
-            this.Debtors3 = new HashSet<Debtor>();
-            this.Factories = new HashSet<Factory>();
-            this.Factories1 = new HashSet<Factory>();
-            this.Factories2 = new HashSet<Factory>();
             this.Grades = new HashSet<Grade>();
             this.Grades1 = new HashSet<Grade>();
             this.Grades2 = new HashSet<Grade>();
@@ -94,9 +82,6 @@ namespace Higgs.Mbale.EF.Models
             this.OtherExpenses = new HashSet<OtherExpense>();
             this.OtherExpenses1 = new HashSet<OtherExpense>();
             this.OtherExpenses2 = new HashSet<OtherExpense>();
-            this.Utilities = new HashSet<Utility>();
-            this.Utilities1 = new HashSet<Utility>();
-            this.Utilities2 = new HashSet<Utility>();
             this.Buveras = new HashSet<Buvera>();
             this.Buveras1 = new HashSet<Buvera>();
             this.Buveras2 = new HashSet<Buvera>();
@@ -130,18 +115,9 @@ namespace Higgs.Mbale.EF.Models
             this.Deliveries = new HashSet<Delivery>();
             this.Deliveries1 = new HashSet<Delivery>();
             this.Deliveries2 = new HashSet<Delivery>();
-            this.Banks = new HashSet<Bank>();
-            this.Banks1 = new HashSet<Bank>();
-            this.Banks2 = new HashSet<Bank>();
-            this.BankTransactions = new HashSet<BankTransaction>();
-            this.BankTransactions1 = new HashSet<BankTransaction>();
             this.BatchProjections = new HashSet<BatchProjection>();
             this.BatchProjections1 = new HashSet<BatchProjection>();
             this.BatchProjections2 = new HashSet<BatchProjection>();
-            this.MillingCharges = new HashSet<MillingCharge>();
-            this.MillingCharges1 = new HashSet<MillingCharge>();
-            this.MaizeOffloadings = new HashSet<MaizeOffloading>();
-            this.MaizeOffloadings1 = new HashSet<MaizeOffloading>();
             this.Supplies = new HashSet<Supply>();
             this.Supplies1 = new HashSet<Supply>();
             this.Supplies2 = new HashSet<Supply>();
@@ -163,11 +139,6 @@ namespace Higgs.Mbale.EF.Models
             this.Assets = new HashSet<Asset>();
             this.Assets1 = new HashSet<Asset>();
             this.Assets2 = new HashSet<Asset>();
-            this.FinancialAccountTransactions = new HashSet<FinancialAccountTransaction>();
-            this.FinancialAccounts = new HashSet<FinancialAccount>();
-            this.FinancialAccounts1 = new HashSet<FinancialAccount>();
-            this.FinancialAccounts2 = new HashSet<FinancialAccount>();
-            this.FinancialAccountTransactions1 = new HashSet<FinancialAccountTransaction>();
             this.WeightLosses = new HashSet<WeightLoss>();
             this.WeightLosses1 = new HashSet<WeightLoss>();
             this.WeightLosses2 = new HashSet<WeightLoss>();
@@ -181,22 +152,12 @@ namespace Higgs.Mbale.EF.Models
             this.WeightNoteNumbers = new HashSet<WeightNoteNumber>();
             this.WeightNoteNumbers1 = new HashSet<WeightNoteNumber>();
             this.WeightNoteNumbers2 = new HashSet<WeightNoteNumber>();
+            this.Stores21 = new HashSet<Store>();
+            this.Cashes11 = new HashSet<Cash>();
             this.Requistions = new HashSet<Requistion>();
             this.Requistions1 = new HashSet<Requistion>();
             this.Requistions2 = new HashSet<Requistion>();
             this.Requistions3 = new HashSet<Requistion>();
-            this.Requistions31 = new HashSet<Requistion>();
-            this.OutSourcerOutPuts = new HashSet<OutSourcerOutPut>();
-            this.OutSourcerOutPuts1 = new HashSet<OutSourcerOutPut>();
-            this.OutSourcerOutPuts2 = new HashSet<OutSourcerOutPut>();
-            this.Stores21 = new HashSet<Store>();
-            this.Cashes11 = new HashSet<Cash>();
-            this.RiceInputs = new HashSet<RiceInput>();
-            this.RiceInputs1 = new HashSet<RiceInput>();
-            this.RiceInputs2 = new HashSet<RiceInput>();
-            this.RiceTransfers = new HashSet<RiceTransfer>();
-            this.RiceTransfers1 = new HashSet<RiceTransfer>();
-            this.RiceTransfers2 = new HashSet<RiceTransfer>();
         }
     
         public string Id { get; set; }
@@ -250,18 +211,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<CasualActivity> CasualActivities { get; set; }
         public virtual ICollection<CasualActivity> CasualActivities1 { get; set; }
         public virtual ICollection<CasualActivity> CasualActivities2 { get; set; }
-        public virtual ICollection<Creditor> Creditors { get; set; }
-        public virtual ICollection<Creditor> Creditors1 { get; set; }
-        public virtual ICollection<Creditor> Creditors2 { get; set; }
-        public virtual ICollection<Creditor> Creditors3 { get; set; }
-        public virtual ICollection<UserBranchManager> UserBranchManagers { get; set; }
-        public virtual ICollection<Debtor> Debtors { get; set; }
-        public virtual ICollection<Debtor> Debtors1 { get; set; }
-        public virtual ICollection<Debtor> Debtors2 { get; set; }
-        public virtual ICollection<Debtor> Debtors3 { get; set; }
-        public virtual ICollection<Factory> Factories { get; set; }
-        public virtual ICollection<Factory> Factories1 { get; set; }
-        public virtual ICollection<Factory> Factories2 { get; set; }
         public virtual ICollection<Grade> Grades { get; set; }
         public virtual ICollection<Grade> Grades1 { get; set; }
         public virtual ICollection<Grade> Grades2 { get; set; }
@@ -309,9 +258,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<OtherExpense> OtherExpenses { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses1 { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses2 { get; set; }
-        public virtual ICollection<Utility> Utilities { get; set; }
-        public virtual ICollection<Utility> Utilities1 { get; set; }
-        public virtual ICollection<Utility> Utilities2 { get; set; }
         public virtual ICollection<Buvera> Buveras { get; set; }
         public virtual ICollection<Buvera> Buveras1 { get; set; }
         public virtual ICollection<Buvera> Buveras2 { get; set; }
@@ -346,18 +292,9 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Delivery> Deliveries1 { get; set; }
         public virtual ICollection<Delivery> Deliveries2 { get; set; }
-        public virtual ICollection<Bank> Banks { get; set; }
-        public virtual ICollection<Bank> Banks1 { get; set; }
-        public virtual ICollection<Bank> Banks2 { get; set; }
-        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
-        public virtual ICollection<BankTransaction> BankTransactions1 { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections1 { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections2 { get; set; }
-        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
-        public virtual ICollection<MillingCharge> MillingCharges1 { get; set; }
-        public virtual ICollection<MaizeOffloading> MaizeOffloadings { get; set; }
-        public virtual ICollection<MaizeOffloading> MaizeOffloadings1 { get; set; }
         public virtual ICollection<Supply> Supplies { get; set; }
         public virtual ICollection<Supply> Supplies1 { get; set; }
         public virtual ICollection<Supply> Supplies2 { get; set; }
@@ -379,11 +316,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<Asset> Assets { get; set; }
         public virtual ICollection<Asset> Assets1 { get; set; }
         public virtual ICollection<Asset> Assets2 { get; set; }
-        public virtual ICollection<FinancialAccountTransaction> FinancialAccountTransactions { get; set; }
-        public virtual ICollection<FinancialAccount> FinancialAccounts { get; set; }
-        public virtual ICollection<FinancialAccount> FinancialAccounts1 { get; set; }
-        public virtual ICollection<FinancialAccount> FinancialAccounts2 { get; set; }
-        public virtual ICollection<FinancialAccountTransaction> FinancialAccountTransactions1 { get; set; }
         public virtual ICollection<WeightLoss> WeightLosses { get; set; }
         public virtual ICollection<WeightLoss> WeightLosses1 { get; set; }
         public virtual ICollection<WeightLoss> WeightLosses2 { get; set; }
@@ -397,23 +329,13 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<WeightNoteNumber> WeightNoteNumbers { get; set; }
         public virtual ICollection<WeightNoteNumber> WeightNoteNumbers1 { get; set; }
         public virtual ICollection<WeightNoteNumber> WeightNoteNumbers2 { get; set; }
-        public virtual ICollection<Requistion> Requistions { get; set; }
-        public virtual ICollection<Requistion> Requistions1 { get; set; }
-        public virtual ICollection<Requistion> Requistions2 { get; set; }
-        public virtual ICollection<Requistion> Requistions3 { get; set; }
-        public virtual ICollection<Requistion> Requistions31 { get; set; }
-        public virtual ICollection<OutSourcerOutPut> OutSourcerOutPuts { get; set; }
-        public virtual ICollection<OutSourcerOutPut> OutSourcerOutPuts1 { get; set; }
-        public virtual ICollection<OutSourcerOutPut> OutSourcerOutPuts2 { get; set; }
         public virtual ICollection<Store> Stores21 { get; set; }
         public virtual AspNetUserCode AspNetUserCode { get; set; }
         public virtual AspNetUserProduct AspNetUserProduct { get; set; }
         public virtual ICollection<Cash> Cashes11 { get; set; }
-        public virtual ICollection<RiceInput> RiceInputs { get; set; }
-        public virtual ICollection<RiceInput> RiceInputs1 { get; set; }
-        public virtual ICollection<RiceInput> RiceInputs2 { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers1 { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers2 { get; set; }
+        public virtual ICollection<Requistion> Requistions { get; set; }
+        public virtual ICollection<Requistion> Requistions1 { get; set; }
+        public virtual ICollection<Requistion> Requistions2 { get; set; }
+        public virtual ICollection<Requistion> Requistions3 { get; set; }
     }
 }

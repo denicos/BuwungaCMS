@@ -105,9 +105,7 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IDepositDataService)).To(typeof(DepositDataService));
         Bind(typeof(IAssetCategoryDataService)).To(typeof(AssetCategoryDataService));
         Bind(typeof(IAssetDataService)).To(typeof(AssetDataService));
-            Bind(typeof(IFinancialAccountDataService)).To(typeof(FinancialAccountDataService));
-            Bind(typeof(IFinancialAccountTransactionDataService)).To(typeof(FinancialAccountTransactionDataService));
-            Bind(typeof(IWeightLossDataService)).To(typeof(WeightLossDataService));
+          Bind(typeof(IWeightLossDataService)).To(typeof(WeightLossDataService));
             Bind(typeof(IWeightNoteRangeDataService)).To(typeof(WeightNoteRangeDataService));
             Bind(typeof(IWeightNoteNumberDataService)).To(typeof(WeightNoteNumberDataService));
            

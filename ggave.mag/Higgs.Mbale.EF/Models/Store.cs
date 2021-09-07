@@ -18,7 +18,6 @@ namespace Higgs.Mbale.EF.Models
         {
             this.StoreStocks = new HashSet<StoreStock>();
             this.Stocks = new HashSet<Stock>();
-            this.StoreMaizeStocks = new HashSet<StoreMaizeStock>();
             this.StoreGradeSizes = new HashSet<StoreGradeSize>();
             this.BuveraGradeSizes = new HashSet<BuveraGradeSize>();
             this.StoreBuveraGradeSizes = new HashSet<StoreBuveraGradeSize>();
@@ -38,12 +37,6 @@ namespace Higgs.Mbale.EF.Models
             this.Deliveries = new HashSet<Delivery>();
             this.Supplies = new HashSet<Supply>();
             this.InventoryPurchases = new HashSet<InventoryPurchase>();
-            this.OutSourcerOutPuts = new HashSet<OutSourcerOutPut>();
-            this.RiceInputs = new HashSet<RiceInput>();
-            this.RiceTransfers = new HashSet<RiceTransfer>();
-            this.RiceTransfers1 = new HashSet<RiceTransfer>();
-            this.RiceTransfers2 = new HashSet<RiceTransfer>();
-            this.RiceTransferGradeSizes = new HashSet<RiceTransferGradeSize>();
         }
     
         public long StoreId { get; set; }
@@ -60,7 +53,6 @@ namespace Higgs.Mbale.EF.Models
     
         public virtual ICollection<StoreStock> StoreStocks { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
-        public virtual ICollection<StoreMaizeStock> StoreMaizeStocks { get; set; }
         public virtual ICollection<StoreGradeSize> StoreGradeSizes { get; set; }
         public virtual ICollection<BuveraGradeSize> BuveraGradeSizes { get; set; }
         public virtual ICollection<StoreBuveraGradeSize> StoreBuveraGradeSizes { get; set; }
@@ -85,11 +77,5 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<InventoryPurchase> InventoryPurchases { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual AspNetUser AspNetUser21 { get; set; }
-        public virtual ICollection<OutSourcerOutPut> OutSourcerOutPuts { get; set; }
-        public virtual ICollection<RiceInput> RiceInputs { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers1 { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers2 { get; set; }
-        public virtual ICollection<RiceTransferGradeSize> RiceTransferGradeSizes { get; set; }
     }
 }

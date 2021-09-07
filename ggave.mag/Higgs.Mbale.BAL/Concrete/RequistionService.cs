@@ -2401,19 +2401,17 @@ namespace Higgs.Mbale.BAL.Concrete
                      Quantity = data.Quantity,
                      RepairerName = data.RepairerName,
                      RepairDate = data.RepairDate,
-                     BankId = data.BankId,
+                     
                      UtilityCategoryId = data.UtilityCategoryId,
-                     FinancialAccountId = data.FinancialAccountId,
-                     FinancialAccountName = data.FinancialAccount != null ? data.FinancialAccount.Name : "",
+                    
                      BatchName = data.Batch != null ? data.Batch.Name : "",
                      WeightNoteNumber = data.Supply != null ? data.Supply.WeightNoteNumber : "",
                      ActivityName = data.Activity != null ? data.Activity.Name : "",
                      CasualWorkerName = data.CasualWorker != null ? data.CasualWorker.FirstName + " " + data.CasualWorker.LastName : "",
                      RequistionCategoryName = data.RequistionCategory != null ? data.RequistionCategory.Name: "",
-                     BankName = data.Bank != null ? data.Bank.Name : "",
+                     
                      UtilityCategoryName = data.UtilityCategory != null ? data.UtilityCategory.Name : "",
-                     OutSourcerId = data.OutSourcerId,
-                     OutSourcerName = _userService.GetUserFullName(data.AspNetUser31),
+                  
 
                 };
                 return requistion;

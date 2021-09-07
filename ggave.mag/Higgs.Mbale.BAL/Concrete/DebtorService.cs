@@ -229,64 +229,64 @@ namespace Higgs.Mbale.BAL.Concrete
        
 
       
-        #region Mapping Methods
+       // #region Mapping Methods
 
-        private IEnumerable<Debtor> MapEFToModel(IEnumerable<EF.Models.Debtor> data)
-        {
-            var list = new List<Debtor>();
-            foreach (var result in data)
-            {
-                list.Add(MapEFToModel(result));
-            }
-            return list;
-        }
+       // private IEnumerable<Debtor> MapEFToModel(IEnumerable<EF.Models.Debtor> data)
+       // {
+       //     var list = new List<Debtor>();
+       //     foreach (var result in data)
+       //     {
+       //         list.Add(MapEFToModel(result));
+       //     }
+       //     return list;
+       // }
 
-        /// <summary>
-        /// Maps Debtor EF object to Debtor Model Object and
-        /// returns the Debtor model object.
-        /// </summary>
-        /// <param name="result">EF Debtor object to be mapped.</param>
-        /// <returns>Debtor Model Object.</returns>
-        public Debtor MapEFToModel(EF.Models.Debtor data)
-        {
-            var accountName = string.Empty;
-            if (data != null)
-            {
-                if (data.CasualWorkerId != null)
-                {
-                    accountName = (data.CasualWorker.FirstName + " " + data.CasualWorker.LastName);
-                }
-                else if (data.AspNetUserId != null)
-                {
-                    accountName = _userService.GetUserFullName(data.AspNetUser);
-                }
-                var debtor = new Debtor()
-                {
+       // /// <summary>
+       // /// Maps Debtor EF object to Debtor Model Object and
+       // /// returns the Debtor model object.
+       // /// </summary>
+       // /// <param name="result">EF Debtor object to be mapped.</param>
+       // /// <returns>Debtor Model Object.</returns>
+       // public Debtor MapEFToModel(EF.Models.Debtor data)
+       // {
+       //     var accountName = string.Empty;
+       //     if (data != null)
+       //     {
+       //         if (data.CasualWorkerId != null)
+       //         {
+       //             accountName = (data.CasualWorker.FirstName + " " + data.CasualWorker.LastName);
+       //         }
+       //         else if (data.AspNetUserId != null)
+       //         {
+       //             accountName = _userService.GetUserFullName(data.AspNetUser);
+       //         }
+       //         var debtor = new Debtor()
+       //         {
 
-                    BranchName = data.Branch != null ? data.Branch.Name : "",
-                    SectorName = data.Sector != null ? data.Sector.Name : "",
-                    AccountName = accountName,
-                    BranchId = data.BranchId,
-                    AspNetUserId = data.AspNetUserId,
-                    CasualWorkerId = data.CasualWorkerId,
-                    Action = data.Action,
-                    SectorId = data.SectorId,
-                    Amount = data.Amount,
-                    DebtorId = data.DebtorId,
-                    CreatedOn = data.CreatedOn,
-                    TimeStamp = data.TimeStamp,
-                    Deleted = data.Deleted,
-                    CreatedBy = _userService.GetUserFullName(data.AspNetUser1),
-                    UpdatedBy = _userService.GetUserFullName(data.AspNetUser3),
+       //             BranchName = data.Branch != null ? data.Branch.Name : "",
+       //             SectorName = data.Sector != null ? data.Sector.Name : "",
+       //             AccountName = accountName,
+       //             BranchId = data.BranchId,
+       //             AspNetUserId = data.AspNetUserId,
+       //             CasualWorkerId = data.CasualWorkerId,
+       //             Action = data.Action,
+       //             SectorId = data.SectorId,
+       //             Amount = data.Amount,
+       //             DebtorId = data.DebtorId,
+       //             CreatedOn = data.CreatedOn,
+       //             TimeStamp = data.TimeStamp,
+       //             Deleted = data.Deleted,
+       //             CreatedBy = _userService.GetUserFullName(data.AspNetUser1),
+       //             UpdatedBy = _userService.GetUserFullName(data.AspNetUser3),
 
-                };
-                return debtor;
-            }
-            return null;
-        }
+       //         };
+       //         return debtor;
+       //     }
+       //     return null;
+       // }
 
 
 
-       #endregion
+       //#endregion
     }
 }

@@ -21,9 +21,6 @@ namespace Higgs.Mbale.EF.Models
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.CashSales = new HashSet<CashSale>();
             this.Deliveries = new HashSet<Delivery>();
-            this.BankTransactions = new HashSet<BankTransaction>();
-            this.MillingCharges = new HashSet<MillingCharge>();
-            this.MaizeOffloadings = new HashSet<MaizeOffloading>();
             this.Deposits = new HashSet<Deposit>();
             this.InventoryPurchases = new HashSet<InventoryPurchase>();
             this.Cashes = new HashSet<Cash>();
@@ -49,9 +46,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<CashSale> CashSales { get; set; }
         public virtual ICollection<Delivery> Deliveries { get; set; }
-        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
-        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
-        public virtual ICollection<MaizeOffloading> MaizeOffloadings { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual ICollection<InventoryPurchase> InventoryPurchases { get; set; }
         public virtual ICollection<Cash> Cashes { get; set; }

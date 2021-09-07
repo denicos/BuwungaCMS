@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using Higgs.Mbale.BAL.Interface;
 using log4net;
@@ -88,12 +87,12 @@ namespace Higgs.Mbale.Branch.Controllers
             {
                 return _SupplyService.GetAllUnApprovedSuppliesForABranch(branchId);
             }
-         [HttpGet]
-         [ActionName("GetAllMaizeStocksForAparticularStore")]
-            public IEnumerable<StoreMaizeStock> GetAllMaizeStocksForAparticularStore(long storeId)
-            {
-                return _SupplyService.GetMaizeStocksForAParticularStore(storeId);
-            }
+         //[HttpGet]
+         //[ActionName("GetAllMaizeStocksForAparticularStore")]
+         //   public IEnumerable<StoreMaizeStock> GetAllMaizeStocksForAparticularStore(long storeId)
+         //   {
+         //       return _SupplyService.GetMaizeStocksForAParticularStore(storeId);
+         //   }
         [HttpGet]
         [ActionName("GetLatestFiftyNotUsedWeightNoteValuesForAParticularBranch")]
         public IEnumerable<WeightNoteNumberViewModel> GetLatestFiftyNotUsedWeightNoteValuesForAParticularBranch()

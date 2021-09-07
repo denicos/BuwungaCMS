@@ -19,7 +19,6 @@ namespace Higgs.Mbale.EF.Models
             this.AccountTransactionActivities = new HashSet<AccountTransactionActivity>();
             this.ActivityBranches = new HashSet<ActivityBranch>();
             this.Assets = new HashSet<Asset>();
-            this.BankTransactions = new HashSet<BankTransaction>();
             this.Batches = new HashSet<Batch>();
             this.BatchOutPuts = new HashSet<BatchOutPut>();
             this.BatchProjections = new HashSet<BatchProjection>();
@@ -31,40 +30,29 @@ namespace Higgs.Mbale.EF.Models
             this.CashTransfers1 = new HashSet<CashTransfer>();
             this.CasualActivities = new HashSet<CasualActivity>();
             this.CasualWorkers = new HashSet<CasualWorker>();
-            this.Creditors = new HashSet<Creditor>();
             this.BranchSectors = new HashSet<BranchSector>();
             this.UserBranches = new HashSet<UserBranch>();
-            this.UserBranchManagers = new HashSet<UserBranchManager>();
-            this.Debtors = new HashSet<Debtor>();
             this.Deliveries = new HashSet<Delivery>();
             this.Deposits = new HashSet<Deposit>();
             this.Documents = new HashSet<Document>();
-            this.Factories = new HashSet<Factory>();
             this.FactoryExpenses = new HashSet<FactoryExpense>();
-            this.FinancialAccountTransactions = new HashSet<FinancialAccountTransaction>();
             this.FlourTransfers = new HashSet<FlourTransfer>();
             this.InventoryPurchases = new HashSet<InventoryPurchase>();
             this.LabourCosts = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.MaizeBrandStores = new HashSet<MaizeBrandStore>();
-            this.MaizeOffloadings = new HashSet<MaizeOffloading>();
-            this.MillingCharges = new HashSet<MillingCharge>();
             this.Orders = new HashSet<Order>();
             this.OtherExpenses = new HashSet<OtherExpense>();
             this.Stocks = new HashSet<Stock>();
             this.Stores = new HashSet<Store>();
-            this.StoreMaizeStocks = new HashSet<StoreMaizeStock>();
             this.StoreStocks = new HashSet<StoreStock>();
             this.Supplies = new HashSet<Supply>();
             this.Transactions = new HashSet<Transaction>();
-            this.Utilities = new HashSet<Utility>();
             this.UtilityAccounts = new HashSet<UtilityAccount>();
             this.WeightLosses = new HashSet<WeightLoss>();
             this.WeightNoteRanges = new HashSet<WeightNoteRange>();
             this.WeightNoteNumbers = new HashSet<WeightNoteNumber>();
             this.Requistions = new HashSet<Requistion>();
-            this.RiceInputs = new HashSet<RiceInput>();
-            this.RiceTransfers = new HashSet<RiceTransfer>();
         }
     
         public long BranchId { get; set; }
@@ -87,7 +75,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual AspNetUser AspNetUser2 { get; set; }
         public virtual ICollection<Asset> Assets { get; set; }
-        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
         public virtual ICollection<Batch> Batches { get; set; }
         public virtual ICollection<BatchOutPut> BatchOutPuts { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections { get; set; }
@@ -99,39 +86,28 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<CashTransfer> CashTransfers1 { get; set; }
         public virtual ICollection<CasualActivity> CasualActivities { get; set; }
         public virtual ICollection<CasualWorker> CasualWorkers { get; set; }
-        public virtual ICollection<Creditor> Creditors { get; set; }
         public virtual ICollection<BranchSector> BranchSectors { get; set; }
         public virtual ICollection<UserBranch> UserBranches { get; set; }
-        public virtual ICollection<UserBranchManager> UserBranchManagers { get; set; }
-        public virtual ICollection<Debtor> Debtors { get; set; }
         public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Factory> Factories { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
-        public virtual ICollection<FinancialAccountTransaction> FinancialAccountTransactions { get; set; }
         public virtual ICollection<FlourTransfer> FlourTransfers { get; set; }
         public virtual ICollection<InventoryPurchase> InventoryPurchases { get; set; }
         public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<MaizeBrandStore> MaizeBrandStores { get; set; }
-        public virtual ICollection<MaizeOffloading> MaizeOffloadings { get; set; }
-        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
         public virtual ICollection<Store> Stores { get; set; }
-        public virtual ICollection<StoreMaizeStock> StoreMaizeStocks { get; set; }
         public virtual ICollection<StoreStock> StoreStocks { get; set; }
         public virtual ICollection<Supply> Supplies { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
-        public virtual ICollection<Utility> Utilities { get; set; }
         public virtual ICollection<UtilityAccount> UtilityAccounts { get; set; }
         public virtual ICollection<WeightLoss> WeightLosses { get; set; }
         public virtual ICollection<WeightNoteRange> WeightNoteRanges { get; set; }
         public virtual ICollection<WeightNoteNumber> WeightNoteNumbers { get; set; }
         public virtual ICollection<Requistion> Requistions { get; set; }
-        public virtual ICollection<RiceInput> RiceInputs { get; set; }
-        public virtual ICollection<RiceTransfer> RiceTransfers { get; set; }
     }
 }

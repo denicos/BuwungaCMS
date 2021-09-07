@@ -682,45 +682,7 @@ namespace Higgs.Mbale.DAL.Concrete
        #endregion
        #endregion
 
-       #region  Utility
-       public IEnumerable<Utility> GetAllUtilitiesBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
-       {
-           if (branchId != 0)
-           {
-
-               return this.UnitOfWork.Get<Utility>().AsQueryable()
-                   .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
-           }
-
-
-           return this.UnitOfWork.Get<Utility>().AsQueryable()
-               .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate));
-       }
-
-       public IEnumerable<Utility> GenerateUtilityCurrentMonthReport()
-       {
-           return this.UnitOfWork.Get<Utility>().AsQueryable()
-               .Where(p => p.CreatedOn.Month == DateTime.Now.Month && p.CreatedOn.Year == DateTime.Now.Year);
-       }
-
-       public IEnumerable<Utility> GenerateUtilityTodaysReport()
-       {
-           return this.UnitOfWork.Get<Utility>().AsQueryable()
-               .Where(p => p.CreatedOn.Day == DateTime.Now.Day && p.CreatedOn.Month == DateTime.Now.Month && p.CreatedOn.Year == DateTime.Now.Year);
-       }
-
-       public IEnumerable<Utility> GenerateUtilityCurrentWeekReport()
-       {
-
-           DateTime startOfWeek = DateTime.Today.AddDays((int)DateTime.Today.DayOfWeek * -1);
-           DateTime endDate = DateTime.Now;
-
-           return this.UnitOfWork.Get<Utility>().AsQueryable()
-               .Where(p => p.CreatedOn >= startOfWeek && p.CreatedOn <= endDate);
-       }
-
-       #endregion
-
+      
 
        #region  FlourTransfer
        #region web
@@ -1025,25 +987,7 @@ namespace Higgs.Mbale.DAL.Concrete
         #endregion
         #endregion
 
-        #region rice inputs
-        #region web
        
-        public IEnumerable<RiceInput> GetAllRiceInputsBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
-        {
-            if (branchId != 0 )
-            {
-
-                return this.UnitOfWork.Get<RiceInput>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId && m.Approved == true);
-            }
-
-              return this.UnitOfWork.Get<RiceInput>().AsQueryable()
-                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.Approved == true);
-        }
-
-
-        #endregion
-        #endregion
         #region cash
 
         public IEnumerable<Cash> GetAllCashBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
@@ -2042,45 +1986,6 @@ namespace Higgs.Mbale.DAL.Concrete
         #endregion
         #endregion
 
-        #region outsourcer
        
-        public IEnumerable<OutSourcerOutPut> GetAllOutPutsBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId)
-        {
-            if (storeId != 0)
-            {
-
-                return this.UnitOfWork.Get<OutSourcerOutPut>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate)  && m.Approved == true && m.StoreId == storeId);
-            }
-           
-          
-            return this.UnitOfWork.Get<OutSourcerOutPut>().AsQueryable()
-                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.Approved == true);
-        }
-
-        public IEnumerable<Delivery> GetAllOutSourcerDeliveriesBetweenTheSpecifiedDatesForAParticularProduct(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long storeId, string customerId, long productId)
-        {
-            if (storeId != 0 && customerId == null)
-            {
-
-                return this.UnitOfWork.Get<Delivery>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.StoreId == storeId && m.ProductId == productId && m.Approved == true);
-            }
-            else if (customerId != null && storeId == 0)
-            {
-
-                return this.UnitOfWork.Get<Delivery>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.CustomerId == customerId && m.ProductId == productId && m.Approved == true);
-            }
-            else if (customerId != null && storeId != 0)
-            {
-                return this.UnitOfWork.Get<Delivery>().AsQueryable()
-                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.CustomerId == customerId && m.StoreId == storeId && m.ProductId == productId && m.Approved == true);
-            }
-            return this.UnitOfWork.Get<Delivery>().AsQueryable()
-                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.ProductId == productId && m.Approved == true);
-        }
-
-        #endregion
     }
 }

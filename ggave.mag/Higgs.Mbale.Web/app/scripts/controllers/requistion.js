@@ -46,9 +46,7 @@
             $scope.suppliers = data;
         });
 
-        $http.get('/webapi/OutSourcerApi/GetAllOutSourcers').success(function (data, status) {
-            $scope.outSourcers = data;
-        });
+       
 
         $scope.OnSupplierChange = function (requistion) {
             var selectedSupplierId = requistion.Id
@@ -172,11 +170,10 @@
                         BankId: b.BankId,
                         BankName: b.BankName,
                         UtilityCategoryName: b.UtilityCategoryName,
-                        FinancialAccountName: b.FinancialAccountName,
-                        FinancialAccountId: b.FinancialAccountId,
+                        
                         CreatedBy: b.CreatedBy,
                         CreatedById: b.CreatedById,
-                        OutSourcerId : b.OutSourcerId,
+                        
 
 
                     };
@@ -216,9 +213,7 @@
                     RequistionCategoryId: requistion.RequistionCategoryId,
                     UtilityCategoryId: requistion.UtilityCategoryId,
                     BankId: requistion.BankId,
-                    FinancialAccountId: requistion.FinancialAccountId,
-                    OutSourcerId : requistion.OutSourcerId,
-                    
+                                        
 
                 });
 
@@ -273,7 +268,7 @@
                     RepairerName : requistion.RepairerName,
                     RepairDate : requistion.RepairDate,
                     SupplyId: requistion.SupplyId,
-                    FinancialAccountId : requistion.FinancialAccountId,
+                    
                     CasualWorkerId: requistion.CasualWorkerId,
                     CreatedById : requistion.CreatedById,
                     PartPayment: requistion.PartPayment,
@@ -281,7 +276,7 @@
                     BankId: requistion.BankId,
                     UtilityCategoryId: requistion.UtilityCategoryId,
                     CreatedById: requistion.CreatedById,
-                    OutSourcerId : requistion.OutSourcerId,
+                    
 
                 });
 

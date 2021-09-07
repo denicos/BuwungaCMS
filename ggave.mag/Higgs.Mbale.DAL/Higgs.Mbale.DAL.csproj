@@ -79,8 +79,6 @@
     <Compile Include="Concrete\DepositDataService.cs" />
     <Compile Include="Concrete\DocumentDataService.cs" />
     <Compile Include="Concrete\FactoryExpenseDataService.cs" />
-    <Compile Include="Concrete\FinancialAccountDataService.cs" />
-    <Compile Include="Concrete\FinancialAccountTransactionDataService.cs" />
     <Compile Include="Concrete\FlourTransferDataService.cs" />
     <Compile Include="Concrete\GradeDataService.cs" />
     <Compile Include="Concrete\InventoryDataService.cs" />
@@ -132,8 +130,6 @@
     <Compile Include="Interface\IDepositDataService.cs" />
     <Compile Include="Interface\IDocumentDataService.cs" />
     <Compile Include="Interface\IFactoryExpenseDataService.cs" />
-    <Compile Include="Interface\IFinancialAccountDataService.cs" />
-    <Compile Include="Interface\IFinancialAccountTransactionDataService.cs" />
     <Compile Include="Interface\IFlourTransferDataService.cs" />
     <Compile Include="Interface\IGradeDataService.cs" />
     <Compile Include="Interface\IInventoryDataService.cs" />

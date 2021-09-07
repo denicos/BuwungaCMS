@@ -19,8 +19,6 @@ namespace Higgs.Mbale.EF.Models
             this.AccountTransactionActivities = new HashSet<AccountTransactionActivity>();
             this.ActivityBatchCasuals = new HashSet<ActivityBatchCasual>();
             this.CasualActivities = new HashSet<CasualActivity>();
-            this.Creditors = new HashSet<Creditor>();
-            this.Debtors = new HashSet<Debtor>();
             this.Deposits = new HashSet<Deposit>();
             this.Requistions = new HashSet<Requistion>();
         }
@@ -49,8 +47,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual AspNetUser AspNetUser2 { get; set; }
         public virtual ICollection<CasualActivity> CasualActivities { get; set; }
-        public virtual ICollection<Creditor> Creditors { get; set; }
-        public virtual ICollection<Debtor> Debtors { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual ICollection<Requistion> Requistions { get; set; }
