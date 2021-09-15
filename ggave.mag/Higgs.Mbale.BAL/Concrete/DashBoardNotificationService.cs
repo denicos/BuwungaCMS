@@ -29,7 +29,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 {
                     cashtransfers = result.cashtransfers,
                     supplies = result.supplies,
-                    outsourceroutputs = result.outsourceroutputs,
+                    
                     deliveries = result.deliveries,
                     transactions = result.transactions,
                     requistions = result.requistions

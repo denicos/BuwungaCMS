@@ -62,27 +62,27 @@ namespace Higgs.Mbale.BAL.Concrete
        
         public long SaveLabourCost(LabourCost labourCost, string userId)
         {
-            //double amount = 0,
-                double rate =0;
-            var activity = _activityService.GetActivity(labourCost.ActivityId);
-            if (activity != null)
-            {
-                rate = activity.Charge;
-            }
-            //amount = labourCost.Quantity * rate;
+            double amount = 0;
+            //    double rate =0;
+            //var activity = _activityService.GetActivity(labourCost.ActivityId);
+            //if (activity != null)
+            //{
+            //    rate = activity.Charge;
+            //}
+            amount = labourCost.Quantity * labourCost.Rate;
             var labourCostDTO = new DTO.LabourCostDTO()
             {
                 LabourCostId = labourCost.LabourCostId,
                 BatchId = labourCost.BatchId,
-                Rate = rate,
+                Rate = labourCost.Rate,
                 Quantity = labourCost.Quantity,
                 ActivityId = labourCost.ActivityId,
                 BranchId = labourCost.BranchId,
-                Amount = labourCost.Amount,
+                Amount = amount,
                  Deleted = labourCost.Deleted,
                 CreatedBy = labourCost.CreatedBy,
                 CreatedOn = labourCost.CreatedOn,
-                SectorId = labourCost.SectorId,
+                
 
             };
 
@@ -131,7 +131,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 {
                     LabourCostId = data.LabourCostId,
                     Amount = data.Amount,
-                    SectorId = data.SectorId,
+                    
                     BranchId = data.BranchId,
                     BatchId = data.BatchId,
                     Rate = data.Rate,
@@ -140,7 +140,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     ActivityName = data.Activity != null ? data.Activity.Name : "",
                     BatchNumber = data.Batch != null ? data.Batch.Name : "",
                     BranchName = data.Branch != null ? data.Branch.Name : "",
-                    SectorName = data.Sector != null ? data.Sector.Name : "",
+                    
                     CreatedOn = data.CreatedOn,
                     TimeStamp = data.TimeStamp,
                     Deleted = data.Deleted,

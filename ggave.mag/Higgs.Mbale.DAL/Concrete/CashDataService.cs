@@ -18,9 +18,7 @@ namespace Higgs.Mbale.DAL.Concrete
             : base(unitOfWork)
         {
 
-        }
-
-     
+        }   
 
        public IEnumerable<Cash> GetAllCash()
         {

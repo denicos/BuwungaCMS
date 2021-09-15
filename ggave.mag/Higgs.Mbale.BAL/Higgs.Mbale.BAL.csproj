@@ -91,6 +91,8 @@
     <Compile Include="Concrete\GradeService.cs" />
     <Compile Include="Concrete\InventoryPurchaseService.cs" />
     <Compile Include="Concrete\InventoryService.cs" />
+    <Compile Include="Concrete\MillingChargeService.cs" />
+    <Compile Include="Concrete\PettyCashService.cs" />
     <Compile Include="Concrete\UtilityAccountService.cs" />
     <Compile Include="Concrete\LabourCostService.cs" />
     <Compile Include="Concrete\MachineRepairService.cs" />
@@ -133,7 +135,9 @@
     <Compile Include="Interface\ILabourCostService.cs" />
     <Compile Include="Interface\IMachineRepairService.cs" />
     <Compile Include="Interface\IMaizeBrandStoreService.cs" />
+    <Compile Include="Interface\IMillingChargeService.cs" />
     <Compile Include="Interface\IOtherExpenseService.cs" />
+    <Compile Include="Interface\IPettyCashService.cs" />
     <Compile Include="Interface\IReportService.cs" />
     <Compile Include="Interface\IRequistionService.cs" />
     <Compile Include="Interface\IStatusService.cs" />

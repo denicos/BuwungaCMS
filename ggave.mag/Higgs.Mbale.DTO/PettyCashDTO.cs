@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace Higgs.Mbale.DTO
 {
-  public  class LabourCostDTO
+  public  class PettyCashDTO
     {
-        public long LabourCostId { get; set; }
-        public double Quantity { get; set; }
-        public double Amount { get; set; }
-        public double Rate { get; set; }
-        public long BatchId { get; set; }
-        public long ActivityId { get; set; }
-        
+        public long PettyCashId { get; set; }
         public long BranchId { get; set; }
+        public double StartAmount { get; set; }
+        public string Action { get; set; }
+        public string Notes { get; set; }
+        public double Amount { get; set; }
+        public double Balance { get; set; }
+        public long RequistionCategoryId { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
         public string DeletedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public System.DateTime TimeStamp { get; set; }

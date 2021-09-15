@@ -68,7 +68,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<BatchOutPut> BatchOutPuts { get; set; }
         public virtual DbSet<FactoryExpense> FactoryExpenses { get; set; }
-        public virtual DbSet<LabourCost> LabourCosts { get; set; }
         public virtual DbSet<MachineRepair> MachineRepairs { get; set; }
         public virtual DbSet<OtherExpense> OtherExpenses { get; set; }
         public virtual DbSet<Buvera> Buveras { get; set; }
@@ -115,6 +114,9 @@ namespace Higgs.Mbale.EF.Models
         public virtual DbSet<AspNetUserCode> AspNetUserCodes { get; set; }
         public virtual DbSet<AspNetUserProduct> AspNetUserProducts { get; set; }
         public virtual DbSet<Requistion> Requistions { get; set; }
+        public virtual DbSet<LabourCost> LabourCosts { get; set; }
+        public virtual DbSet<MillingCharge> MillingCharges { get; set; }
+        public virtual DbSet<PettyCash> PettyCashes { get; set; }
     
         public virtual int Mark_FactoryExpense_AsDeleted(Nullable<long> inPutFactoryExpenseId, string userId)
         {

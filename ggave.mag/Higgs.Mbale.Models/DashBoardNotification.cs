@@ -11,7 +11,7 @@ namespace Higgs.Mbale.Models
         public Nullable<int> cashtransfers { get; set; }
         public Nullable<int> supplies { get; set; }
         public Nullable<int> deliveries { get; set; }
-        public Nullable<int> outsourceroutputs { get; set; }
+      
         public int transactions { get; set; }
         public int requistions { get; set; }
     }

@@ -146,19 +146,14 @@
         <AssociationConnector Association="Higgs.MbaleModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.BatchOutPut" Width="1.5" PointX="33" PointY="38" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.FactoryExpense" Width="1.5" PointX="30" PointY="34.5" />
-        <EntityTypeShape EntityType="Higgs.MbaleModel.LabourCost" Width="1.5" PointX="34" PointY="59.625" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.MachineRepair" Width="1.5" PointX="30" PointY="40.125" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.OtherExpense" Width="1.5" PointX="32" PointY="46.5" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Activity" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchOutPut_CreatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchOutPut_DeletedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchOutPut_UpdatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_CreatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_DeletedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_UpdatedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_CreatedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_DeletedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_UpdatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_CreatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_DeletedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_UpdatedBy" />
@@ -167,12 +162,10 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_OtherExpense_UpdatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchOutPut_BatchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_Batch" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Batch" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_BatchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_OtherExpense_Batch" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchOutPut_SectorId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_Sector" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Sector" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_SectorId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_TransactionSubTypeId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_OtherExpense_Sector" />
@@ -376,7 +369,6 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_Branch" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FlourTransfer_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_InventoryPurchase_BranchId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Branch" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MachineRepair_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_MaizeBrandStore_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_Order_BranchId" />
@@ -435,6 +427,22 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_Requistion_StatusId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_Requistion_Supply" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_Requistion_UtilityCategoryId" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.LabourCost" Width="1.5" PointX="29" PointY="46.5" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Activity" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_UpdatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Batch" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_LabourCost_Branch" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.MillingCharge" Width="1.5" PointX="7.5" PointY="34.75" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.PettyCash" Width="1.5" PointX="17.625" PointY="38.125" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_MillingCharge_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_MillingCharge_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_MillingCharge_BranchId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_BranchId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_RequistionCategoryId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

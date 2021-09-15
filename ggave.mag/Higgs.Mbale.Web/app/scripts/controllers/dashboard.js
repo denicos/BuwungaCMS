@@ -246,7 +246,7 @@ angular
             $scope.countOfCashTransfers = 0;
             $scope.countOfSupplies = 0;
             $scope.countOfDeliveries = 0;
-            $scope.countOfOutSourcerOutPuts = 0;
+            
             $scope.countOfTransactions = 0;
             $scope.countOfRequistions = 0;
             var promise = $http.get('/webapi/DashBoardNotificationApi/GetDashBoardNotifications');
@@ -256,7 +256,7 @@ angular
                     $scope.countOfCashTransfers = p.cashtransfers;
                     $scope.countOfSupplies = p.supplies;
                     $scope.countOfDeliveries = p.deliveries;
-                    $scope.countOfOutSourcerOutPuts = p.outsourceroutputs;
+                   
                     $scope.countOfTransactions = p.transactions;
                     $scope.countOfRequistions = p.requistions;
                 }

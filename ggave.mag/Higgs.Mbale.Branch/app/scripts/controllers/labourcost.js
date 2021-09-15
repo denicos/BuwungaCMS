@@ -15,9 +15,7 @@
         $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
             $scope.branches = data;
         });
-        $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-            $scope.sectors = data;
-        });
+       
 
 
         $http.get('/webapi/ActivityApi/GetAllActivities').success(function (data, status) {
@@ -53,7 +51,7 @@
                         Amount: b.Amount,
                         ActivityId: b.ActivityId,
                         BranchId: b.BranchId,
-                        SectorId: b.SectorId,
+                        
                         BatchId: b.BatchId,
                         Rate: b.Rate,
                         TimeStamp: b.TimeStamp,
@@ -75,7 +73,7 @@
                     ActivityId : labourCost.ActivityId,
                     BranchId: labourCost.BranchId,
                     BatchId: batchId,
-                    SectorId: labourCost.SectorId,
+                    Rate : labourCost.Rate,
                     CreatedBy: labourCost.CreatedBy,
                     CreatedOn: labourCost.CreatedOn,
                     Deleted: labourCost.Deleted

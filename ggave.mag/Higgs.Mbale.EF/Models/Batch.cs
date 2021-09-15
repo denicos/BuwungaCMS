@@ -23,7 +23,6 @@ namespace Higgs.Mbale.EF.Models
             this.BatchSupplies = new HashSet<BatchSupply>();
             this.BatchOutPuts = new HashSet<BatchOutPut>();
             this.FactoryExpenses = new HashSet<FactoryExpense>();
-            this.LabourCosts = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.OtherExpenses = new HashSet<OtherExpense>();
             this.DeliveryBatches = new HashSet<DeliveryBatch>();
@@ -34,6 +33,7 @@ namespace Higgs.Mbale.EF.Models
             this.BatchDeliveryGradeSizes = new HashSet<BatchDeliveryGradeSize>();
             this.CashSaleBatchGradeSizes = new HashSet<CashSaleBatchGradeSize>();
             this.Requistions = new HashSet<Requistion>();
+            this.LabourCosts = new HashSet<LabourCost>();
         }
     
         public long BatchId { get; set; }
@@ -60,7 +60,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual ICollection<BatchOutPut> BatchOutPuts { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses { get; set; }
         public virtual ICollection<DeliveryBatch> DeliveryBatches { get; set; }
@@ -72,5 +71,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual Branch Branch { get; set; }
         public virtual ICollection<CashSaleBatchGradeSize> CashSaleBatchGradeSizes { get; set; }
         public virtual ICollection<Requistion> Requistions { get; set; }
+        public virtual ICollection<LabourCost> LabourCosts { get; set; }
     }
 }

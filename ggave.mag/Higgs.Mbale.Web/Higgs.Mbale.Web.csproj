@@ -312,6 +312,7 @@
     <Content Include="app\scripts\controllers\Navigation.js" />
     <Content Include="app\scripts\controllers\order.js" />
     <Content Include="app\scripts\controllers\otherexpense.js" />
+    <Content Include="app\scripts\controllers\pettycash.js" />
     <Content Include="app\scripts\controllers\product.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\controllers\requistion.js" />
@@ -475,6 +476,9 @@
     <Content Include="app\views\machinerepair\edit.html" />
     <Content Include="app\views\machinerepair\list.html" />
     <Content Include="app\views\mechanic\list.html" />
+    <Content Include="app\views\millingcharge\admin-view.html" />
+    <Content Include="app\views\millingcharge\branch-milling.html" />
+    <Content Include="app\views\millingcharge\edit.html" />
     <Content Include="app\views\modal\modalBatch.html" />
     <Content Include="app\views\modal\modalSupply.html" />
     <Content Include="app\views\order\branch-order-list.html" />
@@ -485,6 +489,9 @@
     <Content Include="app\views\order\list.html" />
     <Content Include="app\views\otherExpense\batch-otherExpense-list.html" />
     <Content Include="app\views\otherExpense\edit.html" />
+    <Content Include="app\views\pettycash\admin-view.html" />
+    <Content Include="app\views\pettycash\branch-pettycash.html" />
+    <Content Include="app\views\pettycash\edit.html" />
     <Content Include="app\views\product\edit.html" />
     <Content Include="app\views\product\list.html" />
     <Content Include="app\views\report\accountTransactions.html" />

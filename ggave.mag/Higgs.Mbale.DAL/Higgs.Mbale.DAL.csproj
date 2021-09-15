@@ -86,8 +86,10 @@
     <Compile Include="Concrete\LabourCostDataService.cs" />
     <Compile Include="Concrete\MachineRepairDataService.cs" />
     <Compile Include="Concrete\MaizeBrandStoreDataService.cs" />
+    <Compile Include="Concrete\MillingChargeDataService.cs" />
     <Compile Include="Concrete\OrderDataService.cs" />
     <Compile Include="Concrete\OtherExpenseDataService.cs" />
+    <Compile Include="Concrete\PettyCashDataService.cs" />
     <Compile Include="Concrete\ProductDataService.cs" />
     <Compile Include="Concrete\ReportDataService.cs" />
     <Compile Include="Concrete\RequistionDataService.cs" />
@@ -137,8 +139,10 @@
     <Compile Include="Interface\ILabourCostDataService.cs" />
     <Compile Include="Interface\IMachineRepairDataService.cs" />
     <Compile Include="Interface\IMaizeBrandStoreDataService.cs" />
+    <Compile Include="Interface\IMillingChargeDataService.cs" />
     <Compile Include="Interface\IOrderDataService.cs" />
     <Compile Include="Interface\IOtherExpenseDataService.cs" />
+    <Compile Include="Interface\IPettyCashDataService.cs" />
     <Compile Include="Interface\IProductDataService.cs" />
     <Compile Include="Interface\IReportDataService.cs" />
     <Compile Include="Interface\IRequistionDataService.cs" />

@@ -28,10 +28,8 @@
 
                 { name: 'LastName', field: 'LastName', width: '15%', },
                 {
-                    name: 'Supplier Number', field: 'UniqueNumber', width: '15%', sort: {
-                        direction: uiGridConstants.ASC,
-                        priority: 1
-                    }
+                    name: 'Account Number', field: 'AccountNumber', width: '15%', 
+
                 },
 
                 { name: 'Email', field: 'Email' },

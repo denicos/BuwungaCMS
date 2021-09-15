@@ -18,6 +18,7 @@ namespace Higgs.Mbale.EF.Models
         {
             this.Cashes = new HashSet<Cash>();
             this.Requistions = new HashSet<Requistion>();
+            this.PettyCashes = new HashSet<PettyCash>();
         }
     
         public long RequistionCategoryId { get; set; }
@@ -26,5 +27,6 @@ namespace Higgs.Mbale.EF.Models
     
         public virtual ICollection<Cash> Cashes { get; set; }
         public virtual ICollection<Requistion> Requistions { get; set; }
+        public virtual ICollection<PettyCash> PettyCashes { get; set; }
     }
 }

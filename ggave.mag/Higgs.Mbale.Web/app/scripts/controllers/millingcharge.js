@@ -10,26 +10,13 @@
         var millingChargeId = $scope.millingChargeId;
         var action = $scope.action;
       
-        $scope.actions = ["+", "-"];
-
-        $http.get('/webapi/TransactionSubTypeApi/GetAllTransactionSubTypes').success(function (data, status) {
-            $scope.transactionSubTypes = data;
-        });
-
+        
         $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
             $scope.branches = data;
-        });
-
-
-        $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-            $scope.sectors = data;
-        });
-
-
-       
+        });      
 
         if (action == 'create') {
-            deliveryId = 0;
+            millingChargeId = 0;
             var promise = $http.get('/webapi/UserApi/GetLoggedInUser', {});
             promise.then(
                 function (payload) {
@@ -54,13 +41,11 @@
                     $scope.millingCharge = {
                         MillingChargeId: b.MillingChargeId,
                         Notes: b.Notes,
-                        Balance: b.Balance,
-                        TransactionSubTypeId: b.TransactionSubTypeId,
+                       
                         BranchId: b.BranchId,
-                        SectorId: b.SectorId,
+                        Quantity : b.Quantity,
                         Amount: b.Amount,
-                        StartAmount: b.StartAmount,
-                        Action: b.Action,
+                       
                         CreatedOn: b.CreatedOn,
                         TimeStamp: b.TimeStamp,
                         CreatedBy: b.CreatedBy,
@@ -81,14 +66,11 @@
 
                     MillingChargeId: millingChargeId,
                     Amount: millingCharge.Amount,
-                    StartAmount: millingCharge.StartAmount,
-                    Balance: millingCharge.Balance,
-                    PaymentModeId: millingCharge.PaymentModeId,
+                    
                     BranchId: millingCharge.BranchId,
-                    SectorId: millingCharge.SectorId,
+                    Quantity : millingCharge.Quantity,
                     Notes: millingCharge.Notes,
-                    Action: millingCharge.Action,
-                    TransactionSubTypeId: millingCharge.TransactionSubTypeId,
+                   
                     CreatedOn: millingCharge.CreatedOn,
                     TimeStamp: millingCharge.TimeStamp,
                     CreatedBy: millingCharge.CreatedBy,
@@ -174,22 +156,21 @@ angular
             $scope.gridData.columnDefs = [
 
                
-                  {
-                      name: 'CreatedOn', field: 'CreatedOn',
-                      sort: {
-                          direction: uiGridConstants.ASC,
-                          priority: 1
-                      }
-                  },
-
+                 
+                { name: 'Quantity', field: 'Quantity' },
 
                 { name: 'Notes', field: 'Notes' },
 
-                { name: 'Debit', cellTemplate: '<div ng-if="row.entity.Action ==\'-\'">{{row.entity.Amount}}</div>' },
-                 { name: 'Credit', cellTemplate: '<div ng-if="row.entity.Action ==\'+\'">{{row.entity.Amount}}</div>' },
+               
 
-
-                 { name: 'Balance', field: 'Balance' },
+                 { name: 'Amount', field: 'Amount' },
+                {
+                    name: 'CreatedOn', field: 'CreatedOn',
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 1
+                    }
+                },
 
 
             ];

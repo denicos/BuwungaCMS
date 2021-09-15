@@ -104,6 +104,7 @@
     <Compile Include="OtherExpenseDTO.cs" />
     <Compile Include="OutSourcerOutPutDTO.cs" />
     <Compile Include="OutSourcerOutPutGradeSizeDTO.cs" />
+    <Compile Include="PettyCashDTO.cs" />
     <Compile Include="ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequistionDTO.cs" />

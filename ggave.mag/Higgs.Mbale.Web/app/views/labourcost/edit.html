@@ -90,20 +90,12 @@
                                         <div class="row">
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
-                                                    <label>Department</label>
-                                                    <select style="border: none" name="sector" class="form-control col-sm-12" data-ng-model="labourCost.SectorId" required ng-class="{errorinput:form.sector.$invalid}"
-                                                            data-ng-options="i.SectorId as i.Name for i in sectors">
-                                                        <option value="">Please select</option>
-                                                    </select>
-
-                                                    <span ng-show="form.sector.$invalid">
-                                                        <span ng-show="form.sector.$error.required" class="help-block error"><i class="fa fa-warning"></i>This is a required field.</span>
-                                                    </span>
+                                                    <label>Rate</label>
+                                                    <input  name="rate" class="form-control" ng-model="labourCost.Rate" required ng-class="{errorinput:form.rate.$invalid}" ng-pattern="/^\-?\d+((\.)\d+)?$/">
 
                                                 </div>
                                             </div>
 
-                                           
 
                                         </div>
                                         <div class="hr-line-dashed"></div>

@@ -73,9 +73,6 @@ namespace Higgs.Mbale.EF.Models
             this.FactoryExpenses = new HashSet<FactoryExpense>();
             this.FactoryExpenses1 = new HashSet<FactoryExpense>();
             this.FactoryExpenses2 = new HashSet<FactoryExpense>();
-            this.LabourCosts = new HashSet<LabourCost>();
-            this.LabourCosts1 = new HashSet<LabourCost>();
-            this.LabourCosts2 = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.MachineRepairs1 = new HashSet<MachineRepair>();
             this.MachineRepairs2 = new HashSet<MachineRepair>();
@@ -158,6 +155,13 @@ namespace Higgs.Mbale.EF.Models
             this.Requistions1 = new HashSet<Requistion>();
             this.Requistions2 = new HashSet<Requistion>();
             this.Requistions3 = new HashSet<Requistion>();
+            this.LabourCosts = new HashSet<LabourCost>();
+            this.LabourCosts1 = new HashSet<LabourCost>();
+            this.LabourCosts2 = new HashSet<LabourCost>();
+            this.MillingCharges = new HashSet<MillingCharge>();
+            this.MillingCharges1 = new HashSet<MillingCharge>();
+            this.PettyCashes = new HashSet<PettyCash>();
+            this.PettyCashes1 = new HashSet<PettyCash>();
         }
     
         public string Id { get; set; }
@@ -249,9 +253,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses1 { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses2 { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts1 { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts2 { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs1 { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs2 { get; set; }
@@ -337,5 +338,12 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<Requistion> Requistions1 { get; set; }
         public virtual ICollection<Requistion> Requistions2 { get; set; }
         public virtual ICollection<Requistion> Requistions3 { get; set; }
+        public virtual ICollection<LabourCost> LabourCosts { get; set; }
+        public virtual ICollection<LabourCost> LabourCosts1 { get; set; }
+        public virtual ICollection<LabourCost> LabourCosts2 { get; set; }
+        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
+        public virtual ICollection<MillingCharge> MillingCharges1 { get; set; }
+        public virtual ICollection<PettyCash> PettyCashes { get; set; }
+        public virtual ICollection<PettyCash> PettyCashes1 { get; set; }
     }
 }

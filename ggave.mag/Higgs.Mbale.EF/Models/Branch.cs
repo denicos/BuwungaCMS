@@ -38,7 +38,6 @@ namespace Higgs.Mbale.EF.Models
             this.FactoryExpenses = new HashSet<FactoryExpense>();
             this.FlourTransfers = new HashSet<FlourTransfer>();
             this.InventoryPurchases = new HashSet<InventoryPurchase>();
-            this.LabourCosts = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.MaizeBrandStores = new HashSet<MaizeBrandStore>();
             this.Orders = new HashSet<Order>();
@@ -53,6 +52,9 @@ namespace Higgs.Mbale.EF.Models
             this.WeightNoteRanges = new HashSet<WeightNoteRange>();
             this.WeightNoteNumbers = new HashSet<WeightNoteNumber>();
             this.Requistions = new HashSet<Requistion>();
+            this.LabourCosts = new HashSet<LabourCost>();
+            this.MillingCharges = new HashSet<MillingCharge>();
+            this.PettyCashes = new HashSet<PettyCash>();
         }
     
         public long BranchId { get; set; }
@@ -94,7 +96,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
         public virtual ICollection<FlourTransfer> FlourTransfers { get; set; }
         public virtual ICollection<InventoryPurchase> InventoryPurchases { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<MaizeBrandStore> MaizeBrandStores { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
@@ -109,5 +110,8 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<WeightNoteRange> WeightNoteRanges { get; set; }
         public virtual ICollection<WeightNoteNumber> WeightNoteNumbers { get; set; }
         public virtual ICollection<Requistion> Requistions { get; set; }
+        public virtual ICollection<LabourCost> LabourCosts { get; set; }
+        public virtual ICollection<MillingCharge> MillingCharges { get; set; }
+        public virtual ICollection<PettyCash> PettyCashes { get; set; }
     }
 }

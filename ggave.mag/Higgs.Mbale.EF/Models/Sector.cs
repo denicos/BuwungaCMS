@@ -25,7 +25,6 @@ namespace Higgs.Mbale.EF.Models
             this.Batches = new HashSet<Batch>();
             this.BatchOutPuts = new HashSet<BatchOutPut>();
             this.FactoryExpenses = new HashSet<FactoryExpense>();
-            this.LabourCosts = new HashSet<LabourCost>();
             this.MachineRepairs = new HashSet<MachineRepair>();
             this.OtherExpenses = new HashSet<OtherExpense>();
             this.CashTransfers = new HashSet<CashTransfer>();
@@ -58,7 +57,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser2 { get; set; }
         public virtual ICollection<BatchOutPut> BatchOutPuts { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
-        public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MachineRepair> MachineRepairs { get; set; }
         public virtual ICollection<OtherExpense> OtherExpenses { get; set; }
         public virtual ICollection<CashTransfer> CashTransfers { get; set; }
