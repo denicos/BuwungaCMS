@@ -203,8 +203,12 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\AspNetUserProduct.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Programmability\GetDashBoardNotifications.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\StoreProduct.sql" />
+<<<<<<< HEAD
     <Build Include="Schema Objects\Schemas\dbo\Tables\PettyCash.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\MillingCharge.sql" />
+=======
+    <Build Include="database script\buwunga.sql" />
+>>>>>>> bac248e414c47f2ac4e10fd43b9a4ec903ff536c
   </ItemGroup>
   <ItemGroup>
     <None Include="Higgs.Mbale.Database.publish.xml" />
