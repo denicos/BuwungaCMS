@@ -185,7 +185,7 @@ angular
                 { name: 'Rate', field: 'Rate' },
                 { name: 'Amount ', field: 'Amount' },
               
-                {name: 'Department',field:'SectorName'},
+                //{name: 'Department',field:'SectorName'},
                 { name: 'Branch Name', field: 'BranchName' },
                  //{
                  //    name: 'Action', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/labourCosts/edit/{{row.entity.LabourCostId}}/' + $scope.batchId + '">Edit</a> </div>',

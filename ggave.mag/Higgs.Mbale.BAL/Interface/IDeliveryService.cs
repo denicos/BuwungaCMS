@@ -14,7 +14,7 @@ namespace Higgs.Mbale.BAL.Interface
         long SaveDelivery(Delivery delivery, string userId);
         void MarkAsDeleted(long deliveryId, string userId);
         IEnumerable<Delivery> GetAllDeliveriesForAParticularBranch(long branchId);
-        IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId);
+        IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId);
         IEnumerable<Delivery> MapEFToModel(IEnumerable<EF.Models.Delivery> data);
         IEnumerable<Delivery> GetAllUnApprovedDeliveries();
         IEnumerable<Delivery> GetAllRejectedDeliveries();

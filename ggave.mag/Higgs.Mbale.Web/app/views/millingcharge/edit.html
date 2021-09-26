@@ -30,7 +30,7 @@
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
                                                     <label>Quantity</label>
-                                                    <input ng-readonly="readOnly" name="amount" class="form-control" ng-model="milling.Quantity" ng-pattern="/^\-?\d+((\.)\d+)?$/" required ng-class="{ errorinput: form.amount.$invalid }">
+                                                    <input ng-readonly="readOnly" name="amount" class="form-control" ng-model="millingCharge.Quantity" ng-pattern="/^\-?\d+((\.)\d+)?$/" required ng-class="{ errorinput: form.amount.$invalid }">
                                                     <span ng-show="form.amount.$invalid">
                                                         <span ng-show="form.amount.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
                                                         <span ng-show="form.amount.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart,Quantity should be double or number</span>
@@ -43,7 +43,7 @@
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
                                                     <label>Branch</label>
-                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="milling.BranchId" ng-class="{errorinput:form.branch.$invalid}"
+                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="millingCharge.BranchId" required ng-class="{errorinput:form.branch.$invalid}"
                                                             data-ng-options="i.BranchId as i.Name for i in branches">
                                                         <option value="">Please select</option>
                                                     </select>
@@ -58,6 +58,20 @@
 
 
                                         </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <label>Rate Per Kg</label>
+                                                    <input ng-readonly="readOnly" name="rate" class="form-control" ng-model="millingCharge.Rate" ng-pattern="/^\-?\d+((\.)\d+)?$/" required ng-class="{ errorinput: form.rate.$invalid }">
+                                                    <span ng-show="form.rate.$invalid">
+                                                        <span ng-show="form.rate.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
+                                                        <span ng-show="form.rate.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart,rate should be double or number</span>
+
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
 
 
                                         <!--<div class="row">
@@ -66,7 +80,7 @@
                                                 <div class="col-sm-12">
                                                     <label>Notes</label>
 
-                                                    <textarea ng-readonly="readOnly" name="description" rows="6" class="form-control" ng-model="pettyCash.Notes" required ng-class="{errorinput:form.description.$invalid}"></textarea>
+                                                    <textarea ng-readonly="readOnly" name="description" rows="6" class="form-control" ng-model="millingCharge.Notes" required ng-class="{errorinput:form.description.$invalid}"></textarea>
                                                     <span ng-show="form.description.$invalid">
                                                         <span ng-show="form.description.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
 
@@ -112,7 +126,7 @@
 
                                                 <div class="btn-group">
 
-                                                    <button ng-really-click="Save(milling)" class="btn btn-info dropdown-toggle" ng-really-message='Are you sure you want to add this milling charge' ng-disabled=" !form.$valid">
+                                                    <button ng-really-click="Save(millingCharge)" class="btn btn-info dropdown-toggle" ng-really-message='Are you sure you want to add this milling charge' ng-disabled=" !form.$valid">
                                                         Save
                                                     </button>
                                                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">

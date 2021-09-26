@@ -14,6 +14,7 @@ namespace Higgs.Mbale.DTO
         public double Quantity { get; set; }
         public double Balance { get; set; }
         public System.DateTime TimeStamp { get; set; }
-    
+        public Nullable<double> BuveraAmount { get; set; }
+
     }
 }

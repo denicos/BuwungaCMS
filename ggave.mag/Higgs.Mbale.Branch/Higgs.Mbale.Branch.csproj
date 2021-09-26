@@ -245,10 +245,12 @@
     <Content Include="app\scripts\controllers\labourcost.js" />
     <Content Include="app\scripts\controllers\machinerepair.js" />
     <Content Include="app\scripts\controllers\mechanic.js" />
+    <Content Include="app\scripts\controllers\millingcharge.js" />
     <Content Include="app\scripts\controllers\Modal.js" />
     <Content Include="app\scripts\controllers\Navigation.js" />
     <Content Include="app\scripts\controllers\order.js" />
     <Content Include="app\scripts\controllers\otherexpense.js" />
+    <Content Include="app\scripts\controllers\pettycash.js" />
     <Content Include="app\scripts\controllers\product.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\controllers\requistion.js" />
@@ -374,6 +376,8 @@
     <Content Include="app\views\machinerepair\edit.html" />
     <Content Include="app\views\machinerepair\list.html" />
     <Content Include="app\views\mechanic\list.html" />
+    <Content Include="app\views\millingcharge\branch-milling.html" />
+    <Content Include="app\views\millingcharge\edit.html" />
     <Content Include="app\views\modal\modalBatch.html" />
     <Content Include="app\views\modal\modalSupply.html" />
     <Content Include="app\views\order\branch-order-list.html" />
@@ -384,6 +388,8 @@
     <Content Include="app\views\order\list.html" />
     <Content Include="app\views\otherExpense\batch-otherExpense-list.html" />
     <Content Include="app\views\otherExpense\edit.html" />
+    <Content Include="app\views\pettycash\branch-pettycash.html" />
+    <Content Include="app\views\pettycash\edit.html" />
     <Content Include="app\views\product\edit.html" />
     <Content Include="app\views\product\list.html" />
     <Content Include="app\views\report\accountTransactions.html" />
@@ -2663,8 +2669,10 @@
     <Compile Include="Controllers\MachineRepairApiController.cs" />
     <Compile Include="Controllers\MaizeBrandStoreApiController.cs" />
     <Compile Include="Controllers\MechanicApiController.cs" />
+    <Compile Include="Controllers\MillingChargeApiController.cs" />
     <Compile Include="Controllers\OrderApiController.cs" />
     <Compile Include="Controllers\OtherExpenseApiController.cs" />
+    <Compile Include="Controllers\PettyCashApiController.cs" />
     <Compile Include="Controllers\ProductApiController.cs" />
     <Compile Include="Controllers\ReportApiController.cs" />
     <Compile Include="Controllers\RequistionApiController.cs" />

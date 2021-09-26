@@ -38,7 +38,14 @@ namespace Higgs.Mbale.Branch.Controllers
                 return _deliveryService.GetDelivery(deliveryId);
             }
 
-           
+        [HttpGet]
+        [ActionName("GetBranchId")]
+        public long GetBranchId()
+        {
+            return _userService.GetLoggedUserBranchId(userId); 
+        }
+        
+
             [HttpGet]
             [ActionName("GetAllBranchDeliveries")]
             public IEnumerable<Delivery> GetAllBranchDeliveries()
@@ -46,10 +53,10 @@ namespace Higgs.Mbale.Branch.Controllers
                 return _deliveryService.GetAllDeliveriesForAParticularBranch(branchId);
             }
             [HttpGet]
-            [ActionName("GetAllDeliveriesForAParticularOrder")]
-            public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+            [ActionName("GetAllDeliveriesForAParticularCustomer")]
+            public IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId)
             {
-                return _deliveryService.GetAllDeliveriesForAParticularOrder(orderId);
+                return _deliveryService.GetAllDeliveriesForAParticularCustomer(customerId);
             }
              [HttpGet]
              [ActionName("GetAllBranchUnApprovedDeliveries")]

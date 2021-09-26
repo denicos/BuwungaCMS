@@ -32,7 +32,6 @@ namespace Higgs.Mbale.EF.Models
             this.CasualWorkers = new HashSet<CasualWorker>();
             this.BranchSectors = new HashSet<BranchSector>();
             this.UserBranches = new HashSet<UserBranch>();
-            this.Deliveries = new HashSet<Delivery>();
             this.Deposits = new HashSet<Deposit>();
             this.Documents = new HashSet<Document>();
             this.FactoryExpenses = new HashSet<FactoryExpense>();
@@ -55,6 +54,7 @@ namespace Higgs.Mbale.EF.Models
             this.LabourCosts = new HashSet<LabourCost>();
             this.MillingCharges = new HashSet<MillingCharge>();
             this.PettyCashes = new HashSet<PettyCash>();
+            this.Deliveries = new HashSet<Delivery>();
         }
     
         public long BranchId { get; set; }
@@ -90,7 +90,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<CasualWorker> CasualWorkers { get; set; }
         public virtual ICollection<BranchSector> BranchSectors { get; set; }
         public virtual ICollection<UserBranch> UserBranches { get; set; }
-        public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<FactoryExpense> FactoryExpenses { get; set; }
@@ -113,5 +112,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<LabourCost> LabourCosts { get; set; }
         public virtual ICollection<MillingCharge> MillingCharges { get; set; }
         public virtual ICollection<PettyCash> PettyCashes { get; set; }
+        public virtual ICollection<Delivery> Deliveries { get; set; }
     }
 }

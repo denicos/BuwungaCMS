@@ -147,7 +147,7 @@
                                                                 <tr>
 
                                                                     <td width="33%">
-                                                                        <p>{{batch.FlourOutPut}}</p>
+                                                                        <p>{{batch.Quantity}}</p>
                                                                     </td>
 
                                                                     <td width="33%">
@@ -226,6 +226,24 @@
 
                                                                     <th width="33%">Milling Charge Balance</th>
                                                                     <th width="33%">{{batch.MillingChargeBalance | number}}</th>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <h5>Profits</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <th width="33%">Profits</th>
+                                                                    <th width="33%">{{batch.Profits | number}}</th>
                                                                 </tr>
 
                                                             </tbody>
@@ -612,7 +630,7 @@
                                                               
                                                                 <td>
                                                                     <div class="col-sm-12 col-md-12">
-                                                                        <h3> Number 1</h3>
+                                                                        <h3> BLUE</h3>
                                                                         <div class="table-responsive">
                                                                             <table class="table table-bordered">
                                                                                 <tbody>
@@ -648,7 +666,16 @@
                                                                                             <p>{{batch.BatchFlourGradesValues.TotalNumberOneFiveZeroAmount | number}}</p>
                                                                                         </td>
                                                                                     </tr>
-                                                                                   
+                                                                                    <tr>
+                                                                                        <td width="25%"><p> 5 Kg</p></td>
+                                                                                        <td width="35%">
+                                                                                            <p>{{batch.BatchFlourGradesValues.TotalNumberOneFiveQuantity | number}}</p>
+                                                                                        </td>
+                                                                                        <td width="40%">
+                                                                                            <p>{{batch.BatchFlourGradesValues.TotalNumberOneFiveAmount | number}}</p>
+                                                                                        </td>
+                                                                                    </tr>
+
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -660,7 +687,7 @@
 
                                                                 <td>
                                                                     <div class="col-sm-12 col-md-12">
-                                                                        <h3> Number 1.5</h3>
+                                                                        <h3> RED</h3>
                                                                         <div class="table-responsive">
                                                                             <table class="table table-bordered">
                                                                                 <tbody>
@@ -696,7 +723,16 @@
                                                                                             <p>{{batch.BatchFlourGradesValues.TotalNumberOneHalfFiveZeroAmount | number}}</p>
                                                                                         </td>
                                                                                     </tr>
-                                                                                    
+                                                                                    <tr>
+                                                                                        <td width="25%"><p> 5 Kg</p></td>
+                                                                                        <td width="35%">
+                                                                                            <p>{{batch.BatchFlourGradesValues.TotalNumberOneHalfFiveQuantity | number}}</p>
+                                                                                        </td>
+                                                                                        <td width="40%">
+                                                                                            <p>{{batch.BatchFlourGradesValues.TotalNumberOneHalfFiveAmount | number}}</p>
+                                                                                        </td>
+                                                                                    </tr>
+
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>

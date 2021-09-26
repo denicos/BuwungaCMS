@@ -18,7 +18,9 @@
                 $scope.branches = data;
             });
            
-
+            $http.get('/webapi/RequistionApi/GetAllRequistionCategories').success(function (data, status) {
+                $scope.requistionCategories = data;
+            });
            
 
             if (action == 'create') {
@@ -48,7 +50,7 @@
                             PettyCashId: b.PettyCashId,
                             Notes: b.Notes,
                             Balance: b.Balance,
-                           
+                            RequistionCategoryId : b.RequistionCategoryId,
                             BranchId: b.BranchId,
                            
                             Amount: b.Amount,
@@ -77,7 +79,7 @@
                         StartAmount: pettyCash.StartAmount,
                         Balance: pettyCash.Balance,
                         BranchId: pettyCash.BranchId,
-                       
+                       RequistionCategoryId : pettyCash.RequistionCategoryId,
                         Notes: pettyCash.Notes,
                         Action: pettyCash.Action,
                         
@@ -109,7 +111,8 @@
                                     $scope.showMessageSave = false;
 
                                     if (action == "create") {
-                                        $state.go('pettycash.list');
+                                        //$state.go('pettycash.list');
+                                        $state.go('branch-pettycash-list');
                                     }
 
                                 }, 1500);
@@ -212,7 +215,7 @@ angular
             $scope.accountBalance = 0;
             var branchId = $scope.branchId;
             $scope.loadingSpinner = true;
-            var promise = $http.get('/webapi/CashApi/GetAllPettyCashForAParticularBranch?branchId=' + branchId, {});
+            var promise = $http.get('/webapi/PettyCashApi/GetAllPettyCashForAParticularBranch?branchId=' + branchId, {});
             promise.then(
                 function (payload) {
                     $scope.gridData.data = payload.data;

@@ -94,22 +94,7 @@ namespace Higgs.Mbale.BAL.Concrete
             return MapEFBatchToBatchViewModel(results);
         }
 
-        #region computations
-     
-        private double ComputeTotalProductionCost(double millingCharge, double labourCost, double buveraCost)
-        {
-            double totalProductonCost = 0;
-            totalProductonCost = millingCharge + labourCost + buveraCost;
-            return totalProductonCost;
-        }
-
-        private double ComputeMillingChargeBalance(double millingCharge, double factoryExpenses)
-        {
-            double millingChargeBalance = 0;
-            millingChargeBalance = millingCharge - factoryExpenses;
-            return millingChargeBalance;
-        }
-        #endregion
+        
         private IEnumerable<FactoryExpense> GetAllFactoryExpensesForABatch(long batchId)
         {
             var results = _factoryExpenseService.GetAllFactoryExpensesForAParticularBatch(batchId);
@@ -306,7 +291,7 @@ namespace Higgs.Mbale.BAL.Concrete
                               Rate = activity.Charge,
                               BatchId = batch.BatchId,
                               ActivityId = activity.ActivityId,
-                              SectorId = batch.SectorId,
+                             // SectorId = batch.SectorId,
                               BranchId = batch.BranchId,
 
                           };
@@ -321,7 +306,7 @@ namespace Higgs.Mbale.BAL.Concrete
                               Rate = activity.Charge,
                               BatchId = batch.BatchId,
                               ActivityId = activity.ActivityId,
-                              SectorId = batch.SectorId,
+                             
                               BranchId = batch.BranchId,
 
                           };
@@ -336,7 +321,7 @@ namespace Higgs.Mbale.BAL.Concrete
                               Rate = activity.Charge,
                               BatchId = batch.BatchId,
                               ActivityId = activity.ActivityId,
-                              SectorId = batch.SectorId,
+                              //SectorId = batch.SectorId,
                               BranchId = batch.BranchId,
 
                           };
@@ -351,7 +336,7 @@ namespace Higgs.Mbale.BAL.Concrete
                               Rate = activity.Charge,
                               BatchId = batch.BatchId,
                               ActivityId = activity.ActivityId,
-                              SectorId = batch.SectorId,
+                              //SectorId = batch.SectorId,
                               BranchId = batch.BranchId,
 
                           };
@@ -420,6 +405,35 @@ namespace Higgs.Mbale.BAL.Concrete
 
 
         #region computations
+
+        private double ComputeTotalProductionCost(double millingCharge, double labourCost, double buveraCost)
+        {
+            double totalProductonCost = 0;
+            totalProductonCost = millingCharge + labourCost + buveraCost;
+            return totalProductonCost;
+        }
+
+        //private double ComputeMillingChargeBalance(double millingCharge, double factoryExpenses)
+        //{
+        //    double millingChargeBalance = 0;
+        //    millingChargeBalance = millingCharge - factoryExpenses;
+        //    return millingChargeBalance;
+        //}
+
+        private double ComputeMillingChargeBalance(double millingCharge,double umeme ,double machineExpenses)
+        {
+            double millingChargeBalance = 0;
+            millingChargeBalance = millingCharge - (machineExpenses+ umeme);
+            return millingChargeBalance;
+        }
+        private double ComputeBatchProfits(double millingCharge, double factoryExpenses, double labourCosts, double buveraCost, double cashSaleFlourAmount, double cashSaleBrandAmount, double brandDeliveryAmount, double flourDeliveryAmount)
+        {
+            double profits = 0;
+            double totalSales = (cashSaleFlourAmount + cashSaleBrandAmount + flourDeliveryAmount + brandDeliveryAmount);
+            profits = totalSales - (millingCharge + factoryExpenses + labourCosts + buveraCost);
+            return profits;
+        }
+
         private double ComputeBatchLoss(double brandOutPut, double flourOutPut, double quantity)
         {
             double loss;
@@ -818,12 +832,16 @@ namespace Higgs.Mbale.BAL.Concrete
                     gradeIds.Clear();
                 }
                 batch.AvailabeBatchGrades = gradeList;
-                batch.MillingCharge = batch.BranchMillingChargeRate * batch.FlourOutPut;
+                //batch.MillingCharge = batch.BranchMillingChargeRate * batch.FlourOutPut;
+                batch.MillingCharge = batch.BranchMillingChargeRate * batch.Quantity;
                 batch.BatchFlourGradesValues = batchFlourGradesValues;
-                batch.MillingChargeBalance = ComputeMillingChargeBalance(batch.MillingCharge, batch.TotalFactoryExpenseCost);
+                double umeme = (batch.FlourOutPut / 50) * 800;
+                batch.MillingChargeBalance = ComputeMillingChargeBalance(batch.MillingCharge,umeme, batch.TotalMachineCost);
 
                 batch.TotalProductionCost =ComputeTotalProductionCost(batch.MillingCharge, batch.TotalLabourCosts, batch.TotalBuveraCost);
-         
+           
+                batch.Profits = ComputeBatchProfits(batch.MillingCharge, batch.TotalFactoryExpenseCost, batch.TotalLabourCosts,batch.TotalBuveraCost,batch.TotalCashSaleFlourAmount,batch.TotalCashSaleBrandAmount,batch.TotalBrandDeliveryAmount,batch.TotalFlourDeliveryAmount);
+
                 return batch;
 
             }
@@ -1027,50 +1045,11 @@ namespace Higgs.Mbale.BAL.Concrete
                                 gradesAddedToTransferReport.Add(grade.GradeId);
                             }
 
-                            switch (grade.Value)
+                            //switch (grade.Value)
+                            switch(grade.GradeId)
                             {
-                                //case "Super":
-                                //    foreach (var denom in grade.Denominations)
-                                //    //  for (int j = 0; j < grade.Denominations.Count(); j++)
-
-                                //    {
-                                //        switch (denom.Value)
-                                //        {
-                                //            case 10:
-                                //                totalSuperTenQuantity = totalSuperTenQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalSuperTenAmount = totalSuperTenAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 25:
-                                //                totalSuperTwoFiveQuantity = totalSuperTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalSuperTwoFiveAmount = totalSuperTwoFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 50:
-                                //                totalSuperFiveZeroQuantity = totalSuperFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalSuperFiveZeroAmount = totalSuperFiveZeroAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 100:
-                                //                totalSuperHundredQuantity = totalSuperHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalSuperHundredAmount = totalSuperHundredAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 5:
-                                //                totalSuperFiveQuantity = totalSuperFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalSuperFiveAmount = totalSuperFiveAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 1:
-                                //                totalSuperOneQuantity = totalSuperOneQuantity + Convert.ToInt32(denom.Quantity);
-                                //                break;
-                                //            default:
-
-                                //                continue;
-                                //        }
-                                //    }
-                                //    break;
-                                case "Number 1":
+                                
+                                case 1:
                                     foreach (var denom in grade.Denominations)
                                     {
                                         switch (denom.Value)
@@ -1097,7 +1076,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                         }
                                     }
                                     break;
-                                case "Number 1.5":
+                                case 2:
 
                                     foreach (var denom in grade.Denominations)
                                     //  for (int j = 0; j < grade.Denominations.Count(); j++)
@@ -1127,44 +1106,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                     }
                                     break;
 
-                                //case "NO. 1 Kabale":
-
-                                //    foreach (var denom in grade.Denominations)
-
-                                //    {
-                                //        switch (denom.Value)
-                                //        {
-                                //            case 10:
-                                //                totalKabaleTenQuantity = totalKabaleTenQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleTenAmount = totalKabaleTenAmount + Convert.ToDouble(denom.Amount);
-
-                                //                break;
-                                //            case 25:
-                                //                totalKabaleTwoFiveQuantity = totalKabaleTwoFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleTwoFiveAmount = totalKabaleTwoFiveAmount + Convert.ToDouble(denom.Amount);
-                                //                break;
-                                //            case 50:
-                                //                totalKabaleFiveZeroQuantity = totalKabaleFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleFiveZeroAmount = totalKabaleFiveZeroAmount + Convert.ToDouble(denom.Amount);
-                                //                break;
-                                //            case 100:
-                                //                totalKabaleHundredQuantity = totalKabaleHundredQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleHundredAmount = totalKabaleHundredAmount + Convert.ToDouble(denom.Amount);
-                                //                break;
-                                //            case 5:
-                                //                totalKabaleFiveQuantity = totalKabaleFiveQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleFiveAmount = totalKabaleFiveAmount + Convert.ToDouble(denom.Amount);
-                                //                break;
-                                //            case 1:
-                                //                totalKabaleOneQuantity = totalKabaleOneQuantity + Convert.ToInt32(denom.Quantity);
-                                //                totalKabaleOneAmount = totalKabaleOneAmount + Convert.ToDouble(denom.Amount);
-                                //                break;
-                                //            default:
-
-                                //                continue;
-                                //        }
-                                //    }
-                                //    break;
+                               
 
                                 default:
                                     break;

@@ -59,6 +59,20 @@
                 <li ui-sref-active="active"><a ui-sref="admin-cashtransfer-list">CashTransfer view</a></li>
             </ul>
         </li>
+        <li ng-class="{active: $state.includes('pettycash')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
+            <a href="#"><span class="nav-label">Petty Cash</span><span class="fa arrow"></span> </a>
+            <ul class="nav nav-second-level" ng-class="{in: $state.includes('pettycash')}">
+                
+                <li ui-sref-active="active"><a ui-sref="admin-pettycash-list">Petty Cash view</a></li>
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('millingcharge')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
+            <a href="#"><span class="nav-label">Milling Charge</span><span class="fa arrow"></span> </a>
+            <ul class="nav nav-second-level" ng-class="{in: $state.includes('millingcharge')}">
+                
+                <li ui-sref-active="active"><a ui-sref="admin-millingcharge-list">Milling Charge view</a></li>
+            </ul>
+        </li>
         <li ng-class="{active: $state.includes('cashsale')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
             <a href="#"><span class="nav-label">Cash Sales</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('cashsale')}">
@@ -66,7 +80,7 @@
                 <li ui-sref-active="active"><a ui-sref="admin-cashsale-list">CashSale view</a></li>
             </ul>
         </li>
-      
+
 
 
         <li ng-class="{active: $state.includes('supplies')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
@@ -74,9 +88,9 @@
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('supplies')}">
                 <li ng-show="isSuperAdmin || isSuperSuperAdmin ||isAdmin || isSuper" ui-sref-active="active"><a ui-sref="unapprovedsupplies-list">Un Approved Supplies</a></li>
                 <li ng-show="isSuperAdmin || isSuperSuperAdmin ||isAdmin || isSuper" ui-sref-active="active"><a ui-sref="unapproveddeliveries-list">UnApproved Deliveries</a></li>
-     
+
                 <li ng-show="isSuperAdmin || isSuperSuperAdmin ||isAdmin || isSuper" ui-sref-active="active"><a ui-sref="deposits.list">Account Transactions</a></li>
-                
+
             </ul>
         </li>
 
@@ -95,16 +109,16 @@
         </li>
 
 
-        <li ng-class="{active: $state.includes('utilityaccount')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
-            <a href="#"><span class="nav-label">Utility Accounts</span><span class="fa arrow"></span> </a>
-            <ul class="nav nav-second-level" ng-class="{in: $state.includes('utilityaccount')}">
+        <!--<li ng-class="{active: $state.includes('utilityaccount')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
+        <a href="#"><span class="nav-label">Utility Accounts</span><span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level" ng-class="{in: $state.includes('utilityaccount')}">
 
-                <li ui-sref-active="active"><a ui-sref="admin-utility-list">Utility view</a></li>
-            </ul>
-        </li>
+            <li ui-sref-active="active"><a ui-sref="admin-utility-list">Utility view</a></li>
+        </ul>
+    </li>-->
         <!--<li ng-class="{active: $state.includes('requistions')}" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
-        <a href="#"><span class="nav-label">Requistions</span><span class="fa arrow"></span> </a>
-        <ul class="nav nav-second-level" ng-class="{in: $state.includes('requistions')}">-->
+    <a href="#"><span class="nav-label">Requistions</span><span class="fa arrow"></span> </a>
+    <ul class="nav nav-second-level" ng-class="{in: $state.includes('requistions')}">-->
         <!--<li ui-sref-active="active"><a ui-sref="requistions.list">All Requistions</a></li>-->
         <!--<li ui-sref-active="active"><a ui-sref="admin-requistions-list">Requistion view</a></li>-->
         <!--<li ui-sref-active="active"><a href="#/requistions/{{status.StatusId}}">Status Requistions</a></li>-->
@@ -155,7 +169,7 @@
         <li ui-sref-active="active" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
             <a ui-sref="customers.list"> <span class="nav-label">All Customers</span></a>
         </li>
-      
+
         <!-- <li ui-sref-active="active" ng-show="isAdmin || isSuperAdmin ||isSuperSuperAdmin||isSuper">
         <a ui-sref="mechanics.list"> <span class="nav-label">All Mechanics</span></a>
     </li>

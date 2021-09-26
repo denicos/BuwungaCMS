@@ -156,7 +156,8 @@ namespace Higgs.Mbale.Web
 .Include("~/app/scripts/controllers/riceinput.js")
 .Include("~/app/scripts/controllers/banktransaction.js")
 .Include("~/app/scripts/controllers/batchprojection.js")
-
+.Include("~/app/scripts/controllers/millingcharge.js")
+.Include("~/app/scripts/controllers/pettycash.js")
 
 .Include("~/app/scripts/controllers/batchoutput.js")
 .Include("~/app/scripts/controllers/otherexpense.js")

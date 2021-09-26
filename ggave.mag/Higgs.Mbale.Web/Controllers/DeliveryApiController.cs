@@ -66,11 +66,17 @@ namespace Higgs.Mbale.Web.Controllers
                 {
                     return _deliveryService.GetAllDeliveriesForAParticularBranch(branchId);
                 }
+                //[HttpGet]
+                //[ActionName("GetAllDeliveriesForAParticularOrder")]
+                //public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+                //{
+                //    return _deliveryService.GetAllDeliveriesForAParticularOrder(orderId);
+                //}
                 [HttpGet]
-                [ActionName("GetAllDeliveriesForAParticularOrder")]
-                public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+                [ActionName("GetAllDeliveriesForAParticularCustomer")]
+                public IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId)
                 {
-                    return _deliveryService.GetAllDeliveriesForAParticularOrder(orderId);
+                    return _deliveryService.GetAllDeliveriesForAParticularCustomer(customerId);
                 }
 
             [HttpGet]

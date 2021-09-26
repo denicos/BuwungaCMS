@@ -57,7 +57,7 @@ namespace Higgs.Mbale.DAL.Concrete
                     Amount = millingChargeDTO.Amount,
                     Quantity = millingChargeDTO.Quantity,
                     Notes = millingChargeDTO.Notes,
-                    
+                    Rate = millingChargeDTO.Rate,
                     BranchId = millingChargeDTO.BranchId,
                     CreatedOn = DateTime.Now,
                     TimeStamp = DateTime.Now,
@@ -83,7 +83,7 @@ namespace Higgs.Mbale.DAL.Concrete
                     result.Amount = millingChargeDTO.Amount;
 
                     result.Quantity = millingChargeDTO.Quantity;
-                    
+                    result.Rate = millingChargeDTO.Rate;
                     result.Notes = millingChargeDTO.Notes;
 
                     result.BranchId = millingChargeDTO.BranchId;

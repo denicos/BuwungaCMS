@@ -7,7 +7,7 @@
             $scope.tab.dashboard = true;
         }
        
-        var branches = [];
+        
         $scope.deliveryPrice = 0;
         $scope.deliveryQuantity = 0;
         $scope.orderDeliveryGrade = [];
@@ -17,31 +17,56 @@
         $scope.batches = [];
         var transactionSubTypeId = 50015;
         var deliveryId = $scope.deliveryId;
-        var orderId = $scope.orderId;
+        var branchId = $scope.branchId;
         var customerId = $scope.customerId;
         var action = $scope.action;
-        var productId = 0;
+        
         var departmentId = 10002;
+        $scope.paymentModes = [{ Name: "Credit", Id: 10006 }, { Name: "AdvancedPayment", Id: 10007 }];
                
         $http.get('webapi/ProductApi/GetAllproducts').success(function (data, status) {
             $scope.products = data;
         });
 
-        $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
-            $scope.xdata = {
-                branches: data,
-                selectedBranch: branches[0]
-            }
-        });
+
+       
 
         $http.get('webapi/GradeApi/GetAllGrades').success(function (data, status) {
             $scope.grades = data;
         });
        
+      
+
+        $scope.OnProductChange = function (delivery) {
+            //var selectedBranchId = delivery.BranchId
+
+            if (delivery.ProductId == 2) {
+                $http.get('/webapi/BatchApi/GetAllBatchesForBrandDelivery?branchId=' + branchId
+                ).then(function (responses) {
+                    $scope.retrievedBatches = responses.data;
+
+                    angular.forEach($scope.retrievedBatches, function (value, key) {
+                        if (value.BrandBalance > 0) {
+                            $scope.batches = $scope.batches.concat(value);
+                        }
+                    });
+
+
+
+                });
+            }
+            else {
+                $http.get('/webapi/BatchApi/GetAllBatchesForAParticularBranchToTransfer?branchId=' + branchId + '&productId=' + delivery.ProductId
+                ).then(function (responses) {
+                    $scope.retrievedBatches = responses.data;
+                    $scope.batches = $scope.retrievedBatches;
+
+                });
+            }
+
+        }
+
         
-        $http.get('/webapi/AccountTransactionActivityApi/GetAllPaymentModes').success(function (data, status) {
-            $scope.paymentModes = data;
-        });
        
         if (action == 'create') {
             deliveryId = 0;
@@ -81,7 +106,7 @@
                         StoreId : b.StoreId,
                         TransactionSubTypeId : b.TransactionSubTypeId,
                         SectorId: b.SectorId,
-                        DriverNIN: b.DriverNIN,
+                        
                         PaymentModeId : b.PaymentModeId,
                         DriverName: b.DriverName,
                         TimeStamp: b.TimeStamp,
@@ -94,66 +119,15 @@
                     };
                 });
 
-            var promise = $http.get('/webapi/OrderApi/GetOrder?orderId=' + orderId, {});
-            promise.then(
-                function (payload) {
-                    var b = payload.data;
-                    $scope.order = {
-                        OrderId: b.OrderId,
-                        CustomerName: b.CustomerName,
-                        Amount: b.Amount,
-                        ProductId: b.ProductId,
-                        Balance : b.Balance,
-                        BranchId: b.BranchId,
-                        StatusId: b.StatusId,
-                        TimeStamp: b.TimeStamp,
-                        CreatedOn: b.CreatedOn,
-                        CreatedBy: b.CreatedBy,
-                        UpdatedBy: b.UpdatedBy,
-                        Deleted: b.Deleted,
-                        CustomerId: b.CustomerId,
-                        Grades: b.Grades,
-                        Price : b.Price,
-                       
-                    };
-                    $scope.deliveryPrice = b.Price;
-                    $scope.deliveryQuantity = b.Balance;
-                    $scope.orderDeliveryGrade = b.Grades;
-
-                    if ($scope.order.ProductId == 2) {
-                        $http.get('/webapi/BatchApi/GetAllBatchesForBrandDelivery'
-                            ).then(function (responses) {
-                                $scope.retrievedBatches = responses.data;
-
-                                angular.forEach($scope.retrievedBatches, function (value, key) {
-                                    if (value.BrandBalance > 0) {
-                                        $scope.batches = $scope.batches.concat(value);
-                                    }
-                                });
-
-                            });
-                    }
-                   else {
-                        $http.get('/webapi/BatchApi/GetAllBatchesForAParticularBranchToTransfer?productId=' + $scope.order.ProductId
-                            ).then(function (responses) {
-                                $scope.retrievedBatches = responses.data;
-                                $scope.batches = $scope.retrievedBatches;
-
-                            });
-                    }
-                });
-
           
-           //$scope.productId=  $scope.order.ProductId;
+
 
         }
 
     
         $scope.Save = function (delivery,productId) {
             $scope.showMessageSave = false;
-            var price = $scope.deliveryPrice;
-            var orderDeliveryGrades = $scope.orderDeliveryGrade;
-            var brandQuantity = $scope.deliveryQuantity;
+           
             $scope.TotalAmount = 0;
             $scope.TotalQuantity = 0;
             $scope.DenominationQuantity = 0;
@@ -174,8 +148,8 @@
 
             //    });
             //}
-            if (orderDeliveryGrades != null && orderDeliveryGrades !== 'undefined') {
-                angular.forEach(orderDeliveryGrades, function (value, key) {
+            if (delivery.SelectedDeliveryGrades != null && delivery.SelectedDeliveryGrades !== 'undefined') {
+                angular.forEach(delivery.SelectedDeliveryGrades, function (value, key) {
                     var denominations = value.Denominations;
                     angular.forEach(denominations, function (denominations) {
                         $scope.DenominationAmount = (denominations.Price * denominations.Quantity) + $scope.DenominationAmount;
@@ -186,21 +160,21 @@
 
                 });
             }
-            //else if(delivery.Grades == null && productId ==2)
-            else if (orderDeliveryGrades == null && productId == 2)
+            else if(delivery.SelectedDeliveryGrades == null && productId ==2)
+            //else if (delivery.SelectedDeliveryGrades == null && productId == 2)
             {
                 if (delivery.WeightLoss != null || delivery.WeightLoss != undefined) {
-                    //$scope.TotalAmount = delivery.Price * delivery.Quantity;
-                    $scope.TotalAmount = price * brandQuantity;
-                    //$scope.TotalQuantity = delivery.Quantity;
-                    $scope.TotalQuantity = brandQuantity;
+                    $scope.TotalAmount = delivery.Price * delivery.Quantity;
+                   // $scope.TotalAmount = delivery.Price * delivery.Quantity;
+                    $scope.TotalQuantity = delivery.Quantity;
+                    //$scope.TotalQuantity = brandQuantity;
                 }
                 else {
                     $scope.showMessageNotWeightLoss = true;
 
                     $timeout(function () {
                         $scope.showMessageNotWeightLoss = false;
-                        $state.go('delivery-edit', { 'action': 'edit', 'customerId': 'customerId', 'orderId': orderId, 'deliveryId': 0 });
+                        $state.go('delivery-edit', { 'action': 'edit', 'customerId': 'customerId',  'deliveryId': 0 });
 
                         return;
 
@@ -226,7 +200,7 @@
                 
                 $timeout(function () {
                     $scope.showMessageCheckGrade = false;
-                    $state.go('delivery-edit', { 'action': 'edit', 'customerId': 'customerId', 'orderId': orderId, 'deliveryId': 0 });
+                    $state.go('delivery-edit', { 'action': 'edit', 'customerId': 'customerId', 'deliveryId': 0 });
 
                     return;
                 }, 2000);
@@ -238,32 +212,32 @@
                     DeliveryId: deliveryId,
                     CustomerId :customerId,
                     DeliveryCost: delivery.DeliveryCost,
-                    OrderId: orderId,
+                    
                     Amount : $scope.TotalAmount,
-                    Price: $scope.deliveryPrice,
+                    Price: delivery.Price,
                     DeliveryDate : delivery.DeliveryDate,
                     Quantity: $scope.TotalQuantity,
                     VehicleNumber :delivery.VehicleNumber,
                     BranchId: delivery.BranchId,
-                    PaymentModeId: delivery.PaymentModeId,
-                    ProductId : productId,
+                    PaymentModeId: delivery.PaymentModeId.Id,
+                    ProductId :delivery.ProductId,
                     Location : delivery.Location,
                     SectorId: departmentId,
                     StoreId: delivery.StoreId,
                     SelectedBatchesToDeliver: delivery.selectedGrades,
-                    //SelectedGrades : delivery.selectedGrades,
-                    SelectedGrades: orderDeliveryGrades,
+                    SelectedGrades : delivery.selectedGrades,
+                    //SelectedGrades: orderDeliveryGrades,
                     TransactionSubTypeId : transactionSubTypeId,
                     DriverName: delivery.DriverName,
-                    DriverNIN: delivery.DriverNIN,
+                    
                     CreatedBy: delivery.CreatedBy,
                     CreatedOn: delivery.CreatedOn,
                     Deleted: delivery.Deleted,
                     Grades: delivery.Grades,
                     Batches: delivery.Batches,
                     DeliveryBatches: delivery.DeliveryBatches,
-                    //SelectedDeliveryGrades: delivery.selectedNoBatchGrades,
-                    SelectedDeliveryGrades: orderDeliveryGrades,
+                    SelectedDeliveryGrades: delivery.SelectedDeliveryGrades,
+                    //SelectedDeliveryGrades: orderDeliveryGrades,
                     WeightLoss: delivery.WeightLoss,
                 });
 
@@ -305,7 +279,7 @@
                                 $scope.showMessageSave = false;
 
                                 
-                                    $state.go('delivery-order-list', { 'orderId': orderId });
+                                $state.go('delivery-customer-list', { 'customerId': customerId });
                                 
 
                             }, 3000);
@@ -321,7 +295,9 @@
 
 
         $scope.Cancel = function () {
-            $state.go('delivery-order-list', { 'orderId': orderId });
+
+            $state.go('delivery-customer-list', { 'customerId': customerId });
+
         };     
 
     }
@@ -357,14 +333,14 @@ angular
                         priority: 1
                     }
                 },
-                {name:'OrderNumber',field:'OrderId'},
+               // {name:'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 {name: 'Driver NIN',field: 'DriverNIN'},
                 { name: 'Delivery Charge', field: 'DeliveryCost' },
                 { name: 'Vehicle Number', field: 'VehicleNumber' },
                 {name:'Quantity',field:'Quantity'},
-                {name:'BatchNumber',field:'BatchNumber'},
+                //{name:'BatchNumber',field:'BatchNumber'},
                 { name: 'Branch Name', field: 'BranchName' },
               
             ];
@@ -376,18 +352,33 @@ angular
 
 
 angular
-    .module('homer').controller('OrderDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
+    .module('homer').controller('CustomerDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
         function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
             $scope.loadingSpinner = true;
-            var orderId = $scope.orderId;
-            var promise = $http.get('/webapi/DeliveryApi/GetAllDeliveriesForAParticularOrder?orderId=' + orderId, {});
+            var customerId = $scope.customerId;
+            //var branchId = 0;
+
+            var promiseBranch = $http.get('/webapi/DeliveryApi/GetBranchId');
+            promiseBranch.then(
+                function (payload) {
+                    
+                    var b = payload.data;
+
+                   $scope.foundBranchId = b;
+                }
+            );
+           
+            $scope.retrievedCustomerId = $scope.customerId;
+            
+
+            var promise = $http.get('/webapi/DeliveryApi/GetAllDeliveriesForAParticularCustomer?customerId=' + customerId, {});
             promise.then(
                 function (payload) {
                     $scope.gridData.data = payload.data;
                     $scope.loadingSpinner = false;
                 }
             );
-
+           
             $scope.gridData = {
                 enableFiltering: true,
                 columnDefs: $scope.columns,
@@ -405,13 +396,13 @@ angular
                         priority: 1
                     }
                 },
-                {name:'OrderNumber',field:'OrderId'},
+               // {name:'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 {name:'Amount',field:'Amount'},
                 { name: 'Quantity',field:'Quantity'},
                 { name: 'Vehicle Number', field: 'VehicleNumber' },
-                {name:'BatchNumber',field:'BatchNumber'},
+               // {name:'BatchNumber',field:'BatchNumber'},
                 { name: 'Branch Name', field: 'BranchName' },
                  { name: 'Delivery Details', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/deliveries/detail/{{row.entity.DeliveryId}}"> Delivery Detail</a> </div>' },
                  {
@@ -456,7 +447,7 @@ angular
                         priority: 1
                     }
                 },
-                {name: 'OrderNumber',field:'OrderId'},
+                //{name: 'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 { name: 'Driver NIN', field: 'DriverNIN' },
@@ -503,7 +494,7 @@ angular
                         Location: b.Location,
                         StoreName: b.StoreName,
                         ProductName : b.ProductName,
-                        DriverNIN: b.DriverNIN,
+                       // DriverNIN: b.DriverNIN,
                         PaymentModeName: b.PaymentModeName,
                         DriverName: b.DriverName,
                         TimeStamp: b.TimeStamp,

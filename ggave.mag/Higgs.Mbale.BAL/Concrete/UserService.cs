@@ -52,6 +52,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 PasswordHash = user.PasswordHash,
                 UserName = user.UserName,
                 UniqueNumber = user.UniqueNumber,
+                Location = user.Location,
 
             };
             var result = this._dataService.SaveUser(aspNetUserDTO, userId);
@@ -419,6 +420,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     PasswordHash = data.PasswordHash,
                     GenderId = data.GenderId,
                     TimeStamp = data.TimeStamp,
+                    Location = data.Location,
                     DateOfBirth = data.DateOfBirth,
                     CreatedOn = data.CreatedOn,
                     RoleName = data.AspNetRoles.FirstOrDefault().Name,
@@ -483,7 +485,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     Email = data.Email,
                     UniqueNumber = data.UniqueNumber,
                     PhoneNumber = data.PhoneNumber,
-                                      
+                    Location = data.Location,              
                     RegionId = data.RegionId,
                    
 

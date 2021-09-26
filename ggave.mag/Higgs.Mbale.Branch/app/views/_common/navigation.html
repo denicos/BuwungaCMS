@@ -44,6 +44,20 @@
 
             </ul>
         </li>
+        <li ng-class="{active: $state.includes('pettycash')}">
+            <a href="#"><span class="nav-label">Petty Cash</span><span class="fa arrow"></span> </a>
+            <ul class="nav nav-second-level" ng-class="{in: $state.includes('pettycash')}">
+                <li ui-sref-active="active"><a ui-sref="pettycash.list">Petty Cash</a></li>
+
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('millingcharge')}">
+            <a href="#"><span class="nav-label">Milling Charge</span><span class="fa arrow"></span> </a>
+            <ul class="nav nav-second-level" ng-class="{in: $state.includes('millingcharge')}">
+                <li ui-sref-active="active"><a ui-sref="millingcharge.list">Milling Charge</a></li>
+
+            </ul>
+        </li>
         <!--<li ng-class="{active: $state.includes('supplies')}">
         <a href="#"><span class="nav-label">UnApproved</span><span class="fa arrow"></span> </a>
         <ul class="nav nav-second-level" ng-class="{in: $state.includes('supplies')}">
@@ -78,13 +92,13 @@
             </ul>
         </li>
 
-        <li ng-class="{active: $state.includes('utilityaccounts')}">
+        <!--<li ng-class="{active: $state.includes('utilityaccounts')}">
             <a href="#"><span class="nav-label">Utility Accounts</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('utilityaccounts')}">
                 <li ui-sref-active="active"><a ui-sref="branchcategory-utility-list">All Utilities</a></li>
 
             </ul>
-        </li>
+        </li>-->
         <li ng-class="{active: $state.includes('requistions')}">
             <a href="#"><span class="nav-label">Requistions</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('requistions')}">
@@ -112,8 +126,8 @@
             <a ui-sref="customers.list"> <span class="nav-label">All Customers</span></a>
         </li>
         <!--<li ui-sref-active="active">
-            <a ui-sref="mechanics.list"> <span class="nav-label">All Mechanics</span></a>
-        </li>-->
+        <a ui-sref="mechanics.list"> <span class="nav-label">All Mechanics</span></a>
+    </li>-->
         <li ng-class="{active: $state.includes('reports')}">
             <a href="#"><span class="nav-label">All Reports</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('reports')}">

@@ -29,6 +29,20 @@
                                         <div class="row">
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
+                                                    <label>Category</label>
+                                                    <select style="border: none" name="category" class="form-control col-sm-12" data-ng-model="pettyCash.RequistionCategoryId" required ng-class="{errorinput:form.category.$invalid}"
+                                                            data-ng-options="i.RequistionCategoryId as i.Name for i in requistionCategories">
+                                                        <option value="">Please select</option>
+                                                    </select>
+
+                                                    <span ng-show="form.category.$invalid">
+                                                        <span ng-show="form.category.$error.required" class="help-block error"><i class="fa fa-warning"></i>Cateogry is a required field.</span>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <div class="col-sm-12">
                                                     <label>Amount</label>
                                                     <input ng-readonly="readOnly" name="amount" class="form-control" ng-model="pettyCash.Amount" ng-pattern="/^\-?\d+((\.)\d+)?$/" required ng-class="{ errorinput: form.amount.$invalid }">
                                                     <span ng-show="form.amount.$invalid">
@@ -43,7 +57,7 @@
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
                                                     <label>Branch</label>
-                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="pettyCash.BranchId" ng-class="{errorinput:form.branch.$invalid}"
+                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="pettyCash.BranchId" required ng-class="{errorinput:form.branch.$invalid}"
                                                             data-ng-options="i.BranchId as i.Name for i in branches">
                                                         <option value="">Please select</option>
                                                     </select>

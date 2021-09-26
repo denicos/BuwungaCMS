@@ -14,6 +14,7 @@ namespace Higgs.Mbale.Models
         public double Quantity { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public double Balance { get; set; }
+        public Nullable<double> BuveraAmount { get; set; }
         public  Batch Batch { get; set; }
         public  Grade Grade { get; set; }
         public  Size Size { get; set; }

@@ -13,11 +13,10 @@ namespace Higgs.Mbale.Models
         public long ProductId { get; set; }
         public string ApprovedById { get; set; }
         public double DeliveryCost { get; set; }
-        public string DriverNIN { get; set; }
         public string VehicleNumber { get; set; }
-        public long OrderId { get; set; }
+       // public long OrderId { get; set; }
         public long TransactionSubTypeId { get; set; }
-        public long MediaId { get; set; }
+       
         public long BranchId { get; set; }
         public long SectorId { get; set; }
         public double Amount { get; set; }
@@ -51,7 +50,7 @@ namespace Higgs.Mbale.Models
         public double WeightLoss { get; set; }
 
         public string PaymentModeName { get; set; }
-       public string OrderNumber { get; set; }
+      // public string OrderNumber { get; set; }
        public long DocumentId { get; set; }
 
         public IEnumerable<BatchToDeliverGrades> BatchGradesToDeliver { get; set; }

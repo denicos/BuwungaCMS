@@ -375,6 +375,7 @@ namespace Higgs.Mbale.Web.Controllers
                     LastName = userViewModel.LastName,
                     PhoneNumber = userViewModel.PhoneNumber,
                     UniqueNumber = userViewModel.UniqueNumber,
+                    Location = userViewModel.Location,
                     RegionId = userViewModel.RegionId,
                     //SelectedProducts = userViewModel.SelectedProducts,
                 };
@@ -474,6 +475,7 @@ namespace Higgs.Mbale.Web.Controllers
                 PhoneNumber = user.PhoneNumber,
                 UserName = user.UserName,
                 UniqueNumber = user.UniqueNumber,
+                Location = user.Location,
               SelectedRegionId = Convert.ToInt64(user.RegionId),
 
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
@@ -543,6 +545,7 @@ namespace Higgs.Mbale.Web.Controllers
                 user.UserName = editUser.UserName;
                 user.UniqueNumber = editUser.UniqueNumber;
                 user.RegionId = editUser.RegionId;
+                user.Location = editUser.Location;
               //  user.RegionId = editUser.SelectedRegionId;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);

@@ -66,9 +66,15 @@ namespace Higgs.Mbale.DAL.Concrete
             return this.UnitOfWork.Get<Delivery>().AsQueryable().Where(e => e.Deleted == false && e.BranchId == branchId && e.Approved == false).OrderByDescending(e => e.CreatedOn).Take(20); 
         }
 
-        public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+        //public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+        //{
+        //    return this.UnitOfWork.Get<Delivery>().AsQueryable().Where(e => e.Deleted == false && e.OrderId == orderId && (e.Approved == true || e.Approved == null));
+        //}
+
+        public IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId)
         {
-            return this.UnitOfWork.Get<Delivery>().AsQueryable().Where(e => e.Deleted == false && e.OrderId == orderId && (e.Approved == true || e.Approved == null));
+            return this.UnitOfWork.Get<Delivery>().AsQueryable().Where(e => e.Deleted == false && e.CustomerId == customerId && (e.Approved == true || e.Approved == null)).
+                OrderByDescending(e => e.CreatedOn).Take(5); ;
         }
         /// <summary>
         /// Saves a new Delivery or updates an already existing Delivery.
@@ -88,7 +94,7 @@ namespace Higgs.Mbale.DAL.Concrete
                     CustomerId = deliveryDTO.CustomerId,
                     StoreId = deliveryDTO.StoreId,
                     DeliveryCost = deliveryDTO.DeliveryCost,
-                    OrderId = deliveryDTO.OrderId,
+                   // OrderId = deliveryDTO.OrderId,
                     DeliveryDate = deliveryDTO.DeliveryDate,
                     Amount = deliveryDTO.Amount,
                     PaymentModeId = deliveryDTO.PaymentModeId,
@@ -99,8 +105,7 @@ namespace Higgs.Mbale.DAL.Concrete
                     BranchId = deliveryDTO.BranchId,
                     Location = deliveryDTO.Location,
                     SectorId = deliveryDTO.SectorId,
-                    MediaId = deliveryDTO.MediaId,
-                    DriverNIN = deliveryDTO.DriverNIN,
+                   
                     DriverName = deliveryDTO.DriverName,
                     TransactionSubTypeId = deliveryDTO.TransactionSubTypeId,
                     CreatedOn = DateTime.Now,
@@ -125,7 +130,7 @@ namespace Higgs.Mbale.DAL.Concrete
                     result.DeliveryCost = deliveryDTO.DeliveryCost;
                     result.CustomerId = deliveryDTO.CustomerId;
                     result.StoreId = deliveryDTO.StoreId;
-                    result.OrderId =  deliveryDTO.OrderId;
+                    //result.OrderId =  deliveryDTO.OrderId;
                     result.ProductId = deliveryDTO.ProductId;
                     result.DeliveryDate = deliveryDTO.DeliveryDate;
                     result.PaymentModeId = deliveryDTO.PaymentModeId;
@@ -137,9 +142,9 @@ namespace Higgs.Mbale.DAL.Concrete
                     result.BranchId = deliveryDTO.BranchId;
                     result.Location = deliveryDTO.Location;
                     result.SectorId = deliveryDTO.SectorId;
-                    result.MediaId = deliveryDTO.MediaId;
+                    
                     result.DriverName = deliveryDTO.DriverName;
-                    result.DriverNIN = deliveryDTO.DriverNIN;
+                    
                     result.UpdatedBy = userId;
                     result.TimeStamp = DateTime.Now;
                     result.Deleted = deliveryDTO.Deleted;

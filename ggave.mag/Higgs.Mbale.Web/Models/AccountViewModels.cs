@@ -87,8 +87,12 @@ namespace Higgs.Mbale.Web.Models
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "Supplier Number")]
+        [Display(Name = "Account Number")]
         public string UniqueNumber { get; set; }
+
+        [Display(Name = "Location")]
+        public string Location { get; set; }
+
 
         [Display(Name = "District")]
         public long RegionId { get; set; }

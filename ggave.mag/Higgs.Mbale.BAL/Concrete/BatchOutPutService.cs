@@ -214,6 +214,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                             SizeId = denomination.DenominationId,
                                             BatchOutPutId = batchOutPutId,
                                             Quantity = denomination.Quantity,
+                                            BuveraAmount = (denomination.Rate * denomination.Quantity),
                                             Balance = denomination.Quantity,
                                             TimeStamp = DateTime.Now
                                         };
@@ -385,6 +386,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             GradeId = batchGradeSize.GradeId,
                             Quantity = batchGradeSize.Quantity,
                             SizeId = batchGradeSize.SizeId,
+                            BuveraAmount = batchGradeSize.BuveraAmount,
                             Balance = batchGradeSize.Balance,
                             TimeStamp = batchGradeSize.TimeStamp
                         };
@@ -430,6 +432,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             GradeId = batchGradeSize.GradeId,
                             Quantity = batchGradeSize.Quantity,
                             SizeId = batchGradeSize.SizeId,
+                            BuveraAmount = batchGradeSize.BuveraAmount,
                             Balance = batchGradeSize.Balance,
                             TimeStamp = batchGradeSize.TimeStamp
                         };
@@ -529,7 +532,8 @@ namespace Higgs.Mbale.BAL.Concrete
                                             Value = ogs.Size != null ? ogs.Size.Value : 0,
                                             Quantity = ogs.Quantity,
                                             Rate = ogs.Size.Rate,
-                                            Amount = ogs.Quantity * (Convert.ToDouble(ogs.Size.Rate)),
+                                            //Amount = ogs.Quantity * (Convert.ToDouble(ogs.Size.Rate)),
+                                            Amount = Convert.ToDouble(ogs.BuveraAmount),
                                             Balance = ogs.Balance,
                                         };
                                         batchOutPut.TotalQuantity += (ogs.Quantity * ogs.Size.Value);

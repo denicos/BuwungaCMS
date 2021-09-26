@@ -13,6 +13,7 @@ namespace Higgs.Mbale.DTO
         public double Quantity { get; set; }
         public string Notes { get; set; }
         public double Amount { get; set; }
+        public double Rate { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string CreatedBy { get; set; }
         public string DeletedBy { get; set; }

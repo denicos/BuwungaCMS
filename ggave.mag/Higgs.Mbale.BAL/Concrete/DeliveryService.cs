@@ -21,7 +21,7 @@ namespace Higgs.Mbale.BAL.Concrete
         private long branTransactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["BranSaleTransactionSubTypeId"]);
         private long invoiceId = Convert.ToInt64(ConfigurationManager.AppSettings["Invoice"]);
         private long receiptId = Convert.ToInt64(ConfigurationManager.AppSettings["Receipt"]);
-        private double orderBalance = 0,batchBrandBalance=0,soldOutAmount =0;
+        //private double orderBalance = 0,batchBrandBalance=0,soldOutAmount =0;
         private long documentId = 0;
         List<BatchDeliveryDetails> batchDeliveryList = new List<BatchDeliveryDetails>();
        
@@ -79,9 +79,9 @@ namespace Higgs.Mbale.BAL.Concrete
             return MapEFToModel(results);
 
         }
-        public IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId)
+        public IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId)
         {
-            var results = this._dataService.GetAllDeliveriesForAParticularOrder(orderId);
+            var results = this._dataService.GetAllDeliveriesForAParticularCustomer(customerId);
             return MapEFToModel(results);
 
         }
@@ -163,147 +163,147 @@ namespace Higgs.Mbale.BAL.Concrete
         }
        
 
-        private MakeDelivery ReduceBatchFlourStock(Delivery delivery,List<BatchOutPut> batchOutPuts, string userId)
-        {
-            BatchOutPut batchOutPut = new BatchOutPut();
-            if(batchOutPuts.Any())
-            {
-                batchOutPut = batchOutPuts.First();
-            }
+//        private MakeDelivery ReduceBatchFlourStock(Delivery delivery,List<BatchOutPut> batchOutPuts, string userId)
+//        {
+//            BatchOutPut batchOutPut = new BatchOutPut();
+//            if(batchOutPuts.Any())
+//            {
+//                batchOutPut = batchOutPuts.First();
+//            }
             
           
-           bool orderHasBalance = false;
-           Grade foundGrade = new Grade();
-           var makeDelivery = new MakeDelivery();
-           #region NewCode
-             if(batchOutPut.Grades.Any())
-                {   
+//           bool orderHasBalance = false;
+//           Grade foundGrade = new Grade();
+//           var makeDelivery = new MakeDelivery();
+//           #region NewCode
+////             if(batchOutPut.Grades.Any())
+////                {   
                    
-                    bool hasGrade = false;
-                  List<OrderGradeSize> orderGradeSizes = new List<OrderGradeSize>();
-                  List<BatchGradeSize> batchGradeSizes = new List<BatchGradeSize>();
-                var order = _orderService.GetOrder(delivery.OrderId);
-#region foreach
-                     foreach (var orderGrade in order.Grades)
-	                         {
-                                 hasGrade = CheckIfBatchHasOrderGrade(orderGrade.GradeId, batchOutPut.Grades);
-                                     if(hasGrade)
-                                     {
-                                  foundGrade =  GetGradeSameAsOrderGrade(batchOutPut.Grades,  orderGrade.GradeId);
-                                  int j = 0;
-                                  foreach (var foundGradeDenom in foundGrade.Denominations)
-                                  {
-                                      //int j = 0;
-                                      //int count = orderGrade.Denominations.Count();
-                                      double quantityToRemove = 0;
-                                      bool flag = false;
-                                      quantityToRemove = foundGradeDenom.QuantityToRemove;
-                                      double balanceValue = 0,quantity = 0;
+////                    bool hasGrade = false;
+////                  List<OrderGradeSize> orderGradeSizes = new List<OrderGradeSize>();
+////                  List<BatchGradeSize> batchGradeSizes = new List<BatchGradeSize>();
+////                var order = _orderService.GetOrder(delivery.OrderId);
+////#region foreach
+////                     foreach (var orderGrade in order.Grades)
+////	                         {
+////                                 hasGrade = CheckIfBatchHasOrderGrade(orderGrade.GradeId, batchOutPut.Grades);
+////                                     if(hasGrade)
+////                                     {
+////                                  foundGrade =  GetGradeSameAsOrderGrade(batchOutPut.Grades,  orderGrade.GradeId);
+////                                  int j = 0;
+////                                  foreach (var foundGradeDenom in foundGrade.Denominations)
+////                                  {
+////                                      //int j = 0;
+////                                      //int count = orderGrade.Denominations.Count();
+////                                      double quantityToRemove = 0;
+////                                      bool flag = false;
+////                                      quantityToRemove = foundGradeDenom.QuantityToRemove;
+////                                      double balanceValue = 0,quantity = 0;
 
-                                      var batchGradeSizeBalance = foundGradeDenom.Balance - foundGradeDenom.QuantityToRemove;
-                                      var batchGradeSize = new BatchGradeSize()
-                                              {
-                                                  BatchOutPutId = batchOutPut.BatchOutPutId,
-                                                  GradeId = foundGrade.GradeId,
-                                                  SizeId = foundGradeDenom.DenominationId,
-                                                  Quantity = foundGradeDenom.Quantity,
-                                                  Balance = batchGradeSizeBalance,
-                                              };
+////                                      var batchGradeSizeBalance = foundGradeDenom.Balance - foundGradeDenom.QuantityToRemove;
+////                                      var batchGradeSize = new BatchGradeSize()
+////                                              {
+////                                                  BatchOutPutId = batchOutPut.BatchOutPutId,
+////                                                  GradeId = foundGrade.GradeId,
+////                                                  SizeId = foundGradeDenom.DenominationId,
+////                                                  Quantity = foundGradeDenom.Quantity,
+////                                                  Balance = batchGradeSizeBalance,
+////                                              };
 
-                                      batchGradeSizes.Add(batchGradeSize);
-#region forloop
-                                      for (int i = j; i < orderGrade.Denominations.Count(); i++)
-			                                {
-                                                j = j + 1;
-                                                balanceValue = orderGrade.Denominations[i].Balance;
-                                                quantity = orderGrade.Denominations[i].Quantity;
+////                                      batchGradeSizes.Add(batchGradeSize);
+////#region forloop
+////                                      for (int i = j; i < orderGrade.Denominations.Count(); i++)
+////			                                {
+////                                                j = j + 1;
+////                                                balanceValue = orderGrade.Denominations[i].Balance;
+////                                                quantity = orderGrade.Denominations[i].Quantity;
 			                      
-                                      var orderGradeSizeBalance =balanceValue - quantityToRemove;
-                                          var orderGradeSize = new OrderGradeSize()
-                                            {
-                                                OrderId = delivery.OrderId,
-                                                GradeId = orderGrade.GradeId,
-                                                SizeId = foundGradeDenom.DenominationId,
-                                                Quantity = quantity,
-                                                Balance = orderGradeSizeBalance,
-                                            };
+////                                      var orderGradeSizeBalance =balanceValue - quantityToRemove;
+////                                          var orderGradeSize = new OrderGradeSize()
+////                                            {
+////                                                OrderId = delivery.OrderId,
+////                                                GradeId = orderGrade.GradeId,
+////                                                SizeId = foundGradeDenom.DenominationId,
+////                                                Quantity = quantity,
+////                                                Balance = orderGradeSizeBalance,
+////                                            };
 
-                                          orderGradeSizes.Add(orderGradeSize);
+////                                          orderGradeSizes.Add(orderGradeSize);
 
-                                          var inOrOut = false;
-                                          //Method that removes flour from storeGradeSize table
-                                          var storeGradeSize = new StoreGradeSize()
-                                          {
-                                              StoreId = delivery.StoreId,
-                                              GradeId = orderGrade.GradeId,
-                                              SizeId = foundGradeDenom.DenominationId,
-                                              Quantity = quantityToRemove,
-                                          };
+////                                          var inOrOut = false;
+////                                          //Method that removes flour from storeGradeSize table
+////                                          var storeGradeSize = new StoreGradeSize()
+////                                          {
+////                                              StoreId = delivery.StoreId,
+////                                              GradeId = orderGrade.GradeId,
+////                                              SizeId = foundGradeDenom.DenominationId,
+////                                              Quantity = quantityToRemove,
+////                                          };
 
-                                          this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
-                                      //}
-                                          if (i < 6)
-                                          {
-                                              flag = true;
-                                              break;
-                                          }
-                                            }
-                                      if (flag)
-                                      {
-                                          continue;
-                                      }
-                                     }
-#endregion
-                                 orderHasBalance =  FindIfFlourOrderHasBalance(orderGradeSizes);
-                                 _orderService.PurgeOrderGradeSize(delivery.OrderId);
+////                                          this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
+////                                      //}
+////                                          if (i < 6)
+////                                          {
+////                                              flag = true;
+////                                              break;
+////                                          }
+////                                            }
+////                                      if (flag)
+////                                      {
+////                                          continue;
+////                                      }
+////                                     }
+////#endregion
+////                                 orderHasBalance =  FindIfFlourOrderHasBalance(orderGradeSizes);
+////                                 _orderService.PurgeOrderGradeSize(delivery.OrderId);
                                  
-                                 foreach (var item in orderGradeSizes)
-                                 {
-                                     var orderGradeSize = new OrderGradeSize()
-                                     {
-                                         OrderId = item.OrderId,
-                                         GradeId = item.GradeId,
-                                         SizeId = item.SizeId,
-                                         Quantity = item.Quantity,
-                                         Balance = item.Balance
+////                                 foreach (var item in orderGradeSizes)
+////                                 {
+////                                     var orderGradeSize = new OrderGradeSize()
+////                                     {
+////                                         OrderId = item.OrderId,
+////                                         GradeId = item.GradeId,
+////                                         SizeId = item.SizeId,
+////                                         Quantity = item.Quantity,
+////                                         Balance = item.Balance
 
-                                     };
-                                     _orderService.UpdateOrderGradeSizes(orderGradeSize.OrderId, orderGradeSize.GradeId, orderGradeSize.SizeId, orderGradeSize.Quantity,Convert.ToDouble(orderGradeSize.Balance));
-                                 }
-                                      }
-                                     _batchService.UpdateBatchGradeSizes(batchGradeSizes); 
+////                                     };
+////                                     _orderService.UpdateOrderGradeSizes(orderGradeSize.OrderId, orderGradeSize.GradeId, orderGradeSize.SizeId, orderGradeSize.Quantity,Convert.ToDouble(orderGradeSize.Balance));
+////                                 }
+////                                      }
+////                                     _batchService.UpdateBatchGradeSizes(batchGradeSizes); 
                         
-                                 }
+////                                 }
                                  
-#endregion
-                     if (orderHasBalance)
-                     {
-                         makeDelivery = new MakeDelivery()
-                         {
-                             StockReduced = true,
-                             OrderQuantityBalance = 1,
-                         };
-                         return makeDelivery;
-                     }
-                     else
-                     {
-                         makeDelivery = new MakeDelivery()
-                         {
-                             StockReduced = true,
-                             OrderQuantityBalance = 0,
-                         };
-                         return makeDelivery;
-                     }
+////#endregion
+////                     if (orderHasBalance)
+////                     {
+////                         makeDelivery = new MakeDelivery()
+////                         {
+////                             StockReduced = true,
+////                             OrderQuantityBalance = 1,
+////                         };
+////                         return makeDelivery;
+////                     }
+////                     else
+////                     {
+////                         makeDelivery = new MakeDelivery()
+////                         {
+////                             StockReduced = true,
+////                             OrderQuantityBalance = 0,
+////                         };
+////                         return makeDelivery;
+////                     }
                        
-                 }
-             return makeDelivery;
+////                 }
+////             return makeDelivery;
 
             
     
-           #endregion
+//           #endregion
           
 
-        }
+//        }
 
         private MakeDelivery MakeBatchDeliveryGradeSize(long deliveryId,Delivery delivery)
         {
@@ -333,9 +333,10 @@ namespace Higgs.Mbale.BAL.Concrete
                             bool hasGrade = false;
                             List<OrderGradeSize> orderGradeSizes = new List<OrderGradeSize>();
                             List<BatchDeliveryGradeSizeDTO> batchDeliveryGradeSizes = new List<BatchDeliveryGradeSizeDTO>();
-                            var order = _orderService.GetOrder(delivery.OrderId);
+                            //var order = _orderService.GetOrder(delivery.OrderId);
                             #region foreach
-                            foreach (var orderGrade in order.Grades)
+                           // foreach (var orderGrade in order.Grades)
+                            foreach (var orderGrade in delivery.SelectedDeliveryGrades)
                             {
                                 hasGrade = CheckIfBatchHasOrderGrade(orderGrade.GradeId, item.AvailabeBatchGrades);
                                 if (hasGrade)
@@ -474,405 +475,405 @@ namespace Higgs.Mbale.BAL.Concrete
             return hasBalance;            
         }
        
-        private MakeDelivery MakeFlourDeliveryRecord(Delivery delivery, string userId)
-        {
-            bool orderHasBalance = false;
-            Grade foundGrade = new Grade();
-            var makeDelivery = new MakeDelivery();
-            #region withoutBatches
-            if ((delivery.Batches == null || !delivery.Batches.Any()) && delivery.BranchId == 20006)
-            {
-                if(delivery.SelectedDeliveryGrades.Any())
-                {   
+        //private MakeDelivery MakeFlourDeliveryRecord(Delivery delivery, string userId)
+        //{
+        //    bool orderHasBalance = false;
+        //    Grade foundGrade = new Grade();
+        //    var makeDelivery = new MakeDelivery();
+        //    #region withoutBatches
+        //    if ((delivery.Batches == null || !delivery.Batches.Any()) && delivery.BranchId == 20006)
+        //    {
+        //        if(delivery.SelectedDeliveryGrades.Any())
+        //        {   
                    
-                    bool hasGrade = false;
-                  List<OrderGradeSize> orderGradeSizes = new List<OrderGradeSize>();
-                var order = _orderService.GetOrder(delivery.OrderId);
-                     foreach (var orderGrade in order.Grades)
-	                         {
-                                 hasGrade = CheckIfBatchHasOrderGrade(orderGrade.GradeId, delivery.SelectedDeliveryGrades);
-                                     if(hasGrade)
-                                     {
-                                  foundGrade =  GetGradeSameAsOrderGrade(delivery.SelectedDeliveryGrades,  orderGrade.GradeId);
-                                  int j = 0;
-                                  foreach (var foundGradeDenom in foundGrade.Denominations)
-                                  {
-                                      //int j = 0;
-                                      //int count = orderGrade.Denominations.Count();
-                                      double quantityToRemove = 0;
-                                      bool flag = false;
-                                      quantityToRemove = foundGradeDenom.Quantity;
-                                      double balanceValue = 0,quantity = 0;
-                                      for (int i = j; i < orderGrade.Denominations.Count(); i++)
-			                                {
-                                                j = j + 1;
-                                                balanceValue = orderGrade.Denominations[i].Balance;
-                                                quantity = orderGrade.Denominations[i].Quantity;
+        //            bool hasGrade = false;
+        //          List<OrderGradeSize> orderGradeSizes = new List<OrderGradeSize>();
+        //        var order = _orderService.GetOrder(delivery.OrderId);
+        //             foreach (var orderGrade in order.Grades)
+	       //                  {
+        //                         hasGrade = CheckIfBatchHasOrderGrade(orderGrade.GradeId, delivery.SelectedDeliveryGrades);
+        //                             if(hasGrade)
+        //                             {
+        //                          foundGrade =  GetGradeSameAsOrderGrade(delivery.SelectedDeliveryGrades,  orderGrade.GradeId);
+        //                          int j = 0;
+        //                          foreach (var foundGradeDenom in foundGrade.Denominations)
+        //                          {
+        //                              //int j = 0;
+        //                              //int count = orderGrade.Denominations.Count();
+        //                              double quantityToRemove = 0;
+        //                              bool flag = false;
+        //                              quantityToRemove = foundGradeDenom.Quantity;
+        //                              double balanceValue = 0,quantity = 0;
+        //                              for (int i = j; i < orderGrade.Denominations.Count(); i++)
+			     //                           {
+        //                                        j = j + 1;
+        //                                        balanceValue = orderGrade.Denominations[i].Balance;
+        //                                        quantity = orderGrade.Denominations[i].Quantity;
 			                      
-                                      var orderGradeSizeBalance =balanceValue - quantityToRemove;
-                                          var orderGradeSize = new OrderGradeSize()
-                                            {
-                                                OrderId = delivery.OrderId,
-                                                GradeId = orderGrade.GradeId,
-                                                SizeId = foundGradeDenom.DenominationId,
-                                                Quantity = quantity,
-                                                Balance = orderGradeSizeBalance,
-                                            };
+        //                              var orderGradeSizeBalance =balanceValue - quantityToRemove;
+        //                                  var orderGradeSize = new OrderGradeSize()
+        //                                    {
+        //                                        OrderId = delivery.OrderId,
+        //                                        GradeId = orderGrade.GradeId,
+        //                                        SizeId = foundGradeDenom.DenominationId,
+        //                                        Quantity = quantity,
+        //                                        Balance = orderGradeSizeBalance,
+        //                                    };
 
-                                          orderGradeSizes.Add(orderGradeSize);
+        //                                  orderGradeSizes.Add(orderGradeSize);
 
-                                          var inOrOut = false;
-                                          //Method that removes flour from storeGradeSize table
-                                          var storeGradeSize = new StoreGradeSize()
-                                          {
-                                              StoreId = delivery.StoreId,
-                                              GradeId = orderGrade.GradeId,
-                                              SizeId = foundGradeDenom.DenominationId,
-                                              Quantity = quantityToRemove,
-                                          };
+        //                                  var inOrOut = false;
+        //                                  //Method that removes flour from storeGradeSize table
+        //                                  var storeGradeSize = new StoreGradeSize()
+        //                                  {
+        //                                      StoreId = delivery.StoreId,
+        //                                      GradeId = orderGrade.GradeId,
+        //                                      SizeId = foundGradeDenom.DenominationId,
+        //                                      Quantity = quantityToRemove,
+        //                                  };
 
-                                          this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
-                                      //}
-                                          if (i < 6)
-                                          {
-                                              flag = true;
-                                              break;
-                                          }
-                                            }
-                                      if (flag)
-                                      {
-                                          continue;
-                                      }
-                                     }
-                                 orderHasBalance =  FindIfFlourOrderHasBalance(orderGradeSizes);
-                                 _orderService.PurgeOrderGradeSize(delivery.OrderId);
+        //                                  this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
+        //                              //}
+        //                                  if (i < 6)
+        //                                  {
+        //                                      flag = true;
+        //                                      break;
+        //                                  }
+        //                                    }
+        //                              if (flag)
+        //                              {
+        //                                  continue;
+        //                              }
+        //                             }
+        //                         orderHasBalance =  FindIfFlourOrderHasBalance(orderGradeSizes);
+        //                         _orderService.PurgeOrderGradeSize(delivery.OrderId);
                                  
-                                 foreach (var item in orderGradeSizes)
-                                 {
-                                     var orderGradeSize = new OrderGradeSize()
-                                     {
-                                         OrderId = item.OrderId,
-                                         GradeId = item.GradeId,
-                                         SizeId = item.SizeId,
-                                         Quantity = item.Quantity,
-                                         Balance = item.Balance
+        //                         foreach (var item in orderGradeSizes)
+        //                         {
+        //                             var orderGradeSize = new OrderGradeSize()
+        //                             {
+        //                                 OrderId = item.OrderId,
+        //                                 GradeId = item.GradeId,
+        //                                 SizeId = item.SizeId,
+        //                                 Quantity = item.Quantity,
+        //                                 Balance = item.Balance
 
-                                     };
-                                     _orderService.UpdateOrderGradeSizes(orderGradeSize.OrderId, orderGradeSize.GradeId, orderGradeSize.SizeId, orderGradeSize.Quantity,Convert.ToDouble(orderGradeSize.Balance));
-                                 }
-                                      }
-                                 }
-                     if (orderHasBalance)
-                     {
-                         makeDelivery = new MakeDelivery()
-                         {
-                             StockReduced = true,
-                             OrderQuantityBalance = 1,
-                         };
-                         return makeDelivery;
-                     }
-                     else
-                     {
-                         makeDelivery = new MakeDelivery()
-                         {
-                             StockReduced = true,
-                             OrderQuantityBalance = 0,
-                         };
-                         return makeDelivery;
-                     }
+        //                             };
+        //                             _orderService.UpdateOrderGradeSizes(orderGradeSize.OrderId, orderGradeSize.GradeId, orderGradeSize.SizeId, orderGradeSize.Quantity,Convert.ToDouble(orderGradeSize.Balance));
+        //                         }
+        //                              }
+        //                         }
+        //             if (orderHasBalance)
+        //             {
+        //                 makeDelivery = new MakeDelivery()
+        //                 {
+        //                     StockReduced = true,
+        //                     OrderQuantityBalance = 1,
+        //                 };
+        //                 return makeDelivery;
+        //             }
+        //             else
+        //             {
+        //                 makeDelivery = new MakeDelivery()
+        //                 {
+        //                     StockReduced = true,
+        //                     OrderQuantityBalance = 0,
+        //                 };
+        //                 return makeDelivery;
+        //             }
                        
-                 }
+        //         }
 
-            }
-            #endregion
+        //    }
+        //    #endregion
             
-                #region WithBatches
-            else
-            {
+        //        #region WithBatches
+        //    else
+        //    {
                
-                List<Batch> SortedBatchList = delivery.Batches.OrderBy(o => o.CreatedOn).ToList();
-                foreach (var batch in SortedBatchList)
-                {
-                    makeDelivery = ReduceBatchFlourStock(delivery,batch.BatchOutPuts,userId);
-                    if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
-                    {
-                        makeDelivery = new MakeDelivery()
-                        {
-                            StockReduced = true,
-                            OrderQuantityBalance = 0,
-                        };
-                        return makeDelivery;
-                    }
-                    else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 1)
-                    {
+        //        List<Batch> SortedBatchList = delivery.Batches.OrderBy(o => o.CreatedOn).ToList();
+        //        foreach (var batch in SortedBatchList)
+        //        {
+        //            makeDelivery = ReduceBatchFlourStock(delivery,batch.BatchOutPuts,userId);
+        //            if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
+        //            {
+        //                makeDelivery = new MakeDelivery()
+        //                {
+        //                    StockReduced = true,
+        //                    OrderQuantityBalance = 0,
+        //                };
+        //                return makeDelivery;
+        //            }
+        //            else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 1)
+        //            {
 
-                        makeDelivery = new MakeDelivery()
-                        {
-                            StockReduced = false,
-                            OrderQuantityBalance = 1,
-                        };
-                        return makeDelivery;
-                    }
+        //                makeDelivery = new MakeDelivery()
+        //                {
+        //                    StockReduced = false,
+        //                    OrderQuantityBalance = 1,
+        //                };
+        //                return makeDelivery;
+        //            }
                    
                    
                    
-                }
+        //        }
 
 
-            }
-            #endregion
+        //    }
+        //    #endregion
 
-            return makeDelivery;
-        }
+        //    return makeDelivery;
+        //}
         #endregion
 
 
         #region Brand
 
-        private MakeDelivery ReduceBatchBrandStock(Batch batch, double orderQuantity, double totalQuantity, string userId)
-        {
-            var soldOut = false;
-            MakeDelivery makeDelivery = new MakeDelivery();
-            if (orderQuantity >= totalQuantity)
-            {
+        //private MakeDelivery ReduceBatchBrandStock(Batch batch, double orderQuantity, double totalQuantity, string userId)
+        //{
+        //    var soldOut = false;
+        //    MakeDelivery makeDelivery = new MakeDelivery();
+        //    if (orderQuantity >= totalQuantity)
+        //    {
 
-                if (batch != null)
-                {
-                    if (orderQuantity >= totalQuantity)
-                    {
-                        if (totalQuantity > batch.BrandBalance)
-                        {
-                            orderBalance = orderQuantity - batch.BrandBalance;
-                        }
-                        else
-                        {
-                            orderBalance = orderQuantity - totalQuantity;
-                        }
+        //        if (batch != null)
+        //        {
+        //            if (orderQuantity >= totalQuantity)
+        //            {
+        //                if (totalQuantity > batch.BrandBalance)
+        //                {
+        //                    orderBalance = orderQuantity - batch.BrandBalance;
+        //                }
+        //                else
+        //                {
+        //                    orderBalance = orderQuantity - totalQuantity;
+        //                }
 
-                        if (totalQuantity <= batch.BrandBalance)
-                        {
-                            batchBrandBalance = batch.BrandBalance - totalQuantity;
-                            _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
-                            if (batchBrandBalance > 0)
-                            {
+        //                if (totalQuantity <= batch.BrandBalance)
+        //                {
+        //                    batchBrandBalance = batch.BrandBalance - totalQuantity;
+        //                    _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
+        //                    if (batchBrandBalance > 0)
+        //                    {
 
-                                makeDelivery = new MakeDelivery()
-                                {
-                                    StockReduced = soldOut,
-                                    OrderQuantityBalance = orderBalance,
-                                    BatchBrandBalance = batchBrandBalance,
+        //                        makeDelivery = new MakeDelivery()
+        //                        {
+        //                            StockReduced = soldOut,
+        //                            OrderQuantityBalance = orderBalance,
+        //                            BatchBrandBalance = batchBrandBalance,
 
-                                };
-
-
-
-                                return makeDelivery;
-                            }
-                            else
-                            {
-
-                                makeDelivery = new MakeDelivery()
-                                {
-                                    StockReduced = true,
-                                    OrderQuantityBalance = orderBalance,
-                                    BatchBrandBalance = batchBrandBalance,
-
-                                };
-                                return makeDelivery;
-                            }
-
-                        }
-                        else
-                        {
-                            batchBrandBalance = 0;
-                            _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
-                            orderBalance = orderQuantity - batch.BrandBalance;
-
-
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = true,
-                                OrderQuantityBalance = orderBalance,
-                                BatchBrandBalance = batchBrandBalance,
-
-                            };
-                            return makeDelivery;
-                        }
-
-                    }
-                    else
-                    {
-
-                        batchBrandBalance = batch.BrandBalance - orderQuantity;
-                        orderBalance = batchBrandBalance - orderQuantity;
-                        _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
-                        if (batchBrandBalance > 0)
-                        {
-
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = soldOut,
-                                OrderQuantityBalance = orderBalance,
-                                BatchBrandBalance = batchBrandBalance,
-
-                            };
-                            return makeDelivery;
-                        }
-                        else
-                        {
-
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = true,
-                                OrderQuantityBalance = orderBalance,
-                                BatchBrandBalance = batchBrandBalance,
-
-                            };
-                            return makeDelivery;
-                        }
-                    }
+        //                        };
 
 
 
-                }
-                else
-                {
-                    //batch doesn't have enough quantities
-                }
-            }
-            return makeDelivery;
-        }
+        //                        return makeDelivery;
+        //                    }
+        //                    else
+        //                    {
+
+        //                        makeDelivery = new MakeDelivery()
+        //                        {
+        //                            StockReduced = true,
+        //                            OrderQuantityBalance = orderBalance,
+        //                            BatchBrandBalance = batchBrandBalance,
+
+        //                        };
+        //                        return makeDelivery;
+        //                    }
+
+        //                }
+        //                else
+        //                {
+        //                    batchBrandBalance = 0;
+        //                    _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
+        //                    orderBalance = orderQuantity - batch.BrandBalance;
+
+
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = true,
+        //                        OrderQuantityBalance = orderBalance,
+        //                        BatchBrandBalance = batchBrandBalance,
+
+        //                    };
+        //                    return makeDelivery;
+        //                }
+
+        //            }
+        //            else
+        //            {
+
+        //                batchBrandBalance = batch.BrandBalance - orderQuantity;
+        //                orderBalance = batchBrandBalance - orderQuantity;
+        //                _batchService.UpdateBatchBrandBalance(batch.BatchId, batchBrandBalance, userId);
+        //                if (batchBrandBalance > 0)
+        //                {
+
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = soldOut,
+        //                        OrderQuantityBalance = orderBalance,
+        //                        BatchBrandBalance = batchBrandBalance,
+
+        //                    };
+        //                    return makeDelivery;
+        //                }
+        //                else
+        //                {
+
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = true,
+        //                        OrderQuantityBalance = orderBalance,
+        //                        BatchBrandBalance = batchBrandBalance,
+
+        //                    };
+        //                    return makeDelivery;
+        //                }
+        //            }
+
+
+
+        //        }
+        //        else
+        //        {
+        //            //batch doesn't have enough quantities
+        //        }
+        //    }
+        //    return makeDelivery;
+        //}
        
 
-        private MakeDelivery MakeBrandDeliveryRecord(long storeId, Delivery delivery, string userId)
-        {
-            var makeDelivery = new MakeDelivery();
+        //private MakeDelivery MakeBrandDeliveryRecord(long storeId, Delivery delivery, string userId)
+        //{
+        //    var makeDelivery = new MakeDelivery();
             
-            if (delivery.Batches == null || !delivery.Batches.Any())
-            {
-                return makeDelivery;
-            }
-            else
-            {
-                List<Batch> batchesList = new List<Batch>();
-                foreach (var deliveryBatch in delivery.Batches)
-                {
-                    var batch = _batchService.GetBatch(deliveryBatch.BatchId);
-                    batchesList.Add(batch);
-                }
+        //    if (delivery.Batches == null || !delivery.Batches.Any())
+        //    {
+        //        return makeDelivery;
+        //    }
+        //    else
+        //    {
+        //        List<Batch> batchesList = new List<Batch>();
+        //        foreach (var deliveryBatch in delivery.Batches)
+        //        {
+        //            var batch = _batchService.GetBatch(deliveryBatch.BatchId);
+        //            batchesList.Add(batch);
+        //        }
 
-                List<Batch> SortedBatchList = batchesList.OrderBy(o => o.CreatedOn).ToList();
-                foreach (var batch in SortedBatchList)
-                {
-                    Order order = null;
-                    order = _orderService.GetOrder(delivery.OrderId);
-                    if (orderBalance <= 0)
-                    {
-                        orderBalance = Convert.ToDouble(order.Balance);
-                    }
-                    else
-                    {
-                        delivery.Quantity = orderBalance;
+        //        List<Batch> SortedBatchList = batchesList.OrderBy(o => o.CreatedOn).ToList();
+        //        foreach (var batch in SortedBatchList)
+        //        {
+        //            Order order = null;
+        //            order = _orderService.GetOrder(delivery.OrderId);
+        //            if (orderBalance <= 0)
+        //            {
+        //                orderBalance = Convert.ToDouble(order.Balance);
+        //            }
+        //            else
+        //            {
+        //                delivery.Quantity = orderBalance;
                         
-                    }
+        //            }
                     
-                    if (batch.BrandBalance > 0)
-                    {
+        //            if (batch.BrandBalance > 0)
+        //            {
                         
-                       makeDelivery = ReduceBatchBrandStock(batch, orderBalance, delivery.Quantity, userId);
-                        if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
-                        {
-                            soldOutAmount = batch.BrandBalance - batchBrandBalance;
-                            BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
-                            {
-                                BatchId = batch.BatchId,
-                                BatchNumber = batch.Name,
-                                BatchQuantity = soldOutAmount
-                            };
+        //               makeDelivery = ReduceBatchBrandStock(batch, orderBalance, delivery.Quantity, userId);
+        //                if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
+        //                {
+        //                    soldOutAmount = batch.BrandBalance - batchBrandBalance;
+        //                    BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
+        //                    {
+        //                        BatchId = batch.BatchId,
+        //                        BatchNumber = batch.Name,
+        //                        BatchQuantity = soldOutAmount
+        //                    };
 
-                            batchDeliveryList.Add(batchDetails);
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = true,
-                                OrderQuantityBalance = 0,
-                                BatchList = batchDeliveryList,
-                            };
-                            orderBalance = makeDelivery.OrderQuantityBalance;
-                            _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
+        //                    batchDeliveryList.Add(batchDetails);
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = true,
+        //                        OrderQuantityBalance = 0,
+        //                        BatchList = batchDeliveryList,
+        //                    };
+        //                    orderBalance = makeDelivery.OrderQuantityBalance;
+        //                    _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
 
-                            return makeDelivery;
-                        }
-                        else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
-                        {
-                            soldOutAmount = batch.BrandBalance - batchBrandBalance;
-                            BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
-                            {
-                                BatchId = batch.BatchId,
-                                BatchNumber = batch.Name,
-                                BatchQuantity = soldOutAmount
-                            };
+        //                    return makeDelivery;
+        //                }
+        //                else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
+        //                {
+        //                    soldOutAmount = batch.BrandBalance - batchBrandBalance;
+        //                    BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
+        //                    {
+        //                        BatchId = batch.BatchId,
+        //                        BatchNumber = batch.Name,
+        //                        BatchQuantity = soldOutAmount
+        //                    };
 
-                            batchDeliveryList.Add(batchDetails);
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = true,
-                                OrderQuantityBalance = 0,
-                                BatchList = batchDeliveryList,
-                            };
-                            _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
-                            orderBalance = makeDelivery.OrderQuantityBalance;
-                            return makeDelivery;
-                        }
+        //                    batchDeliveryList.Add(batchDetails);
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = true,
+        //                        OrderQuantityBalance = 0,
+        //                        BatchList = batchDeliveryList,
+        //                    };
+        //                    _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
+        //                    orderBalance = makeDelivery.OrderQuantityBalance;
+        //                    return makeDelivery;
+        //                }
 
-                        else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance > 0)
-                        {
-                            soldOutAmount = batch.BrandBalance - batchBrandBalance;
-                            BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
-                            {
-                                BatchId = batch.BatchId,
-                                BatchNumber = batch.Name,
-                                BatchQuantity = soldOutAmount
-                            };
+        //                else if (!makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance > 0)
+        //                {
+        //                    soldOutAmount = batch.BrandBalance - batchBrandBalance;
+        //                    BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
+        //                    {
+        //                        BatchId = batch.BatchId,
+        //                        BatchNumber = batch.Name,
+        //                        BatchQuantity = soldOutAmount
+        //                    };
 
-                            batchDeliveryList.Add(batchDetails);
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = false,
-                                OrderQuantityBalance = makeDelivery.OrderQuantityBalance,
-                                BatchList = batchDeliveryList,
-                            };
-                            _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
-                            orderBalance = makeDelivery.OrderQuantityBalance;
+        //                    batchDeliveryList.Add(batchDetails);
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = false,
+        //                        OrderQuantityBalance = makeDelivery.OrderQuantityBalance,
+        //                        BatchList = batchDeliveryList,
+        //                    };
+        //                    _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
+        //                    orderBalance = makeDelivery.OrderQuantityBalance;
                             
-                        }
-                        else if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance > 0)
-                        {
-                            soldOutAmount = batch.BrandBalance - batchBrandBalance;
-                            BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
-                            {
-                                BatchId = batch.BatchId,
-                                BatchNumber = batch.Name,
-                                BatchQuantity = soldOutAmount
-                            };
+        //                }
+        //                else if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance > 0)
+        //                {
+        //                    soldOutAmount = batch.BrandBalance - batchBrandBalance;
+        //                    BatchDeliveryDetails batchDetails = new BatchDeliveryDetails()
+        //                    {
+        //                        BatchId = batch.BatchId,
+        //                        BatchNumber = batch.Name,
+        //                        BatchQuantity = soldOutAmount
+        //                    };
 
-                            batchDeliveryList.Add(batchDetails);
-                            makeDelivery = new MakeDelivery()
-                            {
-                                StockReduced = true,
-                                OrderQuantityBalance = makeDelivery.OrderQuantityBalance,
-                                BatchList = batchDeliveryList,
-                            };
-                            _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
-                            orderBalance = makeDelivery.OrderQuantityBalance;
+        //                    batchDeliveryList.Add(batchDetails);
+        //                    makeDelivery = new MakeDelivery()
+        //                    {
+        //                        StockReduced = true,
+        //                        OrderQuantityBalance = makeDelivery.OrderQuantityBalance,
+        //                        BatchList = batchDeliveryList,
+        //                    };
+        //                    _orderService.UpdateOrderWithBalance(order.OrderId, makeDelivery.OrderQuantityBalance, userId);
+        //                    orderBalance = makeDelivery.OrderQuantityBalance;
 
-                        }
+        //                }
                        
-                    }
+        //            }
                    
-                }
-            }
-            return makeDelivery;
-        }
+        //        }
+        //    }
+        //    return makeDelivery;
+        //}
         #endregion
         #endregion
 
@@ -887,8 +888,8 @@ namespace Higgs.Mbale.BAL.Concrete
             long deliveryId = 0;
             MakeDelivery makeDelivery = new MakeDelivery();
 
-            if (delivery.OrderId != 0)
-            {
+            //if (delivery.OrderId != 0)
+            //{
                 #region deliver brand
                 if (delivery.ProductId == 2 && delivery.WeightLoss >= 0)
                 {
@@ -898,7 +899,7 @@ namespace Higgs.Mbale.BAL.Concrete
                         StoreId = delivery.StoreId,
                         CustomerId = delivery.CustomerId,
                         DeliveryCost = delivery.DeliveryCost,
-                        OrderId = delivery.OrderId,
+                       
                         VehicleNumber = delivery.VehicleNumber,
                         BranchId = delivery.BranchId,
                         SectorId = delivery.SectorId,
@@ -910,10 +911,10 @@ namespace Higgs.Mbale.BAL.Concrete
                         Amount = delivery.Amount,
                         Location = delivery.Location,
                         TransactionSubTypeId = delivery.TransactionSubTypeId,
-                        MediaId = delivery.MediaId,
+                        
                         DeliveryId = delivery.DeliveryId,
                         DriverName = delivery.DriverName,
-                        DriverNIN = delivery.DriverNIN,
+                      
                         Deleted = delivery.Deleted,
                         CreatedBy = delivery.CreatedBy,
                         CreatedOn = delivery.CreatedOn,
@@ -953,7 +954,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     this._maizeBrandStoreService.UpdateBrandStore(deliveryDTO.BranchId,"-", userId, totalBrandQuantity);
                     // changed order balance to zero on 29/4/2020
 
-                       _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
+                   //    _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
 
                     foreach (var deliveryBatch in delivery.Batches)
                     {
@@ -1060,7 +1061,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                         StoreId = delivery.StoreId,
                                         CustomerId = delivery.CustomerId,
                                         DeliveryCost = delivery.DeliveryCost,
-                                        OrderId = delivery.OrderId,
+                                      
                                         VehicleNumber = delivery.VehicleNumber,
                                         BranchId = delivery.BranchId,
                                         SectorId = delivery.SectorId,
@@ -1072,10 +1073,10 @@ namespace Higgs.Mbale.BAL.Concrete
                                         Quantity = delivery.Quantity,
                                         Location = delivery.Location,
                                         TransactionSubTypeId = delivery.TransactionSubTypeId,
-                                        MediaId = delivery.MediaId,
+                                       
                                         DeliveryId = delivery.DeliveryId,
                                         DriverName = delivery.DriverName,
-                                        DriverNIN = delivery.DriverNIN,
+                                        
                                         Deleted = delivery.Deleted,
                                         CreatedBy = delivery.CreatedBy,
                                         CreatedOn = delivery.CreatedOn,
@@ -1087,7 +1088,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                     deliveryId = this._dataService.SaveDelivery(deliveryDTO, userId);
                                   
 
-                                        _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
+                                    //   _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
 
 
                                         List<DeliveryGradeSize> deliveryGradeSizeList = new List<DeliveryGradeSize>();
@@ -1231,7 +1232,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                         StoreId = delivery.StoreId,
                                         CustomerId = delivery.CustomerId,
                                         DeliveryCost = delivery.DeliveryCost,
-                                        OrderId = delivery.OrderId,
+                                        
                                         VehicleNumber = delivery.VehicleNumber,
                                         BranchId = delivery.BranchId,
                                         SectorId = delivery.SectorId,
@@ -1243,10 +1244,10 @@ namespace Higgs.Mbale.BAL.Concrete
                                         Quantity = delivery.Quantity,
                                         Location = delivery.Location,
                                         TransactionSubTypeId = delivery.TransactionSubTypeId,
-                                        MediaId = delivery.MediaId,
+                                        
                                         DeliveryId = delivery.DeliveryId,
                                         DriverName = delivery.DriverName,
-                                        DriverNIN = delivery.DriverNIN,
+                                        
                                         Deleted = delivery.Deleted,
                                         CreatedBy = delivery.CreatedBy,
                                         CreatedOn = delivery.CreatedOn,
@@ -1262,7 +1263,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                         if (makeDelivery.StockReduced && makeDelivery.OrderQuantityBalance == 0)
                                         {
 
-                                            _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
+                                           // _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
 
 
                                             List<DeliveryGradeSize> deliveryGradeSizeList = new List<DeliveryGradeSize>();
@@ -1391,174 +1392,174 @@ namespace Higgs.Mbale.BAL.Concrete
                 }
                     #endregion
 
-                    #region deliver rice
+                    //#region deliver rice
                     
-                        if (delivery.SelectedDeliveryGrades.Any())
-                        {
-                            var gradeStore = CheckForFlourInStore(delivery.SelectedDeliveryGrades, delivery.StoreId);
-                            if (gradeStore == -2)
-                            {
-                                deliveryId = gradeStore;
-                                return deliveryId;
-                            }
-                            else if (gradeStore == -1)
-                            {
-                                gradeStore = -4;
-                                deliveryId = gradeStore;
-                                return deliveryId;
-                            }
-                            else
-                            {
+                    //    if (delivery.SelectedDeliveryGrades.Any())
+                    //    {
+                    //        var gradeStore = CheckForFlourInStore(delivery.SelectedDeliveryGrades, delivery.StoreId);
+                    //        if (gradeStore == -2)
+                    //        {
+                    //            deliveryId = gradeStore;
+                    //            return deliveryId;
+                    //        }
+                    //        else if (gradeStore == -1)
+                    //        {
+                    //            gradeStore = -4;
+                    //            deliveryId = gradeStore;
+                    //            return deliveryId;
+                    //        }
+                    //        else
+                    //        {
 
-                                var deliveryDTO = new DTO.DeliveryDTO()
-                                {
-                                    StoreId = delivery.StoreId,
-                                    CustomerId = delivery.CustomerId,
-                                    DeliveryCost = delivery.DeliveryCost,
-                                    OrderId = delivery.OrderId,
-                                    VehicleNumber = delivery.VehicleNumber,
-                                    BranchId = delivery.BranchId,
-                                    SectorId = delivery.SectorId,
-                                    PaymentModeId = delivery.PaymentModeId,
-                                    DeliveryDate = delivery.DeliveryDate,
-                                    Price = delivery.Price,
-                                    ProductId = delivery.ProductId,
-                                    Amount = delivery.Amount,
-                                    Quantity = delivery.Quantity,
-                                    Location = delivery.Location,
-                                    TransactionSubTypeId = delivery.TransactionSubTypeId,
-                                    MediaId = delivery.MediaId,
-                                    DeliveryId = delivery.DeliveryId,
-                                    DriverName = delivery.DriverName,
-                                    DriverNIN = delivery.DriverNIN,
-                                    Deleted = delivery.Deleted,
-                                    CreatedBy = delivery.CreatedBy,
-                                    CreatedOn = delivery.CreatedOn,
-                                    Approved = delivery.Approved,
-
-
-                                };
-
-                                deliveryId = this._dataService.SaveDelivery(deliveryDTO, userId);
+                    //            var deliveryDTO = new DTO.DeliveryDTO()
+                    //            {
+                    //                StoreId = delivery.StoreId,
+                    //                CustomerId = delivery.CustomerId,
+                    //                DeliveryCost = delivery.DeliveryCost,
+                    //                OrderId = delivery.OrderId,
+                    //                VehicleNumber = delivery.VehicleNumber,
+                    //                BranchId = delivery.BranchId,
+                    //                SectorId = delivery.SectorId,
+                    //                PaymentModeId = delivery.PaymentModeId,
+                    //                DeliveryDate = delivery.DeliveryDate,
+                    //                Price = delivery.Price,
+                    //                ProductId = delivery.ProductId,
+                    //                Amount = delivery.Amount,
+                    //                Quantity = delivery.Quantity,
+                    //                Location = delivery.Location,
+                    //                TransactionSubTypeId = delivery.TransactionSubTypeId,
+                    //                MediaId = delivery.MediaId,
+                    //                DeliveryId = delivery.DeliveryId,
+                    //                DriverName = delivery.DriverName,
+                    //                DriverNIN = delivery.DriverNIN,
+                    //                Deleted = delivery.Deleted,
+                    //                CreatedBy = delivery.CreatedBy,
+                    //                CreatedOn = delivery.CreatedOn,
+                    //                Approved = delivery.Approved,
 
 
-                                _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
+                    //            };
+
+                    //            deliveryId = this._dataService.SaveDelivery(deliveryDTO, userId);
 
 
-                                List<DeliveryGradeSize> deliveryGradeSizeList = new List<DeliveryGradeSize>();
-                                if (delivery.SelectedDeliveryGrades != null)
-                                {
-                                    if (delivery.SelectedDeliveryGrades.Any())
-                                    {
-                                        foreach (var grade in delivery.SelectedDeliveryGrades)
-                                        {
-                                            long sizeId = 0;
-                                            double amount = 0, price = 0, quantity = 0;
+                    //            _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, orderStatusIdComplete, 0, userId);
 
-                                            foreach (var denomination in grade.Denominations)
-                                            {
-                                                sizeId = denomination.DenominationId;
-                                                price = denomination.Price;
-                                                quantity = denomination.Quantity;
-                                                amount = (denomination.Quantity * denomination.Price);
 
-                                                var deliveryGradeSize = new DeliveryGradeSize()
-                                                {
-                                                    DeliveryId = deliveryId,
-                                                    GradeId = grade.GradeId,
-                                                    SizeId = sizeId,
-                                                    Quantity = quantity,
-                                                    Price = price,
-                                                    Amount = amount,
-                                                    TimeStamp = DateTime.Now,
+                    //            List<DeliveryGradeSize> deliveryGradeSizeList = new List<DeliveryGradeSize>();
+                    //            if (delivery.SelectedDeliveryGrades != null)
+                    //            {
+                    //                if (delivery.SelectedDeliveryGrades.Any())
+                    //                {
+                    //                    foreach (var grade in delivery.SelectedDeliveryGrades)
+                    //                    {
+                    //                        long sizeId = 0;
+                    //                        double amount = 0, price = 0, quantity = 0;
 
-                                                };
-                                                deliveryGradeSizeList.Add(deliveryGradeSize);
-                                                var inOrOut = false;
-                                                //Method that removes flour from storeGradeSize table
-                                                var storeGradeSize = new StoreGradeSize()
-                                                {
-                                                    StoreId = delivery.StoreId,
-                                                    GradeId = grade.GradeId,
-                                                    SizeId = denomination.DenominationId,
-                                                    Quantity = denomination.Quantity,
-                                                };
+                    //                        foreach (var denomination in grade.Denominations)
+                    //                        {
+                    //                            sizeId = denomination.DenominationId;
+                    //                            price = denomination.Price;
+                    //                            quantity = denomination.Quantity;
+                    //                            amount = (denomination.Quantity * denomination.Price);
 
-                                                this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
-                                                //}
+                    //                            var deliveryGradeSize = new DeliveryGradeSize()
+                    //                            {
+                    //                                DeliveryId = deliveryId,
+                    //                                GradeId = grade.GradeId,
+                    //                                SizeId = sizeId,
+                    //                                Quantity = quantity,
+                    //                                Price = price,
+                    //                                Amount = amount,
+                    //                                TimeStamp = DateTime.Now,
 
-                                            }
+                    //                            };
+                    //                            deliveryGradeSizeList.Add(deliveryGradeSize);
+                    //                            var inOrOut = false;
+                    //                            //Method that removes flour from storeGradeSize table
+                    //                            var storeGradeSize = new StoreGradeSize()
+                    //                            {
+                    //                                StoreId = delivery.StoreId,
+                    //                                GradeId = grade.GradeId,
+                    //                                SizeId = denomination.DenominationId,
+                    //                                Quantity = denomination.Quantity,
+                    //                            };
 
-                                        }
-                                        this._dataService.PurgeDeliveryGradeSize(deliveryId);
-                                        this.SaveDeliveryGradeSizeList(deliveryGradeSizeList);
-                                    }
-                                }
+                    //                            this._stockService.SaveStoreGradeSize(storeGradeSize, inOrOut);
+                    //                            //}
 
-                                #region generate documents
-                                if (deliveryDTO.PaymentModeId == 2 || deliveryDTO.PaymentModeId == 1 || deliveryDTO.PaymentModeId == 10004)
-                                {
-                                    //generate receipt
-                                    //throw new NotImplementedException();
-                                    var username = string.Empty;
-                                    var user = _userService.GetAspNetUser(delivery.CustomerId);
-                                    if (user != null)
-                                    {
-                                        username = user.FirstName + " " + user.LastName;
-                                    }
-                                    var document = new Document()
-                                    {
-                                        DocumentId = 0,
+                    //                        }
 
-                                        UserId = username,
-                                        DocumentCategoryId = receiptId,
-                                        Amount = delivery.Amount,
-                                        BranchId = delivery.BranchId,
-                                        ItemId = deliveryId,
-                                        Description = "Delivery of Rice Worth " + delivery.Quantity.ToString() + " kgs",
+                    //                    }
+                    //                    this._dataService.PurgeDeliveryGradeSize(deliveryId);
+                    //                    this.SaveDeliveryGradeSizeList(deliveryGradeSizeList);
+                    //                }
+                    //            }
 
-                                        Grades = delivery.SelectedDeliveryGrades,
+                    //            #region generate documents
+                    //            if (deliveryDTO.PaymentModeId == 2 || deliveryDTO.PaymentModeId == 1 || deliveryDTO.PaymentModeId == 10004)
+                    //            {
+                    //                //generate receipt
+                    //                //throw new NotImplementedException();
+                    //                var username = string.Empty;
+                    //                var user = _userService.GetAspNetUser(delivery.CustomerId);
+                    //                if (user != null)
+                    //                {
+                    //                    username = user.FirstName + " " + user.LastName;
+                    //                }
+                    //                var document = new Document()
+                    //                {
+                    //                    DocumentId = 0,
 
-                                    };
+                    //                    UserId = username,
+                    //                    DocumentCategoryId = receiptId,
+                    //                    Amount = delivery.Amount,
+                    //                    BranchId = delivery.BranchId,
+                    //                    ItemId = deliveryId,
+                    //                    Description = "Delivery of Rice Worth " + delivery.Quantity.ToString() + " kgs",
 
-                                    documentId = _documentService.SaveDocument(document, userId);
-                                }
-                                else
-                                {
-                                    //Generate  Invoice
-                                    //throw new NotImplementedException();
-                                    var username = string.Empty;
-                                    var user = _userService.GetAspNetUser(delivery.CustomerId);
-                                    if (user != null)
-                                    {
-                                        username = user.FirstName + " " + user.LastName;
-                                    }
-                                    var document = new Document()
-                                    {
-                                        DocumentId = 0,
+                    //                    Grades = delivery.SelectedDeliveryGrades,
 
-                                        UserId = username,
-                                        DocumentCategoryId = invoiceId,
-                                        Amount = delivery.Amount,
-                                        BranchId = delivery.BranchId,
-                                        ItemId = deliveryId,
-                                        Description = "Delivery of Rice Worth " + delivery.Quantity.ToString() + " kgs",
+                    //                };
 
-                                        Grades = delivery.SelectedDeliveryGrades,
+                    //                documentId = _documentService.SaveDocument(document, userId);
+                    //            }
+                    //            else
+                    //            {
+                    //                //Generate  Invoice
+                    //                //throw new NotImplementedException();
+                    //                var username = string.Empty;
+                    //                var user = _userService.GetAspNetUser(delivery.CustomerId);
+                    //                if (user != null)
+                    //                {
+                    //                    username = user.FirstName + " " + user.LastName;
+                    //                }
+                    //                var document = new Document()
+                    //                {
+                    //                    DocumentId = 0,
 
-                                    };
+                    //                    UserId = username,
+                    //                    DocumentCategoryId = invoiceId,
+                    //                    Amount = delivery.Amount,
+                    //                    BranchId = delivery.BranchId,
+                    //                    ItemId = deliveryId,
+                    //                    Description = "Delivery of Rice Worth " + delivery.Quantity.ToString() + " kgs",
 
-                                    documentId = _documentService.SaveDocument(document, userId);
-                                }
-                                #endregion
+                    //                    Grades = delivery.SelectedDeliveryGrades,
 
-                            }
+                    //                };
 
-                        }
+                    //                documentId = _documentService.SaveDocument(document, userId);
+                    //            }
+                    //            #endregion
+
+                    //        }
+
+                    //    }
                    
                   
 
-                    #endregion
+                    //#endregion
 
 
                     return deliveryId;
@@ -1566,9 +1567,9 @@ namespace Higgs.Mbale.BAL.Concrete
 
 
 
-        }
-            else
-            {
+        //}
+            //else
+            //{
                 if(delivery.CreatedById == userId)
                 {
                     long deliveryId = -22;
@@ -1710,14 +1711,14 @@ namespace Higgs.Mbale.BAL.Concrete
                         }
                         _dataService.PurgeDeliveryBatch(delivery.DeliveryId);
                         deliveryId = _dataService.UpdateDeliveryOnApprovalOrRejection(delivery.DeliveryId, Convert.ToBoolean(delivery.Approved), userId);
-                        _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, 10002, delivery.Quantity, userId);
+                      //  _orderService.UpdateOrderWithCompletedStatus(delivery.OrderId, 10002, delivery.Quantity, userId);
 
                         return delivery.DeliveryId;
                     }
                 }
                
                 
-            }
+            //}
             return delivery.DeliveryId;
         }
         /// <summary>
@@ -1901,7 +1902,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 {
                     CustomerName = customerName,
                     DeliveryCost = data.DeliveryCost,
-                    OrderId = data.OrderId,
+                   
                     CustomerId = data.CustomerId,
                     BranchName = data.Branch != null ? data.Branch.Name : "",
                     SectorName = data.Sector != null ? data.Sector.Name : "",
@@ -1915,12 +1916,12 @@ namespace Higgs.Mbale.BAL.Concrete
                     SectorId = data.SectorId,
                     StoreId = data.StoreId,
                     StoreName = data.Store != null ? data.Store.Name : "",
-                    MediaId = data.MediaId,
+                    
                     DeliveryId = data.DeliveryId,
                     Quantity = data.Quantity,
                     DriverName = data.DriverName,
                     DeliveryDate = data.DeliveryDate,
-                    DriverNIN = data.DriverNIN,
+                   
                     CreatedOn =Convert.ToDateTime(data.CreatedOn),
                     TimeStamp = data.TimeStamp,
                     Deleted = data.Deleted,

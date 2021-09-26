@@ -13,6 +13,8 @@
         var action = $scope.action;
         var storeId = $scope.storeId;
         var issuing = "NO";
+        var buveraCategoryId = 3;
+        var productId = 1;
 
         
         $http.get('webapi/GradeApi/GetAllGrades').success(function (data, status) {
@@ -62,7 +64,9 @@
                         CreatedBy: b.CreatedBy,
                         UpdatedBy: b.UpdatedBy,
                         Deleted: b.Deleted,
-                        
+                        BuveraCategoryId: b.BuveraCategoryId,
+                        BuveraCategoryName: b.BuveraCategoryName,
+                        ProductId : b.ProductId,
                         Grades: b.Grades
                     };
                 });
@@ -96,6 +100,8 @@
                     TotalQuantity: $scope.TotalGradeQuantities,
                     BranchId: buvera.BranchId,
                     Grades: buveraId == 0 ? $scope.selectedGrades : buvera.Grades,
+                    ProductId: productId,
+                    BuveraCategoryId : buveraCategoryId,
                    
                 });
 

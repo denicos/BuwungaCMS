@@ -34,9 +34,9 @@ namespace Higgs.Mbale.EF.Models
             this.FlourTransfers2 = new HashSet<FlourTransfer>();
             this.MaizeBrandStores = new HashSet<MaizeBrandStore>();
             this.CashSales = new HashSet<CashSale>();
-            this.Deliveries = new HashSet<Delivery>();
             this.Supplies = new HashSet<Supply>();
             this.InventoryPurchases = new HashSet<InventoryPurchase>();
+            this.Deliveries = new HashSet<Delivery>();
         }
     
         public long StoreId { get; set; }
@@ -72,10 +72,10 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<FlourTransfer> FlourTransfers2 { get; set; }
         public virtual ICollection<MaizeBrandStore> MaizeBrandStores { get; set; }
         public virtual ICollection<CashSale> CashSales { get; set; }
-        public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Supply> Supplies { get; set; }
         public virtual ICollection<InventoryPurchase> InventoryPurchases { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual AspNetUser AspNetUser21 { get; set; }
+        public virtual ICollection<Delivery> Deliveries { get; set; }
     }
 }

@@ -73,6 +73,8 @@ namespace Higgs.Mbale.Web.Models
 
             public string UniqueNumber { get; set; }
 
+            public string Location { get; set; }
+
 
         }
 

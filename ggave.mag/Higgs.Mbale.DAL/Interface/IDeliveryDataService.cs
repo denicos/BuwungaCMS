@@ -16,7 +16,8 @@ namespace Higgs.Mbale.DAL.Interface
         long SaveDelivery(DeliveryDTO delivery, string userId);
         void MarkAsDeleted(long deliveryId, string userId);
         IEnumerable<Delivery> GetAllDeliveriesForAParticularBranch(long branchId);
-        IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId);
+        //IEnumerable<Delivery> GetAllDeliveriesForAParticularOrder(long orderId);
+        IEnumerable<Delivery> GetAllDeliveriesForAParticularCustomer(string customerId);
         void SaveDeliveryStock(DeliveryStockDTO deliveryStockDTO);
         IEnumerable<DeliveryStock> GetDeliveryStocksForDelivery(long deliveryId);
         void SaveDeliveryGradeSize(DeliveryGradeSizeDTO deliveryGradeSizeDTO);

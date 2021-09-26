@@ -24,8 +24,8 @@ namespace Higgs.Mbale.EF.Models
         public System.DateTime TimeStamp { get; set; }
     
         public virtual Batch Batch { get; set; }
-        public virtual Delivery Delivery { get; set; }
         public virtual Grade Grade { get; set; }
         public virtual Size Size { get; set; }
+        public virtual Delivery Delivery { get; set; }
     }
 }

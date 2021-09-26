@@ -109,9 +109,6 @@ namespace Higgs.Mbale.EF.Models
             this.UserBranches = new HashSet<UserBranch>();
             this.PaymentModes = new HashSet<PaymentMode>();
             this.PaymentModes1 = new HashSet<PaymentMode>();
-            this.Deliveries = new HashSet<Delivery>();
-            this.Deliveries1 = new HashSet<Delivery>();
-            this.Deliveries2 = new HashSet<Delivery>();
             this.BatchProjections = new HashSet<BatchProjection>();
             this.BatchProjections1 = new HashSet<BatchProjection>();
             this.BatchProjections2 = new HashSet<BatchProjection>();
@@ -162,6 +159,9 @@ namespace Higgs.Mbale.EF.Models
             this.MillingCharges1 = new HashSet<MillingCharge>();
             this.PettyCashes = new HashSet<PettyCash>();
             this.PettyCashes1 = new HashSet<PettyCash>();
+            this.Deliveries = new HashSet<Delivery>();
+            this.Deliveries1 = new HashSet<Delivery>();
+            this.Deliveries2 = new HashSet<Delivery>();
         }
     
         public string Id { get; set; }
@@ -290,9 +290,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<UserBranch> UserBranches { get; set; }
         public virtual ICollection<PaymentMode> PaymentModes { get; set; }
         public virtual ICollection<PaymentMode> PaymentModes1 { get; set; }
-        public virtual ICollection<Delivery> Deliveries { get; set; }
-        public virtual ICollection<Delivery> Deliveries1 { get; set; }
-        public virtual ICollection<Delivery> Deliveries2 { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections1 { get; set; }
         public virtual ICollection<BatchProjection> BatchProjections2 { get; set; }
@@ -345,5 +342,8 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<MillingCharge> MillingCharges1 { get; set; }
         public virtual ICollection<PettyCash> PettyCashes { get; set; }
         public virtual ICollection<PettyCash> PettyCashes1 { get; set; }
+        public virtual ICollection<Delivery> Deliveries { get; set; }
+        public virtual ICollection<Delivery> Deliveries1 { get; set; }
+        public virtual ICollection<Delivery> Deliveries2 { get; set; }
     }
 }

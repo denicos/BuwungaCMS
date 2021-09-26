@@ -41,7 +41,7 @@
                     $scope.millingCharge = {
                         MillingChargeId: b.MillingChargeId,
                         Notes: b.Notes,
-                       
+                        Rate : b.Rate,
                         BranchId: b.BranchId,
                         Quantity : b.Quantity,
                         Amount: b.Amount,
@@ -66,10 +66,10 @@
 
                     MillingChargeId: millingChargeId,
                     Amount: millingCharge.Amount,
-                    
+                    Rate : millingCharge.Rate,
                     BranchId: millingCharge.BranchId,
                     Quantity : millingCharge.Quantity,
-                    Notes: millingCharge.Notes,
+                    //Notes: millingCharge.Notes,
                    
                     CreatedOn: millingCharge.CreatedOn,
                     TimeStamp: millingCharge.TimeStamp,
@@ -179,6 +179,57 @@ angular
 
 
         }]);
+
+
+angular
+    .module('homer').controller('BranchMillingChargeController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
+        function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
+
+          
+            var branchId = $scope.branchId;
+            $scope.loadingSpinner = true;
+            var promise = $http.get('/webapi/MillingChargeApi/GetAllMillingChargeForAParticularBranch?branchId=' + branchId, {});
+            promise.then(
+                function (payload) {
+                    $scope.gridData.data = payload.data;
+                    $scope.loadingSpinner = false;
+                   
+                }
+            );
+            $scope.retrievedBranchId = $scope.branchId;
+            $scope.gridData = {
+                enableFiltering: true,
+                columnDefs: $scope.columns,
+                enableRowSelection: false
+            };
+
+            $scope.gridData.multiSelect = false;
+
+            $scope.gridData.columnDefs = [
+
+
+                { name: 'Quantity', field: 'Quantity' },
+
+                { name: 'Notes', field: 'Notes' },
+
+                { name: 'Amount', field: 'Amount' },
+                {
+                    name: 'CreatedOn', field: 'CreatedOn',
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 1
+                    }
+                },
+
+
+
+            ];
+
+
+
+
+        }]);
+
 
 
 

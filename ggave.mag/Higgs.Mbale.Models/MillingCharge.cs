@@ -19,6 +19,7 @@ namespace Higgs.Mbale.Models
         public System.DateTime CreatedOn { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
+        public double Rate { get; set; }
 
 
         public string BranchName { get; set; }

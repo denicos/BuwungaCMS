@@ -15,11 +15,9 @@ namespace Higgs.Mbale.DTO
         public long ProductId { get; set; }
         public double DeliveryCost { get; set; }
        
-        public string DriverNIN { get; set; }
         public string VehicleNumber { get; set; }
-        public long OrderId { get; set; }
+        //public long OrderId { get; set; }
         public long TransactionSubTypeId { get; set; }
-        public long MediaId { get; set; }
         public long BranchId { get; set; }
         public long SectorId { get; set; }
         public double Amount { get; set; }

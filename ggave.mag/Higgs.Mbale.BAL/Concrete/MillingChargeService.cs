@@ -11,20 +11,20 @@ namespace Higgs.Mbale.BAL.Concrete
     {
         private long transactionSubTypeId = Convert.ToInt64(ConfigurationManager.AppSettings["otherIncomeId"]);
         private long sectorId = Convert.ToInt64(ConfigurationManager.AppSettings["SectorId"]);
-        private double millingChargeAmount = Convert.ToDouble(ConfigurationManager.AppSettings["millingcharge"]);
+        
         private IMillingChargeDataService _dataService;
         private IUserService _userService;
         private ICashService _cashService;
+        private IBranchService _branchService;
 
 
-
-        public MillingChargeService(IMillingChargeDataService dataService, IUserService userService,ICashService cashService)
+        public MillingChargeService(IMillingChargeDataService dataService, IUserService userService,ICashService cashService,IBranchService branchService)
 
         {
             this._dataService = dataService;
             this._userService = userService;
             this._cashService = cashService;
-
+            this._branchService = branchService;
 
         }
 
@@ -68,43 +68,47 @@ namespace Higgs.Mbale.BAL.Concrete
         {
 
             long millingChargeId = 0;
-
-            if(millingCharge.MillingChargeId == 0)
-            {
-                double amount = (millingCharge.Quantity * millingChargeAmount);
-                var notes = "Milling Charge for  " + millingCharge.Quantity + " kgs of Maize";
-                var millingChargeDTO = new DTO.MillingChargeDTO()
+           
+                           
+                if (millingCharge.MillingChargeId == 0)
                 {
-                    MillingChargeId = millingCharge.MillingChargeId,
-                    Amount = millingCharge.MillingChargeId == 0 ? amount :millingCharge.Amount ,
-                    Quantity = millingCharge.Quantity,
-                    Notes = notes,
-
-                    BranchId = millingCharge.BranchId,
-
-
-
-                };
-                millingChargeId = this._dataService.SaveMillingCharge(millingChargeDTO, userId);
-                if (millingChargeId != 0)
-                {
-                    var cash = new Cash()
+                    double amount = (millingCharge.Quantity * millingCharge.Rate);
+                    var notes = "Milling Charge for  " + millingCharge.Quantity + " kgs of Maize at " + millingCharge.Rate + " shs perkg.";
+                    var millingChargeDTO = new DTO.MillingChargeDTO()
                     {
-
-                        Amount = Convert.ToDouble(millingCharge.Amount),
+                        MillingChargeId = millingCharge.MillingChargeId,
+                        Amount = millingCharge.MillingChargeId == 0 ? amount : millingCharge.Amount,
+                        Quantity = millingCharge.Quantity,
                         Notes = notes,
-                        Action = "+",
-                        BranchId = Convert.ToInt64(millingCharge.BranchId),
-                        TransactionSubTypeId = transactionSubTypeId,
-                        SectorId = sectorId,
+                        Rate  = millingCharge.Rate,
+                        BranchId = millingCharge.BranchId,
+
+
 
                     };
-                    _cashService.SaveCash(cash, userId);
+                    millingChargeId = this._dataService.SaveMillingCharge(millingChargeDTO, userId);
+                    if (millingChargeId != 0)
+                    {
+                        var cash = new Cash()
+                        {
+
+                            Amount = Convert.ToDouble(millingChargeDTO.Amount),
+                            Notes = notes,
+                            Action = "+",
+                            BranchId = Convert.ToInt64(millingCharge.BranchId),
+                            TransactionSubTypeId = transactionSubTypeId,
+                            SectorId = sectorId,
+
+                        };
+                        _cashService.SaveCash(cash, userId);
 
 
+                    }
                 }
-            }
-           
+
+            
+
+
 
             return millingChargeId;
         }
@@ -150,7 +154,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     Notes = data.Notes,
                     BranchId = data.BranchId,
                     BranchName = data.Branch != null ? data.Branch.Name : "",
-                   
+                    Rate = data.Rate,
                     CreatedOn = data.CreatedOn,
                     TimeStamp = data.TimeStamp,
                     Deleted = data.Deleted,

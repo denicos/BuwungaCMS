@@ -267,18 +267,6 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_PaymentMode_CreatedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_PaymentMode_DeletedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_CashSale_PaymentModeId" />
-        <EntityTypeShape EntityType="Higgs.MbaleModel.Delivery" Width="1.5" PointX="21" PointY="30.125" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_CreatedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_DeletedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_UpdatedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_DeliveryGradeSize_dbo_Delivery_DeliveryId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_DeliveryStock_dbo_Delivery_DeliveryId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_PaymentModeId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_ProductId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_SectorId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_Store" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_TransactionSubTypeId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_DeliveryBatch_DeliveryId" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.BatchProjection" Width="1.5" PointX="38" PointY="47.25" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.RequistionCategory" Width="1.5" PointX="7.375" PointY="3.75" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_BatchProjection_CreatedBy" />
@@ -334,10 +322,8 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_CustomerId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_DeletedBy" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_UpdatedBy" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_DeliveryId" />
         <EntityTypeShape EntityType="Higgs.MbaleModel.BatchDeliveryGradeSize" Width="1.5" PointX="32" PointY="55.5" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BatchDeliveryGradeSize_dbo_Batch_BatchId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BatchDeliveryGradeSize_dbo_Delivery_DeliveryId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BatchDeliveryGradeSize_dbo_Grade_GradeId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BatchDeliveryGradeSize_dbo_Size_SizeId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_DeliveryBatch_ProductId" />
@@ -363,7 +349,6 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_CasualWorker_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BranchSector_dbo_Branch_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_UserBranch_dbo_Branch_BranchId" />
-        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_Deposit_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_Document_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_FactoryExpense_Branch" />
@@ -443,6 +428,21 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_MillingCharge_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_BranchId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_PettyCash_RequistionCategoryId" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.Delivery" Width="1.5" PointX="21" PointY="36.5" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_UpdatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_BatchDeliveryGradeSize_dbo_Delivery_DeliveryId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_BranchId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_DeliveryGradeSize_dbo_Delivery_DeliveryId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_dbo_DeliveryStock_dbo_Delivery_DeliveryId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_PaymentModeId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_ProductId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_SectorId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_Store" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_TransactionSubTypeId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_DeliveryBatch_DeliveryId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_DeliveryId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

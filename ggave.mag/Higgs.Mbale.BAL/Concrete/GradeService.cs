@@ -88,7 +88,8 @@ namespace Higgs.Mbale.BAL.Concrete
                     {
                         DenominationId = size.SizeId,
                         Value = size.Value,
-                        Quantity = 0
+                        Quantity = 0,
+                        Rate =size.Rate,
                     };
                     denominations.Add(denomination);
                 }

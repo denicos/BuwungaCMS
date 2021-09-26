@@ -22,12 +22,12 @@ namespace Higgs.Mbale.EF.Models
             this.StoreStocks = new HashSet<StoreStock>();
             this.Orders = new HashSet<Order>();
             this.CashSales = new HashSet<CashSale>();
-            this.Deliveries = new HashSet<Delivery>();
             this.DeliveryBatches = new HashSet<DeliveryBatch>();
             this.CashSaleBatches = new HashSet<CashSaleBatch>();
             this.AspNetUserProducts = new HashSet<AspNetUserProduct>();
             this.Buveras = new HashSet<Buvera>();
             this.BuveraTransfers = new HashSet<BuveraTransfer>();
+            this.Deliveries = new HashSet<Delivery>();
         }
     
         public long ProductId { get; set; }
@@ -49,7 +49,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual AspNetUser AspNetUser2 { get; set; }
         public virtual ICollection<CashSale> CashSales { get; set; }
-        public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<DeliveryBatch> DeliveryBatches { get; set; }
         public virtual Product Product1 { get; set; }
         public virtual Product Product2 { get; set; }
@@ -57,5 +56,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<AspNetUserProduct> AspNetUserProducts { get; set; }
         public virtual ICollection<Buvera> Buveras { get; set; }
         public virtual ICollection<BuveraTransfer> BuveraTransfers { get; set; }
+        public virtual ICollection<Delivery> Deliveries { get; set; }
     }
 }

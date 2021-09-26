@@ -471,7 +471,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                     BranchId = requistion.BranchId,
                                     Amount = requistion.Amount,
 
-                                    SectorId = sectorId,
+                                    //SectorId = sectorId,
 
                                 };
 

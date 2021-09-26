@@ -91,7 +91,6 @@ namespace Higgs.Mbale.EF.Models
         public virtual DbSet<UtilityAccount> UtilityAccounts { get; set; }
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<PaymentMode> PaymentModes { get; set; }
-        public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<BatchProjection> BatchProjections { get; set; }
         public virtual DbSet<RequistionCategory> RequistionCategories { get; set; }
         public virtual DbSet<Supply> Supplies { get; set; }
@@ -117,6 +116,7 @@ namespace Higgs.Mbale.EF.Models
         public virtual DbSet<LabourCost> LabourCosts { get; set; }
         public virtual DbSet<MillingCharge> MillingCharges { get; set; }
         public virtual DbSet<PettyCash> PettyCashes { get; set; }
+        public virtual DbSet<Delivery> Deliveries { get; set; }
     
         public virtual int Mark_FactoryExpense_AsDeleted(Nullable<long> inPutFactoryExpenseId, string userId)
         {

@@ -13,7 +13,7 @@ namespace Higgs.Mbale.Models
         public double TotalQuantity { get; set; }
         public long BranchId { get; set; }
         public long StoreId { get; set; }
-
+        public double Profits { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }

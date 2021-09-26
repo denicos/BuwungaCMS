@@ -20,6 +20,7 @@ namespace Higgs.Mbale.EF.Models
         public double Quantity { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public double Balance { get; set; }
+        public Nullable<double> BuveraAmount { get; set; }
     
         public virtual BatchOutPut BatchOutPut { get; set; }
         public virtual Grade Grade { get; set; }

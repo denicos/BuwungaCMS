@@ -66,7 +66,7 @@ public    class LabourCostDataService : DataServiceBase,ILabourCostDataService
                      Amount= labourCostDTO.Amount,
                     ActivityId = labourCostDTO.ActivityId,
                     BranchId = labourCostDTO.BranchId,
-                    SectorId = labourCostDTO.SectorId,
+                    
                     BatchId = labourCostDTO.BatchId,
                     CreatedOn = DateTime.Now,
                     TimeStamp = DateTime.Now,
@@ -95,7 +95,7 @@ public    class LabourCostDataService : DataServiceBase,ILabourCostDataService
                     result.TimeStamp = DateTime.Now;
                     result.Deleted = labourCostDTO.Deleted;
                     result.BranchId = labourCostDTO.BranchId;
-                    result.SectorId = labourCostDTO.SectorId;
+                   
                     result.DeletedBy = labourCostDTO.DeletedBy;
                     result.DeletedOn = labourCostDTO.DeletedOn;
                     result.Quantity = labourCostDTO.Quantity;

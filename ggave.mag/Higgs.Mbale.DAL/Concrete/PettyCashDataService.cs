@@ -46,11 +46,20 @@ namespace Higgs.Mbale.DAL.Concrete
         {
 
             PettyCash cash = new PettyCash();
-            var cashActivities = this.UnitOfWork.Get<PettyCash>().AsQueryable().Where(e => e.BranchId == branchId).OrderByDescending(e => e.PettyCashId).First();
-            
+            //var cashActivities = this.UnitOfWork.Get<PettyCash>().AsQueryable().Where(e => e.BranchId == branchId).OrderByDescending(e => e.PettyCashId).First();
+
+            var cashActivities = this.UnitOfWork.Get<PettyCash>().AsQueryable().Where(e => e.BranchId == branchId);
+            if (cashActivities.Any())
+            {
+                cash = cashActivities.AsQueryable().OrderByDescending(e => e.PettyCashId).First();
                 return cash;
-            
+            }
+            else
+            {
+                return cash;
+            }
         }
+
 
 
         public long SavePettyCash(PettyCashDTO pettyCashDTO, string userId)

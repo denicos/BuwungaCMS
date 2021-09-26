@@ -245,8 +245,10 @@
     <Compile Include="Controllers\MachineRepairApiController.cs" />
     <Compile Include="Controllers\MaizeBrandStoreApiController.cs" />
     <Compile Include="Controllers\MechanicApiController.cs" />
+    <Compile Include="Controllers\MillingChargeApiController.cs" />
     <Compile Include="Controllers\OrderApiController.cs" />
     <Compile Include="Controllers\OtherExpenseApiController.cs" />
+    <Compile Include="Controllers\PettyCashApiController.cs" />
     <Compile Include="Controllers\ProductApiController.cs" />
     <Compile Include="Controllers\ReportApiController.cs" />
     <Compile Include="Controllers\RequistionApiController.cs" />

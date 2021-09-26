@@ -33,8 +33,10 @@
                 { name: 'Location', field: 'Location', width: '15%', },
                 { name: 'Email', field: 'Email' },
                  { name: 'PhoneNumber', field: 'PhoneNumber', width: '15%', },
-                   { name: 'Action', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/orders/{{row.entity.Id}}">Manage Orders</a></div>' },
-                      { name: 'Account', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/accounttransactionactivities/{{row.entity.Id}}">Manage Account</a></div>' },
+                   //{ name: 'Action', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/orders/{{row.entity.Id}}">Manage Orders</a></div>' },
+                { name: 'Deliveries', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/deliveries/{{row.entity.Id}}">Manage Deliveries</a></div>' },
+
+                { name: 'Account', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/accounttransactionactivities/{{row.entity.Id}}">Manage Account</a></div>' },
   //{ name: 'Advances', field: 'Id', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/advancedpayments/{{row.entity.Id}}">Advanced Payments</a></div>' },
 
 

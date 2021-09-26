@@ -140,6 +140,7 @@ namespace Higgs.Mbale.DAL.Concrete
                 SizeId =  batchGradeSizeDTO.SizeId,
                 Quantity = batchGradeSizeDTO.Quantity,
                 Balance = batchGradeSizeDTO.Balance,
+                BuveraAmount = batchGradeSizeDTO.BuveraAmount,
                 TimeStamp = DateTime.Now
             };
             this.UnitOfWork.Get<BatchGradeSize>().AddNew(batchGradeSize);
@@ -164,6 +165,7 @@ namespace Higgs.Mbale.DAL.Concrete
                 result.Quantity = result.Quantity;
                 result.BatchOutPutId = result.BatchOutPutId;
                 result.Balance = batchGradeSize.Balance;
+                result.BuveraAmount = batchGradeSize.BuveraAmount;
                 result.TimeStamp = DateTime.Now;
 
 

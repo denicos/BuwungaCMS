@@ -21,6 +21,8 @@ public    class BatchReportViewModel
         public decimal TotalProductionCosts { get; set; }
         public decimal TotalUtilityCosts { get; set; }
         public decimal TotalOtherExpenseCosts { get; set; }
+
+        public decimal TotalProfits { get; set; }
                
     }
 }

@@ -381,6 +381,7 @@ angular
                         TotalCashSaleFlour: b.TotalCashSaleFlour,
                         BatchFlourCashSales: b.BatchFlourCashSales,
                         BatchBrandCashSales: b.BatchBrandCashSales,
+                        Profits : b.Profits,
                     };
 
                 });

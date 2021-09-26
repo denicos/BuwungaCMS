@@ -615,41 +615,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
         }
     })
 
-        //millingcharge
-            
-     .state('millingCharges', {
-         abstract: true,
-         url: "/millingCharges",
-         templateUrl: "/app/views/_common/content_empty.html",
-         data: {
-             pageTitle: 'Milling charges'
-         }
-     })
-
-    .state('millingCharges.list', {
-        url: "/millingCharges",
-        templateUrl: "/app/views/millingcharge/list.html",
-        data: {
-            pageTitle: 'Milling Charge',
-        },
-        controller: function ($scope, $stateParams) {
-
-        }
-    })
-
-    .state('millingCharge-edit', {
-        url: "/millingCharges/:action/:millingChargeId",
-        templateUrl: "/app/views/millingcharge/edit.html",
-        data: {
-            pageTitle: 'Milling Charge edit',
-            pageDesc: ''
-        },
-        controller: function ($scope, $stateParams) {
-            $scope.action = $stateParams.action;
-            $scope.millingChargeId = $stateParams.millingChargeId;
-            $scope.defaultTab = 'edit';
-        }
-    })
+  
 
         //batchprojection
      .state('batchProjections', {
@@ -2081,7 +2047,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             }
         })
     .state('delivery-edit', {
-        url: "/deliveries/:action/:customerId/:orderId/:deliveryId",
+        url: "/deliveries/:action/:customerId/:deliveryId",
         templateUrl: "/app/views/delivery/edit.html",
         data: {
             pageTitle: 'delivery edit',
@@ -2091,23 +2057,36 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             $scope.action = $stateParams.action;
             $scope.deliveryId = $stateParams.deliveryId;
             $scope.customerId = $stateParams.customerId;
-            $scope.orderId = $stateParams.orderId;
+           
             $scope.defaultTab = 'edit';
         }
     })
-         .state('delivery-order-list', {
-             url: "/deliveries/:orderId",
-             templateUrl: "/app/views/delivery/order-delivery-list.html",
-             data: {
-                 pageTitle: 'Order Delivery list',
-                 pageDesc: ''
-             },
-             controller: function ($scope, $stateParams) {
+         //.state('delivery-order-list', {
+         //    url: "/deliveries/:orderId",
+         //    templateUrl: "/app/views/delivery/order-delivery-list.html",
+         //    data: {
+         //        pageTitle: 'Order Delivery list',
+         //        pageDesc: ''
+         //    },
+         //    controller: function ($scope, $stateParams) {
                
-                 $scope.orderId = $stateParams.orderId;
+         //        $scope.orderId = $stateParams.orderId;
                 
-             }
-         })
+         //    }
+         //})
+        .state('delivery-customer-list', {
+            url: "/deliveries/:customerId",
+            templateUrl: "/app/views/delivery/order-delivery-list.html",
+            data: {
+                pageTitle: 'Customer Delivery list',
+                pageDesc: ''
+            },
+            controller: function ($scope, $stateParams) {
+
+                $scope.customerId = $stateParams.customerId;
+
+            }
+        })
 
       .state('delivery-branch-list', {
           url: "/deliveries/branch/:branchId",
@@ -2845,6 +2824,116 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
              }
          })
+
+        //petty cash
+        .state('pettycash', {
+            abstract: true,
+            url: "/pettycash",
+            templateUrl: "/app/views/_common/content_empty.html",
+            data: {
+                pageTitle: 'Petty Cash'
+            }
+        })
+
+        .state('pettycash.list', {
+            url: "/pettycash",
+            templateUrl: "/app/views/pettycash/list.html",
+            data: {
+                pageTitle: 'Petty Cash',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+        .state('branch-pettycash-list', {
+            url: "/pettycash/branch/:branchId",
+            templateUrl: "/app/views/pettycash/branch-pettycash.html",
+            data: {
+                pageTitle: 'Branch Petty Cash',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+
+            }
+        })
+        .state('pettycash-edit', {
+            url: "/pettycash/:action/:pettycashId",
+            templateUrl: "/app/views/pettycash/edit.html",
+            data: {
+                pageTitle: 'Petty Cash Edit',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.action = $stateParams.action;
+                $scope.pettycashId = $stateParams.pettycashId;
+                $scope.defaultTab = 'edit'
+
+            }
+        })
+        .state('admin-pettycash-list', {
+            url: "/pettycash",
+            templateUrl: "/app/views/pettycash/admin-view.html",
+            data: {
+                pageTitle: 'Petty Cash',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
+        //Milling charge
+        .state('millingcharge', {
+            abstract: true,
+            url: "/millingcharge",
+            templateUrl: "/app/views/_common/content_empty.html",
+            data: {
+                pageTitle: 'millingcharge'
+            }
+        })
+
+        .state('millingcharge.list', {
+            url: "/millingcharge",
+            templateUrl: "/app/views/millingcharge/list.html",
+            data: {
+                pageTitle: 'Milling Charge',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+        .state('branch-millingcharge-list', {
+            url: "/millingcharge/branch/:branchId",
+            templateUrl: "/app/views/millingcharge/branch-milling.html",
+            data: {
+                pageTitle: 'Branch Milling Charge',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+
+            }
+        })
+        .state('millingcharge-edit', {
+            url: "/millingcharge/:action/:millingChargeId",
+            templateUrl: "/app/views/millingcharge/edit.html",
+            data: {
+                pageTitle: 'Milling Charge Edit',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.action = $stateParams.action;
+                $scope.millingChargeId = $stateParams.millingChargeId;
+                $scope.defaultTab = 'edit'
+
+            }
+        })
+        .state('admin-millingcharge-list', {
+            url: "/millingcharge",
+            templateUrl: "/app/views/millingcharge/admin-view.html",
+            data: {
+                pageTitle: 'Milling Charge',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
 
          //Utility accounts
      .state('utilityaccounts', {

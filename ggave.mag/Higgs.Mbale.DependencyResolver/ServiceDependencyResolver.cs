@@ -42,6 +42,8 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IOtherExpenseService)).To(typeof(OtherExpenseService));
          Bind(typeof(IBatchOutPutService)).To(typeof(BatchOutPutService));
          Bind(typeof(IBuveraService)).To(typeof(BuveraService));
+            Bind(typeof(IPettyCashService)).To(typeof(PettyCashService));
+            Bind(typeof(IMillingChargeService)).To(typeof(MillingChargeService));
         
          Bind(typeof(ICashService)).To(typeof(CashService));
          Bind(typeof(IDocumentService)).To(typeof(DocumentService));
@@ -90,6 +92,8 @@ namespace Higgs.Mbale.DependencyResolver
          Bind(typeof(IOtherExpenseDataService)).To(typeof(OtherExpenseDataService));
          Bind(typeof(IBatchOutPutDataService)).To(typeof(BatchOutPutDataService));
          Bind(typeof(IBuveraDataService)).To(typeof(BuveraDataService));
+            Bind(typeof(IPettyCashDataService)).To(typeof(PettyCashDataService));
+            Bind(typeof(IMillingChargeDataService)).To(typeof(MillingChargeDataService));
        
          Bind(typeof(ICashDataService)).To(typeof(CashDataService));
          Bind(typeof(IDocumentDataService)).To(typeof(DocumentDataService));

@@ -24,7 +24,9 @@
         var action = $scope.action;
         var productId = 0;
         var departmentId = 10002;
-               
+        $scope.paymentModes = [{ Name: "Credit", Id: 10006 }, { Name: "AdvancedPayment", Id: 10007 }];
+
+
         $http.get('webapi/ProductApi/GetAllproducts').success(function (data, status) {
             $scope.products = data;
         });
@@ -74,12 +76,7 @@
            
         }
 
-        
-       
-        $http.get('/webapi/AccountTransactionActivityApi/GetAllPaymentModes').success(function (data, status) {
-            $scope.paymentModes = data;
-        });
-       
+              
         if (action == 'create') {
             deliveryId = 0;
             var promise = $http.get('/webapi/UserApi/GetLoggedInUser', {});
@@ -134,33 +131,33 @@
                     };
                 });
 
-            var promise = $http.get('/webapi/OrderApi/GetOrder?orderId=' + orderId, {});
-            promise.then(
-                function (payload) {
-                    var b = payload.data;
-                    $scope.order = {
-                        OrderId: b.OrderId,
-                        CustomerName: b.CustomerName,
-                        Amount: b.Amount,
-                        ProductId: b.ProductId,
-                        Balance: b.Balance,
-                        Price : b.Price,
-                        DeliveryDate : b.DeliveryDate,
-                        BranchId: b.BranchId,
-                        StatusId: b.StatusId,
-                        TimeStamp: b.TimeStamp,
-                        CreatedOn: b.CreatedOn,
-                        CreatedBy: b.CreatedBy,
-                        UpdatedBy: b.UpdatedBy,
-                        Deleted: b.Deleted,
-                        CustomerId: b.CustomerId,
-                        Grades: b.Grades,
+            //var promise = $http.get('/webapi/OrderApi/GetOrder?orderId=' + orderId, {});
+            //promise.then(
+            //    function (payload) {
+            //        var b = payload.data;
+            //        $scope.order = {
+            //            OrderId: b.OrderId,
+            //            CustomerName: b.CustomerName,
+            //            Amount: b.Amount,
+            //            ProductId: b.ProductId,
+            //            Balance: b.Balance,
+            //            Price : b.Price,
+            //            DeliveryDate : b.DeliveryDate,
+            //            BranchId: b.BranchId,
+            //            StatusId: b.StatusId,
+            //            TimeStamp: b.TimeStamp,
+            //            CreatedOn: b.CreatedOn,
+            //            CreatedBy: b.CreatedBy,
+            //            UpdatedBy: b.UpdatedBy,
+            //            Deleted: b.Deleted,
+            //            CustomerId: b.CustomerId,
+            //            Grades: b.Grades,
                        
-                    };
-                    $scope.deliveryPrice = b.Price;
-                    $scope.deliveryQuantity = b.Balance;
-                    $scope.orderDeliveryGrade = b.Grades;
-                });
+            //        };
+            //        $scope.deliveryPrice = b.Price;
+            //        $scope.deliveryQuantity = b.Balance;
+            //        $scope.orderDeliveryGrade = b.Grades;
+            //    });
 
          
 
@@ -168,9 +165,9 @@
 
         $scope.Save = function (delivery,productId) {
             $scope.showMessageSave = false;
-            var price = $scope.deliveryPrice;
-            var brandQuantity = $scope.deliveryQuantity;
-            var orderDeliveryGrades = $scope.orderDeliveryGrade;
+            //var price = $scope.deliveryPrice;
+            //var brandQuantity = $scope.deliveryQuantity;
+            //var orderDeliveryGrades = $scope.orderDeliveryGrade;
             $scope.TotalAmount = 0;
             $scope.TotalQuantity = 0;
             $scope.DenominationQuantity = 0;
@@ -179,8 +176,10 @@
             $scope.showMessageCheckGrade = false;
             $scope.showMessageNotWeightLoss = false;         
          
-            if (orderDeliveryGrades != null && orderDeliveryGrades !== 'undefined') {
-                angular.forEach(orderDeliveryGrades, function (value, key) {
+            /*if (orderDeliveryGrades != null && orderDeliveryGrades !== 'undefined') {*/
+            if (delivery.SelectedDeliveryGrades != null && delivery.SelectedDeliveryGrades !== 'undefined') {
+                /*angular.forEach(orderDeliveryGrades, function (value, key) {*/
+                angular.forEach(delivery.SelectedDeliveryGrades, function (value, key) {
                     var denominations = value.Denominations;
                     angular.forEach(denominations, function (denominations) {
                         
@@ -193,13 +192,13 @@
                 });
             }
             
-            else if (orderDeliveryGrades == null && productId == 2)
+            else if (delivery.SelectedDeliveryGrades == null && productId == 2)
             {
-                if (delivery.WeightLoss != null || delivery.WeightLoss != undefined) {
-                    //$scope.TotalAmount = delivery.Price * delivery.Quantity;
-                    $scope.TotalAmount = price * brandQuantity;
-                    //$scope.TotalQuantity = delivery.Quantity;
-                    $scope.TotalQuantity = brandQuantity;
+                if ((delivery.WeightLoss != null || delivery.WeightLoss != undefined)&& delivery.Quantity != 0) {
+                    $scope.TotalAmount = delivery.Price * delivery.Quantity;
+                    //$scope.TotalAmount = price * brandQuantity;
+                    $scope.TotalQuantity = delivery.Quantity;
+                    //$scope.TotalQuantity = brandQuantity;
                 }
                 else {
                     $scope.showMessageNotWeightLoss = true;
@@ -233,34 +232,36 @@
                     DeliveryId: deliveryId,
                     CustomerId :customerId,
                     DeliveryCost: delivery.DeliveryCost,
-                    OrderId: orderId,
+                    
                     Amount : $scope.TotalAmount,
-                    //Price: delivery.Price,
-                    Price: $scope.deliveryPrice,
+                    Price: delivery.Price,
+                    //Price: $scope.deliveryPrice,
                     Quantity: $scope.TotalQuantity,
                     VehicleNumber :delivery.VehicleNumber,
                     BranchId: delivery.BranchId,
-                    PaymentModeId: delivery.PaymentModeId,
+                    PaymentModeId: delivery.PaymentModeId.Id,
                     ProductId : productId,
                     Location: delivery.Location,
                     DeliveryDate : delivery.DeliveryDate,
                     SectorId: departmentId,
                     StoreId: delivery.StoreId,
                     SelectedBatchesToDeliver: delivery.selectedGrades,
-                    //SelectedGrades : delivery.selectedGrades,
-                    SelectedGrades: orderDeliveryGrades,
+                    SelectedGrades : delivery.selectedGrades,
+                    //SelectedGrades: orderDeliveryGrades,
                     TransactionSubTypeId : transactionSubTypeId,
                     DriverName: delivery.DriverName,
-                    DriverNIN: delivery.DriverNIN,
+                    //DriverNIN: delivery.DriverNIN,
                     CreatedBy: delivery.CreatedBy,
                     CreatedOn: delivery.CreatedOn,
                     Deleted: delivery.Deleted,
                     Grades: delivery.Grades,
-                    Grades: orderDeliveryGrades,
+                    //Grades: orderDeliveryGrades,
+                    Grades: delivery.selectedGrades,
                     Batches: delivery.Batches,
                     DeliveryBatches: delivery.DeliveryBatches,
                     //SelectedDeliveryGrades: delivery.selectedNoBatchGrades,
-                    SelectedDeliveryGrades: orderDeliveryGrades,
+                    //SelectedDeliveryGrades: orderDeliveryGrades,
+                    SelectedDeliveryGrades: delivery.selectedDeliveryGrades,
                     WeightLoss: delivery.WeightLoss,
                     BatchGradesToDeliver: delivery.BatchGradesToDeliver,
                     ApprovedById : delivery.ApprovedById,
@@ -305,7 +306,8 @@
                                 $scope.showMessageSave = false;
 
 
-                                $state.go('delivery-order-list', { 'orderId': orderId });
+
+                                $state.go('delivery-customer-list', { 'customerId': customerId });
 
                             }, 3000);
                         }
@@ -318,7 +320,9 @@
            
         }
         $scope.Cancel = function () {
-            $state.go('delivery-order-list', { 'orderId': orderId });
+
+            $state.go('delivery-customer-list', { 'customerId': customerId });
+
         };
 
         $scope.Delete = function (deliveryId) {
@@ -376,7 +380,7 @@ angular
                         priority: 1
                     }
                 },
-                {name:'OrderNumber',field:'OrderId'},
+               // {name:'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 {name: 'Driver NIN',field: 'DriverNIN'},
@@ -395,11 +399,11 @@ angular
 
 
 angular
-    .module('homer').controller('OrderDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
+    .module('homer').controller('CustomerDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
         function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
             $scope.loadingSpinner = true;
-            var orderId = $scope.orderId;
-            var promise = $http.get('/webapi/DeliveryApi/GetAllDeliveriesForAParticularOrder?orderId=' + orderId, {});
+            var customerId = $scope.customerId;
+            var promise = $http.get('/webapi/DeliveryApi/GetAllDeliveriesForAParticularCustomer?customerId=' + customerId, {});
             promise.then(
                 function (payload) {
                     $scope.gridData.data = payload.data;
@@ -407,6 +411,7 @@ angular
                 }
             );
 
+            $scope.retrievedCustomerId = $scope.customerId;
             $scope.gridData = {
                 enableFiltering: true,
                 columnDefs: $scope.columns,
@@ -424,7 +429,7 @@ angular
                         priority: 1
                     }
                 },
-                {name:'OrderNumber',field:'OrderId'},
+                //{name:'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 {name:'Amount',field:'Amount'},
@@ -475,7 +480,7 @@ angular
                         priority: 1
                     }
                 },
-                {name: 'OrderNumber',field:'OrderId'},
+                //{name: 'OrderNumber',field:'OrderId'},
                 { name: 'Customer Name', field: 'CustomerName' },
                 { name: 'Driver Name', field: 'DriverName' },
                 { name: 'Driver NIN', field: 'DriverNIN' },

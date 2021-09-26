@@ -24,7 +24,7 @@ namespace Higgs.Mbale.EF.Models
         public Nullable<long> ProductId { get; set; }
     
         public virtual Batch Batch { get; set; }
-        public virtual Delivery Delivery { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Delivery Delivery { get; set; }
     }
 }

@@ -8,9 +8,8 @@
 	[ProductId]   BIGINT NOT NULL,
 	[PaymentModeId] BIGINT NOT NULL,
 	[DeliveryCost] FLOAT NOT NULL,
-	[DriverNIN]  [nvarchar](max) NOT NULL,
 	[VehicleNumber] [nvarchar](128) NOT NULL,
-	[OrderId]     BIGINT NOT NULL,
+	
 	[TransactionSubTypeId] BIGINT NOT NULL,
 	[MediaId]     BIGINT NOT NULL,
 	[BranchId]  BIGINT NOT NULL,
@@ -31,7 +30,7 @@
 (
 	[DeliveryId] ASC
 ),
-CONSTRAINT [FK_Delivery_OrderId] FOREIGN KEY([OrderId]) REFERENCES [dbo].[Order](OrderId),
+
 CONSTRAINT [FK_Delivery_StoreId] FOREIGN KEY([StoreId]) REFERENCES [dbo].[Store] (StoreId),
 CONSTRAINT [FK_Delivery_PaymentModeId] FOREIGN KEY ([PaymentModeId]) REFERENCES [dbo].[PaymentMode](PaymentModeId),
 

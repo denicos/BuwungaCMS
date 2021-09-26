@@ -28,7 +28,7 @@
 
                 { name: 'LastName', field: 'LastName', width: '15%', },
                 {
-                    name: 'Account Number', field: 'AccountNumber', width: '15%', 
+                    name: 'Account Number', field: 'UniqueNumber', width: '15%',
 
                 },
 

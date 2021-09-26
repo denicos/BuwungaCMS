@@ -504,6 +504,7 @@ angular
                 $scope.totalLabourCosts = 0;
                 $scope.totalMillingBalance = 0;
                 $scope.totalMillingCharge = 0;
+                $scope.totalProfits = 0;
                 $scope.totalBuveraCosts = 0;
                 var promise = $http.get('/webapi/ReportApi/GenerateBatchCurrentMonthReportForBranch', {});
                 $scope.showDownloadLink = false;
@@ -517,7 +518,8 @@ angular
                      $scope.totalLabourCosts = payload.data.TotalLabourCosts;
                      $scope.totalMillingBalance = payload.data.TotalMillingBalance;
                      $scope.totalMillingCharge = payload.data.TotalMillingCharge;
-                     $scope.totalBuveraCosts = payload.data.TotalBuveraCosts;
+                        $scope.totalBuveraCosts = payload.data.TotalBuveraCosts;
+                        $scope.totalProfits = payload.data.TotalProfits;
 
                      $scope.reportType = 2;
                     
@@ -619,6 +621,7 @@ angular
                 $scope.totalMillingBalance = 0;
                 $scope.totalMillingCharge = 0;
                 $scope.totalBuveraCosts = 0;
+                $scope.totalProfits = 0;
                 var promise = $http.post('/webapi/ReportApi/GetAllBatchesBetweenTheSpecifiedDatesForBranch',
                         {
                             FromDate: batch.FromDate,
@@ -638,7 +641,10 @@ angular
                      $scope.totalLabourCosts = payload.data.TotalLabourCosts;
                      $scope.totalMillingBalance = payload.data.TotalMillingBalance;
                      $scope.totalMillingCharge = payload.data.TotalMillingCharge;
-                     $scope.totalBuveraCosts = payload.data.TotalBuveraCosts;
+                        $scope.totalBuveraCosts = payload.data.TotalBuveraCosts;
+                        $scope.totalProfits = payload.data.totalProfits;
+
+
 
                      $scope.reportType = 4;
                 

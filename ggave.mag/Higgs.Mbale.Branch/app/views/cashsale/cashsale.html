@@ -234,7 +234,7 @@
                                                 Grade:
                                             </div>
                                             <div ng-if="cashSaleId==0 ||cashSale.Grades.length==0 ">
-                                                <div ng-repeat="grade in grades" class="checkbox col-md-3 col-sm-12">
+                                                <div ng-repeat="grade in grades" class="checkbox col-md-6 col-sm-12">
                                                     <div class="col-sm-12 col-md-12">
                                                         <input id="grade_{{grade.GradeId}}" type="checkbox" name="grade_{{grade.GradeId}}"
                                                                checklist-model="cashSale.selectedGrades"

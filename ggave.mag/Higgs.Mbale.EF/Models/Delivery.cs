@@ -16,11 +16,11 @@ namespace Higgs.Mbale.EF.Models
     {
         public Delivery()
         {
+            this.BatchDeliveryGradeSizes = new HashSet<BatchDeliveryGradeSize>();
             this.DeliveryGradeSizes = new HashSet<DeliveryGradeSize>();
             this.DeliveryStocks = new HashSet<DeliveryStock>();
             this.DeliveryBatches = new HashSet<DeliveryBatch>();
             this.WeightLosses = new HashSet<WeightLoss>();
-            this.BatchDeliveryGradeSizes = new HashSet<BatchDeliveryGradeSize>();
         }
     
         public long DeliveryId { get; set; }
@@ -30,11 +30,8 @@ namespace Higgs.Mbale.EF.Models
         public long ProductId { get; set; }
         public long PaymentModeId { get; set; }
         public double DeliveryCost { get; set; }
-        public string DriverNIN { get; set; }
         public string VehicleNumber { get; set; }
-        public long OrderId { get; set; }
         public long TransactionSubTypeId { get; set; }
-        public long MediaId { get; set; }
         public long BranchId { get; set; }
         public long SectorId { get; set; }
         public double Amount { get; set; }
@@ -54,6 +51,8 @@ namespace Higgs.Mbale.EF.Models
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual AspNetUser AspNetUser2 { get; set; }
+        public virtual ICollection<BatchDeliveryGradeSize> BatchDeliveryGradeSizes { get; set; }
+        public virtual Branch Branch { get; set; }
         public virtual ICollection<DeliveryGradeSize> DeliveryGradeSizes { get; set; }
         public virtual ICollection<DeliveryStock> DeliveryStocks { get; set; }
         public virtual PaymentMode PaymentMode { get; set; }
@@ -63,7 +62,5 @@ namespace Higgs.Mbale.EF.Models
         public virtual TransactionSubType TransactionSubType { get; set; }
         public virtual ICollection<DeliveryBatch> DeliveryBatches { get; set; }
         public virtual ICollection<WeightLoss> WeightLosses { get; set; }
-        public virtual ICollection<BatchDeliveryGradeSize> BatchDeliveryGradeSizes { get; set; }
-        public virtual Branch Branch { get; set; }
     }
 }

@@ -63,22 +63,6 @@
                                             </div>
 
 
-                                            <div class="form-group col-sm-6">
-                                                <div class="col-sm-12">
-                                                    <label>Driver NIN</label>
-                                                    <input ng-readonly="readOnly" name="driver_nin" class="form-control" ng-model="delivery.DriverNIN" ng-maxlength="500" required ng-class="{ errorinput: form.driver_nin.$invalid }">
-                                                    <span ng-show="form.driver_nin.$invalid">
-                                                        <span ng-show="form.driver_nin.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
-
-                                                        <span ng-show="form.driver_nin.$error.maxlength" class="help-block error"><i class="fa fa-warning"></i> Driver NIN Number should not exceed 500 characters.</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-
-
 
 
                                             <div class="form-group col-sm-6">
@@ -95,11 +79,28 @@
 
                                                 </div>
                                             </div>
+
+
                                         </div>
+                                       
+
 
 
                                         <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <label>Product</label>
+                                                    <select style="border: none" name="product" class="form-control col-sm-12" data-ng-model="delivery.ProductId" required ng-class="{errorinput:form.product.$invalid}"
+                                                            data-ng-options="i.ProductId as i.Name for i in products">
+                                                        <option value="">Please select</option>
+                                                    </select>
 
+                                                    <span ng-show="form.product.$invalid">
+                                                        <span ng-show="form.product.$error.required" class="help-block error"><i class="fa fa-warning"></i>Product is a required field.</span>
+                                                    </span>
+
+                                                </div>
+                                            </div>
 
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
@@ -129,11 +130,29 @@
 
                                         </div>
                                         <div class="row">
+                                            <!--<div class="form-group col-sm-6">
+        <div class="col-sm-12">
+            <label>Mode of Payment</label>
+            <select style="border: none" name="paymentMode" class="form-control col-sm-12" data-ng-model="delivery.PaymentModeId" required ng-class="{errorinput:form.paymentMode.$invalid}"
+                    data-ng-options="i.PaymentModeId as i.Name for i in paymentModes">
+                <option value="">Please select</option>
+            </select>
+
+            <span ng-show="form.paymentMode.$invalid">
+                <span ng-show="form.paymentMode.$error.required" class="help-block error"><i class="fa fa-warning"></i>Payment Mode is a required field.</span>
+            </span>
+
+        </div>
+
+    </div>-->
+
+
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
                                                     <label>Mode of Payment</label>
                                                     <select style="border: none" name="paymentMode" class="form-control col-sm-12" data-ng-model="delivery.PaymentModeId" required ng-class="{errorinput:form.paymentMode.$invalid}"
-                                                            data-ng-options="i.PaymentModeId as i.Name for i in paymentModes">
+                                                            data-ng-options="i as i.Name for (value,i) in paymentModes">
+
                                                         <option value="">Please select</option>
                                                     </select>
 
@@ -142,9 +161,8 @@
                                                     </span>
 
                                                 </div>
-                                               
-                                            </div>
 
+                                            </div>
 
                                             <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
@@ -204,7 +222,7 @@
                                                                     </table>
 
                                                                 </div>
-                                                                <div class="table-responsive" ng-hide="order.ProductId !=1">
+                                                                <div class="table-responsive" ng-hide="delivery.ProductId !=1">
                                                                     <table class="table table-bordered">
                                                                         <tbody>
 
@@ -214,7 +232,7 @@
                                                                                 <td width="5%"></td>
                                                                                 <td width="85%">
 
-                                                                                    <div class="row" ng-hide="order.ProductId !=1">
+                                                                                    <div class="row" ng-hide="delivery.ProductId !=1">
                                                                                         <div class="col-sm-12 col-md-12">
                                                                                             Grade:
                                                                                         </div>
@@ -274,7 +292,7 @@
                                         <div class="row">
                                            
 
-                                            <div class="form-group col-sm-6" ng-show="order.ProductId ==2">
+                                            <div class="form-group col-sm-6" ng-show="delivery.ProductId ==2">
                                                 <div class="col-sm-12">
                                                     <label>Weight Loss(kgs)</label>
                                                     <input name="weightLoss" class="form-control" ng-model="delivery.WeightLoss" ng-pattern="/^\-?\d+((\.)\d+)?$/" ng-class="{ errorinput: form.weightLoss.$invalid }">
@@ -288,24 +306,28 @@
 
 
                                         <br />
-                                        <div id="Content2" ng-show="order.ProductId ==2">
-                                            <div class="row" ng-show="order.ProductId ==2">
-                                                <div class="col-sm-12 col-md-12">
-                                                    <h4>Order:</h4>
-                                                </div>
-                                                <div class="form-group col-sm-6" ng-show="order.ProductId ==2">
+                                        <div id="Content2" ng-show="delivery.ProductId ==2">
+                                            <div class="row" >
+                                               
+                                                <div class="form-group col-sm-6" ng-show="delivery.ProductId ==2">
                                                     <div class="col-sm-12">
                                                         <label>Quantity(kgs)</label>
-                                                        <input name="balance" class="form-control" ng-model="order.Balance" disabled ng-class="{ errorinput: form.balance.$invalid }">
-
+                                                        <input name="quantity" class="form-control" ng-model="delivery.Quantity" ng-class="{ errorinput: form.quantity.$invalid }">
+                                                        <span ng-show="form.quantity.$invalid">
+                                                            <span ng-show="form.quantity.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
+                                                            <span ng-show="form.quantity.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, quantity should be double or number</span>
+                                                        </span>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <div class="col-sm-12">
                                                         <label>Price</label>
-                                                        <input name="price" class="form-control" ng-model="order.Price" disabled ng-class="{ errorinput: form.price.$invalid }">
-
+                                                        <input name="price" class="form-control" ng-model="delivery.Price" ng-class="{ errorinput: form.price.$invalid }">
+                                                        <span ng-show="form.price.$invalid">
+                                                            <span ng-show="form.price.$error.required" class="help-block error"><i class="fa fa-warning"></i> This is a required field.</span>
+                                                            <span ng-show="form.price.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, price should be double or number</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <br />
@@ -315,56 +337,57 @@
 
                                         </div>
 
-                                        <!--<div id="Content2">
-                                            <div class="row" ng-hide="order.ProductId !=1">
+                                        <div id="Content2">
+                                            <!--<div class="row" ng-hide="order.ProductId !=1">-->
+                                                <div class="row" ng-show="delivery.ProductId ==1" >
 
-                                                <div ng-if="delivery.Batches.length==0 ||delivery.Batches ==null ">
-                                                    <div class="col-sm-12 col-md-12">
-                                                        Grade:
-                                                    </div>
-                                                    <div ng-repeat="grade in grades" class="checkbox col-md-3 col-sm-12">
+                                                    <div ng-if="delivery.Batches.length==0 ||delivery.Batches ==null ">
                                                         <div class="col-sm-12 col-md-12">
-                                                            <input id="grade_{{grade.GradeId}}" type="checkbox" name="grade_{{grade.GradeId}}"
-                                                                   checklist-model="delivery.selectedNoBatchGrades"
-                                                                   checklist-value="grade">
-                                                            <label for="grade-{{grade.GradeId}}"> {{grade.Value}} </label>
+                                                            Grade:
+                                                        </div>
+                                                        <div ng-repeat="grade in grades" class="checkbox col-md-6 col-sm-12">
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <input id="grade_{{grade.GradeId}}" type="checkbox" name="grade_{{grade.GradeId}}"
+                                                                       checklist-model="delivery.selectedNoBatchGrades"
+                                                                       checklist-value="grade">
+                                                                <label for="grade-{{grade.GradeId}}"> {{grade.Value}} </label>
 
-                                                            <div class="table-responsive">
-                                                                <table class="table table-bordered">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th width="40%">Value </th>
-                                                                            <th width="30%">Number Of Bags</th>
-                                                                            <th width="30%">Price</th>
-                                                                        </tr>
-                                                                        <tr ng-repeat="x in grade.Denominations">
-                                                                            <td width="40%"><p> {{ x.Value }} Kg</p></td>
-                                                                            <td width="30%">
-                                                                                <input name="amount{{x.DenominationId}}" class="form-controlx" ng-model="x.Quantity" ng-pattern="/^\-?\d+((\.)\d+)?$/" ng-class="{ errorinput: form.amount{{x.DenominationId}}.$invalid }" ng-disabled="">
-                                                                                <span ng-show="form.amount{{x.DenominationId}}.$invalid">
-                                                                                    <span ng-show="form.amount{{x.DenominationId}}.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, amount should be double or number</span>
-                                                                                </span>
-                                                                            </td>
-                                                                            <td width="30%">
-                                                                                <input name="price{{x.DenominationId}}" class="form-controlx" ng-model="x.Price" ng-pattern="/^\-?\d+((\.)\d+)?$/" ng-class="{ errorinput: form.price{{x.DenominationId}}.$invalid }" ng-disabled="">
-                                                                                <span ng-show="form.price{{x.DenominationId}}.$invalid">
-                                                                                    <span ng-show="form.price{{x.DenominationId}}.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, price should be double or number</span>
-                                                                                </span>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <th width="40%">Value </th>
+                                                                                <th width="30%">Number Of Bags</th>
+                                                                                <th width="30%">Price</th>
+                                                                            </tr>
+                                                                            <tr ng-repeat="x in grade.Denominations">
+                                                                                <td width="40%"><p> {{ x.Value }} Kg</p></td>
+                                                                                <td width="30%">
+                                                                                    <input name="amount{{x.DenominationId}}" class="form-controlx" ng-model="x.Quantity" ng-pattern="/^\-?\d+((\.)\d+)?$/" ng-class="{ errorinput: form.amount{{x.DenominationId}}.$invalid }" ng-disabled="">
+                                                                                    <span ng-show="form.amount{{x.DenominationId}}.$invalid">
+                                                                                        <span ng-show="form.amount{{x.DenominationId}}.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, amount should be double or number</span>
+                                                                                    </span>
+                                                                                </td>
+                                                                                <td width="30%">
+                                                                                    <input name="price{{x.DenominationId}}" class="form-controlx" ng-model="x.Price" ng-pattern="/^\-?\d+((\.)\d+)?$/" ng-class="{ errorinput: form.price{{x.DenominationId}}.$invalid }" ng-disabled="">
+                                                                                    <span ng-show="form.price{{x.DenominationId}}.$invalid">
+                                                                                        <span ng-show="form.price{{x.DenominationId}}.$error.pattern" class="help-block error"><i class="fa fa-warning"></i> Invalid formart, price should be double or number</span>
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <br />
+                                                    <div class="hr-line-dashed"></div>
+
                                                 </div>
-
-                                                <br />
-                                                <div class="hr-line-dashed"></div>
-
                                             </div>
-                                        </div>-->
-                                        <div id="Content2" ng-show="order.ProductId == 1 || order.ProductId == 10003">
+                                        <!--<div id="Content2" ng-show="order.ProductId == 1 || order.ProductId == 10003">
                                             <div>
 
                                                 <div class="row" ng-show="order.ProductId == 1 || order.ProductId == 10003">
@@ -416,7 +439,7 @@
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div>-->
 
 
                                         <div ng-show="delivery.DeliveryId > 0">
@@ -525,7 +548,7 @@
                                                 <div class="btn-group">
 
 
-                                                    <button ng-really-click="Save(delivery,order.ProductId)" class="btn btn-info dropdown-toggle" ng-really-message='Are you sure you want to make this delivery' ng-disabled=" !form.$valid">
+                                                    <button ng-really-click="Save(delivery,delivery.ProductId)" class="btn btn-info dropdown-toggle" ng-really-message='Are you sure you want to make this delivery' ng-disabled=" !form.$valid">
                                                         Save
                                                     </button>
                                                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
