@@ -12,7 +12,9 @@
         var action = $scope.action;
 
 
-
+        $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+            $scope.branches = data;
+        });
 
         if (action == 'create') {
             bankId = 0;
@@ -70,7 +72,7 @@
                 var promise = $http.post('/webapi/BankApi/Save', {
                     BankId: bankId,
                     Name: bank.Name,
-                   
+                    BranchId : bank.BranchId,
                     CreatedBy: bank.CreatedBy,
                     CreatedOn: bank.CreatedOn,
                     AccountNumber: bank.AccountNumber,

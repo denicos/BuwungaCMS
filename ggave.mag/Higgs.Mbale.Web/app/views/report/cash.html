@@ -107,9 +107,9 @@
                                     <th>
                                         <div>Branch</div>
                                     </th>
-                                    <th>
+                                    <!--<th>
                                         <div>TransactionSubTypeName</div>
-                                    </th>
+                                    </th>-->
 
                                     <th>
                                         <div>Notes</div>
@@ -134,7 +134,7 @@
                             <tbody>
                                 <tr ng-repeat="cash in data">
                                     <td style="font-size: 18px !important;" width="10%">{{cash.BranchName}}</td>
-                                    <td style="font-size: 18px !important;" width="10%">{{cash.TransactionSubTypeName}}</td>
+                                    <!--<td style="font-size: 18px !important;" width="10%">{{cash.TransactionSubTypeName}}</td>-->
                                     <td style="font-size: 18px !important;" width="20%">{{cash.Notes}}</td>
                                     <td style="font-size: 18px !important;" width="10%" ng-if="cash.Action =='-'">{{cash.Amount |number}}</td><td style="font-size: 18px !important;" width="10%" ng-if="cash.Action !='-'"></td>
                                     <td style="font-size: 18px !important;" width="10%" ng-if="cash.Action =='+'">{{cash.Amount |number}}</td><td style="font-size: 18px !important;" width="10%" ng-if="cash.Action !='+'"></td>

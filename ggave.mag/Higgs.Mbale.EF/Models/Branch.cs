@@ -55,6 +55,8 @@ namespace Higgs.Mbale.EF.Models
             this.MillingCharges = new HashSet<MillingCharge>();
             this.PettyCashes = new HashSet<PettyCash>();
             this.Deliveries = new HashSet<Delivery>();
+            this.BankTransactions = new HashSet<BankTransaction>();
+            this.Banks = new HashSet<Bank>();
         }
     
         public long BranchId { get; set; }
@@ -113,5 +115,7 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<MillingCharge> MillingCharges { get; set; }
         public virtual ICollection<PettyCash> PettyCashes { get; set; }
         public virtual ICollection<Delivery> Deliveries { get; set; }
+        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
+        public virtual ICollection<Bank> Banks { get; set; }
     }
 }

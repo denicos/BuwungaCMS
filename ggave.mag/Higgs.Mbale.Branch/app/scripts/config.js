@@ -125,6 +125,43 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
         }
     })
+        //banktransactions
+        
+        .state('bankTransactions', {
+            abstract: true,
+            url: "/bankTransactionss",
+            templateUrl: "/app/views/_common/content_empty.html",
+            data: {
+                pageTitle: 'Bank Transactions'
+            }
+        })
+
+        .state('bankTransactions.list', {
+            url: "/bankTransactions",
+            templateUrl: "/app/views/banktransaction/list.html",
+            data: {
+                pageTitle: 'Bank Transactions',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.bankId = $stateParams.bankId;
+            }
+        })
+      
+        .state('bankTransaction-edit', {
+            url: "/bankTransactions/:action/:bankTransactionId/:bankId",
+            templateUrl: "/app/views/banktransaction/edit.html",
+            data: {
+                pageTitle: 'Bank Transaction edit',
+                pageDesc: ''
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.action = $stateParams.action;
+                $scope.bankTransactionId = $stateParams.bankTransactionId;
+                $scope.bankId = $stateParams.bankId;
+                $scope.defaultTab = 'edit';
+            }
+        })
+
 
         //batchprojection
         .state('batchProjections', {
@@ -1674,6 +1711,27 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
                }
            })
+        .state('reports.millingChargelist', {
+            url: "/reports",
+            templateUrl: "/app/views/report/millingcharge.html",
+            data: {
+                pageTitle: 'Bugugu'
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
+        .state('reports.pettyCashlist', {
+            url: "/reports",
+            templateUrl: "/app/views/report/pettycash.html",
+            data: {
+                pageTitle: 'Petty Cash'
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
 
          .state('reports.depositlist', {
              url: "/reports",
@@ -1911,7 +1969,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge",
             templateUrl: "/app/views/_common/content_empty.html",
             data: {
-                pageTitle: 'millingcharge'
+                pageTitle: 'Bugugu'
             }
         })
 
@@ -1919,7 +1977,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge/branch/:branchId",
             templateUrl: "/app/views/millingcharge/branch-milling.html",
             data: {
-                pageTitle: 'Branch Milling Charge',
+                pageTitle: 'Branch Bugugu',
             },
             controller: function ($scope, $stateParams) {
                 $scope.branchId = $stateParams.branchId;
@@ -1931,7 +1989,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge/:action/:millingChargeId",
             templateUrl: "/app/views/millingcharge/edit.html",
             data: {
-                pageTitle: 'Milling Charge Edit',
+                pageTitle: 'Bugugu Edit',
             },
             controller: function ($scope, $stateParams) {
                 $scope.action = $stateParams.action;

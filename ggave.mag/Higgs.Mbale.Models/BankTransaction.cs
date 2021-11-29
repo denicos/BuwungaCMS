@@ -9,9 +9,9 @@ namespace Higgs.Mbale.Models
  public   class BankTransaction
     {
         public long BankTransactionId { get; set; }
-        public long TransactionSubTypeId { get; set; }
+        
         public Nullable<long> BranchId { get; set; }
-        public long SectorId { get; set; }
+      
         public double StartAmount { get; set; }
         public string Action { get; set; }
         public string Notes { get; set; }
@@ -26,8 +26,7 @@ namespace Higgs.Mbale.Models
         public long BankId { get; set; }
 
         public string BranchName { get; set; }
-        public string TransactionSubTyeName { get; set; }
-        public string SectorName { get; set; }
+  
         public string BankName { get; set; }
     
     }

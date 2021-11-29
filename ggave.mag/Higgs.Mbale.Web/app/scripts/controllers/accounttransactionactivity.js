@@ -12,6 +12,7 @@
         var action = $scope.action;
         $scope.accountName = "";
         $scope.actions = ["+", "-"];
+        var departmentId = 1;
         
          $http.get('/webapi/TransactionSubTypeApi/GetAllTransactionSubTypes').success(function (data, status) {
             $scope.transactionSubTypes = data;
@@ -22,10 +23,7 @@
          });
 
 
-         $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-             $scope.sectors = data;
-         });
-
+      
         
          if (accountId.length < 6) {
               accountType = "number";
@@ -118,7 +116,7 @@
                     BranchId: transactionActivity.BranchId,
                     AspNetUserId: (accountType == "string") ? accountId : null,
                     CasualWorkerId: (accountType == "number") ? accountId : null,
-                    SectorId : transactionActivity.SectorId,
+                    SectorId : departmentId,
                     Notes: transactionActivity.Notes,
                     Action: transactionActivity.Action,
                     TransactionSubTypeId: transactionActivity.TransactionSubTypeId,
@@ -1200,6 +1198,60 @@ angular
 
         }]);
 
+angular
+    .module('homer').controller('BranchUnApprovedDepositsListController', ['$scope', '$http', 'uiGridConstants',
+        function ($scope, $http, uiGridConstants) {
+            $scope.loadingSpinner = true;
+            var branchId = $scope.branchId;
+
+
+            $scope.loadingSpinner = true;
+            var promise = $http.get('/webapi/DepositApi/GetLatestTwentyUnApprovedDepositsForABranch?branchId=' + branchId, {});
+            promise.then(
+                function (payload) {
+                    $scope.gridData.data = payload.data;
+                    $scope.loadingSpinner = false;
+                }
+            );
+
+        
+
+            $scope.gridData = {
+                enableFiltering: true,
+                columnDefs: $scope.columns,
+                enableRowSelection: false
+            };
+
+            $scope.gridData.multiSelect = false;
+
+            $scope.gridData.columnDefs = [
+                { name: 'Account', field: 'AccountName' },
+                { name: 'Notes', field: 'Notes' },
+                { name: 'Price', field: 'Price' },
+                { name: 'Quantity', field: 'Quantity', cellFilter: 'number' },
+                { name: 'Action', field: 'Action' },
+                { name: 'Amount', field: 'Amount', cellFilter: 'number' },
+
+                { name: 'Branch', field: 'BranchName' },
+
+                {
+                    name: 'CreatedOn', field: 'CreatedOn',
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 1
+                    }
+                },
+
+
+                { name: 'Details', field: 'DepositId', width: '15%', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/deposits/{{row.entity.DepositId}}">Details</a></div>' },
+
+
+            ];
+
+
+
+
+        }]);
 
 angular
     .module('homer').controller('RejectedDepositsListController', ['$scope', '$http', 'uiGridConstants',

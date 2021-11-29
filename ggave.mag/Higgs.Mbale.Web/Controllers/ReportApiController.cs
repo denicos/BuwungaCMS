@@ -701,10 +701,22 @@ namespace Higgs.Mbale.Web.Controllers
         }
 
         [HttpPost]
+        [ActionName("GenerateCreditorReportForAParticularDateForBranch")]
+        public CreditorReportViewModel GenerateCreditorReportForAParticularDateForBranch(ReportSearch dateTime)
+        {
+            return _reportService.GenerateCreditorReportForAParticularDateForBranch(dateTime.ToDate,dateTime.BranchId);
+        }
+        [HttpPost]
         [ActionName("GenerateDebtorReportForAParticularDate")]
         public DebtorReportViewModel GenerateDebtorReportForAParticularDate(ReportSearch dateTime)
         {
             return _reportService.GenerateDebtorReportForAParticularDate(dateTime.ToDate);
+        }
+        [HttpPost]
+        [ActionName("GenerateDebtorReportForAParticularDateForBranch")]
+        public DebtorReportViewModel GenerateDebtorReportForAParticularDateForBranch(ReportSearch dateTime)
+        {
+            return _reportService.GenerateDebtorReportForAParticularDateForBranch(dateTime.ToDate,dateTime.BranchId);
         }
 
         [HttpPost]
@@ -712,6 +724,12 @@ namespace Higgs.Mbale.Web.Controllers
         public DebtorReportViewModel GenerateAdvancePaymentReportForAParticularDate(ReportSearch dateTime)
         {
             return _reportService.GenerateAdvancePaymentReportForAParticularDate(dateTime.ToDate);
+        }
+        [HttpPost]
+        [ActionName("GenerateAdvancePaymentReportForAParticularDateForBranch")]
+        public DebtorReportViewModel GenerateAdvancePaymentReportForAParticularDateForBranch(ReportSearch dateTime)
+        {
+            return _reportService.GenerateAdvancePaymentReportForAParticularDateForBranch(dateTime.ToDate,dateTime.BranchId);
         }
         #endregion
 
@@ -746,7 +764,22 @@ namespace Higgs.Mbale.Web.Controllers
 
         #endregion
 
-      
+        #region pettycash
+        [HttpPost]
+        [ActionName("GetAllPettyCashBetweenTheSpecifiedDates")]
+        public PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDates(ReportSearch searchDates)
+        {
+            return _reportService.GetAllPettyCashBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId,searchDates.CategoryId);
+        }
+        #endregion
+        #region millingcharge
+        [HttpPost]
+        [ActionName("GetAllMillingChargeBetweenTheSpecifiedDates")]
+        public MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDates(ReportSearch searchDates)
+        {
+            return _reportService.GetAllMillingChargeBetweenTheSpecifiedDates(searchDates.FromDate, searchDates.ToDate, searchDates.BranchId);
+        }
+        #endregion
 
     }
 }

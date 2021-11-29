@@ -174,6 +174,8 @@ namespace Higgs.Mbale.Branch
 .Include("~/app/scripts/controllers/cashsale.js")
 .Include("~/app/scripts/controllers/brandstore.js")
 .Include("~/app/scripts/controllers/report.js")
+.Include("~/app/scripts/controllers/banktransaction.js")
+
 .Include("~/app/scripts/controllers/debtor.js")
 .Include("~/app/scripts/controllers/creditor.js")
 .Include("~/app/scripts/controllers/buvera.js")

@@ -63,6 +63,8 @@
     <Compile Include="Concrete\ActivityDataService.cs" />
     <Compile Include="Concrete\AssetCategoryDataService.cs" />
     <Compile Include="Concrete\AssetDataService.cs" />
+    <Compile Include="Concrete\BankDataService.cs" />
+    <Compile Include="Concrete\BankTransactionDataService.cs" />
     <Compile Include="Concrete\BatchDataService.cs" />
     <Compile Include="Concrete\BatchOutPutDataService.cs" />
     <Compile Include="Concrete\BatchProjectionDataService.cs" />
@@ -116,6 +118,8 @@
     <Compile Include="Interface\IActivityDataService.cs" />
     <Compile Include="Interface\IAssetCategoryDataService.cs" />
     <Compile Include="Interface\IAssetDataService.cs" />
+    <Compile Include="Interface\IBankDataService.cs" />
+    <Compile Include="Interface\IBankTransactionDataService.cs" />
     <Compile Include="Interface\IBatchDataService.cs" />
     <Compile Include="Interface\IBatchOutPutDataService.cs" />
     <Compile Include="Interface\IBatchProjectionDataService.cs" />

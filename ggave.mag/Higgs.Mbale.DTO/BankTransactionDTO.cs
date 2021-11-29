@@ -9,9 +9,8 @@ namespace Higgs.Mbale.DTO
  public   class BankTransactionDTO
     {
         public long BankTransactionId { get; set; }
-        public long TransactionSubTypeId { get; set; }
+        
         public Nullable<long> BranchId { get; set; }
-        public long SectorId { get; set; }
         public double StartAmount { get; set; }
         public string Action { get; set; }
         public string Notes { get; set; }

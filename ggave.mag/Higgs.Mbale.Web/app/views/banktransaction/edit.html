@@ -40,21 +40,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-sm-6">
-                                                <div class="col-sm-12">
-                                                    <label>Transaction SubType Name</label>
-                                                    <select style="border: none" name="transactionSubType" class="form-control col-sm-12" data-ng-model="bankTransaction.TransactionSubTypeId" required ng-class="{errorinput:form.transactionSubType.$invalid}"
-                                                            data-ng-options="i.TransactionSubTypeId as i.Name for i in transactionSubTypes">
-                                                        <option value="">Please select</option>
-                                                    </select>
-
-                                                    <span ng-show="form.transactionSubType.$invalid">
-                                                        <span ng-show="form.transactionSubType.$error.required" class="help-block error"><i class="fa fa-warning"></i>TransactionSubType is a required field.</span>
-                                                    </span>
-
-                                                </div>
-                                            </div>
-
+                                            
 
                                         </div>
 
@@ -90,31 +76,16 @@
                                         </div>
                                         <div class="row">
 
-                                            <!--<div class="form-group col-sm-6">
+                                            <div class="form-group col-sm-6">
                                                 <div class="col-sm-12">
                                                     <label>Branch</label>
-                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="bankTransaction.BranchId" ng-class="{errorinput:form.branch.$invalid}"
+                                                    <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="bankTransaction.BranchId" required ng-class="{errorinput:form.branch.$invalid}"
                                                             data-ng-options="i.BranchId as i.Name for i in branches">
                                                         <option value="">Please select</option>
                                                     </select>
 
                                                     <span ng-show="form.branch.$invalid">
                                                         <span ng-show="form.branch.$error.required" class="help-block error"><i class="fa fa-warning"></i>Branch is a required field.</span>
-                                                    </span>
-
-                                                </div>
-                                            </div>-->
-
-                                            <div class="form-group col-sm-6">
-                                                <div class="col-sm-12">
-                                                    <label>Department</label>
-                                                    <select style="border: none" name="sector" class="form-control col-sm-12" data-ng-model="bankTransaction.SectorId" required ng-class="{errorinput:form.sector.$invalid}"
-                                                            data-ng-options="i.SectorId as i.Name for i in sectors">
-                                                        <option value="">Please select</option>
-                                                    </select>
-
-                                                    <span ng-show="form.sector.$invalid">
-                                                        <span ng-show="form.sector.$error.required" class="help-block error"><i class="fa fa-warning"></i>Department is a required field.</span>
                                                     </span>
 
                                                 </div>

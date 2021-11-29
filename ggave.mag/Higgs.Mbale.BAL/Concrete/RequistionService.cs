@@ -561,36 +561,11 @@ namespace Higgs.Mbale.BAL.Concrete
                     //allowance
                     else if (requistion.RequistionCategoryId == 5)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                              
                                 try
                                 {
                                     var cashAllowanceCasual = new Cash()
@@ -620,40 +595,18 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
 
                     //otherexpense
                     else if (requistion.RequistionCategoryId == 6)
                     {
                         long checkedCashId = 0;
-                        if (requistion.CasualWorkerId != null)
-                        {
+                      
                             checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                var accountTransactionActivity = new AccountTransactionActivity()
-                                {
-
-                                    CasualWorkerId = requistion.CasualWorkerId,
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "+",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                    SectorId = sectorId,
-                                    CreatedOn = DateTime.Now,
-
-
-                                };
-
-                                var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-                                var cashAllowance = new Cash()
+                               var cashAllowance = new Cash()
                                 {
 
                                     Amount = requistion.Amount,
@@ -673,35 +626,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-
-                            checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                            if (checkedCashId > 0)
-                            {
-                                var cashOther = new Cash()
-                                {
-
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "-",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = debitId,
-                                    SectorId = sectorId,
-                                    RequistionCategoryId = requistion.RequistionCategoryId,
-                                    CreatedBy = requistion.ApprovedById,
-
-                                };
-
-                                cashId = _cashService.SaveCash(cashOther, userId);
-                            }
-                            else
-                            {
-                                return requistionId = checkedCashId;
-                            }
-                        }
-
+                       
 
                     }
 
@@ -709,36 +634,11 @@ namespace Higgs.Mbale.BAL.Concrete
 
                     else if (requistion.RequistionCategoryId == 40015)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashProtective = new Cash()
@@ -768,47 +668,17 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
                     //Nssf
 
                     else if (requistion.RequistionCategoryId == 40016)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashNssf = new Cash()
@@ -838,46 +708,16 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
                     //Ura
                     else if (requistion.RequistionCategoryId == 40017)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
                                     var cashUra = new Cash()
@@ -907,12 +747,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
 
                    
@@ -920,51 +755,7 @@ namespace Higgs.Mbale.BAL.Concrete
                     else if (requistion.RequistionCategoryId == 20008)
                     {
                         long checkedCashId = 0;
-                        if (requistion.CasualWorkerId != null)
-                        {
-                            checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                            if (checkedCashId > 0)
-                            {
-                                var accountTransactionActivity = new AccountTransactionActivity()
-                                {
-
-                                    CasualWorkerId = requistion.CasualWorkerId,
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "+",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                    SectorId = sectorId,
-                                    CreatedOn = DateTime.Now,
-
-
-                                };
-
-                                var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-                                var cashPackaging = new Cash()
-                                {
-
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "-",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = debitId,
-                                    SectorId = sectorId,
-                                    RequistionCategoryId = requistion.RequistionCategoryId,
-                                    CreatedBy = requistion.ApprovedById,
-
-                                };
-
-                                cashId = _cashService.SaveCash(cashPackaging, userId);
-                            }
-                            else
-                            {
-                                return requistionId = checkedCashId;
-                            }
-                        }
-                        else
-                        {
-
+                      
                             checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
@@ -988,7 +779,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
+                       
 
                     }
 
@@ -1125,36 +916,11 @@ namespace Higgs.Mbale.BAL.Concrete
                     {
 
 
-                        if (requistion.CasualWorkerId != null)
-                        {
+                      
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
 
@@ -1185,12 +951,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+
 
                     }
 
@@ -1198,27 +959,10 @@ namespace Higgs.Mbale.BAL.Concrete
                     else if (requistion.RequistionCategoryId == 20004)
                     {
                         long checkedCashId = 0;
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                var accountTransactionActivity = new AccountTransactionActivity()
-                                {
-
-                                    CasualWorkerId = requistion.CasualWorkerId,
-                                    Amount = requistion.Amount,
-                                    Notes = requistion.Description,
-                                    Action = "+",
-                                    BranchId = requistion.BranchId,
-                                    TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                    SectorId = sectorId,
-                                    CreatedOn = DateTime.Now,
-
-
-                                };
-
-                                var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
                                 var cashAdvance = new Cash()
                                 {
 
@@ -1239,14 +983,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            checkedCashId = -33;
-
-                            return requistionId = checkedCashId;
-
-                        }
+                        
                     }
 
                     //utility
@@ -1305,41 +1042,92 @@ namespace Higgs.Mbale.BAL.Concrete
 
                     }
 
-                 
+                   //bankdepositmillingcharge
+                   else if(requistion.RequistionCategoryId == 40022)
+                    {
+                        var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
+                        if (checkedCashId > 0)
+                        {
+                           
+                            try
+                            {
+
+                                var cashDepositMilling = new Cash()
+                                {
+
+                                    Amount = requistion.Amount,
+                                    Notes = requistion.Description,
+                                    Action = "-",
+                                    BranchId = requistion.BranchId,
+                                    TransactionSubTypeId = debitId,
+                                    SectorId = sectorId,
+                                    RequistionCategoryId = requistion.RequistionCategoryId,
+                                    CreatedBy = requistion.ApprovedById,
+
+                                };
+
+                                cashId = _cashService.SaveCash(cashDepositMilling, userId);
+                            }
+                            catch (Exception e)
+                            {
+                                var casual = -23;
+                                return requistionId = casual;
+                            }
+
+                        }
+                        else
+                        {
+                            return requistionId = checkedCashId;
+                        }
+
+                    }
+                    //bank deposit cashsales
+                    else if(requistion.RequistionCategoryId == 10007)
+                    {
+                        var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
+                        if (checkedCashId > 0)
+                        {
+
+                            try
+                            {
+
+                                var cashDepositCashSales = new Cash()
+                                {
+
+                                    Amount = requistion.Amount,
+                                    Notes = requistion.Description,
+                                    Action = "-",
+                                    BranchId = requistion.BranchId,
+                                    TransactionSubTypeId = debitId,
+                                    SectorId = sectorId,
+                                    RequistionCategoryId = requistion.RequistionCategoryId,
+                                    CreatedBy = requistion.ApprovedById,
+
+                                };
+
+                                cashId = _cashService.SaveCash(cashDepositCashSales, userId);
+                            }
+                            catch (Exception e)
+                            {
+                                var casual = -23;
+                                return requistionId = casual;
+                            }
+
+                        }
+                        else
+                        {
+                            return requistionId = checkedCashId;
+                        }
+                    }
 
                     //marketing
                     else if (requistion.RequistionCategoryId == 19)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashMarketing = new Cash()
@@ -1369,19 +1157,13 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
 
                     }
                     //offloading 
                     else if (requistion.RequistionCategoryId == 10009)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
@@ -1415,47 +1197,17 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
                     //spare parts
                     else if (requistion.RequistionCategoryId == 20005)
                     {
                         long checkedCashId = 0;
                         checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 var cashSpare = new Cash()
                                 {
 
@@ -1477,15 +1229,7 @@ namespace Higgs.Mbale.BAL.Concrete
                                 return requistionId = checkedCashId;
                             }
 
-                        }
-                        else
-                        {
-
-                            requistionId = -9;
-                            return requistionId;
-                        }
-
-
+                       
 
 
                     }
@@ -1494,36 +1238,11 @@ namespace Higgs.Mbale.BAL.Concrete
                     else if (requistion.RequistionCategoryId == 20012)
                     {
                         long checkedCashId = 0;
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 var cashStationery = new Cash()
                                 {
 
@@ -1544,12 +1263,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
 
 
 
@@ -1557,36 +1271,11 @@ namespace Higgs.Mbale.BAL.Concrete
                     // parking fee
                     else if (requistion.RequistionCategoryId == 20010)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashParking = new Cash()
@@ -1616,47 +1305,17 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
 
                     }
                     // commision
                     else if (requistion.RequistionCategoryId == 27)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
                                     var cashCommission = new Cash()
@@ -1686,48 +1345,18 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
 
 
                     }
                     // personal use
                     else if (requistion.RequistionCategoryId == 11)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
                                     var cashPersonal = new Cash()
@@ -1757,46 +1386,16 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
                     // salary
                     else if (requistion.RequistionCategoryId == 40019)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashSalary = new Cash()
@@ -1826,47 +1425,17 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                     
                     }
                     //foodstuff
                     else if (requistion.RequistionCategoryId == 12)
                     {
 
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 try
                                 {
                                     var cashFood = new Cash()
@@ -1896,48 +1465,18 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                        
 
                     }
 
                     //fuel
                     else if (requistion.RequistionCategoryId == 10010)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                        
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
                                     var cashFuel = new Cash()
@@ -1967,48 +1506,17 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
-
+                       
                     }
 
                     //loading
                     else if (requistion.RequistionCategoryId == 15)
                     {
-                        if (requistion.CasualWorkerId != null)
-                        {
+                       
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                                
                                 try
                                 {
                                     var cashLoading = new Cash()
@@ -2038,48 +1546,18 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
                     }
 
                     // car maintanance
                     else if (requistion.RequistionCategoryId == 20011)
                     {
 
-                        if (requistion.CasualWorkerId != null)
-                        {
+                     
                             var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                              
                                 try
                                 {
                                     var cashCar = new Cash()
@@ -2109,123 +1587,23 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
-
-
+                       
 
                     }
 
-                    //// Lunch Allowance
-                    //else if (requistion.RequistionCategoryId == 36)
-                    //{
-                    //    if (requistion.CasualWorkerId != null)
-                    //    {
-                    //        var checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
-                    //        if (checkedCashId > 0)
-                    //        {
-                    //            try
-                    //            {
-                    //                var accountTransactionActivity = new AccountTransactionActivity()
-                    //                {
-
-                    //                    CasualWorkerId = requistion.CasualWorkerId,
-                    //                    Amount = requistion.Amount,
-                    //                    Notes = requistion.Description,
-                    //                    Action = "+",
-                    //                    BranchId = requistion.BranchId,
-                    //                    TransactionSubTypeId = allowanceTransactionSubTypeId,
-                    //                    SectorId = sectorId,
-                    //                    CreatedOn = DateTime.Now,
-
-                    //                };
-
-                    //                var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                    //            }
-
-                    //            catch (Exception e)
-                    //            {
-                    //                var accountActivityId = -22;
-                    //                return requistionId = accountActivityId;
-                    //            }
-                    //            try
-                    //            {
-                    //                var cashLunchAllowance = new Cash()
-                    //                {
-
-                    //                    Amount = requistion.Amount,
-                    //                    Notes = requistion.Description,
-                    //                    Action = "-",
-                    //                    BranchId = requistion.BranchId,
-                    //                    TransactionSubTypeId = debitId,
-                    //                    SectorId = sectorId,
-                    //                    RequistionCategoryId = requistion.RequistionCategoryId,
-                    //                    CreatedBy = requistion.ApprovedById,
-
-                    //                };
-
-                    //                cashId = _cashService.SaveCash(cashLunchAllowance, userId);
-                    //            }
-                    //            catch (Exception e)
-                    //            {
-                    //                var casual = -23;
-                    //                return requistionId = casual;
-                    //            }
-
-                    //        }
-                    //        else
-                    //        {
-                    //            return requistionId = checkedCashId;
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        requistionId = -9;
-                    //        return requistionId;
-                    //    }
-                    //}
-
+                 
+                   
                    
                     //transport
                     else if (requistion.RequistionCategoryId == 20009)
                     {
                         long checkedCashId = 0;
 
-                        if (requistion.CasualWorkerId != null)
-                        {
+                     
                             checkedCashId = _cashService.CheckIfBranchHasEnoughCash(requistion.BranchId, requistion.Amount, "-");
                             if (checkedCashId > 0)
                             {
-                                try
-                                {
-                                    var accountTransactionActivity = new AccountTransactionActivity()
-                                    {
-
-                                        CasualWorkerId = requistion.CasualWorkerId,
-                                        Amount = requistion.Amount,
-                                        Notes = requistion.Description,
-                                        Action = "+",
-                                        BranchId = requistion.BranchId,
-                                        TransactionSubTypeId = allowanceTransactionSubTypeId,
-                                        SectorId = sectorId,
-                                        CreatedOn = DateTime.Now,
-
-                                    };
-
-                                    var accountTransactionActivityId = _accountTransactionActivityService.SaveAccountTransactionActivity(accountTransactionActivity, userId);
-
-                                }
-
-                                catch (Exception e)
-                                {
-                                    var accountActivityId = -22;
-                                    return requistionId = accountActivityId;
-                                }
+                               
                                 var cashTransport = new Cash()
                                 {
 
@@ -2246,12 +1624,7 @@ namespace Higgs.Mbale.BAL.Concrete
                             {
                                 return requistionId = checkedCashId;
                             }
-                        }
-                        else
-                        {
-                            requistionId = -9;
-                            return requistionId;
-                        }
+                       
 
 
 

@@ -49,6 +49,12 @@ namespace Higgs.Mbale.Web.Controllers
                 return _deliveryService.GetAllUnApprovedDeliveries();
             }
             [HttpGet]
+            [ActionName("GetAllBranchUnApprovedDeliveries")]
+            public IEnumerable<Delivery> GetAllBranchUnApprovedDeliveries(long branchId)
+            {
+                return _deliveryService.GetAllBranchUnApprovedDeliveries(branchId);
+            }
+            [HttpGet]
             [ActionName("GetAllApprovedDeliveries")]
             public IEnumerable<Delivery> GetAllApprovedDeliveries()
             {

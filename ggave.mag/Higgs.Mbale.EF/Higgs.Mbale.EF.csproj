@@ -89,6 +89,12 @@
     <Compile Include="Models\AssetCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bank.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BankTransaction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Batch.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

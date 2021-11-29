@@ -93,6 +93,11 @@ namespace Higgs.Mbale.Web.Models
         [Display(Name = "Location")]
         public string Location { get; set; }
 
+        [Display(Name = "Branch")]
+        public long BranchId { get; set; }
+
+        [Display(Name = "Branches")]
+        public long SelectedBranchId { get; set; }
 
         [Display(Name = "District")]
         public long RegionId { get; set; }

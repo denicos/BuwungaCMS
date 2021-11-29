@@ -16,6 +16,7 @@ namespace Higgs.Mbale.Web.Models
 
         public string Location { get; set; }
         public long? RegionId { get; set; }
+        public long? BranchId { get; set; }
 
         public IEnumerable<long> SelectedProducts { get; set; }
       

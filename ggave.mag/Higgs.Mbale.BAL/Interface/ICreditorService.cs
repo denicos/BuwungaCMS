@@ -12,8 +12,10 @@ namespace Higgs.Mbale.BAL.Interface
       
 
         IEnumerable<CreditorView> GetCreditorViewForAParticularDate(DateTime dateTime);
-     
 
-     
+        IEnumerable<CreditorView> GetCreditorViewForAParticularDateForBranch(DateTime dateTime,long branchId);
+
+
+
     }
 }

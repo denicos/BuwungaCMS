@@ -52,6 +52,12 @@ namespace Higgs.Mbale.Web.Controllers
                 return _SupplyService.GetAllUnApprovedSupplies();
             }
             [HttpGet]
+            [ActionName("GetAllUnApprovedSuppliesForABranch")]
+            public IEnumerable<Supply> GetAllUnApprovedSuppliesForABranch(long branchId)
+            {
+                return _SupplyService.GetAllUnApprovedSuppliesForABranch(branchId);
+            }   
+            [HttpGet]
             [ActionName("GetAllSuppliesToBeUsed")]
             public IEnumerable<Supply> GetAllSuppliesToBeUsed()
             {

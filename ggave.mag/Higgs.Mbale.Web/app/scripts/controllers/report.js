@@ -1012,6 +1012,123 @@ angular
 
         }]);
 
+angular
+    .module('homer').controller('ReportPettyCashController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants', '$window',
+        function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants, $window) {
+            $scope.loadingSpinner = true;
+
+            $scope.reportType = 0;
+            $scope.showDownloadLink = false;
+
+
+            $http.get('/webapi/RequistionApi/GetAllRequistionCategories').success(function (data, status) {
+                $scope.requistionCategories = data;
+            });
+
+            $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+                $scope.branches = data;
+            });
+
+            $scope.SearchPettyCash = function (pettyCash) {
+                $scope.data = [];
+                $scope.totalAmount = 0;
+                var promise = $http.post('/webapi/ReportApi/GetAllPettyCashBetweenTheSpecifiedDates',
+                    {
+                        FromDate: pettyCash.FromDate,
+                        ToDate: pettyCash.ToDate,
+                        RequistionCategoryId: pettyCash.RequistionCategoryId,
+                        BranchId : pettyCash.BranchId,
+
+                    });
+                promise.then(
+                    function (payload) {
+
+                        $scope.data = payload.data.PettyCashs;
+                        $scope.totalAmount = payload.data.TotalAmount;
+                        $scope.reportType = 4;
+
+
+                        $scope.tableParams = new ngTableParams({
+                            page: 1,
+                            count: 10,
+                            sorting: { CreatedOn: 'desc' }
+                        }, {
+                            getData: function ($defer, params) {
+                                var filteredData = $filter('filter')($scope.data, $scope.filter);
+                                var orderedData = params.sorting() ?
+                                    $filter('orderBy')(filteredData, params.orderBy()) :
+                                    filteredData;
+
+                                params.total(orderedData.length);
+                                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                            },
+                            $scope: $scope
+
+                        });
+                    });
+            }
+
+
+
+        }]);
+
+
+angular
+    .module('homer').controller('ReportMillingChargeController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants', '$window',
+        function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants, $window) {
+            $scope.loadingSpinner = true;
+
+            $scope.reportType = 0;
+            $scope.showDownloadLink = false;
+
+
+            $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+                $scope.branches = data;
+            });
+
+            $scope.SearchMillingCharge = function (millingCharge) {
+                $scope.data = [];
+                $scope.totalAmount = 0;
+                $scope.totalQuantity = 0;
+                var promise = $http.post('/webapi/ReportApi/GetAllMillingChargeBetweenTheSpecifiedDates',
+                    {
+                        FromDate: millingCharge.FromDate,
+                        ToDate: millingCharge.ToDate,
+                        BranchId : millingCharge.BranchId,
+
+                    });
+                promise.then(
+                    function (payload) {
+
+                        $scope.data = payload.data.MillingCharges;
+                        $scope.totalAmount = payload.data.TotalAmount;
+                        $scope.totalQuantity = payload.data.TotalQuantity;
+                        $scope.reportType = 4;
+
+
+                        $scope.tableParams = new ngTableParams({
+                            page: 1,
+                            count: 10,
+                            sorting: { CreatedOn: 'desc' }
+                        }, {
+                            getData: function ($defer, params) {
+                                var filteredData = $filter('filter')($scope.data, $scope.filter);
+                                var orderedData = params.sorting() ?
+                                    $filter('orderBy')(filteredData, params.orderBy()) :
+                                    filteredData;
+
+                                params.total(orderedData.length);
+                                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                            },
+                            $scope: $scope
+
+                        });
+                    });
+            }
+
+
+
+        }]);
 
 angular
     .module('homer').controller('ReportRiceInputController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants', '$window',
@@ -2664,7 +2781,10 @@ angular
         function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants, $window) {
             $scope.loadingSpinner = true;
 
-            $scope.reportType = 0;        
+            $scope.reportType = 0;
+            $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+                $scope.branches = data;
+            });
             $scope.GenerateCreditorList = function (searchDate) {
                 $scope.data = [];
                 $scope.creditors = [];
@@ -2673,11 +2793,19 @@ angular
                     var promise = $http.get('/webapi/ReportApi/GenerateCreditorReport',{});
 
                 }
+                else if ((searchDate != null || searchDate != "undefined") && (searchDate.BranchId != null || searchDate.BranchId == "undefined")) {
+                    var promise = $http.post('/webapi/ReportApi/GenerateCreditorReportForAParticularDateForBranch',
+                        {
+                            ToDate: searchDate.ToDate,
+                            BranchId: searchDate.BranchId,
+
+                        });
+                }
                 else {
                     var promise = $http.post('/webapi/ReportApi/GenerateCreditorReportForAParticularDate',
                         {
                             ToDate: searchDate.ToDate,
-
+                            BranchId : searchDate.BranchId,
 
                         });
 
@@ -2709,7 +2837,10 @@ angular
         function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants, $window) {
             $scope.loadingSpinner = true;
 
-            $scope.reportType = 0;   
+            $scope.reportType = 0;
+            $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+                $scope.branches = data;
+            });
 
             $scope.GenerateDebtorList = function (searchDate) {
                 $scope.data = [];
@@ -2718,11 +2849,19 @@ angular
                 if (searchDate == null || searchDate == "undefined") {
                     var promise = $http.get('/webapi/ReportApi/GenerateDebtorReport',{});
                 }
+                else if ((searchDate != null || searchDate != "undefined") && (searchDate.BranchId != null || searchDate.BranchId == "undefined")) {
+                    var promise = $http.post('/webapi/ReportApi/GenerateDebtorReportForAParticularDateForBranch',
+                        {
+                            ToDate: searchDate.ToDate,
+                            BranchId: searchDate.BranchId,
+
+                        });
+                }
                 else {
                     var promise = $http.post('/webapi/ReportApi/GenerateDebtorReportForAParticularDate',
                         {
                             ToDate: searchDate.ToDate,
-
+                            BranchId : searchDate.BranchId,
                         });
                 }
                
@@ -2758,7 +2897,9 @@ angular
             $scope.reportType = 0;
             $scope.showDownloadLink = false;
 
-
+            $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+                $scope.branches = data;
+            });
 
             $scope.GenerateAdvancePaymentList = function (searchDate) {
                 $scope.data = [];
@@ -2769,10 +2910,19 @@ angular
                     var promise = $http.get('/webapi/ReportApi/GenerateAdvancePaymentReport', {});
 
                 }
+                else if ((searchDate != null || searchDate !="undefined")&& (searchDate.BranchId != null || searchDate.BranchId =="undefined")) {
+                    var promise = $http.post('/webapi/ReportApi/GenerateAdvancePaymentReportForAParticularDateForBranch',
+                        {
+                            ToDate: searchDate.ToDate,
+                            BranchId: searchDate.BranchId,
+
+                        });
+                }
                 else {
                     var promise = $http.post('/webapi/ReportApi/GenerateAdvancePaymentReportForAParticularDate',
                         {
                             ToDate: searchDate.ToDate,
+                            BranchId: searchDate.BranchId,
 
                         });
                 }

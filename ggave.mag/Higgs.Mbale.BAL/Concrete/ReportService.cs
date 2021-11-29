@@ -45,6 +45,8 @@ namespace Higgs.Mbale.BAL.Concrete
         private IBuveraService _buveraService;
         private IBranchService _branchService;
         private IWeightLossService _weightLossService;
+        private IPettyCashService _pettyCashService;
+        private IMillingChargeService _millingChargeService;
        
 
         public ReportService(IReportDataService dataService, IUserService userService, ITransactionService transactionService,
@@ -54,7 +56,7 @@ namespace Higgs.Mbale.BAL.Concrete
             IBatchOutPutService batchOutPutService, IFlourTransferService flourTransferService, IMachineRepairService machineRepairService,
             ICreditorService creditorService, ICashTransferService cashTransferService,
             ICashSaleService cashSaleService, IBuveraTransferService buveraTransferService, IUtilityAccountService utilityAccountService,
-            IWeightLossService weightLossService,
+            IWeightLossService weightLossService,IPettyCashService pettyCashService,IMillingChargeService millingChargeService,
             IDebtorService debtorService, IStoreService storeService, IBuveraService buveraService, IBranchService branchService
             )
         {
@@ -84,6 +86,8 @@ namespace Higgs.Mbale.BAL.Concrete
             this._buveraService = buveraService;
             this._weightLossService = weightLossService;
             this._branchService = branchService;
+            this._pettyCashService = pettyCashService;
+            this._millingChargeService = millingChargeService;
            
         }
 
@@ -2848,6 +2852,16 @@ namespace Higgs.Mbale.BAL.Concrete
             var creditorReport = ListOfCreditorsAndTotalAmount(results.ToList());
             return creditorReport;
         }
+
+        public CreditorReportViewModel GenerateCreditorReportForAParticularDateForBranch(DateTime dateTime,long branchId)
+        {
+
+            var results = this._creditorService.GetCreditorViewForAParticularDateForBranch(dateTime,branchId);
+
+            var creditorReport = ListOfCreditorsAndTotalAmount(results.ToList());
+            return creditorReport;
+        }
+
         public CreditorReportViewModel ListOfCreditorsAndTotalAmount(List<CreditorView> creditorList)
         {
             var totalAmount = Convert.ToDecimal(creditorList.Sum(d => d.Amount));
@@ -2877,6 +2891,15 @@ namespace Higgs.Mbale.BAL.Concrete
         {
 
             var results = this._debtorService.GetDebtorViewForAParticularDate(dateTime);
+
+            var debtorReport = ListOfDebtorsAndTotalAmount(results.ToList());
+            return debtorReport;
+        }
+
+        public DebtorReportViewModel GenerateDebtorReportForAParticularDateForBranch(DateTime dateTime, long branchId)
+        {
+
+            var results = this._debtorService.GenerateDebtorReportForAParticularDateForBranch(dateTime, branchId);
 
             var debtorReport = ListOfDebtorsAndTotalAmount(results.ToList());
             return debtorReport;
@@ -2914,6 +2937,17 @@ namespace Higgs.Mbale.BAL.Concrete
             var advancePaymentReport = ListOfAdvancePaymentsAndTotalAmount(results.ToList());
             return advancePaymentReport;
         }
+
+        public DebtorReportViewModel GenerateAdvancePaymentReportForAParticularDateForBranch(DateTime dateTime,long branchId)
+        {
+
+            var results = this._debtorService.GetAdvancePaymentViewForAParticularDateForBranch(dateTime,branchId);
+
+            var advancePaymentReport = ListOfAdvancePaymentsAndTotalAmount(results.ToList());
+            return advancePaymentReport;
+        }
+
+
         public DebtorReportViewModel ListOfAdvancePaymentsAndTotalAmount(List<DebtorView> advancePaymentList)
         {
             var totalAmount = Convert.ToDecimal(advancePaymentList.Sum(d => d.Amount));
@@ -3059,7 +3093,89 @@ namespace Higgs.Mbale.BAL.Concrete
         }
         #endregion
 
-       
+        #region millingcharge
+        #region branch
+
+        public MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
+        {
+            var results = this._dataService.GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(lowerSpecifiedDate, upperSpecifiedDate, branchId);
+            var millingChargeList = _millingChargeService.MapEFToModel(results.ToList());
+
+            var millingChargeReport = CalculateDifferentMillingChargeSums(millingChargeList.ToList());
+            return millingChargeReport;
+
+        }
+        #endregion
+        #region web
+
+        public MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
+        {
+            var results = this._dataService.GetAllMillingChargeBetweenTheSpecifiedDates(lowerSpecifiedDate, upperSpecifiedDate, branchId);
+            var millingChargeList = _millingChargeService.MapEFToModel(results.ToList());
+
+            var millingChargeReport = CalculateDifferentMillingChargeSums(millingChargeList.ToList());
+            return millingChargeReport;
+
+        }
+
+        #endregion
+        public MillingChargeReportViewModel CalculateDifferentMillingChargeSums(List<MillingCharge> millingChargeList)
+        {
+            var totalAmount = Convert.ToDouble(millingChargeList.Sum(d => d.Amount));
+            var totalQuantity = Convert.ToDouble(millingChargeList.Sum(d => d.Quantity));
+
+            var millingChargeReport = new MillingChargeReportViewModel()
+            {
+                MillingCharges = millingChargeList,
+                TotalAmount = totalAmount,
+                TotalQuantity = totalQuantity,
+
+            };
+            return millingChargeReport;
+        }
+
+        #endregion
+
+        #region pettycash
+        #region branch
+
+        public PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId, long categoryId)
+        {
+            var results = this._dataService.GetAllPettyCashBetweenTheSpecifiedDatesForBranch(lowerSpecifiedDate, upperSpecifiedDate, branchId, categoryId);
+            var pettyCashList = _pettyCashService.MapEFToModel(results.ToList());
+
+            var pettyReport = CalculateDifferentPettyCashSums(pettyCashList.ToList());
+            return pettyReport;
+
+        }
+        #endregion
+        #region web
+
+        public PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate,long branchId, long categoryId)
+        {
+            var results = this._dataService.GetAllPettyCashBetweenTheSpecifiedDates(lowerSpecifiedDate, upperSpecifiedDate,branchId, categoryId);
+            var pettyCashList = _pettyCashService.MapEFToModel(results.ToList());
+
+            var pettyReport = CalculateDifferentPettyCashSums(pettyCashList.ToList());
+            return pettyReport;
+
+        }
+
+        #endregion
+        public PettyCashReportViewModel CalculateDifferentPettyCashSums(List<PettyCash> pettyCashList)
+        {
+            var totalAmount = Convert.ToDouble(pettyCashList.Sum(d => d.Amount));
+
+            var pettyCashReport = new PettyCashReportViewModel()
+            {
+                PettyCashs = pettyCashList,
+                TotalAmount = totalAmount,
+
+            };
+            return pettyCashReport;
+        }
+        #endregion
+
     }
 }
 

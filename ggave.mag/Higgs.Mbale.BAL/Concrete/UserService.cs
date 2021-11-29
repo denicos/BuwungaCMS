@@ -250,6 +250,58 @@ namespace Higgs.Mbale.BAL.Concrete
 
         }
 
+        public IEnumerable<AspNetUserViewModel> GetAllCustomersForAParticularBranch(long branchId)
+        {
+            var results = this._dataService.GetAllCustomersForAParticularBranch(branchId);
+            List<EF.Models.AspNetUser> customers = new List<EF.Models.AspNetUser>();
+            if (results.Any())
+            {
+                foreach (var result in results)
+                {
+                    var roleName = string.Empty;
+                    var roles = result.AspNetRoles.ToList();
+                    foreach (var role in roles)
+                    {
+                        roleName = role.Name;
+                    }
+                    if (roleName == "customer")
+                    {
+                        customers.Add(result);
+                    }
+
+                }
+                return MapEFAspNetUserToAspNetUserViewModel(customers);
+            }
+            return null;
+
+        }
+
+        public IEnumerable<AspNetUserViewModel> GetAllSuppliersForAParticularBranch(long branchId)
+        {
+            var results = this._dataService.GetAllSuppliersForAParticularBranch(branchId);
+            List<EF.Models.AspNetUser> suppliers = new List<EF.Models.AspNetUser>();
+            if (results.Any())
+            {
+                foreach (var result in results)
+                {
+                    var roleName = string.Empty;
+                    var roles = result.AspNetRoles.ToList();
+                    foreach (var role in roles)
+                    {
+                        roleName = role.Name;
+                    }
+                    if (roleName == "supplier")
+                    {
+                        suppliers.Add(result);
+                    }
+
+                }
+                return MapEFAspNetUserToAspNetUserViewModel(suppliers);
+            }
+            return null;
+
+        }
+
         public IEnumerable<AspNetUserViewModel> GetAllSuppliers()
         {
             var results = this._dataService.GetAspNetUsers();

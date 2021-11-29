@@ -23,9 +23,6 @@
             $scope.inventorycategories = data;
         });
 
- $http.get('/webapi/FinancialAccountApi/GetAllFinancialAccounts').success(function (data, status) {
-            $scope.financialAccounts = data;
-        });
         $http.get('/webapi/RequistionApi/GetAllRequistionCategories').success(function (data, status) {
                     $scope.requistionCategories = data;
         });
@@ -45,8 +42,7 @@
         $http.get('/webapi/SupplierApi/GetAllSuppliers').success(function (data, status) {
             $scope.suppliers = data;
         });
-
-       
+             
 
         $scope.OnSupplierChange = function (requistion) {
             var selectedSupplierId = requistion.Id
@@ -75,9 +71,7 @@
                 $scope.inventoryItems = data;
             });
             
-        }
-
-    
+        }  
 
 
         $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
@@ -93,10 +87,10 @@
                 $scope.batches = data;
             });
 
-            $http.get('/webapi/CasualWorkerApi/GetAllCasualWorkersForAParticularBranch?branchId=' + selectedBranchId).then(function (responses) {
-                $scope.casualWorkers = responses.data;
+            //$http.get('/webapi/CasualWorkerApi/GetAllCasualWorkersForAParticularBranch?branchId=' + selectedBranchId).then(function (responses) {
+            //    $scope.casualWorkers = responses.data;
 
-            });
+            //});
         }
        
         if (action == 'create') {

@@ -45,6 +45,16 @@ namespace Higgs.Mbale.Web.Models
             [Display(Name = "Districts")]
             public long RegionId { get; set; }
 
+
+            [Display(Name = "Branches")]
+            public long SelectedBranchId { get; set; }
+            public IEnumerable<SelectListItem> BranchsList { get; set; }
+
+            public SelectList Branches { get; set; }
+
+            [Display(Name = "Branches")]
+            public long BranchId { get; set; }
+
             //[Display(Name = "Districts")]
             //public long SelectedRegionId { get; set; }
             //public IEnumerable<SelectListItem> DistrictsList { get; set; }

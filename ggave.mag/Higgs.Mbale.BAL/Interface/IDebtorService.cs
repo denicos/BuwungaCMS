@@ -14,8 +14,14 @@ public    interface IDebtorService
      
 
         IEnumerable<DebtorView> GetAdvancePaymentView();
-      
+        IEnumerable<DebtorView> GenerateDebtorReportForAParticularDateForBranch(DateTime dateTime, long branchId);
+
+
         IEnumerable<DebtorView> GetAdvancePaymentViewForAParticularDate(DateTime dateTime);
+
+        IEnumerable<DebtorView> GetAdvancePaymentViewForBranch(long branchId);
+
+        IEnumerable<DebtorView> GetAdvancePaymentViewForAParticularDateForBranch(DateTime dateTime,long branchId);
 
 
     }

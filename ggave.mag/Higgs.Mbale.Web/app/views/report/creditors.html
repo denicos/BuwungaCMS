@@ -35,6 +35,18 @@
                                             </span>
                                         </span>
                                     </td>
+                                    <td>&nbsp;</td>
+                                    <td width="20%">
+                                        <span class="header-search">
+                                            Branch : &nbsp;&nbsp;
+                                            <select style="border: none" name="branch" class="form-control col-sm-12" data-ng-model="searchDate.BranchId"
+                                                    data-ng-options="i.BranchId as i.Name for i in branches">
+                                                <option value="">Please select</option>
+                                            </select>
+
+                                        </span>
+                                    </td>
+
                                     <td>&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <button class="btn btn-primary btn-rounded" ng-click="GenerateCreditorList(searchDate)">GenerateList</button>

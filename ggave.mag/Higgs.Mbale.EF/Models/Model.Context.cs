@@ -117,6 +117,8 @@ namespace Higgs.Mbale.EF.Models
         public virtual DbSet<MillingCharge> MillingCharges { get; set; }
         public virtual DbSet<PettyCash> PettyCashes { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
+        public virtual DbSet<Bank> Banks { get; set; }
+        public virtual DbSet<BankTransaction> BankTransactions { get; set; }
     
         public virtual int Mark_FactoryExpense_AsDeleted(Nullable<long> inPutFactoryExpenseId, string userId)
         {

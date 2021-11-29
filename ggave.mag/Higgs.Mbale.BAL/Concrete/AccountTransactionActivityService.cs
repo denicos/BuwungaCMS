@@ -195,6 +195,22 @@ namespace Higgs.Mbale.BAL.Concrete
             return balance;
         }
 
+        public double GetBalanceForLastAccountAccountTransactionActivityForSupplierForAParticularDateAndBranch(string accountId, DateTime dateTime,long branchId)
+        {
+            double balance = 0;
+            var isAspNetUser = checkIfUserIsAspNetUser(accountId);
+            if (isAspNetUser)
+            {
+                var result = this._dataService.GetLatestAccountTransactionActivityForAParticularAspNetUserForAParticularDateAndBranch(accountId, dateTime,branchId);
+                if (result.AccountTransactionActivityId > 0)
+                {
+                    balance = result.Balance;
+                }
+
+                return balance;
+            }
+            return balance;
+        }
         public double GetBalanceForLastAccountAccountTransactionActivityForCasualWorker(long accountId)
         {
                 double balance = 0;

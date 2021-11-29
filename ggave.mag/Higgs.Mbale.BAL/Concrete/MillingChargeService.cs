@@ -73,7 +73,7 @@ namespace Higgs.Mbale.BAL.Concrete
                 if (millingCharge.MillingChargeId == 0)
                 {
                     double amount = (millingCharge.Quantity * millingCharge.Rate);
-                    var notes = "Milling Charge for  " + millingCharge.Quantity + " kgs of Maize at " + millingCharge.Rate + " shs perkg.";
+                    var notes = "Bugugu for  " + millingCharge.Quantity + " kgs of Maize at " + millingCharge.Rate + " shs perkg.";
                     var millingChargeDTO = new DTO.MillingChargeDTO()
                     {
                         MillingChargeId = millingCharge.MillingChargeId,

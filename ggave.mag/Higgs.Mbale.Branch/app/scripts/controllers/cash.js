@@ -9,6 +9,7 @@
         var branchId = $scope.branchId;
         var cashId = $scope.cashId;
         var action = $scope.action;
+        var departmentId = 1;
 
         $scope.actions = ["+", "-"];
 
@@ -17,9 +18,9 @@
         });
 
       
-        $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-            $scope.sectors = data;
-        });
+        //$http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
+        //    $scope.sectors = data;
+        //});
 
         if (action == 'create') {
             cashId = 0;
@@ -77,7 +78,7 @@
                     StartAmount: cash.StartAmount,
                     Balance: cash.Balance,
                     BranchId: cash.BranchId,
-                    SectorId: cash.SectorId,
+                    SectorId: departmentId,
                     Notes: cash.Notes,
                     Action: cash.Action,
                     TransactionSubTypeId: cash.TransactionSubTypeId,

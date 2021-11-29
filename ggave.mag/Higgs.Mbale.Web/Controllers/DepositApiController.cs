@@ -41,26 +41,33 @@ namespace Higgs.Mbale.Web.Controllers
                 return _depositService.GetAllDeposits();
             }
 
-        [HttpGet]
-        [ActionName("GetLatestTwentyRejectedDeposits")]
-        public IEnumerable<Deposit> GetLatestTwentyRejectedDeposits()
-        {
-            return _depositService.GetLatestTwentyRejectedDeposits();
-        }
-        [HttpGet]
-        [ActionName("GetLatestTwentyApprovedDeposits")]
-        public IEnumerable<Deposit> GetLatestTwentyApprovedDeposits()
-        {
-            return _depositService.GetLatestTwentyApprovedDeposits();
-        }
-        [HttpGet]
-        [ActionName("GetLatestTwentyUnApprovedDeposits")]
-        public IEnumerable<Deposit> GetLatestTwentyUnApprovedDeposits()
-        {
-            return _depositService.GetLatestTwentyUnApprovedDeposits();
-        }
+            [HttpGet]
+            [ActionName("GetLatestTwentyRejectedDeposits")]
+            public IEnumerable<Deposit> GetLatestTwentyRejectedDeposits()
+            {
+                return _depositService.GetLatestTwentyRejectedDeposits();
+            }
+            [HttpGet]
+            [ActionName("GetLatestTwentyApprovedDeposits")]
+            public IEnumerable<Deposit> GetLatestTwentyApprovedDeposits()
+            {
+                return _depositService.GetLatestTwentyApprovedDeposits();
+            }
+            [HttpGet]
+            [ActionName("GetLatestTwentyUnApprovedDeposits")]
+            public IEnumerable<Deposit> GetLatestTwentyUnApprovedDeposits()
+            {
+                return _depositService.GetLatestTwentyUnApprovedDeposits();
+            }
 
-        [HttpGet]
+            [HttpGet]
+            [ActionName("GetLatestTwentyUnApprovedDepositsForABranch")]
+            public IEnumerable<Deposit> GetLatestTwentyUnApprovedDepositsForABranch(long branchId)
+            {
+                return _depositService.GetLatestTwentyUnApprovedDepositsForABranch(branchId);
+            }
+
+            [HttpGet]
             [ActionName("GetAllDepositsForAParticularAccount")]
             public IEnumerable<Deposit> GetAllDepositsForAParticularAccount(string accountId)
             {

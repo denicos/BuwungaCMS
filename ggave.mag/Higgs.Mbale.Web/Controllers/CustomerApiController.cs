@@ -43,8 +43,14 @@ namespace Higgs.Mbale.Web.Controllers
         {
             return _userService.GetAllCustomersForAParticularRegion(regionId);
         }
-        
-       
-       
+
+        [HttpGet]
+        [ActionName("GetAllCustomersForAparticularBranch")]
+        public IEnumerable<AspNetUserViewModel> GetAllCustomersForAparticularBranch(long branchId)
+        {
+            return _userService.GetAllCustomersForAParticularBranch(branchId);
+        }
+
+
     }
 }

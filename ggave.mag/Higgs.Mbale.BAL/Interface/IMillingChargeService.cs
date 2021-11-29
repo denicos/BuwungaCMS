@@ -11,7 +11,7 @@ namespace Higgs.Mbale.BAL.Interface
         long SaveMillingCharge(MillingCharge millingCharge, string userId);
         //void MarkAsDeleted(long millingChargeId, string userId);
         IEnumerable<MillingCharge> GetAllMillingChargesForAParticularBranch(long branchId);
-
+        IEnumerable<MillingCharge> MapEFToModel(IEnumerable<EF.Models.MillingCharge> data);
         IEnumerable<MillingCharge> GetTwentyLatestMillingChargesForAParticularBranch(long branchId);
 
     }

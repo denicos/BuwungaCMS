@@ -97,7 +97,7 @@
                     $scope.TotalGradeKgs = $scope.DenominationKgs;
                     //+$scope.TotalGradeKgs;
                 });
-                if ($scope.TotalGradeKgs == batchOutPut.FlourOutPut) {
+                //if ($scope.TotalGradeKgs == batchOutPut.FlourOutPut) {
                     $scope.showMessageFlourOutPut = false;
 
                     if ($scope.form.$valid) {
@@ -111,7 +111,8 @@
                             CreatedOn: batchOutPut.CreatedOn,
                             Deleted: batchOutPut.Deleted,
                             BrandOutPut: batchOutPut.BrandOutPut,
-                            FlourOutPut: batchOutPut.FlourOutPut,
+                            //FlourOutPut: batchOutPut.FlourOutPut,
+                            FlourOutPut : $scope.TotalGradeKgs,
                             StoreId : batchOutPut.StoreId,
                             
                             Grades: batchOutPutId == 0 ? $scope.selectedGrades : batchOutPut.Grades
@@ -176,17 +177,17 @@
 
                             });
                     }
-                }
-                else {
-                    $scope.showMessageFlourOutPut = true;
-                   $scope.TotalGradeKgs = 0;
-                    $timeout(function () {
-                        $scope.showMessageFlourOutPut = false;
+            //    }
+            //    else {
+            //        $scope.showMessageFlourOutPut = true;
+            //       $scope.TotalGradeKgs = 0;
+            //        $timeout(function () {
+            //            $scope.showMessageFlourOutPut = false;
 
-                    }, 3000);
+            //        }, 3000);
                 
 
-            }
+            //}
 
         }
 

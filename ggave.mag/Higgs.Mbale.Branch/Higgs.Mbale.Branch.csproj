@@ -221,6 +221,7 @@
     <Content Include="app\scripts\config.js" />
     <Content Include="app\scripts\controllers\accounttransactionactivity.js" />
     <Content Include="app\scripts\controllers\activity.js" />
+    <Content Include="app\scripts\controllers\banktransaction.js" />
     <Content Include="app\scripts\controllers\batch.js" />
     <Content Include="app\scripts\controllers\batchoutput.js" />
     <Content Include="app\scripts\controllers\batchprojection.js" />
@@ -314,6 +315,8 @@
     <Content Include="app\styles\isteven-multi-select.css" />
     <Content Include="app\views\activity\edit.html" />
     <Content Include="app\views\activity\list.html" />
+    <Content Include="app\views\banktransaction\edit.html" />
+    <Content Include="app\views\banktransaction\list.html" />
     <Content Include="app\views\batchoutput\batch-batchoutput-list.html" />
     <Content Include="app\views\batchoutput\edit.html" />
     <Content Include="app\views\batchprojection\details.html" />
@@ -405,7 +408,9 @@
     <Content Include="app\views\report\cashSaleTotals.html" />
     <Content Include="app\views\report\cashtransfer.html" />
     <Content Include="app\views\report\casualTransactions.html" />
+    <Content Include="app\views\report\creditor.html" />
     <Content Include="app\views\report\dailyReport.html" />
+    <Content Include="app\views\report\debtor.html" />
     <Content Include="app\views\report\deliveries.html" />
     <Content Include="app\views\report\deliveryTotals.html" />
     <Content Include="app\views\report\deposit.html" />
@@ -420,8 +425,11 @@
     <Content Include="app\views\report\labourcosts.html" />
     <Content Include="app\views\report\machinerepairs.html" />
     <Content Include="app\views\report\millingbalance.html" />
+    <Content Include="app\views\report\millingcharge.html" />
     <Content Include="app\views\report\orders.html" />
     <Content Include="app\views\report\otherExpenses.html" />
+    <Content Include="app\views\report\pettycash.html" />
+    <Content Include="app\views\report\pettyexpenses.html" />
     <Content Include="app\views\report\recovery.html" />
     <Content Include="app\views\report\supplierindex.html" />
     <Content Include="app\views\report\supplies-dashboard.html" />
@@ -2644,6 +2652,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountTransactionActivityApiController.cs" />
     <Compile Include="Controllers\ActivityApiController.cs" />
+    <Compile Include="Controllers\BankTransactionApiController.cs" />
     <Compile Include="Controllers\BatchApiController.cs" />
     <Compile Include="Controllers\BatchOutPutApiController.cs" />
     <Compile Include="Controllers\BatchProjectionApiController.cs" />

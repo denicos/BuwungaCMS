@@ -439,6 +439,29 @@ namespace Higgs.Mbale.DAL.Interface
         #endregion
         #endregion
 
+        #region pettycash
+        #region branch
+        IEnumerable<PettyCash> GetAllPettyCashBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId,long categoryId);
+
+        #endregion
+        #region web
+
+        IEnumerable<PettyCash> GetAllPettyCashBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId,long categoryId);
+
+        #endregion
+        #endregion
+
+        #region millingcharge
+
+        #region branch
+        IEnumerable<MillingCharge> GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
+
+        #endregion
+        #region web
+
+        IEnumerable<MillingCharge> GetAllMillingChargeBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
        
+        #endregion
+        #endregion
     }
 }

@@ -62,6 +62,8 @@ namespace Higgs.Mbale.DependencyResolver
                       Bind(typeof(IWeightNoteRangeService)).To(typeof(WeightNoteRangeService));
             Bind(typeof(IWeightNoteNumberService)).To(typeof(WeightNoteNumberService));
                Bind(typeof(IDashBoardNotificationService)).To(typeof(DashBoardNotificationService));
+            Bind(typeof(IBankService)).To(typeof(BankService));
+            Bind(typeof(IBankTransactionService)).To(typeof(BankTransactionService));
            
             //DAL
             Bind(typeof(IUserDataService)).To(typeof(UserDataService));
@@ -114,6 +116,8 @@ namespace Higgs.Mbale.DependencyResolver
             Bind(typeof(IWeightNoteNumberDataService)).To(typeof(WeightNoteNumberDataService));
            
             Bind(typeof(IDashBoardDataService)).To(typeof(DashBoardNotificationDataService));
+            Bind(typeof(IBankDataService)).To(typeof(BankDataService));
+            Bind(typeof(IBankTransactionDataService)).To(typeof(BankTransactionDataService));
           
         } 
         

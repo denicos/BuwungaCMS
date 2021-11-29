@@ -162,6 +162,11 @@ namespace Higgs.Mbale.EF.Models
             this.Deliveries = new HashSet<Delivery>();
             this.Deliveries1 = new HashSet<Delivery>();
             this.Deliveries2 = new HashSet<Delivery>();
+            this.Banks = new HashSet<Bank>();
+            this.Banks1 = new HashSet<Bank>();
+            this.Banks2 = new HashSet<Bank>();
+            this.BankTransactions = new HashSet<BankTransaction>();
+            this.BankTransactions1 = new HashSet<BankTransaction>();
         }
     
         public string Id { get; set; }
@@ -192,6 +197,7 @@ namespace Higgs.Mbale.EF.Models
         public string UniqueNumber { get; set; }
         public string Location { get; set; }
         public Nullable<long> RegionId { get; set; }
+        public Nullable<long> BranchId { get; set; }
     
         public virtual ICollection<AccountTransactionActivity> AccountTransactionActivities { get; set; }
         public virtual ICollection<AccountTransactionActivity> AccountTransactionActivities1 { get; set; }
@@ -345,5 +351,10 @@ namespace Higgs.Mbale.EF.Models
         public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Delivery> Deliveries1 { get; set; }
         public virtual ICollection<Delivery> Deliveries2 { get; set; }
+        public virtual ICollection<Bank> Banks { get; set; }
+        public virtual ICollection<Bank> Banks1 { get; set; }
+        public virtual ICollection<Bank> Banks2 { get; set; }
+        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
+        public virtual ICollection<BankTransaction> BankTransactions1 { get; set; }
     }
 }

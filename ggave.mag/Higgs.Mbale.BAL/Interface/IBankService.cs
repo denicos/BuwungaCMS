@@ -9,5 +9,6 @@ public    interface IBankService
         Bank GetBank(long bankId);
         long SaveBank(Bank bank, string userId);
         void MarkAsDeleted(long bankId, string userId);
+        Bank GetBankParticularBranch(long branchId);
     }
 }

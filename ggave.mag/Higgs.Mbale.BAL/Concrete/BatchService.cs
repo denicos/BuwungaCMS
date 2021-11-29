@@ -1007,13 +1007,13 @@ namespace Higgs.Mbale.BAL.Concrete
         public GradeSizeTotalsViewModel GetTotalGradeSizeBatchOutPutQuantities(List<BatchOutPut> batchOutPutList)
         {
             //quantity
-             int totalNumberOneTenQuantity = 0, totalNumberOneTwoFiveQuantity = 0, totalNumberOneFiveZeroQuantity = 0;
-            int totalNumberOneHalfTenQuantity = 0, totalNumberOneHalfTwoFiveQuantity = 0, totalNumberOneHalfFiveZeroQuantity = 0;
+             int totalNumberOneTenQuantity = 0, totalNumberOneTwoFiveQuantity = 0, totalNumberOneFiveZeroQuantity = 0,totalNumberOneFiveQuantity =0;
+            int totalNumberOneHalfTenQuantity = 0, totalNumberOneHalfTwoFiveQuantity = 0, totalNumberOneHalfFiveZeroQuantity = 0,totalNumberOneHalfFiveQuantity = 0;
             
             //amount
            
-            double totalNumberOneTenAmount = 0, totalNumberOneTwoFiveAmount = 0, totalNumberOneFiveZeroAmount = 0;
-            double totalNumberOneHalfTenAmount = 0, totalNumberOneHalfTwoFiveAmount = 0, totalNumberOneHalfFiveZeroAmount = 0;
+            double totalNumberOneTenAmount = 0, totalNumberOneTwoFiveAmount = 0, totalNumberOneFiveZeroAmount = 0,totalNumberOneFiveAmount = 0;
+            double totalNumberOneHalfTenAmount = 0, totalNumberOneHalfTwoFiveAmount = 0, totalNumberOneHalfFiveZeroAmount = 0,totalNumberOneHalfFiveAmount = 0;
             
             List<long> gradesAddedToTransferReport = new List<long>();
 
@@ -1069,6 +1069,11 @@ namespace Higgs.Mbale.BAL.Concrete
                                                 totalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount + Convert.ToDouble(denom.Amount);
 
                                                 break;
+                                            case 5:
+                                                totalNumberOneFiveQuantity = totalNumberOneFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                                totalNumberOneFiveAmount = totalNumberOneFiveAmount + Convert.ToDouble(denom.Amount);
+
+                                                break;
                                            
                                             default:
 
@@ -1096,6 +1101,10 @@ namespace Higgs.Mbale.BAL.Concrete
                                             case 50:
                                                 totalNumberOneHalfFiveZeroQuantity = totalNumberOneHalfFiveZeroQuantity + Convert.ToInt32(denom.Quantity);
                                                 totalNumberOneHalfFiveZeroAmount = totalNumberOneHalfFiveZeroAmount + Convert.ToDouble(denom.Amount);
+                                                break;
+                                            case 5:
+                                                totalNumberOneHalfFiveQuantity = totalNumberOneHalfFiveQuantity + Convert.ToInt32(denom.Quantity);
+                                                totalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount + Convert.ToDouble(denom.Amount);
 
                                                 break;
                                            
@@ -1147,10 +1156,13 @@ namespace Higgs.Mbale.BAL.Concrete
                 
                 TotalNumberOneHalfTenQuantity = totalNumberOneHalfTenQuantity,
                 TotalNumberOneHalfTwoFiveQuantity = totalNumberOneHalfTwoFiveQuantity,
-               
 
-            
-               
+                TotalNumberOneHalfFiveQuantity = totalNumberOneHalfTenQuantity,
+                TotalNumberOneFiveQuantity = totalNumberOneFiveQuantity,
+
+
+
+
                 TotalNumberOneFiveZeroAmount = totalNumberOneFiveZeroAmount,
                 TotalNumberOneTenAmount = totalNumberOneTenAmount,
               
@@ -1160,7 +1172,10 @@ namespace Higgs.Mbale.BAL.Concrete
                
                 TotalNumberOneHalfTenAmount = totalNumberOneHalfTenAmount,
                 TotalNumberOneHalfTwoFiveAmount = totalNumberOneHalfTwoFiveAmount,
-               
+
+                TotalNumberOneHalfFiveAmount = totalNumberOneHalfFiveAmount,
+                TotalNumberOneFiveAmount = totalNumberOneFiveAmount,
+
 
             };
             return gradeSizeTotalsViewModel;

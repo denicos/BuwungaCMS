@@ -36,9 +36,11 @@ namespace Higgs.Mbale.Models
         public ICollection<string> UserRoles { get; set; }
         public string RoleName { get; set; }
         public string UniqueNumber { get; set; }
+        public Nullable<long> BranchId { get; set; }
         public string Location { get; set; }
         public Nullable<long> RegionId { get; set; }
         public string RegionName { get; set; }
+        public string BranchName { get; set; }
         public Region Region { get; set; }
         public ICollection<string> UserBranches { get; set; }
     }

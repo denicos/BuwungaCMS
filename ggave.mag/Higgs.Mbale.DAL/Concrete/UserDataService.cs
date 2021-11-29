@@ -184,6 +184,18 @@ namespace Higgs.Mbale.DAL.Concrete
                 );
         }
 
+        public IEnumerable<AspNetUser> GetAllCustomersForAParticularBranch(long branchId)
+        {
+            return this.UnitOfWork.Get<AspNetUser>().AsQueryable()
+                .Where(m => (m.Deleted == false || m.Deleted == null) && m.BranchId == branchId
+                );
+        }
+        public IEnumerable<AspNetUser> GetAllSuppliersForAParticularBranch(long branchId)
+        {
+            return this.UnitOfWork.Get<AspNetUser>().AsQueryable()
+                .Where(m => (m.Deleted == false || m.Deleted == null) && m.BranchId == branchId
+                );
+        }
         public IEnumerable<UserBranch> GetAllUserBranches(string Id)
         {
             return this.UnitOfWork.Get<UserBranch>().AsQueryable()

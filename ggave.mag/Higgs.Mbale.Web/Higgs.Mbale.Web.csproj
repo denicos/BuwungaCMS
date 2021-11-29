@@ -216,6 +216,8 @@
     <Compile Include="Controllers\ActivityApiController.cs" />
     <Compile Include="Controllers\AssetApiController.cs" />
     <Compile Include="Controllers\AssetCategoryApiController.cs" />
+    <Compile Include="Controllers\BankApiController.cs" />
+    <Compile Include="Controllers\BankTransactionApiController.cs" />
     <Compile Include="Controllers\BatchApiController.cs" />
     <Compile Include="Controllers\BatchOutPutApiController.cs" />
     <Compile Include="Controllers\BatchProjectionApiController.cs" />
@@ -387,9 +389,9 @@
     <Content Include="app\views\asset\edit.html" />
     <Content Include="app\views\asset\index.html" />
     <Content Include="app\views\asset\list.html" />
+    <Content Include="app\views\banktransaction\admin-view.html" />
     <Content Include="app\views\banktransaction\bankindex.html" />
     <Content Include="app\views\banktransaction\edit.html" />
-    <Content Include="app\views\banktransaction\index.html" />
     <Content Include="app\views\banktransaction\list.html" />
     <Content Include="app\views\bank\edit.html" />
     <Content Include="app\views\bank\list.html" />
@@ -444,6 +446,8 @@
     <Content Include="app\views\casualworker\list.html" />
     <Content Include="app\views\creditor\branch-creditor-list.html" />
     <Content Include="app\views\creditor\list.html" />
+    <Content Include="app\views\customer\admin-view.html" />
+    <Content Include="app\views\customer\branch-customer.html" />
     <Content Include="app\views\customer\index.html" />
     <Content Include="app\views\customer\list.html" />
     <Content Include="app\views\customer\regionlist.html" />
@@ -531,8 +535,10 @@
     <Content Include="app\views\report\labourcosts.html" />
     <Content Include="app\views\report\machinerepairs.html" />
     <Content Include="app\views\report\millingbalance.html" />
+    <Content Include="app\views\report\millingcharge.html" />
     <Content Include="app\views\report\orders.html" />
     <Content Include="app\views\report\otherExpenses.html" />
+    <Content Include="app\views\report\pettycash.html" />
     <Content Include="app\views\report\recovery.html" />
     <Content Include="app\views\report\supplierindex.html" />
     <Content Include="app\views\report\supplies-dashboard.html" />
@@ -566,6 +572,8 @@
     <Content Include="app\views\store\storeBuveraStanding.html" />
     <Content Include="app\views\store\storeStanding.html" />
     <Content Include="app\views\store\transferflour.html" />
+    <Content Include="app\views\supplier\admin-view.html" />
+    <Content Include="app\views\supplier\branch-supplier.html" />
     <Content Include="app\views\supplier\list.html" />
     <Content Include="app\views\supply\branch-supplies.html" />
     <Content Include="app\views\supply\dashboard-supply.html" />
@@ -588,6 +596,9 @@
     <Content Include="app\views\transaction\edit.html" />
     <Content Include="app\views\transaction\list.html" />
     <Content Include="app\views\transaction\transactionType-transactions.html" />
+    <Content Include="app\views\unapprovedindex\deliveryadmin.html" />
+    <Content Include="app\views\unapprovedindex\supplyadmin.html" />
+    <Content Include="app\views\unapprovedindex\transactionadmin.html" />
     <Content Include="app\views\utilityaccount\adminview.html" />
     <Content Include="app\views\utilityaccount\categoryview.html" />
     <Content Include="app\views\utilityaccount\edit.html" />

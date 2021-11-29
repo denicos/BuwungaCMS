@@ -50,10 +50,10 @@
             $scope.batches = data;
         });
 
-        $http.get('/webapi/CasualWorkerApi/GetAllCasualWorkersForAParticularBranch').then(function (responses) {
-            $scope.casualWorkers = responses.data;
+        //$http.get('/webapi/CasualWorkerApi/GetAllCasualWorkersForAParticularBranch').then(function (responses) {
+        //    $scope.casualWorkers = responses.data;
 
-        });
+        //});
 
       
         if (action == 'create') {

@@ -15,18 +15,11 @@
         
         $scope.actions = ["+", "-"];
 
-        $http.get('/webapi/TransactionSubTypeApi/GetAllTransactionSubTypes').success(function (data, status) {
-            $scope.transactionSubTypes = data;
+        $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
+            $scope.branches = data;
         });
 
        
-
-        $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-            $scope.sectors = data;
-        });
-
-
-
         if (action == 'create') {
             bankTransactionId = 0;
             var promise = $http.get('/webapi/UserApi/GetLoggedInUser', {});
@@ -54,10 +47,9 @@
                         BankTransactionId: b.BankTransactionId,
                         Notes: b.Notes,
                         Balance: b.Balance,
-                        TransactionSubTypeId: b.TransactionSubTypeId,
+                        
                         BranchId: b.BranchId,
-                        SectorId: b.SectorId,
-                       
+                        
                         Amount: b.Amount,
                         StartAmount: b.StartAmount,
                         Action: b.Action,
@@ -85,10 +77,10 @@
                     Balance: bankTransaction.Balance,
                     BranchId: branchId,
                     BankId : bankId,
-                    SectorId: bankTransaction.SectorId,
+                  
                     Notes: bankTransaction.Notes,
                     Action: bankTransaction.Action,
-                    TransactionSubTypeId: bankTransaction.TransactionSubTypeId,
+                   
                     CreatedOn: bankTransaction.CreatedOn,
                     TimeStamp: bankTransaction.TimeStamp,
                     CreatedBy: bankTransaction.CreatedBy,
@@ -172,6 +164,22 @@ angular
                 function (payload) {
                     $scope.gridData.data = payload.data;
                     $scope.loadingSpinner = false;
+                    $scope.Length = payload.data.length;
+                    if ($scope.Length > 0) {
+
+                        //var lastIndex = $scope.Length - 1;
+                        //$scope.accountBalance = payload.data[lastIndex].Balance;
+
+                        var firstIndex = 0;
+                        $scope.accountBalance = payload.data[firstIndex].Balance;
+                        $scope.bankName = payload.data[firstIndex].BankName;
+
+
+                    }
+                    else {
+                        $scope.accountBalance = 0;
+                        $scope.bankName = " ";
+                    }
                 }
             );
 
@@ -196,8 +204,8 @@ angular
 
                 { name: 'Notes', field: 'Notes' },
 
-                { name: 'Debit', cellTemplate: '<div ng-if="row.entity.Action ==\'-\'">{{row.entity.Amount}}</div>' },
-                 { name: 'Credit', cellTemplate: '<div ng-if="row.entity.Action ==\'+\'">{{row.entity.Amount}}</div>' },
+                { name: 'WithDraw', cellTemplate: '<div ng-if="row.entity.Action ==\'-\'">{{row.entity.Amount}}</div>' },
+                 { name: 'Deposit', cellTemplate: '<div ng-if="row.entity.Action ==\'+\'">{{row.entity.Amount}}</div>' },
 
 
                  { name: 'Balance', field: 'Balance' },

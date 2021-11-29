@@ -69,6 +69,8 @@
     <Compile Include="Concrete\ActivityService.cs" />
     <Compile Include="Concrete\AssetCategoryService.cs" />
     <Compile Include="Concrete\AssetService.cs" />
+    <Compile Include="Concrete\BankService.cs" />
+    <Compile Include="Concrete\BankTransactionService.cs" />
     <Compile Include="Concrete\BatchOutPutService.cs" />
     <Compile Include="Concrete\BatchProjectionService.cs" />
     <Compile Include="Concrete\BatchService.cs" />

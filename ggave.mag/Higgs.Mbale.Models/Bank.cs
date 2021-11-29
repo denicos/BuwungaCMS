@@ -11,6 +11,7 @@ namespace Higgs.Mbale.Models
         public long BankId { get; set; }
         public string Name { get; set; }
         public string AccountNumber { get; set; }
+        public long BranchId { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
@@ -18,6 +19,7 @@ namespace Higgs.Mbale.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
-    
+
+        public string BranchName { get; set; }
     }
 }

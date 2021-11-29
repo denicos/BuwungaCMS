@@ -60,6 +60,27 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
         }
     })
 
+        .state('suppliersbranch-list', {
+            url: "/suppliers/branch/:branchId",
+            templateUrl: "/app/views/supplier/branch-supplier.html",
+            data: {
+                pageTitle: 'Suppliers',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+            }
+        })
+        .state('admin-supplier-list', {
+            url: "/suppliers",
+            templateUrl: "/app/views/supplier/admin-view.html",
+            data: {
+                pageTitle: 'Suppliers',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
         //outsourcers
         .state('outSourcers', {
             abstract: true,
@@ -240,7 +261,26 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
         }
     })
+        .state('admin-customer-list', {
+            url: "/customer",
+            templateUrl: "/app/views/customer/admin-view.html",
+            data: {
+                pageTitle: 'Customers',
+            },
+            controller: function ($scope, $stateParams) {
 
+            }
+        })
+        .state('customersbranch-list', {
+            url: "/customers/branch/:branchId",
+            templateUrl: "/app/views/customer/branch-customer.html",
+            data: {
+                pageTitle: 'Customers',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+            }
+        })
    //branches
      .state('branches', {
          abstract: true,
@@ -342,6 +382,29 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             $scope.bankId = $stateParams.bankId;
             $scope.defaultTab = 'edit';
         }
+    })
+
+
+        .state('reports.millingChargelist', {
+            url: "/reports",
+            templateUrl: "/app/views/report/millingcharge.html",
+            data: {
+                pageTitle: 'Bugugu'
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
+        .state('reports.pettyCashlist', {
+            url: "/reports",
+            templateUrl: "/app/views/report/pettycash.html",
+            data: {
+                pageTitle: 'Petty Cash'
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
         })
 
         //Financial Accounts
@@ -481,7 +544,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
         .state('admin-bankTransaction-list', {
             url: "/bankTransactions",
-            templateUrl: "/app/views/bankTransaction/index.html",
+            templateUrl: "/app/views/bankTransaction/admin-view.html",
             data: {
                 pageTitle: 'Bank Transactions',
             },
@@ -1042,6 +1105,73 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             $scope.defaultTab = 'edit';
         }
     })
+
+        //unapproved
+        .state('unapprovedsupplies-list', {
+            url: "/supplies/unapproved/:branchId",
+            templateUrl: "/app/views/supply/unapprovedsupplies.html",
+            data: {
+                pageTitle: 'Supplies',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+
+            }
+        })
+
+        .state('unapprovedsupplies-admin', {
+            url: "/supplies",
+            templateUrl: "/app/views/unapprovedindex/supplyadmin.html",
+            data: {
+                pageTitle: 'UnApproved Supplies',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+        .state('unapproveddeliveries-list', {
+            url: "/deliveries/unapproved/:branchId",
+            templateUrl: "/app/views/delivery/unapproveddeliveries.html",
+            data: {
+                pageTitle: 'Deliveries',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+
+            }
+        })
+        .state('unapproveddeliveries-admin', {
+            url: "/deliveries",
+            templateUrl: "/app/views/unapprovedindex/deliveryadmin.html",
+            data: {
+                pageTitle: 'UnApproved Deliveries',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
+        .state('unapprovedtransactions-admin', {
+            url: "/transactions",
+            templateUrl: "/app/views/unapprovedindex/transactionadmin.html",
+            data: {
+                pageTitle: 'UnApproved Transactions',
+            },
+            controller: function ($scope, $stateParams) {
+
+            }
+        })
+
+        .state('deposit-list', {
+            url: "/depositsandreductions/:branchId",
+            templateUrl: "/app/views/transactionactivity/depositlist.html",
+            data: {
+                pageTitle: 'Deposits & Reductions',
+            },
+            controller: function ($scope, $stateParams) {
+                $scope.branchId = $stateParams.branchId;
+            }
+        })
          //supplies
      .state('supplies', {
          abstract: true,
@@ -1062,16 +1192,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
         }
         })
-        .state('unapprovedsupplies-list', {
-            url: "/supplies",
-            templateUrl: "/app/views/supply/unapprovedsupplies.html",
-            data: {
-                pageTitle: 'Supplies',
-            },
-            controller: function ($scope, $stateParams) {
-
-            }
-        })
+       
 
           .state('supplier-supply-list', {
               url: "/supplies/:supplierId",
@@ -2000,16 +2121,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
              pageTitle: 'deliveries'
          }
      })
-        .state('unapproveddeliveries-list', {
-            url: "/deliveries/unapproved",
-            templateUrl: "/app/views/delivery/unapproveddeliveries.html",
-            data: {
-                pageTitle: 'Deliveries',
-            },
-            controller: function ($scope, $stateParams) {
-
-            }
-        })
+       
     .state('deliveries.list', {
         url: "/deliveries",
         templateUrl: "/app/views/delivery/list.html",
@@ -2886,7 +2998,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge",
             templateUrl: "/app/views/_common/content_empty.html",
             data: {
-                pageTitle: 'millingcharge'
+                pageTitle: 'Bugugu'
             }
         })
 
@@ -2894,7 +3006,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge",
             templateUrl: "/app/views/millingcharge/list.html",
             data: {
-                pageTitle: 'Milling Charge',
+                pageTitle: 'Bugugu',
             },
             controller: function ($scope, $stateParams) {
 
@@ -2904,7 +3016,7 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/millingcharge/branch/:branchId",
             templateUrl: "/app/views/millingcharge/branch-milling.html",
             data: {
-                pageTitle: 'Branch Milling Charge',
+                pageTitle: 'Branch Bugugu',
             },
             controller: function ($scope, $stateParams) {
                 $scope.branchId = $stateParams.branchId;

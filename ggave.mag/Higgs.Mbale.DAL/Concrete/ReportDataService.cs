@@ -1800,12 +1800,12 @@ namespace Higgs.Mbale.DAL.Concrete
             {
 
                 return this.UnitOfWork.Get<Buvera>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId && m.BuveraCategoryId ==3);
             }
 
 
             return this.UnitOfWork.Get<Buvera>().AsQueryable()
-                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate));
+                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BuveraCategoryId ==3);
         }
 
         #endregion
@@ -1816,7 +1816,7 @@ namespace Higgs.Mbale.DAL.Concrete
             {
 
                 return this.UnitOfWork.Get<Buvera>().AsQueryable()
-                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId && m.BuveraCategoryId ==3);
             }
 
 
@@ -1986,6 +1986,90 @@ namespace Higgs.Mbale.DAL.Concrete
         #endregion
         #endregion
 
-       
+        #region pettycash
+        #region branch
+        public IEnumerable<PettyCash> GetAllPettyCashBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId,long categoryId)
+        {
+            if (branchId != 0  && categoryId == 0)
+            {
+
+                return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+            }
+            else if(branchId != 0 && categoryId != 0)
+            {
+
+                return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId && m.RequistionCategoryId == categoryId);
+
+            }
+
+
+            return null;
+        }
+        #endregion
+        #region web
+       public  IEnumerable<PettyCash> GetAllPettyCashBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId, long categoryId)
+        {
+            if (branchId != 0 && categoryId == 0)
+            {
+
+                return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+            }
+            else if (branchId != 0 && categoryId != 0)
+            {
+
+                return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId && m.RequistionCategoryId == categoryId);
+            }
+            else if ( branchId == 0 && categoryId != 0)
+            {
+                return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+               .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.RequistionCategoryId == categoryId);
+
+            }
+
+            return this.UnitOfWork.Get<PettyCash>().AsQueryable()
+                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate));
+        }
+        #endregion
+        #endregion
+
+        #region millingcharge
+
+        #region branch
+        public IEnumerable<MillingCharge> GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
+        {
+            if (branchId != 0)
+            {
+
+                return this.UnitOfWork.Get<MillingCharge>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+            }
+
+
+            return null;
+        }
+        #endregion
+        #region web
+
+        public IEnumerable<MillingCharge> GetAllMillingChargeBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId)
+        {
+            if (branchId != 0)
+            {
+
+                return this.UnitOfWork.Get<MillingCharge>().AsQueryable()
+                    .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate) && m.BranchId == branchId);
+            }
+
+
+            return this.UnitOfWork.Get<MillingCharge>().AsQueryable()
+                .Where(m => m.Deleted == false && (m.CreatedOn >= lowerSpecifiedDate && m.CreatedOn <= upperSpecifiedDate));
+        }
+        #endregion
+        #endregion
+
+
     }
 }

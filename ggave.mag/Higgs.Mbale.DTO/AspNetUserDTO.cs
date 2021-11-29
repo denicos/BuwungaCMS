@@ -36,5 +36,6 @@ namespace Higgs.Mbale.DTO
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public string Location { get; set; }
         public Nullable<long> RegionId { get; set; }
+        public Nullable<long> BranchId { get; set; }
     }
 }

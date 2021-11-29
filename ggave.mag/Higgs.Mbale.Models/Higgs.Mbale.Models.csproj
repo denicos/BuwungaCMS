@@ -184,7 +184,9 @@
     <Compile Include="ViewModel\LabourCostReportViewModel.cs" />
     <Compile Include="ViewModel\consolidated\PeriodicConsolidatedReport.cs" />
     <Compile Include="ViewModel\MachineRepairReportViewModel.cs" />
+    <Compile Include="ViewModel\MillingChargeReportViewModel.cs" />
     <Compile Include="ViewModel\OutSourcerOutPutReportViewModel.cs" />
+    <Compile Include="ViewModel\PettyCashReportViewModel.cs" />
     <Compile Include="ViewModel\RecoveriesReportViewModel.cs" />
     <Compile Include="ViewModel\RiceInputReportViewModel.cs" />
     <Compile Include="ViewModel\SupplyReportViewModel.cs" />

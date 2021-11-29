@@ -92,9 +92,9 @@
             </div>*@
 
                         <!--<div class="form-group">
-            @Html.LabelFor(m => m.RegionId, new { @class = "control-label col-md-2" })
+        @Html.LabelFor(m => m.RegionId, new { @class = "control-label col-md-2" })
 
-            <!--<div class="col-md-10">-->
+        <!--<div class="col-md-10">-->
                         <!--@*@Html.DropDownList("Region", ViewData["DistrictsList"] as IEnumerable<SelectListItem>)*@-->
                         <!--@*@HtmlDropDownList("RegionId", (IEnumerable<SelectListItem>)ViewBag.Name, "Please Select ")*@-->
                         <!--@* @Html.DropDownList("Region", (SelectList)ViewBag.Name, "Please Select ")*@
@@ -109,6 +109,19 @@
                             <div class="col-md-10">
 
                                 @Html.DropDownList("RegionId", (SelectList)ViewBag.Name, "Please Select ")
+
+                            </div>
+                        </div>
+
+                        @*@Html.LabelFor(m => m.BranchId, new { @class = "control-label col-md-2" })*@
+
+                       
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BranchId, new { @class = "control-label col-md-2" })
+
+                            <div class="col-md-10">
+
+                                @Html.DropDownList("BranchId", (SelectList)ViewBag.BranchName, "Please Select ")
 
                             </div>
                         </div>

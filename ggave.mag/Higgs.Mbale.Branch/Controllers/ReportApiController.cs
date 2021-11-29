@@ -6,6 +6,7 @@ using log4net;
 using Higgs.Mbale.Models;
 using Higgs.Mbale.Models.ViewModel;
 
+
 namespace Higgs.Mbale.Branch.Controllers
 {
     public class ReportApiController : ApiController
@@ -621,6 +622,51 @@ namespace Higgs.Mbale.Branch.Controllers
 
         #endregion
 
+        #region debtors,creditors
+
+
+        [HttpGet]
+        [ActionName("GenerateCreditorReport")]
+        public CreditorReportViewModel GenerateCreditorReport()
+        {
+            return _reportService.GenerateCreditorReport();
+        }
+
+        [HttpGet]
+        [ActionName("GenerateDebtorReport")]
+        public DebtorReportViewModel GenerateDebtorReport()
+        {
+            return _reportService.GenerateDebtorReport();
+        }
+
+        [HttpPost]
+        [ActionName("GenerateCreditorReportForAParticularDate")]
+        public CreditorReportViewModel GenerateCreditorReportForAParticularDate(ReportSearch dateTime)
+        {
+            return _reportService.GenerateCreditorReportForAParticularDate(dateTime.ToDate);
+        }
+
+        [HttpPost]
+        [ActionName("GenerateCreditorReportForAParticularDateForBranch")]
+        public CreditorReportViewModel GenerateCreditorReportForAParticularDateForBranch(ReportSearch dateTime)
+        {
+            return _reportService.GenerateCreditorReportForAParticularDateForBranch(dateTime.ToDate, branchId);
+        }
+        [HttpPost]
+        [ActionName("GenerateDebtorReportForAParticularDate")]
+        public DebtorReportViewModel GenerateDebtorReportForAParticularDate(ReportSearch dateTime)
+        {
+            return _reportService.GenerateDebtorReportForAParticularDate(dateTime.ToDate);
+        }
+        [HttpPost]
+        [ActionName("GenerateDebtorReportForAParticularDateForBranch")]
+        public DebtorReportViewModel GenerateDebtorReportForAParticularDateForBranch(ReportSearch dateTime)
+        {
+            return _reportService.GenerateDebtorReportForAParticularDateForBranch(dateTime.ToDate, branchId);
+        }
+
+    
+        #endregion
 
         #region deposits,recoveries,discounts
         [HttpPost]
@@ -670,6 +716,26 @@ namespace Higgs.Mbale.Branch.Controllers
 
         #endregion
 
+        #region pettycash
+        
+        [HttpPost]
+        [ActionName("GetAllPettyCashBetweenTheSpecifiedDatesForBranch")]
+        public PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDatesForBranch(ReportSearch searchDates)
+        {
+            return _reportService.GetAllPettyCashBetweenTheSpecifiedDatesForBranch(searchDates.FromDate, searchDates.ToDate, branchId, searchDates.CategoryId);
+        }
+
+
+        #endregion
+        #region millingcharge
+
+        [HttpPost]
+        [ActionName("GetAllMillingChargeBetweenTheSpecifiedDatesForBranch")]
+        public  MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(ReportSearch searchDates)
+        {
+            return _reportService.GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(searchDates.FromDate, searchDates.ToDate, branchId);
+        }
+        #endregion
 
     }
 }

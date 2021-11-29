@@ -18,24 +18,27 @@ namespace Higgs.Mbale.Web.Controllers
         private const int PAGESIZE = 500;
         private IUserService _userService;
         private IProductService _productService;
+        private IBranchService _branchService;
 
         public UsersAdminController()
         {
 
         }
 
-        public UsersAdminController(IUserService userService,IProductService productService)
+        public UsersAdminController(IUserService userService,IProductService productService,IBranchService branchService)
         {
             this._userService = userService;
             this._productService = productService;
+            this._branchService = branchService;
         }
 
-        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager, IUserService userService,IProductService productService)
+        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager, IUserService userService,IProductService productService,IBranchService branchService)
         {
             UserManager = userManager;
             RoleManager = roleManager;
             this._userService = userService;
             this._productService = productService;
+            this._branchService = branchService;
         }
 
         private ApplicationUserManager _userManager;
@@ -340,11 +343,17 @@ namespace Higgs.Mbale.Web.Controllers
             ViewBag.Name = new SelectList(districtList.Where(u => !u.Name.Contains("Admin"))
                                      .ToList(), "RegionId", "Name");
 
+            //get the list of branches
+            var branches = _branchService.GetAllBranches();
+            var branchesList = branches.ToList();
+            ViewBag.branchName = new SelectList(branches.Where(b => !b.Name.Contains("Name"))
+                .ToList(), "BranchId", "Name");
+
             //get the list of products
             var products = _productService.GetAllProducts().ToList();
-          
+           
             ViewBag.ProductName = new SelectList(products.Where(u => !u.Name.Contains("Name"))
-                                    .ToList(),"Name", "Name");
+                                    .ToList(),"ProductId", "Name");
 
 
            
@@ -377,6 +386,7 @@ namespace Higgs.Mbale.Web.Controllers
                     UniqueNumber = userViewModel.UniqueNumber,
                     Location = userViewModel.Location,
                     RegionId = userViewModel.RegionId,
+                    BranchId = userViewModel.BranchId,
                     //SelectedProducts = userViewModel.SelectedProducts,
                 };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
@@ -409,12 +419,15 @@ namespace Higgs.Mbale.Web.Controllers
                     //get the list of products
                     var products = _productService.GetAllProducts().ToList();
                     var districts = _userService.GetAllRegions().ToList();
+                    var branches = _branchService.GetAllBranches().ToList();
                     ModelState.AddModelError("", adminresult.Errors.First());
                     ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
                     //ViewBag.ProductName = new SelectList(products.Where(u => !u.Name.Contains("Name"))
                     //               .ToList(), "ProductId", "Name");
                     ViewBag.RegionName = new SelectList(districts.Where(u => !u.Name.Contains("Name"))
                                   .ToList(), "RegionId", "Name");
+                    ViewBag.BranchName = new SelectList(branches.Where(u => !u.Name.Contains("Name"))
+                                  .ToList(), "BranchId", "Name");
 
                     return View();
 
@@ -448,6 +461,7 @@ namespace Higgs.Mbale.Web.Controllers
             var products = _productService.GetAllProducts();
             //get the list of districts
             var districts = _userService.GetAllRegions();
+            var branches = _branchService.GetAllBranches();
 
 
             //selected = (from reg in context.Regions
@@ -464,8 +478,20 @@ namespace Higgs.Mbale.Web.Controllers
                                      .ToList(), "RegionId", "Name");
 
             }
-           
 
+            if (user.BranchId != null)
+            {
+                selected = (from reg in branches
+                            where reg.BranchId == user.BranchId
+                            select reg.Name).FirstOrDefault();
+                ViewBag.Name = new SelectList(branches, "BranchId", "Name", selected);
+            }
+            else
+            {
+                ViewBag.Name = new SelectList(branches.Where(u => !u.Name.Contains("Admin"))
+                                     .ToList(), "BranchId", "Name");
+
+            }
             var userToEdit = new AdminViewModels.EditUserViewModel()
             {
                 Id = user.Id,
@@ -502,8 +528,16 @@ namespace Higgs.Mbale.Web.Controllers
                     Value =Convert.ToString(x.RegionId)
                 }),
 
+                BranchsList = branches.ToList().Select(x => new SelectListItem()
+                {
 
-         
+                    Selected = true,
+                    
+                    Text = x.Name,
+                    Value = Convert.ToString(x.BranchId)
+                }),
+
+
 
             };
         
@@ -517,7 +551,7 @@ namespace Higgs.Mbale.Web.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,LastName,FirstName,PhoneNumber,UserName,UniqueNumber,RegionId")] AdminViewModels.EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,LastName,FirstName,PhoneNumber,UserName,UniqueNumber,RegionId,BranchId")] AdminViewModels.EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -530,12 +564,16 @@ namespace Higgs.Mbale.Web.Controllers
                 var districts = _userService.GetAllRegions();
                 //var districtList = new SelectList(new[] {districts});
                 //ViewBag.ExemploList = districtList;
+                var branches = _branchService.GetAllBranches();
 
-                
                 var districtList = districts.ToList();
-                //ViewBag.ExemploList = districtList;
+                
                 ViewBag.Name = new SelectList(districts.Where(u => !u.Name.Contains("Admin"))
                                          .ToList(), "RegionId", "Name");
+                var branchList = branches.ToList();
+
+                ViewBag.BranchName = new SelectList(branches.Where(u => !u.Name.Contains("Admin"))
+                                         .ToList(), "BranchId", "Name");
 
 
                 user.Email = editUser.Email;
@@ -546,6 +584,7 @@ namespace Higgs.Mbale.Web.Controllers
                 user.UniqueNumber = editUser.UniqueNumber;
                 user.RegionId = editUser.RegionId;
                 user.Location = editUser.Location;
+                user.BranchId = editUser.BranchId;
               //  user.RegionId = editUser.SelectedRegionId;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);

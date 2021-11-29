@@ -28,5 +28,8 @@ namespace Higgs.Mbale.DAL.Interface
 
         IEnumerable<AccountTransactionActivity> GetLatestFortyAccountTransactionActivitiesForAParticularCasualWorker(long accountId);
         AccountTransactionActivity GetLatestAccountTransactionActivityForAParticularAspNetUserForAParticularDate(string accountId, DateTime dateTime);
+        AccountTransactionActivity GetLatestAccountTransactionActivityForAParticularAspNetUserForAParticularDateAndBranch(string accountId, DateTime dateTime, long branchId);
+
+
     }
 }

@@ -12,19 +12,18 @@
         var action = $scope.action;
         $scope.accountName = "";
         $scope.actions = ["+", "-"];
+        var departmentId = 1;
         
          $http.get('/webapi/TransactionSubTypeApi/GetAllTransactionSubTypes').success(function (data, status) {
             $scope.transactionSubTypes = data;
          });
 
-         $http.get('/webapi/BranchApi/GetAllBranches').success(function (data, status) {
-             $scope.branches = data;
-         });
+        
 
 
-         $http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
-             $scope.sectors = data;
-         });
+         //$http.get('/webapi/SectorApi/GetAllSectors').success(function (data, status) {
+         //    $scope.sectors = data;
+         //});
 
         
          if (accountId.length < 6) {
@@ -86,7 +85,7 @@
                         Balance: b.Balance,
                         TransactionSubTypeId: b.TransactionSubTypeId,
                         BranchId: b.BranchId,
-                        SectorId:b.SectorId,
+                        SectorId:b.sectorId,
                         CasualWorkerId: b.CasualWorkerId,
                         AspNetUserId : b.AspNetUserId,
                         Amount: b.Amount,
@@ -118,7 +117,7 @@
                     BranchId: transactionActivity.BranchId,
                     AspNetUserId: (accountType == "string") ? accountId : null,
                     CasualWorkerId: (accountType == "number") ? accountId : null,
-                    SectorId : transactionActivity.SectorId,
+                    SectorId : departmentId,
                     Notes: transactionActivity.Notes,
                     Action: transactionActivity.Action,
                     TransactionSubTypeId: transactionActivity.TransactionSubTypeId,

@@ -23,6 +23,8 @@ namespace Higgs.Mbale.DAL.Interface
         long GetLoggedUserBranchId(string userId);
         IEnumerable<Region> GetAllRegions();
         IEnumerable<AspNetUser> GetAllCustomersForAParticularRegion(long regionId);
+        IEnumerable<AspNetUser> GetAllSuppliersForAParticularBranch(long branchId);
+        IEnumerable<AspNetUser> GetAllCustomersForAParticularBranch(long branchId);
         Region GetRegion(long regionId);
         IEnumerable<UserBranch> GetAllUserBranches(string Id);
         IEnumerable<Location> GetAllLocationsForAParticularRegion(long regionId);

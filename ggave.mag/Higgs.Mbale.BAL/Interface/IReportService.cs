@@ -436,6 +436,10 @@ namespace Higgs.Mbale.BAL.Interface
         CreditorReportViewModel GenerateCreditorReportForAParticularDate(DateTime dateTime);
         DebtorReportViewModel GenerateDebtorReportForAParticularDate(DateTime dateTime);
         DebtorReportViewModel GenerateAdvancePaymentReportForAParticularDate(DateTime dateTime);
+
+        CreditorReportViewModel GenerateCreditorReportForAParticularDateForBranch(DateTime dateTime, long branchId);
+        DebtorReportViewModel GenerateDebtorReportForAParticularDateForBranch(DateTime dateTime, long branchId);
+        DebtorReportViewModel GenerateAdvancePaymentReportForAParticularDateForBranch(DateTime dateTime, long branchId);
         #endregion
 
         #region deposits,recoveries and discounts
@@ -462,6 +466,30 @@ namespace Higgs.Mbale.BAL.Interface
         DailyReport GetAllActivitiesForAParticularBranchForASpecificPeriod(DateTime fromDate, DateTime toDate, long branchId);
         #endregion
 
-       
+        #region pettycash
+        #region branch
+        PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId,long categoryId);
+
+        #endregion
+        #region web
+
+        PettyCashReportViewModel GetAllPettyCashBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId,long categoryId);
+
+        #endregion
+        #endregion
+
+        #region millingcharge
+
+        #region branch
+        MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDatesForBranch(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
+
+        #endregion
+        #region web
+
+        MillingChargeReportViewModel GetAllMillingChargeBetweenTheSpecifiedDates(DateTime lowerSpecifiedDate, DateTime upperSpecifiedDate, long branchId);
+
+        #endregion
+        #endregion
+
     }
 }

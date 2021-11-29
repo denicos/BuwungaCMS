@@ -102,6 +102,22 @@ namespace Higgs.Mbale.DAL.Concrete
             }
 
         }
+
+        public AccountTransactionActivity GetLatestAccountTransactionActivityForAParticularAspNetUserForAParticularDateAndBranch(string accountId, DateTime dateTime,long branchId)
+        {
+            AccountTransactionActivity accountTransactionActivity = new AccountTransactionActivity();
+            var accountTransactionActivities = this.UnitOfWork.Get<AccountTransactionActivity>().AsQueryable().Where(e => e.AspNetUserId == accountId && e.Deleted == false && e.CreatedOn <= dateTime && e.BranchId == branchId);
+            if (accountTransactionActivities.Any())
+            {
+                accountTransactionActivity = accountTransactionActivities.AsQueryable().OrderByDescending(e => e.CreatedOn).First();
+                return accountTransactionActivity;
+            }
+            else
+            {
+                return accountTransactionActivity;
+            }
+
+        }
         public AccountTransactionActivity GetLatestAccountTransactionActivitiesForAParticularCasualWorker(long casualWorkerId)
        {
 

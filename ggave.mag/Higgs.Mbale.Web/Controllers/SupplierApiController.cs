@@ -35,5 +35,13 @@ namespace Higgs.Mbale.Web.Controllers
         {
             return _userService.GetAllSuppliers();
         }
+
+
+        [HttpGet]
+        [ActionName("GetAllSuppliersForAparticularBranch")]
+        public IEnumerable<AspNetUserViewModel> GetAllSuppliersForAparticularBranch(long branchId)
+        {
+            return _userService.GetAllSuppliersForAParticularBranch(branchId);
+        }
     }
 }

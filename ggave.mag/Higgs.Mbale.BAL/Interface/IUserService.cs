@@ -22,6 +22,9 @@ namespace Higgs.Mbale.BAL.Interface
         IEnumerable<AspNetUserViewModel> GetAllSuppliers();
         IEnumerable<AspNetUserViewModel> GetAllCustomers();
 
+        IEnumerable<AspNetUserViewModel> GetAllSuppliersForAParticularBranch(long branchId);
+        IEnumerable<AspNetUserViewModel> GetAllCustomersForAParticularBranch(long branchId);
+
         IEnumerable<AspNetUserViewModel> GetAllOutSourcers();
         IEnumerable<AspNetUserViewModel> GetAllMechanics();
         void SaveUserBranch(string userId, long branchId);

@@ -306,6 +306,60 @@ angular
 
         }]);
 
+angular
+    .module('homer').controller('BranchUnApprovedSupplyController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
+        function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
+
+            var branchId = $scope.branchId;
+            $scope.loadingSpinner = true;
+            var promise = $http.get('/webapi/SupplyApi/GetAllUnApprovedSuppliesForABranch?branchId=' + branchId, {});
+            promise.then(
+                function (payload) {
+                    $scope.gridData.data = payload.data;
+                    $scope.loadingSpinner = false;
+                }
+            );
+            $scope.gridData = {
+                enableFiltering: true,
+                columnDefs: $scope.columns,
+                enableRowSelection: false
+            };
+
+            $scope.gridData.multiSelect = false;
+
+            $scope.gridData.columnDefs = [
+
+                {
+                    name: 'SupplyDate', field: 'SupplyDate', type: 'date', cellFilter: 'date:\'yy-MM-dd\'',
+                    sort: {
+                        direction: uiGridConstants.DESC,
+                        priority: 1
+                    }
+                },
+
+                { name: 'Truck', field: 'TruckNumber' },
+                { name: 'Supplier Name', field: 'SupplierName' },
+                { name: 'Branch Name', field: 'BranchName' },
+                { name: 'Quantity(kgs)', field: 'Quantity' },
+                { name: 'Price', field: 'Price' },
+                { name: 'Amount', field: 'Amount' },
+
+                { name: 'WeightNoteNumber', field: 'WeightNoteNumber' },
+
+                { name: 'Normal Bags', field: 'NormalBags' },
+                { name: 'Stone Bags', field: 'BagsOfStones' },
+                { name: 'Yellow', field: 'YellowBags' },
+                { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/supplies/edit/euxied/{{row.entity.SupplyId}}">Edit</a></div>' },
+
+                { name: 'Action', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/supplies/details/euxied/{{row.entity.SupplyId}}">Details</a> </div>' },
+
+            ];
+
+
+
+
+        }]);
+
 
 
 angular

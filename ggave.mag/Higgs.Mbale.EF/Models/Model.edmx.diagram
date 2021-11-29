@@ -443,6 +443,16 @@
         <AssociationConnector Association="Higgs.MbaleModel.FK_Delivery_TransactionSubTypeId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_DeliveryBatch_DeliveryId" />
         <AssociationConnector Association="Higgs.MbaleModel.FK_WeightLoss_DeliveryId" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.Bank" Width="1.5" PointX="5.25" PointY="78.875" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Bank_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Bank_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Bank_UpdatedBy" />
+        <EntityTypeShape EntityType="Higgs.MbaleModel.BankTransaction" Width="1.5" PointX="7.5" PointY="45.125" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_BankTransaction_CreatedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_BankTransaction_DeletedBy" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_BankTransaction_BankId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_BankTransaction_BranchId" />
+        <AssociationConnector Association="Higgs.MbaleModel.FK_Bank_BranchId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

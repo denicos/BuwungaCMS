@@ -11,6 +11,7 @@ public    class BankDTO
         public long BankId { get; set; }
         public string Name { get; set; }
         public string AccountNumber { get; set; }
+        public long BranchId { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }

@@ -835,6 +835,54 @@ angular
         }]);
 
 angular
+    .module('homer').controller('BranchUnApprovedDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
+        function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
+
+            var branchId = $scope.branchId;
+            $scope.loadingSpinner = true;
+            var promise = $http.get('/webapi/DeliveryApi/GetAllBranchUnApprovedDeliveries?branchId=' + branchId, {});
+            promise.then(
+                function (payload) {
+                    $scope.gridData.data = payload.data;
+                    $scope.loadingSpinner = false;
+                }
+            );
+            $scope.gridData = {
+                enableFiltering: true,
+                columnDefs: $scope.columns,
+                enableRowSelection: false
+            };
+
+            $scope.gridData.multiSelect = false;
+
+            $scope.gridData.columnDefs = [
+
+                {
+                    name: 'Destination', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/deliveries/edit/{{row.entity.DeliveryId}}">{{row.entity.Location}}</a> </div>',
+                    sort: {
+                        direction: uiGridConstants.ASC,
+                        priority: 1
+                    }
+                },
+
+                { name: 'Customer Name', field: 'CustomerName' },
+                { name: 'Driver Name', field: 'DriverName' },
+
+                { name: 'Product', field: 'ProductName' },
+                { name: 'Vehicle Number', field: 'VehicleNumber' },
+                { name: 'Quantity', field: 'Quantity' },
+                { name: 'Amount', field: 'Amount' },
+                { name: 'Branch ', field: 'BranchName' },
+                { name: 'Delivery Details', cellTemplate: '<div class="ui-grid-cell-contents"> <a href="#/unapproveddetail/delivery/{{row.entity.DeliveryId}}">Details</a> </div>' },
+
+            ];
+
+
+
+
+        }]);
+
+angular
     .module('homer').controller('ApprovedDeliveryController', ['$scope', 'ngTableParams', '$http', '$filter', '$location', 'Utils', 'uiGridConstants',
         function ($scope, ngTableParams, $http, $filter, $location, Utils, uiGridConstants) {
             $scope.loadingSpinner = true;
